@@ -13,6 +13,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -28,11 +30,18 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: #FFDD46;
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  letter-spacing: -0.2rem;
+  font-family: "Comfortaa", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  color: #9d480f;
 }
 
 button {
