@@ -5,13 +5,27 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-import Root from './routes/Root';
+import Root from './routes/root';
+import Bugs from './routes/bugs';
+import Donuts from './routes/donuts';
+import ErrorPage from "./ErrorPage.jsx";
 import './index.css';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/bugs",
+        element: <Bugs />
+      },
+      {
+        path: '/donuts',
+        element: <Donuts />
+      }
+    ]
   },
 ]);
 
