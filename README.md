@@ -1,8 +1,27 @@
-# React + Vite
+# GetCoding Module 2: React Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Working Title
+Buggerz!
 
-Currently, two official plugins are available:
+## Purpose
+To encourage kids to learn about 'bugs' (insects, spiders, other crawly things like carpenters(roly-polies) and snails/slugs)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Description
+A responsive web app that allows the user to collect cards representing bugs they find
+
+## MVP Goals
+- State saving to local storage
+- Minimum 20 cards representing bugs found in Atlantic Canada
+- Search feature
+- Sort and filter collected and uncollected cards
+- Generate graphs and charts
+- Generate a print-friendly list of collected cards
+- Generate a printable membership card
+
+## Stretch Goals
+- Randomized / weekly challengers and/or scavenger hunts
+- Badge/Achievement system
+- Integration with iNaturalist API to submit observations
+- AI-assisted photo identification (via API?)
+
+## Continuous Improvements
