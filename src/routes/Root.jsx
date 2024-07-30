@@ -10,13 +10,16 @@ import './root.css';
 function Root() {
   return (
     <CssBaseline>
-      <List>
+      <Grid container spacing={2}>
         {bugsArray.map((bug) => (
-          <ListItem key={bug.id}>
+
+          <Grid key={bug.id} xs={12} sm={6} md={4} lg={3}>
+
             <BugCard bug={bug} />
-          </ListItem>
+
+          </Grid>
         ))}
-      </List>
+      </Grid>
       <div id='outlet'>
         <Outlet />
       </div>
