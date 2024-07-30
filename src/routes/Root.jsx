@@ -1,24 +1,21 @@
-import { Outlet, Link } from 'react-router-dom';
-
+import { Outlet } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
+import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2 (Ensure this is the intended version)
 import List from '@mui/material/List';
-import ListItem from '@mui/material/listItem';
-
-
+import ListItem from '@mui/material/ListItem'; // Corrected casing
+import BugCard from '../components/BugCard';
+import bugsArray from '../assets/data/bugs';
 import './root.css';
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
 
 function Root() {
-
   return (
     <CssBaseline>
       <List>
-        <ListItem><Link to={'bugs'}>buggerz!</Link></ListItem>
-        <ListItem><Link to={'donuts'}>dōnutsy</Link></ListItem>
-        <ListItem>?</ListItem>
+        {bugsArray.map((bug) => (
+          <ListItem key={bug.id}>
+            <BugCard bug={bug} />
+          </ListItem>
+        ))}
       </List>
       <div id='outlet'>
         <Outlet />
