@@ -7,17 +7,11 @@ import {
 
 
 
-import Root from './routes/root';
-import Bugs from './routes/bugs';
-import Donuts from './routes/donuts';
+import Root from './routes/root.jsx';
+import Bugs from './routes/bugs.jsx';
+import Donuts from './routes/donuts.jsx';
 import ErrorPage from "./ErrorPage.jsx";
 import './index.css';
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
-
-
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
