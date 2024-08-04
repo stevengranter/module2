@@ -14,7 +14,8 @@ import {
 } from "react-router-dom";
 
 // import components
-import Root from './routes/root.jsx';
+import Root from './routes/root';
+import Index from './routes/index';
 import CollectionRoute from './routes/collection.jsx';
 import ErrorPage from "./ErrorPage.jsx";
 
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
+      { index: true, element: <Index /> },
       {
         path: "/collection",
         element: <CollectionRoute />

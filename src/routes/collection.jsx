@@ -11,7 +11,7 @@ export default function Collection() {
   return (
     <div>
       <h1>Collection</h1>
-      <SimpleGrid cols={{ base: 1, sm: 2, md: 3, lg: 4 }}>
+      <SimpleGrid cols={{ base: 1, sm: 1, md: 2, lg: 3 }}>
         {collectionData.map(species => {
           return (
 
