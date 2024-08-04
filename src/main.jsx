@@ -1,24 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+
+import './index.css';
+
+// imports for @mantine (UI component library)
+import '@mantine/core/styles.css';
+import { MantineProvider } from '@mantine/core';
+
+// imports for React Router
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
 
-
-
+// import components
 import Root from './routes/root.jsx';
-import Bugs from './routes/bugs.jsx';
-import Donuts from './routes/donuts.jsx';
+import BugsRoute from './routes/bugs.jsx';
 import ErrorPage from "./ErrorPage.jsx";
-import './index.css';
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
 
-
-
+// define routes
 const router = createBrowserRouter([
   {
     path: "/",
@@ -27,18 +27,17 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/bugs",
-        element: <Bugs />
+        element: <BugsRoute />
       },
-      {
-        path: '/donuts',
-        element: <Donuts />
-      }
     ]
   },
 ]);
 
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+    <MantineProvider>
+      <RouterProvider router={router} />
+    </MantineProvider>
+  </React.StrictMode >
 );

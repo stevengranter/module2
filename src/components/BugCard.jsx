@@ -1,22 +1,30 @@
 
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import CardActions from '@mui/material/CardActions';
-
+import { Grid, Card, Image, Text, Title } from '@mantine/core';
 function BugCard({ bug }) {
   return (
-    <Card key={bug.id}>
-      <CardMedia component="img" sx={{ height: 200 }} image="https://picsum.photos/300/300"></CardMedia>
-      <CardContent>
-        <h3>{bug.commonName}</h3>
-        <h4>{bug.scientificName}</h4>
-        <p>{bug.description}</p>
-        <p>Habitat: {bug.habitat}</p>
-        <p>Diet: {bug.diet}</p>
+    <Grid.Col
+      span={{ base: 12, xs: 6, sm: 4, lg: 3 }}
+      justify="space-around"
+      align="flex-start">
+      <Card shadow="sm" p="xl">
+        <Card.Section>
 
-      </CardContent>
-    </Card>
+        </Card.Section>
+
+        <Card.Section>
+          <Title order={2}></Title>
+        </Card.Section>
+
+        <Card.Section>
+          <Title order={3}>{bug.commonName}</Title>
+          <h4>{bug.scientificName}</h4>
+          <p>{bug.description}</p>
+          <p>Habitat: {bug.habitat}</p>
+          <p>Diet: {bug.diet}</p>
+
+        </Card.Section>
+      </Card>
+    </Grid.Col>
   );
 }
 export default BugCard;
