@@ -1,4 +1,4 @@
-const bugs = [
+export const collectionData = [
   {
     id: 1,
     commonName: "Common Green Lacewing",
@@ -90,5 +90,3 @@ const bugs = [
     description: "An invasive species known for its metallic green and bronze coloration that feeds on a wide range of plants."
   }
 ];
-
-export default bugs;
