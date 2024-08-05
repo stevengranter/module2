@@ -1,13 +1,14 @@
 // Mantine components
 import { SimpleGrid } from '@mantine/core';
 
+import {IconCards} from '@tabler/icons-react';
+
 // Custom components
-import CollectibleCard from '../components/CollectibleCard.jsx';
+import CollectibleCard from '../components/CollectibleCard';
 
 // Data
 import { collectionData } from '../assets/data/data.js';
 export default function Collection() {
-
   return (
     <div>
       <h1>Collection</h1>

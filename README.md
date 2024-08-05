@@ -1,27 +1,30 @@
-# GetCoding Module 2: React Project
+# React + TypeScript + Vite
 
-## Working Title
-Buggerz!
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Purpose
-To encourage kids to learn about 'bugs' (insects, spiders, other crawly things like carpenters(roly-polies) and snails/slugs)
+Currently, two official plugins are available:
 
-## Description
-A responsive web app that allows the user to collect cards representing bugs they find
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## MVP Goals
-- State saving to local storage
-- Minimum 20 cards representing bugs found in Atlantic Canada
-- Search feature
-- Sort and filter collected and uncollected cards
-- Generate graphs and charts
-- Generate a print-friendly list of collected cards
-- Generate a printable membership card
+## Expanding the ESLint configuration
 
-## Stretch Goals
-- Randomized / weekly challengers and/or scavenger hunts
-- Badge/Achievement system
-- Integration with iNaturalist API to submit observations
-- AI-assisted photo identification (via API?)
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-## Continuous Improvements
+- Configure the top-level `parserOptions` property like this:
+
+```js
+export default {
+  // other rules...
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
+    tsconfigRootDir: __dirname,
+  },
+}
+```
+
+- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list

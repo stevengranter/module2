@@ -18,7 +18,7 @@ import Root from './routes/root';
 import Index from './routes/index';
 import Collection from './routes/collection.jsx';
 import About from './routes/about';
-import ErrorPage from "./ErrorPage.jsx";
+import ErrorPage from "./ErrorPage.tsx";
 
 // define routes
 const router = createBrowserRouter([
@@ -41,7 +41,7 @@ const router = createBrowserRouter([
 ]);
 
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ColorSchemeScript defaultColorScheme="auto" />
     <MantineProvider defaultColorScheme="auto">

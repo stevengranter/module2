@@ -1,9 +1,11 @@
 export const collectionData = [
   {
+
     id: 14,
     imgSrc: 'cepaea_nemoralis.png',
     commonName: "Common Garden Snail",
     scientificName: "Cepaea nemoralis",
+    nickName: "Nemo",
     family: "Helicidae",
     diet: "Herbivorous (feeds on leaves, flowers, and decaying plant matter)",
     habitat: "Woodlands, meadows, and gardens",
@@ -14,6 +16,7 @@ export const collectionData = [
     imgSrc: 'armadillidiidae.png',
     commonName: "Roly-Poly",
     scientificName: "Armadillidiidae",
+    nickName: "Dilly",
     family: "Armadillidiidae",
     diet: "Decaying plant material (detritivore)",
     habitat: "Moist environments like leaf litter, under rocks and logs",
@@ -24,6 +27,7 @@ export const collectionData = [
     imgSrc: 'salticus_scenicus.png',
     commonName: "Zebra Spider",
     scientificName: "Salticus scenicus",
+    nickName: "Salty",
     family: "Salticidae",
     diet: "Small insects (hunts actively)",
     habitat: "Gardens, homes, and various outdoor environments",
@@ -34,6 +38,7 @@ export const collectionData = [
     imgSrc: 'lumbricus_terrestris.png',
     commonName: "Earthworm",
     scientificName: "Lumbricus terrestris",
+    nickName: "Lumby",
     family: "Lumbricidae",
     diet: "Decomposing organic matter (detritivore)",
     habitat: "Soil, especially in gardens and farmland",
@@ -44,6 +49,7 @@ export const collectionData = [
     imgSrc: 'chrysopa_rufilabris.png',
     commonName: "Common Green Lacewing",
     scientificName: "Chrysopa rufilabris",
+    nickName: "Crissy",
     family: "Chrysopidae",
     diet: "Aphids, mealybugs, and other small insects (as larvae)",
     habitat: "Gardens and agricultural fields",
@@ -54,6 +60,7 @@ export const collectionData = [
     imgSrc: 'apis_mellifera.png',
     commonName: "Honeybee",
     scientificName: "Apis mellifera",
+    nickName: "Melli",
     family: "Apidae",
     diet: "Nectar and pollen from flowers",
     habitat: "Gardens, farms, and natural areas",
@@ -64,6 +71,7 @@ export const collectionData = [
     imgSrc: "formica_rufibarbis.png",
     commonName: "Common Ant",
     scientificName: "Formica rufibarbis",
+    nickName: "Rubarb",
     family: "Formicidae",
     diet: "Variety of foods including seeds, nectar, and other insects",
     habitat: "Forests, gardens, and urban areas",
@@ -74,6 +82,7 @@ export const collectionData = [
     imgSrc: 'hippodamia_convergens.png',
     commonName: "Ladybug",
     scientificName: "Hippodamia convergens",
+    nickName: "Damia",
     family: "Coccinellidae",
     diet: "Aphids and other pests",
     habitat: "Gardens, fields, and forests",
@@ -84,10 +93,31 @@ export const collectionData = [
     imgSrc: 'enallagma_cyathigerum.png',
     commonName: "Northern Bluet",
     scientificName: "Enallagma cyathigerum",
+    nickName: "Llagma",
     family: "Coenagrionidae",
     diet: "Small insects, including mosquitoes (as adults)",
     habitat: "Wetlands, marshes, and along lakes and streams",
     description: "A small, slender damselfly recognized for its striking blue coloration and black markings, often found near freshwater."
-  }
+  },
+  {
+    id: 18,
+    imgURL: 'src/assets/images/lophocampa_maculata.png',
+    commonName: "Spotted Tussock Moth",
+    scientificName: "Lophocampa maculata",
+    family: "Erebidae",
+    diet: "Leaves of deciduous trees and shrubs (larvae feed on various host plants)",
+    habitat: "Wooded areas, gardens, and fields",
+    description: "A distinctive moth known for its striking black and white coloration and hairy caterpillars, which are often found on plants."
+  },
+  {
+    id: 17,
+    imgURL: 'src/assets/images/polydrusus_formosus.png',
+    commonName: "Formosan Leaf Weevil",
+    scientificName: "Polydrusus formosus",
+    family: "Curculionidae",
+    diet: "Leaves and tender shoots of various plants",
+    habitat: "Forests, gardens, and agricultural areas",
+    description: "A small, green weevil recognized for its elongated snout; it causes minimal damage to plants but can be a pest in gardens."
+  },
 
 ];
