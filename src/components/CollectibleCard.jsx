@@ -1,10 +1,11 @@
 
 import { Card, Image, Text, Title } from '@mantine/core';
 function CollectibleCard({ species }) {
+  const imagePath = './images/' + species.imgSrc;
   return (
     <Card shadow="sm" p="xl">
       <Card.Section>
-        {(species.imgURL) ? <Image src={species.imgURL} alt={species.scientificName} /> : ''}
+        {(species.imgSrc) ? <Image src={imagePath} alt={species.scientificName} /> : ''}
 
       </Card.Section>
 

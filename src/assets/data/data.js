@@ -1,7 +1,7 @@
 export const collectionData = [
   {
     id: 14,
-    imgURL: 'src/assets/images/cepaea_nemoralis.png',
+    imgSrc: 'cepaea_nemoralis.png',
     commonName: "Common Garden Snail",
     scientificName: "Cepaea nemoralis",
     family: "Helicidae",
@@ -11,7 +11,7 @@ export const collectionData = [
   },
   {
     id: 11,
-    imgURL: 'src/assets/images/armadillidiidae.png',
+    imgSrc: 'armadillidiidae.png',
     commonName: "Roly-Poly",
     scientificName: "Armadillidiidae",
     family: "Armadillidiidae",
@@ -21,7 +21,7 @@ export const collectionData = [
   },
   {
     id: 12,
-    imgURL: 'src/assets/images/salticus_scenicus.png',
+    imgSrc: 'salticus_scenicus.png',
     commonName: "Zebra Spider",
     scientificName: "Salticus scenicus",
     family: "Salticidae",
@@ -31,7 +31,7 @@ export const collectionData = [
   },
   {
     id: 13,
-    imgURL: 'src/assets/images/lumbricus_terrestris.png',
+    imgSrc: 'lumbricus_terrestris.png',
     commonName: "Earthworm",
     scientificName: "Lumbricus terrestris",
     family: "Lumbricidae",
@@ -41,7 +41,7 @@ export const collectionData = [
   },
   {
     id: 1,
-    imgURL: 'src/assets/images/chrysopa_rufilabris.png',
+    imgSrc: 'chrysopa_rufilabris.png',
     commonName: "Common Green Lacewing",
     scientificName: "Chrysopa rufilabris",
     family: "Chrysopidae",
@@ -51,7 +51,7 @@ export const collectionData = [
   },
   {
     id: 2,
-    imgURL: 'src/assets/images/apis_mellifera.png',
+    imgSrc: 'apis_mellifera.png',
     commonName: "Honeybee",
     scientificName: "Apis mellifera",
     family: "Apidae",
@@ -61,7 +61,7 @@ export const collectionData = [
   },
   {
     id: 5,
-    imgURL: "src/assets/images/formica_rufibarbis.png",
+    imgSrc: "formica_rufibarbis.png",
     commonName: "Common Ant",
     scientificName: "Formica rufibarbis",
     family: "Formicidae",
@@ -71,7 +71,7 @@ export const collectionData = [
   },
   {
     id: 8,
-    imgURL: 'src/assets/images/hippodamia_convergens.png',
+    imgSrc: 'hippodamia_convergens.png',
     commonName: "Ladybug",
     scientificName: "Hippodamia convergens",
     family: "Coccinellidae",
@@ -81,7 +81,7 @@ export const collectionData = [
   },
   {
     id: 15,
-    imgURL: 'src/assets/images/enallagma_cyathigerum.png',
+    imgSrc: 'enallagma_cyathigerum.png',
     commonName: "Northern Bluet",
     scientificName: "Enallagma cyathigerum",
     family: "Coenagrionidae",
