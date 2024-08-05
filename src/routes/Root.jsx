@@ -25,12 +25,14 @@ export default function Root() {
           hiddenFrom="sm"
           size="sm"
         />
-        <Title order={2}>Logo</Title>
+        Logo
       </AppShell.Header>
 
       <AppShell.Navbar p="md">
-        <Title order={2}>Navbar</Title>
+        Navbar
+        <Link to="/">Home</Link>
         <Link to="/collection">Collection</Link>
+        <Link to="/about">About</Link>
       </AppShell.Navbar>
 
       <AppShell.Main>

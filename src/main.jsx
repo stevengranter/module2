@@ -16,7 +16,8 @@ import {
 // import components
 import Root from './routes/root';
 import Index from './routes/index';
-import CollectionRoute from './routes/collection.jsx';
+import Collection from './routes/collection.jsx';
+import About from './routes/about';
 import ErrorPage from "./ErrorPage.jsx";
 
 // define routes
@@ -29,8 +30,12 @@ const router = createBrowserRouter([
       { index: true, element: <Index /> },
       {
         path: "/collection",
-        element: <CollectionRoute />
+        element: <Collection />
       },
+      {
+        path: "/about",
+        element: <About />
+      }
     ]
   },
 ]);

@@ -4,6 +4,7 @@ function CollectibleCard({ species }) {
   return (
     <Card shadow="sm" p="xl">
       <Card.Section>
+        {(species.imgURL) ? <Image src={species.imgURL} alt={species.scientificName} /> : ''}
 
       </Card.Section>
 
@@ -20,7 +21,6 @@ function CollectibleCard({ species }) {
 
       </Card.Section>
     </Card>
-
   );
 }
 export default CollectibleCard;

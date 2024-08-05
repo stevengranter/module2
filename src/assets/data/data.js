@@ -1,6 +1,47 @@
 export const collectionData = [
   {
+    id: 14,
+    imgURL: 'src/assets/images/cepaea_nemoralis.png',
+    commonName: "Common Garden Snail",
+    scientificName: "Cepaea nemoralis",
+    family: "Helicidae",
+    diet: "Herbivorous (feeds on leaves, flowers, and decaying plant matter)",
+    habitat: "Woodlands, meadows, and gardens",
+    description: "A terrestrial snail known for its variable shell color patterns, often found in gardens and grassy areas."
+  },
+  {
+    id: 11,
+    imgURL: 'src/assets/images/armadillidiidae.png',
+    commonName: "Roly-Poly",
+    scientificName: "Armadillidiidae",
+    family: "Armadillidiidae",
+    diet: "Decaying plant material (detritivore)",
+    habitat: "Moist environments like leaf litter, under rocks and logs",
+    description: "Also known as pillbugs, they are terrestrial crustaceans, known for their ability to roll into a ball."
+  },
+  {
+    id: 12,
+    imgURL: 'src/assets/images/salticus_scenicus.png',
+    commonName: "Zebra Spider",
+    scientificName: "Salticus scenicus",
+    family: "Salticidae",
+    diet: "Small insects (hunts actively)",
+    habitat: "Gardens, homes, and various outdoor environments",
+    description: "A small jumping spider recognizable by its black and white striped pattern, known for its agile movement."
+  },
+  {
+    id: 13,
+    imgURL: 'src/assets/images/lumbricus_terrestris.png',
+    commonName: "Earthworm",
+    scientificName: "Lumbricus terrestris",
+    family: "Lumbricidae",
+    diet: "Decomposing organic matter (detritivore)",
+    habitat: "Soil, especially in gardens and farmland",
+    description: "A vital soil organism that aerates and enriches the soil through its burrowing and feeding habits."
+  },
+  {
     id: 1,
+    imgURL: 'src/assets/images/chrysopa_rufilabris.png',
     commonName: "Common Green Lacewing",
     scientificName: "Chrysopa rufilabris",
     family: "Chrysopidae",
@@ -10,6 +51,7 @@ export const collectionData = [
   },
   {
     id: 2,
+    imgURL: 'src/assets/images/apis_mellifera.png',
     commonName: "Honeybee",
     scientificName: "Apis mellifera",
     family: "Apidae",
@@ -18,25 +60,8 @@ export const collectionData = [
     description: "Social insects renowned for their vital role in pollination and honey production."
   },
   {
-    id: 3,
-    commonName: "Eastern Carpenter Bee",
-    scientificName: "Xylocopa virginica",
-    family: "Apidae",
-    diet: "Nectar from flowers",
-    habitat: "Wooded areas and suburban gardens",
-    description: "A large bee that bores into wood to create nests; recognized by its black and yellow coloration."
-  },
-  {
-    id: 4,
-    commonName: "Dewdrop Spider",
-    scientificName: "Uloborus glomosus",
-    family: "Uloboridae",
-    diet: "Small insects (captures with silk webs)",
-    habitat: "Gardens and natural areas, often in web-like structures amongst foliage",
-    description: "A small spider known for its unique, non-venomous web-building technique, often found in damp environments."
-  },
-  {
     id: 5,
+    imgURL: "src/assets/images/formica_rufibarbis.png",
     commonName: "Common Ant",
     scientificName: "Formica rufibarbis",
     family: "Formicidae",
@@ -45,25 +70,8 @@ export const collectionData = [
     description: "Small social insects that live in colonies and play important roles in the ecosystem."
   },
   {
-    id: 6,
-    commonName: "Winter Moth",
-    scientificName: "Operophtera brumata",
-    family: "Geometridae",
-    diet: "Leaves of trees and shrubs (larvae)",
-    habitat: "Forests, parks, and gardens",
-    description: "A moth that is active in late fall and early spring; larvae are known for defoliating trees."
-  },
-  {
-    id: 7,
-    commonName: "Cotton Boll Weevil",
-    scientificName: "Anthonomus grandis",
-    family: "Curculionidae",
-    diet: "Cotton buds and flowers",
-    habitat: "Agricultural fields, primarily cotton fields",
-    description: "A small, destructive pest known for its impact on cotton crops; identifiable by its characteristic snout."
-  },
-  {
     id: 8,
+    imgURL: 'src/assets/images/hippodamia_convergens.png',
     commonName: "Ladybug",
     scientificName: "Hippodamia convergens",
     family: "Coccinellidae",
@@ -72,21 +80,14 @@ export const collectionData = [
     description: "Recognizable by their distinctive red or orange color with black spots, they are beneficial insects in pest control."
   },
   {
-    id: 9,
-    commonName: "Corn Earworm Moth",
-    scientificName: "Helicoverpa zea",
-    family: "Noctuidae",
-    diet: "Feeds on corn, tomatoes, and other crops (larvae)",
-    habitat: "Agricultural fields and gardens",
-    description: "A pest species whose larvae can cause significant damage to crops, often found in cornfields."
-  },
-  {
-    id: 10,
-    commonName: "Japanese Beetle",
-    scientificName: "Popillia japonica",
-    family: "Scarabaeidae",
-    diet: "Leaves and flowers of various plants",
-    habitat: "Gardens, parks, and agricultural fields",
-    description: "An invasive species known for its metallic green and bronze coloration that feeds on a wide range of plants."
+    id: 15,
+    imgURL: 'src/assets/images/enallagma_cyathigerum.png',
+    commonName: "Northern Bluet",
+    scientificName: "Enallagma cyathigerum",
+    family: "Coenagrionidae",
+    diet: "Small insects, including mosquitoes (as adults)",
+    habitat: "Wetlands, marshes, and along lakes and streams",
+    description: "A small, slender damselfly recognized for its striking blue coloration and black markings, often found near freshwater."
   }
+
 ];

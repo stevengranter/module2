@@ -14,11 +14,7 @@ export default function Collection() {
       <SimpleGrid cols={{ base: 1, sm: 1, md: 2, lg: 3 }}>
         {collectionData.map(species => {
           return (
-
-
             <CollectibleCard species={species} key={species.id}></CollectibleCard>
-
-
           );
         })}
       </SimpleGrid>
