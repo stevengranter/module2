@@ -1,4 +1,18 @@
-export const collectionData = [
+import { stringify } from "postcss";
+
+export type speciesType = {
+  id: number,
+  imgSrc: string,
+  commonName: string,
+  scientificName: string,
+  nickName?: (undefined | string),
+  family: string,
+  diet: string,
+  habitat: string,
+  description: string
+}
+
+export const speciesData: speciesType[] = [
   {
 
     id: 14,
@@ -101,7 +115,7 @@ export const collectionData = [
   },
   {
     id: 18,
-    imgURL: 'src/assets/images/lophocampa_maculata.png',
+    imgSrc: 'src/assets/images/lophocampa_maculata.png',
     commonName: "Spotted Tussock Moth",
     scientificName: "Lophocampa maculata",
     family: "Erebidae",
@@ -111,7 +125,7 @@ export const collectionData = [
   },
   {
     id: 17,
-    imgURL: 'src/assets/images/polydrusus_formosus.png',
+    imgSrc: 'src/assets/images/polydrusus_formosus.png',
     commonName: "Formosan Leaf Weevil",
     scientificName: "Polydrusus formosus",
     family: "Curculionidae",

@@ -4,18 +4,20 @@ import { SimpleGrid } from '@mantine/core';
 import {IconCards} from '@tabler/icons-react';
 
 // Custom components
-import CollectibleCard from '../components/CollectibleCard';
+import SpeciesCard from '../components/SpeciesCard.js';
 
 // Data
-import { collectionData } from '../assets/data/data.js';
+import { speciesData, speciesType } from '../assets/data/speciesData.ts';
 export default function Collection() {
   return (
     <div>
       <h1>Collection</h1>
       <SimpleGrid cols={{ base: 1, sm: 1, md: 2, lg: 3 }}>
-        {collectionData.map(species => {
+        {speciesData.map((species: speciesType) => {
           return (
-            <CollectibleCard species={species} key={species.id}></CollectibleCard>
+            <SpeciesCard
+            key={species.id}
+            {...species}></SpeciesCard>
           );
         })}
       </SimpleGrid>

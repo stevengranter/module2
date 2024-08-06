@@ -12,8 +12,8 @@ export default function Root() {
     <AppShell
       header={{ height: 60 }}
       navbar={{
-        width: 300,
-        breakpoint: 'sm',
+        width: '200',
+        breakpoint: 'xs',
         collapsed: { mobile: !opened },
       }}
       padding="md"
@@ -22,7 +22,7 @@ export default function Root() {
         <Burger
           opened={opened}
           onClick={toggle}
-          hiddenFrom="sm"
+          hiddenFrom="xs"
           size="sm"
         />
         Logo
@@ -31,6 +31,7 @@ export default function Root() {
       <AppShell.Navbar p="md">
         Navbar
         <Link to="/">Home</Link>
+        <Link to="/profile">Profile</Link>
         <Link to="/collection">Collection</Link>
         <Link to="/about">About</Link>
       </AppShell.Navbar>

@@ -16,6 +16,7 @@ import {
 // import components
 import Root from './routes/root';
 import Index from './routes/index';
+import UserProfile from './components/UserProfile.tsx';
 import Collection from './routes/collection.jsx';
 import About from './routes/about';
 import ErrorPage from "./ErrorPage.tsx";
@@ -28,6 +29,9 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <Index /> },
+      {path: "/profile",
+        element: <UserProfile />
+      },
       {
         path: "/collection",
         element: <Collection />
