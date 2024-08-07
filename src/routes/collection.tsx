@@ -1,8 +1,6 @@
 // Mantine components
 import { SimpleGrid } from '@mantine/core';
 
-import {IconCards} from '@tabler/icons-react';
-
 // Custom components
 import SpeciesCard from '../components/SpeciesCard.js';
 
