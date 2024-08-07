@@ -1,18 +1,22 @@
 // React Router components
-import { Outlet } from 'react-router-dom';
+import { Outlet, Link } from 'react-router-dom';
 
 // Mantine components
-import { AppShell, Burger } from '@mantine/core';
+import { AppShell, Burger, Image, Group } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 
 import { NavbarSimple} from '../components/NavbarSimple';
+
+// Images
+import logo from './public/images/logo.png'
+
 
 export default function Root() {
   const [opened, { toggle }] = useDisclosure();
 
   return (
     <AppShell
-      header={{ height: 60 }}
+      header={{ height: 120 }}
       navbar={{
         width: '200',
         breakpoint: 'xs',
@@ -21,13 +25,24 @@ export default function Root() {
       padding="md"
     >
       <AppShell.Header>
+        <Group h="100%" px="md">
         <Burger
           opened={opened}
           onClick={toggle}
           hiddenFrom="xs"
           size="sm"
         />
-        WilderNest
+
+          <Image
+          src="./images/logo.png"
+          alt="WilderNest Logo"
+          h="100%"
+          w="auto"
+        fit="contain"
+        py="lg"
+        px="md"/>
+
+      </Group>
       </AppShell.Header>
 
       <AppShell.Navbar>

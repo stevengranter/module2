@@ -25,7 +25,7 @@ function Index() {
             </Link>
           </Card.Section>
           <Center>
-             <ButtonLink to="/nest" variant="gradient" justify="center" fullWidth >
+             <ButtonLink to="/nest" variant="gradient" leftSection={<IconRainbow/>} justify="center" fullWidth >
        myNEST
       </ButtonLink>
 </Center>
