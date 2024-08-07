@@ -1,4 +1,3 @@
-import { stringify } from "postcss";
 
 export type speciesType = {
   id: number,

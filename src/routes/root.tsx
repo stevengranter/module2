@@ -2,7 +2,7 @@
 import { Outlet, Link } from 'react-router-dom';
 
 // Mantine components
-import { AppShell, Burger, Title } from '@mantine/core';
+import { AppShell, Burger } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 
 export default function Root() {
