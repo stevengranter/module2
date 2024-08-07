@@ -1,5 +1,5 @@
 // React Router components
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 // Mantine components
 import { AppShell, Burger, Image, Group } from '@mantine/core';
@@ -8,7 +8,7 @@ import { useDisclosure } from '@mantine/hooks';
 import { NavbarSimple} from '../components/NavbarSimple';
 
 // Images
-import logo from './public/images/logo.png'
+import logo from '/images/logo.png'
 
 
 export default function Root() {
@@ -34,7 +34,7 @@ export default function Root() {
         />
 
           <Image
-          src="./images/logo.png"
+          src={logo}
           alt="WilderNest Logo"
           h="100%"
           w="auto"
