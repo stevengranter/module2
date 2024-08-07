@@ -42,7 +42,7 @@ const router = createBrowserRouter([
       }
     ]
   },
-]);
+], {basename: "/module2"});
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
