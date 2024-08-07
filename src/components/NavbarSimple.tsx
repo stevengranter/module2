@@ -17,7 +17,7 @@ import { Link } from 'react-router-dom';
 const data = [
   { link: '/', label: 'Home', icon: IconHome },
   { link: '/collection', label: 'Collection', icon: IconCards },
-  { link: '/dome', label: 'myNEST', icon: IconRainbow },
+  { link: '/nest', label: 'myNEST', icon: IconRainbow },
   { link: '/nursery', label: 'Nursery', icon: IconSeeding},
   { link: '/playroom', label: 'Playroom', icon: IconHorseToy}
 ];

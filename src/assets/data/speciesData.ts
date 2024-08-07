@@ -1,4 +1,3 @@
-
 export type speciesType = {
   id: number,
   imgSrc: string,
@@ -13,7 +12,6 @@ export type speciesType = {
 
 export const speciesData: speciesType[] = [
   {
-
     id: 14,
     imgSrc: 'cepaea_nemoralis.png',
     commonName: "Common Garden Snail",
@@ -105,7 +103,7 @@ export const speciesData: speciesType[] = [
     id: 15,
     imgSrc: 'enallagma_cyathigerum.png',
     commonName: "Northern Bluet",
-    scientificName: "Enallagma cyathigerum",
+       scientificName: "Enallagma cyathigerum",
     nickName: "Llagma",
     family: "Coenagrionidae",
     diet: "Small insects, including mosquitoes (as adults)",
@@ -114,9 +112,10 @@ export const speciesData: speciesType[] = [
   },
   {
     id: 18,
-    imgSrc: 'src/assets/images/lophocampa_maculata.png',
+    imgSrc: 'lophocampa_maculata.png',
     commonName: "Spotted Tussock Moth",
     scientificName: "Lophocampa maculata",
+    nickName: "Spotty",
     family: "Erebidae",
     diet: "Leaves of deciduous trees and shrubs (larvae feed on various host plants)",
     habitat: "Wooded areas, gardens, and fields",
@@ -124,13 +123,24 @@ export const speciesData: speciesType[] = [
   },
   {
     id: 17,
-    imgSrc: 'src/assets/images/polydrusus_formosus.png',
+    imgSrc: 'polydrusus_formosus.png',
     commonName: "Formosan Leaf Weevil",
     scientificName: "Polydrusus formosus",
+    nickName: "Polly",
     family: "Curculionidae",
     diet: "Leaves and tender shoots of various plants",
     habitat: "Forests, gardens, and agricultural areas",
     description: "A small, green weevil recognized for its elongated snout; it causes minimal damage to plants but can be a pest in gardens."
   },
-
+  {
+    id: 19,
+    imgSrc: 'lophocampa_maculata_LARVA.png',
+    commonName: "Yellow Wooly Bear Caterpillar",
+    scientificName: "Lophocampa maculata",
+    nickName: "Woolly",
+    family: "Erebidae",
+    diet: "Leaves of various plants (larvae feed on a variety of foliage)",
+    habitat: "Fields, gardens, and wooded areas",
+    description: "The larval stage of the Lophocampa maculata, recognized for its bright yellow color and long hair-like setae, often considered harmless."
+  }
 ];

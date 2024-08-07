@@ -46,7 +46,7 @@ const router = createBrowserRouter([
         element: <Playroom />
       },
       {
-        path: "/dome",
+        path: "/nest",
         element: <Nest/>
       },
       {
