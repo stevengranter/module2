@@ -1,9 +1,11 @@
 // React Router components
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 // Mantine components
 import { AppShell, Burger } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
+
+import { NavbarSimple} from '../components/NavbarSimple';
 
 export default function Root() {
   const [opened, { toggle }] = useDisclosure();
@@ -28,12 +30,8 @@ export default function Root() {
         Logo
       </AppShell.Header>
 
-      <AppShell.Navbar p="md">
-        Navbar
-        <Link to="/">Home</Link>
-        <Link to="/profile">Profile</Link>
-        <Link to="/collection">Collection</Link>
-        <Link to="/about">About</Link>
+      <AppShell.Navbar>
+       <NavbarSimple />
       </AppShell.Navbar>
 
       <AppShell.Main>
