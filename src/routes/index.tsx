@@ -1,4 +1,5 @@
 import { Container, Grid, SimpleGrid, Skeleton, rem } from '@mantine/core';
+import { StatsCard } from '../components/StatsCard';
 
 const PRIMARY_COL_HEIGHT = rem(300);
 
@@ -12,7 +13,9 @@ function Index() {
         <Skeleton height={PRIMARY_COL_HEIGHT} radius="md" animate={false} />
         <Grid gutter="md">
           <Grid.Col>
-            <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={false} />
+            <StatsCard/>
+            {/* <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={false} /> */}
+
           </Grid.Col>
           <Grid.Col span={6}>
             <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={false} />

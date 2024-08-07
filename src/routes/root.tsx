@@ -27,7 +27,7 @@ export default function Root() {
           hiddenFrom="xs"
           size="sm"
         />
-        Logo
+        WilderNest
       </AppShell.Header>
 
       <AppShell.Navbar>

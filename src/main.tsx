@@ -16,10 +16,13 @@ import {
 // import components
 import Root from './routes/root';
 import Index from './routes/index';
-import UserProfile from './components/UserProfile.tsx';
-import Collection from './routes/collection.jsx';
+import UserProfile from './components/UserProfile';
+import Collection from './routes/collection';
+import Nursery from './routes/nursery';
+import Playroom from './routes/playroom';
+import Nest from './routes/nest';
 import About from './routes/about';
-import ErrorPage from "./ErrorPage.tsx";
+import ErrorPage from "./ErrorPage";
 
 // define routes
 const router = createBrowserRouter([
@@ -35,6 +38,16 @@ const router = createBrowserRouter([
       {
         path: "/collection",
         element: <Collection />
+      },
+      { path: "/nursery",
+        element: <Nursery />
+      },
+      {path: "/playroom",
+        element: <Playroom />
+      },
+      {
+        path: "/dome",
+        element: <Nest/>
       },
       {
         path: "/about",
