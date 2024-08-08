@@ -16,7 +16,8 @@ import {
 // import components
 import Root from './routes/root';
 import Index from './routes/index';
-import UserProfile from './components/UserProfile';
+import Welcome from './routes/welcome';
+import Profile from './routes/profile';
 import Collection from './routes/collection';
 import Nursery from './routes/nursery';
 import Playroom from './routes/playroom';
@@ -31,9 +32,12 @@ const router = createBrowserRouter([
     element: <Root />,
     // errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <Index /> },
+      { index: true, element: <Welcome /> },
+      {path: "/home",
+        element: <Index />
+      },
       {path: "/profile",
-        element: <UserProfile />
+        element: <Profile />
       },
       {
         path: "/collection",

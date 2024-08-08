@@ -15,7 +15,7 @@ import classes from './NavbarSimple.module.css';
 import { Link } from 'react-router-dom';
 
 const data = [
-  { link: '/', label: 'Home', icon: IconHome },
+  { link: '/home', label: 'Home', icon: IconHome },
   { link: '/collection', label: 'Collection', icon: IconCards },
   { link: '/nest', label: 'myNEST', icon: IconRainbow },
   { link: '/nursery', label: 'Nursery', icon: IconSeeding},
@@ -49,15 +49,15 @@ export function NavbarSimple() {
       </div>
 
       <div className={classes.footer}>
-        <a href="#" className={classes.link} onClick={(event) => event.preventDefault()}>
+        <Link to="/profile" className={classes.link}>
           <IconUserCircle className={classes.linkIcon} stroke={1.5} />
           <span>Profile</span>
-        </a>
+        </Link>
 
-        <a href="#" className={classes.link} onClick={(event) => event.preventDefault()}>
+        <Link to="/logout" className={classes.link}>
           <IconLogout className={classes.linkIcon} stroke={1.5} />
           <span>Logout</span>
-        </a>
+        </Link>
 
         <a href="#" className={classes.link} onClick={(event) => event.preventDefault()}>
           <IconHelp className={classes.linkIcon} stroke={1.5} />

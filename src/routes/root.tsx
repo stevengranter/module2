@@ -8,7 +8,7 @@ import { useDisclosure } from '@mantine/hooks';
 import { NavbarSimple} from '../components/NavbarSimple';
 
 // Images
-import logo from '/images/logo.png'
+import logo from '/images/logo2.png'
 
 
 export default function Root() {
@@ -16,7 +16,7 @@ export default function Root() {
 
   return (
     <AppShell
-      header={{ height: 120 }}
+      header={{ height: 150 }}
       navbar={{
         width: '200',
         breakpoint: 'xs',
