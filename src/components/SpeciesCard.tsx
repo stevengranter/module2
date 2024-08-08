@@ -29,7 +29,7 @@ function SpeciesCard(props:SpeciesCardProps) {
        <Title order={3}>{props.scientificName}</Title>
 
 
-    <Spoiler maxHeight={40} showLabel="Show more" hideLabel="Hide">
+    <Spoiler maxHeight={0} showLabel="Show more..." hideLabel="Hide">
       <Text>{props.description}</Text>
       <Text mt={12} size="sm">Habitat: {props.habitat}</Text>
       <Text mt={12} size="sm">Diet: {props.diet}</Text>
