@@ -2,6 +2,8 @@
 import { Card, Image, Skeleton, Text, Title, Spoiler } from '@mantine/core';
 import { speciesType } from '../assets/data/speciesData';
 
+import styles from './SpeciesCard.module.css';
+
 type SpeciesCardProps = speciesType;
 
 
@@ -13,7 +15,14 @@ function SpeciesCard(props:SpeciesCardProps) {
       {props.nickName && <Title order={4} size="h1">{props.nickName}</Title>}
 
       <Card.Section>
-        {(props.imgSrc) ? <Image src={imagePath} alt={props.scientificName} /> : <Skeleton height={500} width={500} animate={false}></Skeleton>}
+
+        {(props.imgSrc) ?
+        <div className="image-container">
+        <Image
+        src={imagePath}
+        alt={props.scientificName}
+        radius="lg"
+        className={styles.drop_shadow} /></div> : <Skeleton height={500} width={500} animate={false}></Skeleton>}
       </Card.Section>
 
       <Title order={2}>{props.commonName}</Title>
