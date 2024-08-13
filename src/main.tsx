@@ -8,69 +8,57 @@ import '@mantine/core/styles.css';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 
 // imports for React Router
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 // import components
-import Root from './routes/root';
-import Index from './routes/index';
-import Welcome from './routes/welcome';
-import Profile from './routes/profile';
-import Collection from './routes/collection';
-import Nursery from './routes/nursery';
-import Playroom from './routes/playroom';
-import Nest from './routes/nest';
-import About from './routes/about';
-import ErrorPage from "./ErrorPage";
+import RootLayout from './layouts/Root';
+import IndexRoute from './routes/Index';
+import WelcomePage from './pages/Welcome';
+import ProfileRoute from './routes/Profile';
+import CollectionRoute from './routes/Collection';
+import NurseryRoute from './routes/Nursery';
+import PlayroomRoute from './routes/Playroom';
+import NestRoute from './routes/Nest';
+import AboutPage from './pages/About';
+import ErrorPage from './ErrorPage';
 
 // define routes
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <Root />,
+    path: '/',
+    element: <RootLayout />,
     // errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <Welcome /> },
-      {path: "/home",
-        element: <Index />
+      { index: true, element: <WelcomePage /> },
+      { path: '/home', element: <IndexRoute /> },
+      { path: '/profile', element: <ProfileRoute /> },
+      {
+        path: '/collection',
+        element: <CollectionRoute />,
       },
-      {path: "/profile",
-        element: <Profile />
+      { path: '/nursery', element: <NurseryRoute /> },
+      { path: '/playroom', element: <PlayroomRoute /> },
+      {
+        path: '/nest',
+        element: <NestRoute />,
       },
       {
-        path: "/collection",
-        element: <Collection />
-      },
-      { path: "/nursery",
-        element: <Nursery />
-      },
-      {path: "/playroom",
-        element: <Playroom />
+        path: '/about',
+        element: <AboutPage />,
       },
       {
-        path: "/nest",
-        element: <Nest/>
+        path: '*',
+        element: <ErrorPage />,
       },
-      {
-        path: "/about",
-        element: <About />
-      },
-      {
-        path: "*",
-        element: <ErrorPage />
-      }
-    ]
+    ],
   },
 ]);
 
-
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ColorSchemeScript defaultColorScheme="auto" />
-    <MantineProvider defaultColorScheme="auto">
+    <ColorSchemeScript defaultColorScheme='auto' />
+    <MantineProvider defaultColorScheme='auto'>
       <RouterProvider router={router} />
     </MantineProvider>
-  </React.StrictMode >
+  </React.StrictMode>
 );

@@ -1,7 +1,5 @@
-import { UserInfoIcons } from "../components/UserInfoIcons"
+import { UserInfoIcons } from '../components/UserInfoIcons';
 
-export default function Profile() {
-  return (
-    <UserInfoIcons />
-  )
+export default function ProfileRoute() {
+  return <UserInfoIcons />;
 }
