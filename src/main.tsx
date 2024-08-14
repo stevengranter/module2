@@ -21,6 +21,8 @@ import PlayroomRoute from './routes/Playroom';
 import NestRoute from './routes/Nest';
 import AboutPage from './pages/About';
 import ErrorPage from './ErrorPage';
+import WilderVerseRoute from './routes/WilderVerse';
+import CodexRoute from './routes/Codex';
 
 // define routes
 const router = createBrowserRouter([
@@ -31,6 +33,14 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <WelcomePage /> },
       { path: '/home', element: <IndexRoute /> },
+      {
+        path: '/codex',
+        element: <CodexRoute />,
+        children: [
+          { index: true, element: <CodexRoute /> },
+          { path: ':wilderId', element: <CodexRoute /> },
+        ],
+      },
       { path: '/profile', element: <ProfileRoute /> },
       {
         path: '/collection',
@@ -45,6 +55,10 @@ const router = createBrowserRouter([
       {
         path: '/about',
         element: <AboutPage />,
+      },
+      {
+        path: '/wilderverse',
+        element: <WilderVerseRoute />,
       },
       {
         path: '*',
