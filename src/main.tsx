@@ -1,78 +1,36 @@
-import React from 'react';
+import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 
-import './index.css';
+// @tanstack/react-router setup
+import { RouterProvider, createRouter } from '@tanstack/react-router';
 
-// imports for @mantine (UI component library)
+// Import the generated route tree
+import { routeTree } from './routeTree.gen';
+
+// Create a new router instance
+const router = createRouter({ routeTree });
+
+// Register the router instance for type safety
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router;
+  }
+}
+
+// @mantine setup
 import '@mantine/core/styles.css';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 
-// imports for React Router
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-
-// import components
-import RootLayout from './layouts/Root';
-import IndexRoute from './routes/Index';
-import WelcomePage from './pages/Welcome';
-import ProfileRoute from './routes/Profile';
-import CollectionRoute from './routes/Collection';
-import NurseryRoute from './routes/Nursery';
-import PlayroomRoute from './routes/Playroom';
-import NestRoute from './routes/Nest';
-import AboutPage from './pages/About';
-import ErrorPage from './ErrorPage';
-import WilderVerseRoute from './routes/WilderVerse';
-import CodexRoute from './routes/Codex';
-
-// define routes
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <RootLayout />,
-    // errorElement: <ErrorPage />,
-    children: [
-      { index: true, element: <WelcomePage /> },
-      { path: '/home', element: <IndexRoute /> },
-      {
-        path: '/codex',
-        element: <CodexRoute />,
-        children: [
-          { index: true, element: <CodexRoute /> },
-          { path: ':wilderId', element: <CodexRoute /> },
-        ],
-      },
-      { path: '/profile', element: <ProfileRoute /> },
-      {
-        path: '/collection',
-        element: <CollectionRoute />,
-      },
-      { path: '/nursery', element: <NurseryRoute /> },
-      { path: '/playroom', element: <PlayroomRoute /> },
-      {
-        path: '/nest',
-        element: <NestRoute />,
-      },
-      {
-        path: '/about',
-        element: <AboutPage />,
-      },
-      {
-        path: '/wilderverse',
-        element: <WilderVerseRoute />,
-      },
-      {
-        path: '*',
-        element: <ErrorPage />,
-      },
-    ],
-  },
-]);
-
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <ColorSchemeScript defaultColorScheme='auto' />
-    <MantineProvider defaultColorScheme='auto'>
-      <RouterProvider router={router} />
-    </MantineProvider>
-  </React.StrictMode>
-);
+// Render the app
+const rootElement = document.getElementById('root')!;
+if (!rootElement.innerHTML) {
+  const root = ReactDOM.createRoot(rootElement);
+  root.render(
+    <StrictMode>
+      <ColorSchemeScript defaultColorScheme='auto' />
+      <MantineProvider defaultColorScheme='auto'>
+        <RouterProvider router={router} />
+      </MantineProvider>
+    </StrictMode>
+  );
+}

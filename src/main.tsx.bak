@@ -1,0 +1,78 @@
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+import './index.css';
+
+// imports for @mantine (UI component library)
+import '@mantine/core/styles.css';
+import { ColorSchemeScript, MantineProvider } from '@mantine/core';
+
+// imports for React Router
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+// import components
+import RootLayout from './layouts/Root';
+import IndexRoute from './routes.old/Index';
+import WelcomePage from './pages/Welcome';
+import ProfileRoute from './routes.old/Profile';
+import CollectionRoute from './routes.old/Collection';
+import NurseryRoute from './routes.old/Nursery';
+import PlayroomRoute from './routes.old/Playroom';
+import NestRoute from './routes.old/Nest';
+import AboutPage from './pages/About';
+import ErrorPage from './ErrorPage';
+import WilderVerseRoute from './routes.old/WilderVerse';
+import CodexRoute from './routes.old/Codex';
+
+// define routes
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <RootLayout />,
+    // errorElement: <ErrorPage />,
+    children: [
+      { index: true, element: <WelcomePage /> },
+      { path: '/home', element: <IndexRoute /> },
+      {
+        path: '/codex',
+        element: <CodexRoute />,
+        children: [
+          { index: true, element: <CodexRoute /> },
+          { path: ':wilderId', element: <CodexRoute /> },
+        ],
+      },
+      { path: '/profile', element: <ProfileRoute /> },
+      {
+        path: '/collection',
+        element: <CollectionRoute />,
+      },
+      { path: '/nursery', element: <NurseryRoute /> },
+      { path: '/playroom', element: <PlayroomRoute /> },
+      {
+        path: '/nest',
+        element: <NestRoute />,
+      },
+      {
+        path: '/about',
+        element: <AboutPage />,
+      },
+      {
+        path: '/wilderverse',
+        element: <WilderVerseRoute />,
+      },
+      {
+        path: '*',
+        element: <ErrorPage />,
+      },
+    ],
+  },
+]);
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <ColorSchemeScript defaultColorScheme='auto' />
+    <MantineProvider defaultColorScheme='auto'>
+      <RouterProvider router={router} />
+    </MantineProvider>
+  </React.StrictMode>
+);

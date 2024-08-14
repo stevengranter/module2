@@ -11,7 +11,7 @@ import {
 } from '@tabler/icons-react';
 
 import classes from './NavbarSimple.module.css';
-import { Link } from 'react-router-dom';
+import { Link } from '@tanstack/react-router';
 
 const data = [
   { link: '/home', label: 'Home', icon: IconHome },
