@@ -2,9 +2,10 @@ import { createRootRoute, Link, Outlet } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/router-devtools';
 
 import { AppShell, Group, Burger, Image } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+// import { useDisclosure } from '@mantine/hooks';
 
 import { NavbarSimple } from '../components/NavbarSimple';
+import logo from '/images/logo2.png';
 
 export const Route = createRootRoute({
   component: () => (
@@ -30,7 +31,7 @@ export const Route = createRootRoute({
           />
 
           <Image
-            // src={logo}
+            src={logo}
             alt='WilderNest Logo'
             h='100%'
             w='auto'

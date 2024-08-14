@@ -17,6 +17,11 @@ declare module '@tanstack/react-router' {
   }
 }
 
+//@ tanstack query setup
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
+
 // @mantine setup
 import '@mantine/core/styles.css';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
@@ -30,6 +35,7 @@ if (!rootElement.innerHTML) {
       <ColorSchemeScript defaultColorScheme='auto' />
       <MantineProvider defaultColorScheme='auto'>
         <RouterProvider router={router} />
+        <QueryClientProvider client={queryClient} />
       </MantineProvider>
     </StrictMode>
   );

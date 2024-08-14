@@ -14,11 +14,11 @@ import classes from './NavbarSimple.module.css';
 import { Link } from '@tanstack/react-router';
 
 const data = [
-  { link: '/home', label: 'Home', icon: IconHome },
+  { link: '/', label: 'Home', icon: IconHome },
   { link: '/collection', label: 'Collection', icon: IconCards },
-  { link: '/nest', label: 'myNEST', icon: IconRainbow },
-  { link: '/nursery', label: 'Nursery', icon: IconSeeding },
-  { link: '/playroom', label: 'Playroom', icon: IconHorseToy },
+  // { link: '/nest', label: 'myNEST', icon: IconRainbow },
+  // { link: '/nursery', label: 'Nursery', icon: IconSeeding },
+  // { link: '/playroom', label: 'Playroom', icon: IconHorseToy },
 ];
 
 export function NavbarSimple() {
@@ -72,14 +72,16 @@ export function NavbarSimple() {
         </Link>
 
         <Link
-          to='/about'
+          to='/testAPI'
           className={classes.link}
         >
           <IconInfoCircle
             className={classes.linkIcon}
             stroke={1.5}
           />
-          <span>About</span>
+          <span>
+            <span>TestAPI</span>
+          </span>
         </Link>
       </div>
     </nav>

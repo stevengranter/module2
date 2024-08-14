@@ -13,6 +13,8 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as TestAPIImport } from './routes/testAPI'
+import { Route as CollectionImport } from './routes/collection'
 
 // Create Virtual Routes
 
@@ -25,6 +27,16 @@ const AboutLazyRoute = AboutLazyImport.update({
   path: '/about',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/about.lazy').then((d) => d.Route))
+
+const TestAPIRoute = TestAPIImport.update({
+  path: '/testAPI',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CollectionRoute = CollectionImport.update({
+  path: '/collection',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
@@ -42,6 +54,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexLazyImport
       parentRoute: typeof rootRoute
     }
+    '/collection': {
+      id: '/collection'
+      path: '/collection'
+      fullPath: '/collection'
+      preLoaderRoute: typeof CollectionImport
+      parentRoute: typeof rootRoute
+    }
+    '/testAPI': {
+      id: '/testAPI'
+      path: '/testAPI'
+      fullPath: '/testAPI'
+      preLoaderRoute: typeof TestAPIImport
+      parentRoute: typeof rootRoute
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -56,6 +82,8 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren({
   IndexLazyRoute,
+  CollectionRoute,
+  TestAPIRoute,
   AboutLazyRoute,
 })
 
@@ -68,11 +96,19 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/collection",
+        "/testAPI",
         "/about"
       ]
     },
     "/": {
       "filePath": "index.lazy.tsx"
+    },
+    "/collection": {
+      "filePath": "collection.tsx"
+    },
+    "/testAPI": {
+      "filePath": "testAPI.tsx"
     },
     "/about": {
       "filePath": "about.lazy.tsx"
