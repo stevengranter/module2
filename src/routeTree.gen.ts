@@ -14,7 +14,11 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as TestAPIImport } from './routes/testAPI'
-import { Route as CollectionImport } from './routes/collection'
+import { Route as WildernautIndexImport } from './routes/wildernaut/index'
+import { Route as WilderkindIndexImport } from './routes/wilderkind/index'
+import { Route as WilderkindIdImport } from './routes/wilderkind/$id'
+import { Route as WildernautIdIndexImport } from './routes/wildernaut/$id/index'
+import { Route as WildernautIdCollectionImport } from './routes/wildernaut/$id/collection'
 
 // Create Virtual Routes
 
@@ -33,15 +37,35 @@ const TestAPIRoute = TestAPIImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const CollectionRoute = CollectionImport.update({
-  path: '/collection',
-  getParentRoute: () => rootRoute,
-} as any)
-
 const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+
+const WildernautIndexRoute = WildernautIndexImport.update({
+  path: '/wildernaut/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const WilderkindIndexRoute = WilderkindIndexImport.update({
+  path: '/wilderkind/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const WilderkindIdRoute = WilderkindIdImport.update({
+  path: '/wilderkind/$id',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const WildernautIdIndexRoute = WildernautIdIndexImport.update({
+  path: '/wildernaut/$id/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const WildernautIdCollectionRoute = WildernautIdCollectionImport.update({
+  path: '/wildernaut/$id/collection',
+  getParentRoute: () => rootRoute,
+} as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -52,13 +76,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexLazyImport
-      parentRoute: typeof rootRoute
-    }
-    '/collection': {
-      id: '/collection'
-      path: '/collection'
-      fullPath: '/collection'
-      preLoaderRoute: typeof CollectionImport
       parentRoute: typeof rootRoute
     }
     '/testAPI': {
@@ -75,6 +92,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutLazyImport
       parentRoute: typeof rootRoute
     }
+    '/wilderkind/$id': {
+      id: '/wilderkind/$id'
+      path: '/wilderkind/$id'
+      fullPath: '/wilderkind/$id'
+      preLoaderRoute: typeof WilderkindIdImport
+      parentRoute: typeof rootRoute
+    }
+    '/wilderkind/': {
+      id: '/wilderkind/'
+      path: '/wilderkind'
+      fullPath: '/wilderkind'
+      preLoaderRoute: typeof WilderkindIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/wildernaut/': {
+      id: '/wildernaut/'
+      path: '/wildernaut'
+      fullPath: '/wildernaut'
+      preLoaderRoute: typeof WildernautIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/wildernaut/$id/collection': {
+      id: '/wildernaut/$id/collection'
+      path: '/wildernaut/$id/collection'
+      fullPath: '/wildernaut/$id/collection'
+      preLoaderRoute: typeof WildernautIdCollectionImport
+      parentRoute: typeof rootRoute
+    }
+    '/wildernaut/$id/': {
+      id: '/wildernaut/$id/'
+      path: '/wildernaut/$id'
+      fullPath: '/wildernaut/$id'
+      preLoaderRoute: typeof WildernautIdIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -82,9 +134,13 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren({
   IndexLazyRoute,
-  CollectionRoute,
   TestAPIRoute,
   AboutLazyRoute,
+  WilderkindIdRoute,
+  WilderkindIndexRoute,
+  WildernautIndexRoute,
+  WildernautIdCollectionRoute,
+  WildernautIdIndexRoute,
 })
 
 /* prettier-ignore-end */
@@ -96,22 +152,38 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/collection",
         "/testAPI",
-        "/about"
+        "/about",
+        "/wilderkind/$id",
+        "/wilderkind/",
+        "/wildernaut/",
+        "/wildernaut/$id/collection",
+        "/wildernaut/$id/"
       ]
     },
     "/": {
       "filePath": "index.lazy.tsx"
-    },
-    "/collection": {
-      "filePath": "collection.tsx"
     },
     "/testAPI": {
       "filePath": "testAPI.tsx"
     },
     "/about": {
       "filePath": "about.lazy.tsx"
+    },
+    "/wilderkind/$id": {
+      "filePath": "wilderkind/$id.tsx"
+    },
+    "/wilderkind/": {
+      "filePath": "wilderkind/index.tsx"
+    },
+    "/wildernaut/": {
+      "filePath": "wildernaut/index.tsx"
+    },
+    "/wildernaut/$id/collection": {
+      "filePath": "wildernaut/$id/collection.tsx"
+    },
+    "/wildernaut/$id/": {
+      "filePath": "wildernaut/$id/index.tsx"
     }
   }
 }

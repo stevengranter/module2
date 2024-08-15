@@ -19,6 +19,7 @@ declare module '@tanstack/react-router' {
 
 //@ tanstack query setup
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 const queryClient = new QueryClient();
 
@@ -34,8 +35,10 @@ if (!rootElement.innerHTML) {
     <StrictMode>
       <ColorSchemeScript defaultColorScheme='auto' />
       <MantineProvider defaultColorScheme='auto'>
-        <RouterProvider router={router} />
-        <QueryClientProvider client={queryClient} />
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
       </MantineProvider>
     </StrictMode>
   );

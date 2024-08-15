@@ -1,4 +1,4 @@
-import { createRootRoute, Link, Outlet } from '@tanstack/react-router';
+import { createRootRoute, Outlet } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/router-devtools';
 
 import { AppShell, Group, Burger, Image } from '@mantine/core';
@@ -48,8 +48,8 @@ export const Route = createRootRoute({
 
       <AppShell.Main>
         <Outlet />
+        <TanStackRouterDevtools />
       </AppShell.Main>
-      <TanStackRouterDevtools />
     </AppShell>
   ),
 });
