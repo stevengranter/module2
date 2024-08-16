@@ -1,20 +1,24 @@
 import { createRootRoute, Outlet } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/router-devtools';
-
 import { AppShell, Group, Burger, Image } from '@mantine/core';
-// import { useDisclosure } from '@mantine/hooks';
-
 import { NavbarSimple } from '../components/NavbarSimple';
 import logo from '/images/logo2.png';
 
+import { useDisclosure } from '@mantine/hooks';
+
 export const Route = createRootRoute({
-  component: () => (
+  component: RootComponent,
+});
+
+function RootComponent() {
+  const [opened, { toggle }] = useDisclosure();
+  return (
     <AppShell
       header={{ height: 150 }}
       navbar={{
         width: '200',
         breakpoint: 'xs',
-        // collapsed: { mobile: !opened },
+        collapsed: { mobile: !opened },
       }}
       padding='md'
     >
@@ -24,8 +28,8 @@ export const Route = createRootRoute({
           px='md'
         >
           <Burger
-            // opened={opened}
-            // onClick={toggle}
+            opened={opened}
+            onClick={toggle}
             hiddenFrom='xs'
             size='sm'
           />
@@ -47,9 +51,9 @@ export const Route = createRootRoute({
       </AppShell.Navbar>
 
       <AppShell.Main>
-        <Outlet />
         <TanStackRouterDevtools />
+        <Outlet />
       </AppShell.Main>
     </AppShell>
-  ),
-});
+  );
+}

@@ -5,7 +5,7 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query';
 
-import fetchData from '../../../api/iNaturalist.org.js';
+import fetchData from '../../../utils/iNaturalist.org.js';
 
 export const Route = createFileRoute('/wildernaut/$id/collection')({
   component: CollectionComponent,

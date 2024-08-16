@@ -1,11 +1,13 @@
 import { createFileRoute } from '@tanstack/react-router';
+
 import {
   useQuery,
   useQueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query';
+// import fetchData from '../../utils/fetchData';
 
-import fetchData from '../../api/iNaturalist.org.js';
+import SpeciesCard from '../../components/SpeciesCard';
 
 export const Route = createFileRoute('/wilderkind/$id')({
   component: WilderKindComponent,
@@ -13,56 +15,52 @@ export const Route = createFileRoute('/wilderkind/$id')({
 
 function WilderKindComponent() {
   const queryClient = useQueryClient();
-  const { data: iNatData } = useQuery({
-    queryKey: ['iNatData'],
-    queryFn: () => fetchData('taxa/68901'),
-  });
 
-  const { data: localData } = useQuery({
-    queryKey: ['wilderkind'],
+  const { data, isPending, error } = useQuery({
+    queryKey: ['inat_record'],
     queryFn: async () => {
-      const url = `http://localhost:3000/wilderkind`;
-
-      try {
-        const response = await fetch(url);
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        return await response.json();
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        throw error;
-      }
+      const response = await fetch('https://api.inaturalist.org/v1/taxa/48586');
+      return await response.json();
     },
   });
 
-  console.log(localData);
-  // const wilderList = () =>
-  //   localData.map((item) => {
-  //     return (
-  //       <ul>
-  //         <li>${item.commonName}</li>
-  //       </ul>
-  //     );
-  //   });
+  if (isPending) return 'Loading...';
+
+  if (error) return 'An error has occurred: ' + error.message;
+
+  const iNatRecord = data.results[0];
+  console.log(iNatRecord);
+
+  // const myData = data.results[0];
+
+  // console.log(myData.preferred_common_name);
+  // const { data: localData } = useQuery({
+  //   queryKey: ['wilderkind'],
+  //   queryFn: async () => {
+  //     const url = `http://localhost:3000/wilderkind`;
+
+  //     try {
+  //       const response = await fetch(url);
+
+  //       if (!response.ok) {
+  //         throw new Error(`HTTP error! Status: ${response.status}`);
+  //       }
+
+  //       return await response.json();
+  //     } catch (error) {
+  //       console.error('Error fetching data:', error);
+  //       throw error;
+  //     }
+  //   },
+  // });
 
   return (
-    <>
-      <h2>WilderKindComponent</h2>
-      <QueryClientProvider client={queryClient}>
-        <ul>
-          {localData &&
-            localData.map((item) => {
-              return (
-                <ul key={item.id}>
-                  <li key={item.id}>{item.id}</li>
-                </ul>
-              );
-            })}
-        </ul>
-      </QueryClientProvider>
-    </>
+    <SpeciesCard
+      id={iNatRecord.id}
+      imgSrc={iNatRecord.default_photo.medium_url}
+      commonName={iNatRecord.preferred_common_name}
+      scientificName={iNatRecord.name}
+      description={iNatRecord.wikipedia_summary}
+    ></SpeciesCard>
   );
 }

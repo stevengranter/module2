@@ -1,6 +1,7 @@
-const API_ENDPOINT = 'https://localhost:3000/';
-export default async function fetchData(querystring = '') {
-  const url = `${API_ENDPOINT}${querystring}`;
+export default async function fetchData(url: string | undefined) {
+  if (!url) {
+    url = 'http://localhost:3000/wilderkind';
+  }
 
   try {
     const response = await fetch(url);
@@ -8,7 +9,6 @@ export default async function fetchData(querystring = '') {
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
-
     return await response.json();
   } catch (error) {
     console.error('Error fetching data:', error);
