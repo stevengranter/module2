@@ -5,9 +5,9 @@ import {
   IconUserCircle,
   IconInfoCircle,
   IconLogout,
-  IconRainbow,
-  IconSeeding,
-  IconHorseToy,
+  // IconRainbow,
+  // IconSeeding,
+  // IconHorseToy,
 } from '@tabler/icons-react';
 
 import classes from './NavbarSimple.module.css';
@@ -50,7 +50,7 @@ export function NavbarSimple() {
 
       <div className={classes.footer}>
         <Link
-          to='/profile'
+          to=''
           className={classes.link}
         >
           <IconUserCircle
@@ -61,7 +61,7 @@ export function NavbarSimple() {
         </Link>
 
         <Link
-          to='/logout'
+          to=''
           className={classes.link}
         >
           <IconLogout
@@ -72,7 +72,7 @@ export function NavbarSimple() {
         </Link>
 
         <Link
-          to='/testAPI'
+          to=''
           className={classes.link}
         >
           <IconInfoCircle

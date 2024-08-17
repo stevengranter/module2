@@ -1,4 +1,4 @@
-export const speciesData: speciesType[] = [
+export const speciesData = [
   {
     id: 14,
     imgSrc: 'cepaea_nemoralis.png',
