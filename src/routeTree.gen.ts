@@ -13,7 +13,6 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as TestAPIImport } from './routes/testAPI'
 import { Route as WildernautIndexImport } from './routes/wildernaut/index'
 import { Route as WilderkindIndexImport } from './routes/wilderkind/index'
 import { Route as WilderkindIdImport } from './routes/wilderkind/$id'
@@ -31,11 +30,6 @@ const AboutLazyRoute = AboutLazyImport.update({
   path: '/about',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/about.lazy').then((d) => d.Route))
-
-const TestAPIRoute = TestAPIImport.update({
-  path: '/testAPI',
-  getParentRoute: () => rootRoute,
-} as any)
 
 const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
@@ -65,7 +59,9 @@ const WildernautIdIndexRoute = WildernautIdIndexImport.update({
 const WildernautIdCollectionRoute = WildernautIdCollectionImport.update({
   path: '/wildernaut/$id/collection',
   getParentRoute: () => rootRoute,
-} as any)
+} as any).lazy(() =>
+  import('./routes/wildernaut/$id/collection.lazy').then((d) => d.Route),
+)
 
 // Populate the FileRoutesByPath interface
 
@@ -76,13 +72,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexLazyImport
-      parentRoute: typeof rootRoute
-    }
-    '/testAPI': {
-      id: '/testAPI'
-      path: '/testAPI'
-      fullPath: '/testAPI'
-      preLoaderRoute: typeof TestAPIImport
       parentRoute: typeof rootRoute
     }
     '/about': {
@@ -134,7 +123,6 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren({
   IndexLazyRoute,
-  TestAPIRoute,
   AboutLazyRoute,
   WilderkindIdRoute,
   WilderkindIndexRoute,
@@ -152,7 +140,6 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/testAPI",
         "/about",
         "/wilderkind/$id",
         "/wilderkind/",
@@ -163,9 +150,6 @@ export const routeTree = rootRoute.addChildren({
     },
     "/": {
       "filePath": "index.lazy.tsx"
-    },
-    "/testAPI": {
-      "filePath": "testAPI.tsx"
     },
     "/about": {
       "filePath": "about.lazy.tsx"

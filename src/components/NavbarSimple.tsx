@@ -15,7 +15,7 @@ import { Link } from '@tanstack/react-router';
 
 const data = [
   { link: '/', label: 'Home', icon: IconHome },
-  { link: '/collection', label: 'Collection', icon: IconCards },
+  { link: '/wildernaut/1/collection', label: 'Collection', icon: IconCards },
   // { link: '/nest', label: 'myNEST', icon: IconRainbow },
   // { link: '/nursery', label: 'Nursery', icon: IconSeeding },
   // { link: '/playroom', label: 'Playroom', icon: IconHorseToy },
