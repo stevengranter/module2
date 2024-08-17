@@ -1,33 +1,21 @@
-import { createFileRoute } from '@tanstack/react-router';
-
-import {
-  useQuery,
-  useQueryClient,
-  QueryClientProvider,
-} from '@tanstack/react-query';
-// import fetchData from '../../utils/fetchData';
+import { createFileRoute, useLoaderData } from '@tanstack/react-router';
 
 import SpeciesCard from '../../components/SpeciesCard';
 
+async function fetchSpecies(id: number) {
+  const response = await fetch('https://api.inaturalist.org/v1/taxa/' + id);
+  return await response.json();
+}
+
 export const Route = createFileRoute('/wilderkind/$id')({
   component: WilderKindComponent,
+  loader: async ({ params: { id } }) => {
+    return await fetchSpecies(id);
+  },
 });
 
 function WilderKindComponent() {
-  const queryClient = useQueryClient();
-
-  const { data, isPending, error } = useQuery({
-    queryKey: ['inat_record'],
-    queryFn: async () => {
-      const response = await fetch('https://api.inaturalist.org/v1/taxa/48586');
-      return await response.json();
-    },
-  });
-
-  if (isPending) return 'Loading...';
-
-  if (error) return 'An error has occurred: ' + error.message;
-
+  const data = useLoaderData({ from: '/wilderkind/$id' });
   const iNatRecord = data.results[0];
   console.log(iNatRecord);
 

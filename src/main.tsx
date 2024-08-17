@@ -1,4 +1,4 @@
-import React, { StrictMode } from 'react';
+import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 
 // @tanstack/react-router setup
@@ -17,12 +17,6 @@ declare module '@tanstack/react-router' {
   }
 }
 
-//@ tanstack query setup
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-
-const queryClient = new QueryClient();
-
 // @mantine setup
 import '@mantine/core/styles.css';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
@@ -35,10 +29,7 @@ if (!rootElement.innerHTML) {
     <StrictMode>
       <ColorSchemeScript defaultColorScheme='auto' />
       <MantineProvider defaultColorScheme='auto'>
-        <QueryClientProvider client={queryClient}>
-          <RouterProvider router={router} />
-          <ReactQueryDevtools initialIsOpen={false} />
-        </QueryClientProvider>
+        <RouterProvider router={router} />
       </MantineProvider>
     </StrictMode>
   );

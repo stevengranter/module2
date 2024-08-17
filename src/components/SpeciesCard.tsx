@@ -9,9 +9,9 @@ export interface speciesType {
   commonName: string;
   scientificName: string;
   nickName?: undefined | string;
-  family: string;
-  diet: string;
-  habitat: string;
+  family?: string;
+  diet?: string;
+  habitat?: string;
   description: string;
 }
 
@@ -21,12 +21,10 @@ function SpeciesCard({
   commonName,
   scientificName,
   nickName,
-  family,
   diet,
   habitat,
   description,
 }: speciesType) {
-  const imagePath = './images/' + imgSrc;
   return (
     <Card
       key={id}
