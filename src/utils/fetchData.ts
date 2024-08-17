@@ -1,6 +1,6 @@
 export default async function fetchData(url: string | undefined) {
   if (!url) {
-    url = 'http://localhost:3000/wilderkind';
+    url = 'http://my-json-server.typicode.com/stevengranter/module2';
   }
 
   try {
