@@ -27,3 +27,17 @@ export const Route = createFileRoute('/wildernaut/$id/collection')({
     return await Promise.all(speciesDataPromises);
   },
 });
+
+// export const Route = createFileRoute('/wildernaut/$id/collection')({
+//   loader: async ({ params: { id } }) =>z {
+//     const userData = await fetchUserData(id);
+//     const speciesDataPromises = userData.collection.map(
+//       async (speciesId: string) => {
+//         const collectionData = await fetchSpecies(speciesId);
+//         return collectionData;
+//       }
+//     );
+//     // Wait for all promises to resolve
+//     return await Promise.all(speciesDataPromises);
+//   },
+// });

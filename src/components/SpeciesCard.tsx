@@ -1,4 +1,12 @@
-import { Card, Image, Skeleton, Text, Title, Spoiler } from '@mantine/core';
+import {
+  Card,
+  Image,
+  Skeleton,
+  Text,
+  Title,
+  Spoiler,
+  AspectRatio,
+} from '@mantine/core';
 import styles from './SpeciesCard.module.css';
 
 import { Interweave } from 'interweave';
@@ -29,7 +37,7 @@ function SpeciesCard({
     <Card
       key={id}
       shadow='md'
-      p='xl'
+      // p='xl'
       radius='lg'
       withBorder
     >
@@ -44,14 +52,15 @@ function SpeciesCard({
 
       <Card.Section>
         {imgSrc ? (
-          <div className='image-container'>
+          <AspectRatio ratio={1 / 1}>
             <Image
               src={imgSrc}
               alt={scientificName}
-              radius='lg'
+              // radius='lg'
               className={styles.drop_shadow}
+              loading='lazy'
             />
-          </div>
+          </AspectRatio>
         ) : (
           <Skeleton
             height={500}
@@ -61,8 +70,20 @@ function SpeciesCard({
         )}
       </Card.Section>
 
-      <Title order={2}>{commonName}</Title>
-      <Title order={3}>{scientificName}</Title>
+      <Title
+        order={2}
+        lineClamp={1}
+        size='h3'
+      >
+        {commonName}
+      </Title>
+      <Title
+        order={3}
+        lineClamp={1}
+        size='h4'
+      >
+        {scientificName}
+      </Title>
 
       <Spoiler
         maxHeight={0}

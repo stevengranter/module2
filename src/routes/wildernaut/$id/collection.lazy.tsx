@@ -26,7 +26,7 @@ export function CollectionComponent() {
           return (
             <GridCol
               key={index}
-              span={4}
+              span={{ base: 12, sm: 6, md: 4, lg: 3 }}
             >
               <SpeciesCard
                 id={id}

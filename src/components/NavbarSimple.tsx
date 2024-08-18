@@ -5,6 +5,7 @@ import {
   IconUserCircle,
   IconInfoCircle,
   IconLogout,
+  IconArchive,
   // IconRainbow,
   // IconSeeding,
   // IconHorseToy,
@@ -16,7 +17,7 @@ import { Link } from '@tanstack/react-router';
 const data = [
   { link: '/', label: 'Home', icon: IconHome },
   { link: '/wildernaut/1/collection', label: 'Collection', icon: IconCards },
-  // { link: '/nest', label: 'myNEST', icon: IconRainbow },
+  { link: '/Wilderkind', label: 'WilderKind Index', icon: IconArchive },
   // { link: '/nursery', label: 'Nursery', icon: IconSeeding },
   // { link: '/playroom', label: 'Playroom', icon: IconHorseToy },
 ];
