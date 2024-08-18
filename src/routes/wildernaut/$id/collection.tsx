@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 
 async function fetchUserData(id: string) {
   const response = await fetch(
-    'http://my-json-server.typicode.com/stevengranter/module2/users/' + id
+    'https://my-json-server.typicode.com/stevengranter/module2/users/' + id
   );
   return await response.json();
 }
