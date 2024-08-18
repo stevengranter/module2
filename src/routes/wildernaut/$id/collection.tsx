@@ -1,10 +1,12 @@
 import { createFileRoute } from '@tanstack/react-router';
 
-async function fetchUserData(id: string) {
-  const response = await fetch(
-    'https://my-json-server.typicode.com/stevengranter/module2/users/' + id
-  );
-  return await response.json();
+import fetchData from 'utils/fetchData.ts';
+let jsonServerUrl = 'http://localhost:3000';
+jsonServerUrl = import.meta.env.VITE_JSONSERVER_URL;
+
+async function fetchUserData(userId: string) {
+  const response = await fetchData(jsonServerUrl + 'users/' + userId);
+  return response;
 }
 
 async function fetchSpecies(id: string) {
