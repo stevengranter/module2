@@ -12,7 +12,7 @@ import {
 } from '@tabler/icons-react';
 
 import classes from './NavbarSimple.module.css';
-import { Link } from '@tanstack/react-router';
+import { Link } from 'react-router-dom';
 
 const data = [
   { link: '/', label: 'Home', icon: IconHome },
@@ -36,7 +36,6 @@ export function NavbarSimple() {
       to={item.link}
       key={item.label}
       onClick={() => handleClick(item.label)}
-      search=''
     >
       <item.icon
         className={classes.linkIcon}

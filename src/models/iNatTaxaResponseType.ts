@@ -110,6 +110,7 @@ export interface Taxon {
   preferred_common_name: string;
 }
 
+
 export interface Ancestor {
   id: number;
   rank: string;
@@ -134,6 +135,7 @@ export interface Ancestor {
   iconic_taxon_name: string;
   preferred_common_name?: string;
 }
+
 
 export interface Status {
   id: number;
@@ -197,3 +199,13 @@ export interface Children {
   iconic_taxon_name: string;
   preferred_common_name?: string;
 }
+
+// export interface OriginalDimensions5 {
+//   height: number;
+//   width: number;
+// }
+
+// export interface FlagCounts4 {
+//   resolved: number;
+//   unresolved: number;
+// }
