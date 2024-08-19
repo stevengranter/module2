@@ -7,15 +7,15 @@ async function fetchSpecies(id: string) {
   return await response.json();
 }
 
-export const Route = createFileRoute('/wilderkind/$id')({
-  component: WilderKindComponent,
+export const Route = createFileRoute('/cards/$id')({
+  component: CardComponent,
   loader: async ({ params: { id } }) => {
     return await fetchSpecies(id);
   },
 });
 
-function WilderKindComponent() {
-  const data = useLoaderData({ from: '/wilderkind/$id' });
+function CardComponent() {
+  const data = useLoaderData({ from: '/cards/$id' });
   const iNatRecord = data.results[0];
 
   return (

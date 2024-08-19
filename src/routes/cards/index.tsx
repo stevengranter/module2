@@ -6,21 +6,20 @@ import { Grid, GridCol } from '@mantine/core';
 
 import wretch from 'wretch';
 
-let jsonServerUrl = 'http://localhost:3000/';
-jsonServerUrl = import.meta.env.VITE_JSONSERVER_URL;
+import { jsonServerUrl } from 'utils/constants';
 
-export const Route = createFileRoute('/wilderkind/')({
+export const Route = createFileRoute('/cards/')({
   component: WilderKindIndexComponent,
   loader: async () => {
-    const response = await wretch(jsonServerUrl + 'wilderkind/')
+    const response = await wretch(jsonServerUrl + '/cards')
       .get()
-      .json();
+      .json<speciesType[]>();
     return response;
   },
 });
 
 function WilderKindIndexComponent() {
-  const data = useLoaderData({ from: '/wilderkind/' });
+  const data = useLoaderData({ from: '/cards/' });
   return (
     <>
       <h2>Welcome to the WilderKind Index</h2>

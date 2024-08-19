@@ -13,11 +13,11 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as WildernautIndexImport } from './routes/wildernaut/index'
-import { Route as WilderkindIndexImport } from './routes/wilderkind/index'
-import { Route as WilderkindIdImport } from './routes/wilderkind/$id'
-import { Route as WildernautIdIndexImport } from './routes/wildernaut/$id/index'
-import { Route as WildernautIdCollectionImport } from './routes/wildernaut/$id/collection'
+import { Route as UsersIndexImport } from './routes/users/index'
+import { Route as CardsIndexImport } from './routes/cards/index'
+import { Route as CardsIdImport } from './routes/cards/$id'
+import { Route as UsersIdIndexImport } from './routes/users/$id/index'
+import { Route as UsersIdCollectionImport } from './routes/users/$id/collection'
 
 // Create Virtual Routes
 
@@ -36,32 +36,30 @@ const IndexLazyRoute = IndexLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
 
-const WildernautIndexRoute = WildernautIndexImport.update({
-  path: '/wildernaut/',
+const UsersIndexRoute = UsersIndexImport.update({
+  path: '/users/',
   getParentRoute: () => rootRoute,
 } as any)
 
-const WilderkindIndexRoute = WilderkindIndexImport.update({
-  path: '/wilderkind/',
+const CardsIndexRoute = CardsIndexImport.update({
+  path: '/cards/',
   getParentRoute: () => rootRoute,
 } as any)
 
-const WilderkindIdRoute = WilderkindIdImport.update({
-  path: '/wilderkind/$id',
+const CardsIdRoute = CardsIdImport.update({
+  path: '/cards/$id',
   getParentRoute: () => rootRoute,
 } as any)
 
-const WildernautIdIndexRoute = WildernautIdIndexImport.update({
-  path: '/wildernaut/$id/',
+const UsersIdIndexRoute = UsersIdIndexImport.update({
+  path: '/users/$id/',
   getParentRoute: () => rootRoute,
 } as any)
 
-const WildernautIdCollectionRoute = WildernautIdCollectionImport.update({
-  path: '/wildernaut/$id/collection',
+const UsersIdCollectionRoute = UsersIdCollectionImport.update({
+  path: '/users/$id/collection',
   getParentRoute: () => rootRoute,
-} as any).lazy(() =>
-  import('./routes/wildernaut/$id/collection.lazy').then((d) => d.Route),
-)
+} as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -81,39 +79,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutLazyImport
       parentRoute: typeof rootRoute
     }
-    '/wilderkind/$id': {
-      id: '/wilderkind/$id'
-      path: '/wilderkind/$id'
-      fullPath: '/wilderkind/$id'
-      preLoaderRoute: typeof WilderkindIdImport
+    '/cards/$id': {
+      id: '/cards/$id'
+      path: '/cards/$id'
+      fullPath: '/cards/$id'
+      preLoaderRoute: typeof CardsIdImport
       parentRoute: typeof rootRoute
     }
-    '/wilderkind/': {
-      id: '/wilderkind/'
-      path: '/wilderkind'
-      fullPath: '/wilderkind'
-      preLoaderRoute: typeof WilderkindIndexImport
+    '/cards/': {
+      id: '/cards/'
+      path: '/cards'
+      fullPath: '/cards'
+      preLoaderRoute: typeof CardsIndexImport
       parentRoute: typeof rootRoute
     }
-    '/wildernaut/': {
-      id: '/wildernaut/'
-      path: '/wildernaut'
-      fullPath: '/wildernaut'
-      preLoaderRoute: typeof WildernautIndexImport
+    '/users/': {
+      id: '/users/'
+      path: '/users'
+      fullPath: '/users'
+      preLoaderRoute: typeof UsersIndexImport
       parentRoute: typeof rootRoute
     }
-    '/wildernaut/$id/collection': {
-      id: '/wildernaut/$id/collection'
-      path: '/wildernaut/$id/collection'
-      fullPath: '/wildernaut/$id/collection'
-      preLoaderRoute: typeof WildernautIdCollectionImport
+    '/users/$id/collection': {
+      id: '/users/$id/collection'
+      path: '/users/$id/collection'
+      fullPath: '/users/$id/collection'
+      preLoaderRoute: typeof UsersIdCollectionImport
       parentRoute: typeof rootRoute
     }
-    '/wildernaut/$id/': {
-      id: '/wildernaut/$id/'
-      path: '/wildernaut/$id'
-      fullPath: '/wildernaut/$id'
-      preLoaderRoute: typeof WildernautIdIndexImport
+    '/users/$id/': {
+      id: '/users/$id/'
+      path: '/users/$id'
+      fullPath: '/users/$id'
+      preLoaderRoute: typeof UsersIdIndexImport
       parentRoute: typeof rootRoute
     }
   }
@@ -124,11 +122,11 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren({
   IndexLazyRoute,
   AboutLazyRoute,
-  WilderkindIdRoute,
-  WilderkindIndexRoute,
-  WildernautIndexRoute,
-  WildernautIdCollectionRoute,
-  WildernautIdIndexRoute,
+  CardsIdRoute,
+  CardsIndexRoute,
+  UsersIndexRoute,
+  UsersIdCollectionRoute,
+  UsersIdIndexRoute,
 })
 
 /* prettier-ignore-end */
@@ -141,11 +139,11 @@ export const routeTree = rootRoute.addChildren({
       "children": [
         "/",
         "/about",
-        "/wilderkind/$id",
-        "/wilderkind/",
-        "/wildernaut/",
-        "/wildernaut/$id/collection",
-        "/wildernaut/$id/"
+        "/cards/$id",
+        "/cards/",
+        "/users/",
+        "/users/$id/collection",
+        "/users/$id/"
       ]
     },
     "/": {
@@ -154,20 +152,20 @@ export const routeTree = rootRoute.addChildren({
     "/about": {
       "filePath": "about.lazy.tsx"
     },
-    "/wilderkind/$id": {
-      "filePath": "wilderkind/$id.tsx"
+    "/cards/$id": {
+      "filePath": "cards/$id.tsx"
     },
-    "/wilderkind/": {
-      "filePath": "wilderkind/index.tsx"
+    "/cards/": {
+      "filePath": "cards/index.tsx"
     },
-    "/wildernaut/": {
-      "filePath": "wildernaut/index.tsx"
+    "/users/": {
+      "filePath": "users/index.tsx"
     },
-    "/wildernaut/$id/collection": {
-      "filePath": "wildernaut/$id/collection.tsx"
+    "/users/$id/collection": {
+      "filePath": "users/$id/collection.tsx"
     },
-    "/wildernaut/$id/": {
-      "filePath": "wildernaut/$id/index.tsx"
+    "/users/$id/": {
+      "filePath": "users/$id/index.tsx"
     }
   }
 }

@@ -16,8 +16,8 @@ import { Link } from '@tanstack/react-router';
 
 const data = [
   { link: '/', label: 'Home', icon: IconHome },
-  { link: '/wildernaut/1/collection', label: 'Collection', icon: IconCards },
-  { link: '/Wilderkind', label: 'WilderKind Index', icon: IconArchive },
+  { link: '/users/1/collection', label: 'Collection', icon: IconCards },
+  { link: '/cards', label: 'WilderKind Index', icon: IconArchive },
   // { link: '/nursery', label: 'Nursery', icon: IconSeeding },
   // { link: '/playroom', label: 'Playroom', icon: IconHorseToy },
 ];
@@ -36,6 +36,7 @@ export function NavbarSimple() {
       to={item.link}
       key={item.label}
       onClick={() => handleClick(item.label)}
+      search=''
     >
       <item.icon
         className={classes.linkIcon}

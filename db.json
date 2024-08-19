@@ -17,7 +17,8 @@
       "birthdate": "1987-11-20",
       "imgSrc": "https://xsgames.co/randomusers/avatar.php?g=male",
       "title": "Software Engineer",
-      "description": "Bob is a skilled software engineer specializing in full-stack development."
+      "description": "Bob is a skilled software engineer specializing in full-stack development.",
+      "collection": [48296]
     },
     {
       "id": 3,
@@ -26,7 +27,8 @@
       "birthdate": "1976-02-30",
       "imgSrc": "https://xsgames.co/randomusers/avatar.php?g=male",
       "title": "UX Designer",
-      "description": "Charlie is a UX designer focused on creating intuitive user interfaces."
+      "description": "Charlie is a UX designer focused on creating intuitive user interfaces.",
+      "collection": [68901, 48586]
     },
     {
       "id": 4,
@@ -48,7 +50,7 @@
     }
   ],
 
-  "wilderkind": [
+  "cards": [
     {
       "id": 14,
       "taxon_id": 48586,

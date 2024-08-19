@@ -7,7 +7,6 @@ import { router } from './router';
 import '@mantine/core/styles.css';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 
-// Render the app
 const rootElement = document.getElementById('root')!;
 if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
@@ -20,3 +19,5 @@ if (!rootElement.innerHTML) {
     </StrictMode>
   );
 }
+
+// Render the app
