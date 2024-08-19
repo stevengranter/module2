@@ -1,4 +1,4 @@
-export default async function fetchData(url: string | undefined) {
+export async function fetchData(url: string | undefined) {
   if (!url) {
     url = 'http://my-json-server.typicode.com/stevengranter/module2';
   }

@@ -1,7 +1,10 @@
 import { createFileRoute, useLoaderData } from '@tanstack/react-router';
-import SpeciesCard, { speciesType } from 'components/SpeciesCard';
+import SpeciesCard from 'components/SpeciesCard';
+import { speciesType } from 'models/speciesType';
 
 import { Grid, GridCol } from '@mantine/core';
+
+// import { fetchData } from 'utils/fetchData.ts';
 
 let jsonServerUrl = 'http://localhost:3000/';
 jsonServerUrl = import.meta.env.VITE_JSONSERVER_URL;
@@ -22,7 +25,11 @@ function WilderKindIndexComponent() {
       <h2>Welcome to the WilderKind Index</h2>
       <Grid>
         {data?.map((item: speciesType) => (
-          <GridCol span={{ base: 12, sm: 6, md: 4, lg: 3 }}>
+          <GridCol
+            span={{ base: 12, sm: 6, md: 4, lg: 3 }}
+            key={item.id}
+          >
+            {/* <Link to={item.id.toString()}> */}
             <SpeciesCard
               id={item.id}
               nickName={item.nickName}
@@ -31,6 +38,7 @@ function WilderKindIndexComponent() {
               scientificName={item.scientificName}
               description={item.description}
             />
+            {/* </Link> */}
           </GridCol>
         ))}
       </Grid>

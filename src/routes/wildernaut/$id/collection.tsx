@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 
-import fetchData from 'utils/fetchData.ts';
+import { fetchData } from 'utils/fetchData.ts';
 let jsonServerUrl = 'http://localhost:3000';
 jsonServerUrl = import.meta.env.VITE_JSONSERVER_URL;
 

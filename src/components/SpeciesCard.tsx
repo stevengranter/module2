@@ -8,20 +8,9 @@ import {
   AspectRatio,
 } from '@mantine/core';
 import styles from './SpeciesCard.module.css';
+import { speciesType } from 'models/speciesType';
 
 import { Interweave } from 'interweave';
-
-export interface speciesType {
-  id: number;
-  imgSrc: string;
-  commonName: string;
-  scientificName: string;
-  nickName?: undefined | string;
-  family?: string;
-  diet?: string;
-  habitat?: string;
-  description: string;
-}
 
 function SpeciesCard({
   id,
