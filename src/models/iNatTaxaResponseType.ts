@@ -24,16 +24,16 @@ export interface Result {
   observations_count: number;
   photos_locked: boolean;
   flag_counts: FlagCounts;
-  current_synonymous_taxon_ids: any;
+  current_synonymous_taxon_ids: number[] | undefined;
   taxon_photos: TaxonPhoto[];
   atlas_id?: number;
-  complete_species_count: any;
+  complete_species_count: number | undefined;
   wikipedia_url: string;
   iconic_taxon_name: string;
   preferred_common_name: string;
   ancestors: Ancestor[];
   conservation_statuses: Status[];
-  conservation_status: any;
+  conservation_status: string | undefined;
   listed_taxa_count: number;
   listed_taxa: ListedTaxa[];
   wikipedia_summary: string;
@@ -73,7 +73,7 @@ export interface Photo {
   license_code?: string;
   attribution: string;
   url: string;
-  original_dimensions: OriginalDimensions2;
+  original_dimensions: OriginalDimensions;
   flags: any[];
   native_page_url?: string;
   native_photo_id?: string;
@@ -83,11 +83,6 @@ export interface Photo {
   medium_url: string;
   large_url: string;
   original_url: string;
-}
-
-export interface OriginalDimensions2 {
-  height: number;
-  width: number;
 }
 
 export interface Taxon {
@@ -101,39 +96,18 @@ export interface Taxon {
   parent_id: number;
   ancestry: string;
   extinct: boolean;
-  default_photo: DefaultPhoto2;
+  default_photo: DefaultPhoto;
   taxon_changes_count: number;
   taxon_schemes_count: number;
   observations_count: number;
   photos_locked: boolean;
-  flag_counts: FlagCounts2;
-  current_synonymous_taxon_ids: any;
+  flag_counts: FlagCounts;
+  current_synonymous_taxon_ids: number[] | undefined;
   atlas_id?: number;
   complete_species_count: any;
   wikipedia_url: string;
   iconic_taxon_name: string;
   preferred_common_name: string;
-}
-
-export interface DefaultPhoto2 {
-  id: number;
-  license_code: string;
-  attribution: string;
-  url: string;
-  original_dimensions: OriginalDimensions3;
-  flags: any[];
-  square_url: string;
-  medium_url: string;
-}
-
-export interface OriginalDimensions3 {
-  height: number;
-  width: number;
-}
-
-export interface FlagCounts2 {
-  resolved: number;
-  unresolved: number;
 }
 
 export interface Ancestor {
@@ -147,11 +121,11 @@ export interface Ancestor {
   parent_id: number;
   ancestry: string;
   extinct: boolean;
-  default_photo: DefaultPhoto3;
+  default_photo: DefaultPhoto;
   taxon_changes_count: number;
   taxon_schemes_count: number;
   observations_count: number;
-  flag_counts: FlagCounts3;
+  flag_counts: FlagCounts;
   current_synonymous_taxon_ids: any;
   atlas_id: any;
   complete_species_count: any;
@@ -159,27 +133,6 @@ export interface Ancestor {
   complete_rank?: string;
   iconic_taxon_name: string;
   preferred_common_name?: string;
-}
-
-export interface DefaultPhoto3 {
-  id: number;
-  license_code?: string;
-  attribution: string;
-  url: string;
-  original_dimensions: OriginalDimensions4;
-  flags: any[];
-  square_url: string;
-  medium_url: string;
-}
-
-export interface OriginalDimensions4 {
-  height: number;
-  width: number;
-}
-
-export interface FlagCounts3 {
-  resolved: number;
-  unresolved: number;
 }
 
 export interface Status {
@@ -232,36 +185,15 @@ export interface Children {
   parent_id: number;
   ancestry: string;
   extinct: boolean;
-  default_photo?: DefaultPhoto4;
+  default_photo?: DefaultPhoto;
   taxon_changes_count: number;
   taxon_schemes_count: number;
   observations_count: number;
-  flag_counts: FlagCounts4;
+  flag_counts: FlagCounts;
   current_synonymous_taxon_ids: any;
   atlas_id: any;
   complete_species_count: any;
   wikipedia_url?: string;
   iconic_taxon_name: string;
   preferred_common_name?: string;
-}
-
-export interface DefaultPhoto4 {
-  id: number;
-  license_code?: string;
-  attribution: string;
-  url: string;
-  original_dimensions: OriginalDimensions5;
-  flags: any[];
-  square_url: string;
-  medium_url: string;
-}
-
-export interface OriginalDimensions5 {
-  height: number;
-  width: number;
-}
-
-export interface FlagCounts4 {
-  resolved: number;
-  unresolved: number;
 }
