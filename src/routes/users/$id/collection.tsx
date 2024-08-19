@@ -18,7 +18,7 @@ export const Route = createFileRoute('/users/$id/collection')({
   component: CollectionComponent,
   beforeLoad: ({ params: { id } }) => ({
     fetchUser: () => {
-      const response = wretch(jsonServerUrl + id)
+      const response = wretch(jsonServerUrl + '/users?id=' + id)
         .get()
         .json<userType[]>();
       return response;
