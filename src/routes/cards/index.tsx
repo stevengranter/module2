@@ -1,25 +1,19 @@
-import { createFileRoute, useLoaderData } from '@tanstack/react-router';
-import SpeciesCard from 'components/SpeciesCard';
 import { speciesType } from 'models/speciesType';
-
-import { Grid, GridCol } from '@mantine/core';
-
 import wretch from 'wretch';
-
 import { jsonServerUrl } from 'utils/constants';
+import { Grid, GridCol } from '@mantine/core';
+import SpeciesCard from 'components/SpeciesCard';
+import { useLoaderData } from 'react-router-dom';
 
-export const Route = createFileRoute('/cards/')({
-  component: WilderKindIndexComponent,
-  loader: async () => {
-    const response = await wretch(jsonServerUrl + '/cards')
-      .get()
-      .json<speciesType[]>();
-    return response;
-  },
-});
+export async function loader() {
+  const response = await wretch(jsonServerUrl + '/cards')
+    .get()
+    .json<speciesType[]>();
+  return response;
+}
 
-function WilderKindIndexComponent() {
-  const data = useLoaderData({ from: '/cards/' });
+export function CardIndexRoute() {
+  const data = useLoaderData() as speciesType[];
   return (
     <>
       <h2>Welcome to the WilderKind Index</h2>

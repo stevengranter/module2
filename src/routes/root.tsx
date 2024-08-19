@@ -1,16 +1,13 @@
-import { createRootRoute, Outlet } from '@tanstack/react-router';
-import { TanStackRouterDevtools } from '@tanstack/router-devtools';
 import { AppShell, Group, Burger, Image } from '@mantine/core';
-import { NavbarSimple } from '../components/NavbarSimple';
-import logo from '/images/logo2.png';
-
 import { useDisclosure } from '@mantine/hooks';
 
-export const Route = createRootRoute({
-  component: RootComponent,
-});
+import { Outlet } from 'react-router-dom';
 
-function RootComponent() {
+import { NavbarSimple } from '../components/NavbarSimple';
+
+import logo from '/images/logo2.png';
+
+export default function Root() {
   const [opened, { toggle }] = useDisclosure();
   return (
     <AppShell
@@ -51,7 +48,6 @@ function RootComponent() {
       </AppShell.Navbar>
 
       <AppShell.Main>
-        <TanStackRouterDevtools />
         <Outlet />
       </AppShell.Main>
     </AppShell>
