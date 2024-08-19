@@ -33,31 +33,6 @@ export async function loader({ params }: { params: Params<'userId'> }) {
   }
 }
 
-// export const Route = createFileRoute('/users/$id/collection')({
-//   component: CollectionComponent,
-//   beforeLoad: ({ params: { id } }) => ({
-//     fetchUser: () => {
-//       const response = wretch(jsonServerUrl + '/users?id=' + id)
-//         .get()
-//         .json<userType[]>();
-//       return response;
-//     },
-//   }),
-//   loader: async ({ context: { fetchUser } }) => {
-//     const [user] = await fetchUser();
-//     if (user && user.collection) {
-//       const speciesDataPromises = user.collection.map(
-//         async (speciesId: string) => {
-//           const collectionData = await fetchSpecies(speciesId);
-//           return collectionData;
-//         }
-//       );
-//       // Wait for all promises to resolve
-//       return await Promise.all(speciesDataPromises);
-//     }
-//   },
-// });
-
 export function UserCollection() {
   const data = useLoaderData() as iNatTaxaResponseType[];
   console.log(data);

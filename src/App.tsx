@@ -1,20 +1,24 @@
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 
+// @mantine imports
+import '@mantine/core/styles.css';
+import { ColorSchemeScript, MantineProvider } from '@mantine/core';
+
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Root from './routes/root';
 import {
   CardDetailRoute,
   loader as CardDetailLoader,
-} from 'routes/Cards/CardDetail';
+} from './routes/Cards/CardDetail';
 import {
   CardIndexRoute,
   loader as CardIndexLoader,
-} from 'routes/Cards/Index.tsx';
+} from './routes/Cards/Index';
 import {
   UserProfile,
   loader as UserProfileLoader,
-} from 'routes/Users/UserProfile';
+} from './routes/Users/UserProfile';
 import {
   UserCollection,
   loader as UserCollectionLoader,
@@ -49,9 +53,6 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-// @mantine setup
-import '@mantine/core/styles.css';
-import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 
 const rootElement = document.getElementById('root')!;
 if (!rootElement.innerHTML) {
@@ -65,5 +66,3 @@ if (!rootElement.innerHTML) {
     </StrictMode>
   );
 }
-
-// Render the app
