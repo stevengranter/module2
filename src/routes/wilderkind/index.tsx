@@ -4,7 +4,7 @@ import { speciesType } from 'models/speciesType';
 
 import { Grid, GridCol } from '@mantine/core';
 
-// import { fetchData } from 'utils/fetchData.ts';
+import wretch from 'wretch';
 
 let jsonServerUrl = 'http://localhost:3000/';
 jsonServerUrl = import.meta.env.VITE_JSONSERVER_URL;
@@ -12,9 +12,10 @@ jsonServerUrl = import.meta.env.VITE_JSONSERVER_URL;
 export const Route = createFileRoute('/wilderkind/')({
   component: WilderKindIndexComponent,
   loader: async () => {
-    const response = await fetch(jsonServerUrl + 'wilderkind/');
-    const jsonData = response.json();
-    return jsonData;
+    const response = await wretch(jsonServerUrl + 'wilderkind/')
+      .get()
+      .json();
+    return response;
   },
 });
 
@@ -26,7 +27,7 @@ function WilderKindIndexComponent() {
       <Grid>
         {data?.map((item: speciesType) => (
           <GridCol
-            span={{ base: 12, sm: 6, md: 4, lg: 3 }}
+            span={{ base: 12, sm: 6, md: 4, lg: 3, xl: 2 }}
             key={item.id}
           >
             {/* <Link to={item.id.toString()}> */}

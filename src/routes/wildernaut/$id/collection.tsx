@@ -1,17 +1,21 @@
 import { createFileRoute } from '@tanstack/react-router';
+import wretch from 'wretch';
 
-import { fetchData } from 'utils/fetchData.ts';
 let jsonServerUrl = 'http://localhost:3000';
 jsonServerUrl = import.meta.env.VITE_JSONSERVER_URL;
 
 async function fetchUserData(userId: string) {
-  const response = await fetchData(jsonServerUrl + 'users/' + userId);
+  const response = await wretch(jsonServerUrl + 'users/' + userId)
+    .get()
+    .json();
   return response;
 }
 
 async function fetchSpecies(id: string) {
-  const response = await fetch('https://api.inaturalist.org/v1/taxa/' + id);
-  return await response.json();
+  const response = await wretch('https://api.inaturalist.org/v1/taxa/' + id)
+    .get()
+    .json();
+  return response;
 }
 
 export const Route = createFileRoute('/wildernaut/$id/collection')({

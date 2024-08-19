@@ -14,7 +14,7 @@ export function CollectionComponent() {
     <div>
       <h2>CollectionComponent</h2>
       <Grid>
-        {data.map((species, index) => {
+        {data.map((species, index: number) => {
           const {
             id,
             preferred_common_name,
@@ -26,7 +26,7 @@ export function CollectionComponent() {
           return (
             <GridCol
               key={index}
-              span={{ base: 12, sm: 6, md: 4, lg: 3 }}
+              span={{ base: 12, sm: 6, md: 4, lg: 3, xl: 2 }}
             >
               <SpeciesCard
                 id={id}
