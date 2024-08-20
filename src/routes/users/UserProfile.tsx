@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import type { Params } from 'react-router-dom';
 import { useLoaderData, Link } from 'react-router-dom';
 

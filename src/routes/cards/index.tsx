@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { useLoaderData } from 'react-router-dom';
 
 import { GridCol, Grid } from '@mantine/core';
