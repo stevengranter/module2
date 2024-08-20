@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { ScrollRestoration, Outlet } from 'react-router-dom';
 
 import { AppShell, Burger, Group, Image } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
@@ -48,6 +48,7 @@ export default function Root() {
       </AppShell.Navbar>
 
       <AppShell.Main>
+        <ScrollRestoration />
         <Outlet />
       </AppShell.Main>
     </AppShell>
