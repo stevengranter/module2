@@ -1,34 +1,35 @@
 import {
-  Card,
-  Image,
-  Skeleton,
-  Text,
-  Title,
-  Spoiler,
   AspectRatio,
+  Skeleton,
+  Spoiler,
+  Image,
+  Title,
+  Card,
+  Text,
 } from '@mantine/core';
-import styles from './SpeciesCard.module.css';
-import { speciesType } from 'models/speciesType';
-
 import { Interweave } from 'interweave';
 
+import { speciesType } from 'models/speciesType';
+
+import styles from './SpeciesCard.module.css';
+
 function SpeciesCard({
-  id,
-  imgSrc,
-  commonName,
   scientificName,
-  nickName,
-  diet,
-  habitat,
   description,
+  commonName,
+  nickName,
+  habitat,
+  imgSrc,
+  diet,
+  id,
 }: speciesType) {
   return (
     <Card
-      key={id}
       shadow='md'
       // p='xl'
       radius='lg'
       withBorder
+      key={id}
     >
       {nickName && (
         <Title
@@ -43,54 +44,54 @@ function SpeciesCard({
         {imgSrc ? (
           <AspectRatio ratio={1 / 1}>
             <Image
-              src={imgSrc}
-              alt={scientificName}
               // radius='lg'
               className={styles.drop_shadow}
+              alt={scientificName}
               loading='lazy'
+              src={imgSrc}
             />
           </AspectRatio>
         ) : (
           <Skeleton
+            animate={false}
             height={500}
             width={500}
-            animate={false}
           ></Skeleton>
         )}
       </Card.Section>
 
       <Title
-        order={2}
         lineClamp={1}
+        order={2}
         size='h3'
       >
         {commonName}
       </Title>
       <Title
-        order={3}
         lineClamp={1}
+        order={3}
         size='h4'
       >
         {scientificName}
       </Title>
 
       <Spoiler
-        maxHeight={0}
         showLabel='Show more...'
         hideLabel='Hide'
+        maxHeight={0}
       >
         <Text>
           <Interweave content={description} />
         </Text>
         <Text
-          mt={12}
           size='sm'
+          mt={12}
         >
           Habitat: {habitat}
         </Text>
         <Text
-          mt={12}
           size='sm'
+          mt={12}
         >
           Diet: {diet}
         </Text>

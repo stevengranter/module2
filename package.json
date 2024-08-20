@@ -29,12 +29,16 @@
     "@typescript-eslint/parser": "^7.15.0",
     "@vitejs/plugin-react-swc": "^3.5.0",
     "eslint": "^8.57.0",
+    "eslint-plugin-perfectionist": "^3.2.0",
     "eslint-plugin-react-hooks": "^4.6.2",
-    "eslint-plugin-react-refresh": "^0.4.7",
+    "eslint-plugin-react-refresh": "^0.4.9",
     "postcss": "^8.4.40",
     "postcss-preset-mantine": "^1.17.0",
+    "sharp": "^0.33.5",
+    "svgo": "^3.3.2",
     "typescript": "^5.2.2",
     "vite": "^5.3.4",
+    "vite-plugin-image-optimizer": "^1.1.8",
     "vite-tsconfig-paths": "^5.0.1"
   }
 }

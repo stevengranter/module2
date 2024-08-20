@@ -1,11 +1,13 @@
-import { useLoaderData } from 'react-router-dom';
 import type { Params } from 'react-router-dom';
-import wretch from 'wretch';
-import { userType } from 'models/userType';
-import { Grid, GridCol } from '@mantine/core';
-import SpeciesCard from 'components/SpeciesCard';
-import { iNatTaxaResponseType } from 'models/iNatTaxaResponseType';
+import { useLoaderData } from 'react-router-dom';
 
+import { GridCol, Grid } from '@mantine/core';
+import wretch from 'wretch';
+
+import type { iNatTaxaResponseType } from 'models/iNatTaxaResponseType';
+import type { userType } from 'models/userType';
+
+import SpeciesCard from 'components/SpeciesCard';
 import { jsonServerUrl } from 'utils/constants';
 
 async function fetchSpecies(id: string) {
@@ -42,24 +44,24 @@ export function UserCollection() {
       <Grid>
         {data?.map((item, index: number) => {
           const {
-            id,
             preferred_common_name,
-            name,
             wikipedia_summary,
             default_photo,
+            name,
+            id,
           } = item.results[0];
 
           return (
             <GridCol
-              key={index}
               span={{ base: 12, sm: 6, md: 4, lg: 3, xl: 2 }}
+              key={index}
             >
               <SpeciesCard
-                id={id}
                 commonName={preferred_common_name}
-                scientificName={name}
-                description={wikipedia_summary}
                 imgSrc={default_photo.medium_url}
+                description={wikipedia_summary}
+                scientificName={name}
+                id={id}
               />
             </GridCol>
           );

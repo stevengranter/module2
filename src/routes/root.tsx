@@ -1,7 +1,7 @@
-import { AppShell, Group, Burger, Image } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-
 import { Outlet } from 'react-router-dom';
+
+import { AppShell, Burger, Group, Image } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 
 import { NavbarSimple } from '../components/NavbarSimple';
 
@@ -11,12 +11,12 @@ export default function Root() {
   const [opened, { toggle }] = useDisclosure();
   return (
     <AppShell
-      header={{ height: 150 }}
       navbar={{
-        width: '200',
-        breakpoint: 'xs',
         collapsed: { mobile: !opened },
+        breakpoint: 'xs',
+        width: '200',
       }}
+      header={{ height: 150 }}
       padding='md'
     >
       <AppShell.Header>
@@ -25,18 +25,18 @@ export default function Root() {
           px='md'
         >
           <Burger
-            opened={opened}
             onClick={toggle}
+            opened={opened}
             hiddenFrom='xs'
             size='sm'
           />
 
           <Image
-            src={logo}
             alt='WilderNest Logo'
+            fit='contain'
+            src={logo}
             h='100%'
             w='auto'
-            fit='contain'
             py='lg'
             px='md'
           />

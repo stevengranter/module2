@@ -1,7 +1,9 @@
-import wretch from 'wretch';
-import { userType } from 'models/userType';
-import { useLoaderData } from 'react-router-dom';
 import type { Params } from 'react-router-dom';
+import { useLoaderData, Link } from 'react-router-dom';
+
+import wretch from 'wretch';
+
+import type { userType } from 'models/userType';
 
 export async function loader({ params }: { params: Params<'userId'> }) {
   const response = await wretch(
@@ -17,6 +19,7 @@ export function UserProfile() {
   return (
     <>
       <h2>Welcome WilderNaut {user.firstName}!</h2>
+      View my <Link to='./collection'>collection</Link>
     </>
   );
 }

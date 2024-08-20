@@ -1,7 +1,9 @@
-import { iNatTaxaResponseType } from 'models/iNatTaxaResponseType';
 import type { Params } from 'react-router-dom';
-import SpeciesCard from '../../components/SpeciesCard';
 import { useLoaderData } from 'react-router-dom';
+
+import { iNatTaxaResponseType } from 'models/iNatTaxaResponseType';
+
+import SpeciesCard from '../../components/SpeciesCard';
 
 export async function loader({ params }: { params: Params<'cardId'> }) {
   const response = await fetch(
@@ -16,11 +18,11 @@ export function CardDetailRoute() {
   const iNatTaxaRecord = data.results[0];
   return (
     <SpeciesCard
-      id={iNatTaxaRecord.id}
-      imgSrc={iNatTaxaRecord.default_photo.medium_url}
       commonName={iNatTaxaRecord.preferred_common_name}
-      scientificName={iNatTaxaRecord.name}
+      imgSrc={iNatTaxaRecord.default_photo.medium_url}
       description={iNatTaxaRecord.wikipedia_summary}
+      scientificName={iNatTaxaRecord.name}
+      id={iNatTaxaRecord.id}
     ></SpeciesCard>
   );
 }

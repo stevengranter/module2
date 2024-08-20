@@ -1,44 +1,45 @@
 import {
   ThemeIcon,
   Progress,
-  Text,
   Group,
   Badge,
   Paper,
+  Text,
   rem,
 } from '@mantine/core';
 import { IconButterfly } from '@tabler/icons-react';
+
 import classes from './StatsCard.module.css';
 
 export function StatsCard() {
   return (
     <Paper
+      className={classes.card}
       radius='md'
       withBorder
-      className={classes.card}
       mt={20}
     >
       <ThemeIcon
         className={classes.icon}
-        size={60}
         radius={60}
+        size={60}
       >
         <IconButterfly
-          style={{ width: rem(32), height: rem(32) }}
+          style={{ height: rem(32), width: rem(32) }}
           stroke={1.5}
         />
       </ThemeIcon>
 
       <Text
+        className={classes.title}
         ta='center'
         fw={700}
-        className={classes.title}
       >
         Spotted Tussock Moth
       </Text>
       <Text
-        c='dimmed'
         ta='center'
+        c='dimmed'
         fz='sm'
       >
         Yellow Wooly Bear
@@ -48,14 +49,14 @@ export function StatsCard() {
         mt='xs'
       >
         <Text
-          fz='sm'
           c='dimmed'
+          fz='sm'
         >
           Progress
         </Text>
         <Text
-          fz='sm'
           c='dimmed'
+          fz='sm'
         >
           70%
         </Text>

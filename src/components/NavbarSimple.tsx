@@ -1,23 +1,24 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import {
-  IconCards,
-  IconHome,
   IconUserCircle,
   IconInfoCircle,
-  IconLogout,
   IconArchive,
+  IconLogout,
+  IconCards,
+  IconHome,
   // IconRainbow,
   // IconSeeding,
   // IconHorseToy,
 } from '@tabler/icons-react';
 
 import classes from './NavbarSimple.module.css';
-import { Link } from 'react-router-dom';
 
 const data = [
-  { link: '/', label: 'Home', icon: IconHome },
+  { icon: IconHome, label: 'Home', link: '/' },
   { link: '/users/1/collection', label: 'Collection', icon: IconCards },
-  { link: '/cards', label: 'WilderKind Index', icon: IconArchive },
+  { label: 'WilderKind Index', icon: IconArchive, link: '/cards' },
   // { link: '/nursery', label: 'Nursery', icon: IconSeeding },
   // { link: '/playroom', label: 'Playroom', icon: IconHorseToy },
 ];
@@ -31,11 +32,11 @@ export function NavbarSimple() {
 
   const links = data.map((item) => (
     <Link
-      className={classes.link}
       data-active={item.label === active || undefined}
-      to={item.link}
-      key={item.label}
       onClick={() => handleClick(item.label)}
+      className={classes.link}
+      key={item.label}
+      to={item.link}
     >
       <item.icon
         className={classes.linkIcon}
@@ -51,8 +52,8 @@ export function NavbarSimple() {
 
       <div className={classes.footer}>
         <Link
-          to=''
           className={classes.link}
+          to=''
         >
           <IconUserCircle
             className={classes.linkIcon}
@@ -62,8 +63,8 @@ export function NavbarSimple() {
         </Link>
 
         <Link
-          to=''
           className={classes.link}
+          to=''
         >
           <IconLogout
             className={classes.linkIcon}
@@ -73,8 +74,8 @@ export function NavbarSimple() {
         </Link>
 
         <Link
-          to=''
           className={classes.link}
+          to=''
         >
           <IconInfoCircle
             className={classes.linkIcon}

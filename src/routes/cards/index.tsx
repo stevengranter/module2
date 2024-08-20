@@ -1,9 +1,11 @@
-import { speciesType } from 'models/speciesType';
-import wretch from 'wretch';
-import { jsonServerUrl } from 'utils/constants';
-import { Grid, GridCol } from '@mantine/core';
-import SpeciesCard from 'components/SpeciesCard';
 import { useLoaderData } from 'react-router-dom';
+
+import { GridCol, Grid } from '@mantine/core';
+import wretch from 'wretch';
+
+import SpeciesCard from '../../components/SpeciesCard';
+import { speciesType } from '../../models/speciesType';
+import { jsonServerUrl } from '../../utils/constants';
 
 export async function loader() {
   const response = await wretch(jsonServerUrl + '/cards')
@@ -25,12 +27,12 @@ export function CardIndexRoute() {
           >
             {/* <Link to={item.id.toString()}> */}
             <SpeciesCard
-              id={item.id}
-              nickName={item.nickName}
-              commonName={item.commonName}
-              imgSrc={'./images/' + item.imgSrc}
               scientificName={item.scientificName}
+              imgSrc={'./images/' + item.imgSrc}
               description={item.description}
+              commonName={item.commonName}
+              nickName={item.nickName}
+              id={item.id}
             />
             {/* </Link> */}
           </GridCol>

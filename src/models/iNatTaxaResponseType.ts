@@ -1,4 +1,4 @@
-//export type Root = Root2[];
+/* eslint-disable */
 
 export interface iNatTaxaResponseType {
   total_results: number;
@@ -110,7 +110,6 @@ export interface Taxon {
   preferred_common_name: string;
 }
 
-
 export interface Ancestor {
   id: number;
   rank: string;
@@ -135,7 +134,6 @@ export interface Ancestor {
   iconic_taxon_name: string;
   preferred_common_name?: string;
 }
-
 
 export interface Status {
   id: number;

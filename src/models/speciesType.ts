@@ -1,11 +1,11 @@
 export interface speciesType {
-  id: string | number;
-  imgSrc: string;
-  commonName: string;
+  nickName?: undefined | string;
+  habitat?: undefined | string;
+  family?: undefined | string;
+  diet?: undefined | string;
   scientificName: string;
-  nickName?: string | undefined;
-  family?: string | undefined;
-  diet?: string | undefined;
-  habitat?: string | undefined;
+  id: string | number;
   description: string;
+  commonName: string;
+  imgSrc: string;
 }

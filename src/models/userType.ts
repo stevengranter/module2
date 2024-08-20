@@ -1,10 +1,10 @@
 export interface userType {
-  id: string;
+  collection?: string[];
+  description: string;
   firstName: string;
-  lastName: string;
   birthdate: string;
+  lastName: string;
   imgSrc: string;
   title: string;
-  description: string;
-  collection?: string[];
+  id: string;
 }
