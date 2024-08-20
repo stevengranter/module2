@@ -2,10 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import { jsonServerUrl } from 'utils/constants';
 
-import {
-  loader as CardDetailLoader,
-  CardDetailRoute,
-} from './routes/Cards/CardDetail';
+import { CardDetailRoute } from './routes/Cards/CardDetail';
 import { CardIndexRoute } from './routes/Cards/Index';
 import Root from './routes/root';
 import {

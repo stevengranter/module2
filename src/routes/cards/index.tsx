@@ -2,12 +2,9 @@
 import { useLoaderData, Link } from 'react-router-dom';
 
 import { TextInput, GridCol, Center, Grid } from '@mantine/core';
-import wretch from 'wretch';
 
 import SpeciesCard from '../../components/SpeciesCard';
 import { speciesType } from '../../models/speciesType';
-import { jsonServerUrl } from '../../utils/constants';
-import styles from './Index.module.css';
 
 export function CardIndexRoute() {
   const data = useLoaderData() as speciesType[];
