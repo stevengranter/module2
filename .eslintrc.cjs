@@ -9,7 +9,7 @@ module.exports = {
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh', 'perfectionist'],
+  plugins: ['react-refresh', 'perfectionist', '@html-eslint'],
   rules: {
     'react-refresh/only-export-components': [
       'warn',
@@ -48,4 +48,11 @@ module.exports = {
       },
     ],
   },
+  overrides: [
+    {
+      files: ['*.html'],
+      parser: '@html-eslint/parser',
+      extends: ['plugin:@html-eslint/recommended'],
+    },
+  ],
 };

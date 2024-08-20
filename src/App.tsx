@@ -1,56 +1,56 @@
 import { StrictMode } from 'react';
-import ReactDOM from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
+import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 // @mantine imports
 import '@mantine/core/styles.css';
-import { ColorSchemeScript, MantineProvider } from '@mantine/core';
+import ReactDOM from 'react-dom/client';
 
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Root from './routes/root';
 import {
-  CardDetailRoute,
   loader as CardDetailLoader,
+  CardDetailRoute,
 } from './routes/Cards/CardDetail';
 import {
-  CardIndexRoute,
   loader as CardIndexLoader,
+  CardIndexRoute,
 } from './routes/Cards/Index';
+import Root from './routes/root';
 import {
-  UserProfile,
-  loader as UserProfileLoader,
-} from './routes/Users/UserProfile';
-import {
-  UserCollection,
   loader as UserCollectionLoader,
+  UserCollection,
 } from './routes/Users/UserCollection';
+import {
+  loader as UserProfileLoader,
+  UserProfile,
+} from './routes/Users/UserProfile';
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: <Root />,
     children: [
       {
-        path: '/cards/',
-        index: true,
         element: <CardIndexRoute />,
         loader: CardIndexLoader,
+        path: '/cards/',
+        index: true,
       },
       {
-        path: '/cards/:cardId',
         element: <CardDetailRoute />,
         loader: CardDetailLoader,
+        path: '/cards/:cardId',
       },
       {
-        path: '/users/:userId',
-        element: <UserProfile />,
         loader: UserProfileLoader,
+        element: <UserProfile />,
+        path: '/users/:userId',
       },
       {
         path: '/users/:userId/collection',
-        element: <UserCollection />,
         loader: UserCollectionLoader,
+        element: <UserCollection />,
       },
     ],
+    element: <Root />,
+    path: '/',
   },
 ]);
 

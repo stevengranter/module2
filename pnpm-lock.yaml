@@ -36,6 +36,12 @@ importers:
         specifier: ^2.9.0
         version: 2.9.0
     devDependencies:
+      '@html-eslint/eslint-plugin':
+        specifier: ^0.26.0
+        version: 0.26.0
+      '@html-eslint/parser':
+        specifier: ^0.26.0
+        version: 0.26.0
       '@types/node':
         specifier: ^22.4.0
         version: 22.4.0
@@ -276,6 +282,14 @@ packages:
 
   '@floating-ui/utils@0.2.7':
     resolution: {integrity: sha512-X8R8Oj771YRl/w+c1HqAC1szL8zWQRwFvgDwT129k9ACdBoud/+/rX9V0qiMl6LWUdP9voC2nDVZYPMQQsb6eA==}
+
+  '@html-eslint/eslint-plugin@0.26.0':
+    resolution: {integrity: sha512-ovmAYVN/Wv+OX77FrSSyPxBokOg6hvxuiTRXhbN1rnZ7DwCmHjnvVyDlkTeWQHmuwFF2n8yLu2B/X9AMA9KxNw==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+
+  '@html-eslint/parser@0.26.0':
+    resolution: {integrity: sha512-o82iUf7HLV6W48voPByAVTPALlWyF4PR9/2YOUlyXY9Ff7bbu9IdxU9Oc5t82Jwx4kOH5gJiZi3cee+CFB9OBQ==}
+    engines: {node: '>=8.10.0'}
 
   '@humanwhocodes/config-array@0.11.14':
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
@@ -960,6 +974,9 @@ packages:
   es-escape-html@0.1.1:
     resolution: {integrity: sha512-yUx1o+8RsG7UlszmYPtks+dm6Lho2m8lgHMOsLJQsFI0R8XwUJwiMhM1M4E/S8QLeGyf6MkDV/pWgjQ0tdTSyQ==}
     engines: {node: '>=12.x'}
+
+  es-html-parser@0.0.9:
+    resolution: {integrity: sha512-oniQMi+466VFsDzcdron9Ry/sqUJpDJg1bbDn0jFJKDdxXhwIOYDr4DgBnO5/yPLGj2xv+n5yy4L1Q0vAC5TYQ==}
 
   esbuild@0.21.5:
     resolution: {integrity: sha512-mg3OPMV4hXywwpoDxu3Qda5xCKQi+vCTZq8S9J/EpkhB2HzKXq4SNFZE3+NK93JYxc8VMSep+lOUSC/RVKaBqw==}
@@ -1862,6 +1879,12 @@ snapshots:
 
   '@floating-ui/utils@0.2.7': {}
 
+  '@html-eslint/eslint-plugin@0.26.0': {}
+
+  '@html-eslint/parser@0.26.0':
+    dependencies:
+      es-html-parser: 0.0.9
+
   '@humanwhocodes/config-array@0.11.14':
     dependencies:
       '@humanwhocodes/object-schema': 2.0.3
@@ -2486,6 +2509,8 @@ snapshots:
   entities@4.5.0: {}
 
   es-escape-html@0.1.1: {}
+
+  es-html-parser@0.0.9: {}
 
   esbuild@0.21.5:
     optionalDependencies:

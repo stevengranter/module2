@@ -1,7 +1,8 @@
+/* eslint-disable react-refresh/only-export-components */
 import type { Params } from 'react-router-dom';
 import { useLoaderData } from 'react-router-dom';
 
-import { GridCol, Grid } from '@mantine/core';
+import { GridCol, Center, Grid } from '@mantine/core';
 import wretch from 'wretch';
 
 import type { iNatTaxaResponseType } from 'models/iNatTaxaResponseType';
@@ -41,32 +42,34 @@ export function UserCollection() {
   return (
     <div>
       <h2>CollectionComponent</h2>
-      <Grid>
-        {data?.map((item, index: number) => {
-          const {
-            preferred_common_name,
-            wikipedia_summary,
-            default_photo,
-            name,
-            id,
-          } = item.results[0];
 
-          return (
-            <GridCol
-              span={{ base: 12, sm: 6, md: 4, lg: 3, xl: 2 }}
-              key={index}
-            >
-              <SpeciesCard
-                commonName={preferred_common_name}
-                imgSrc={default_photo.medium_url}
-                description={wikipedia_summary}
-                scientificName={name}
-                id={id}
-              />
-            </GridCol>
-          );
-        })}
-      </Grid>
+      <Center>
+        <Grid>
+          {data?.map((item, index: number) => {
+            const {
+              preferred_common_name,
+              wikipedia_summary,
+              default_photo,
+              name,
+              id,
+            } = item.results[0];
+            return (
+              <GridCol
+                span={{ base: 12, sm: 6, md: 4, lg: 3, xl: 2, xs: 6 }}
+                key={index}
+              >
+                <SpeciesCard
+                  commonName={preferred_common_name}
+                  imgSrc={default_photo.medium_url}
+                  description={wikipedia_summary}
+                  scientificName={name}
+                  id={id}
+                />
+              </GridCol>
+            );
+          })}
+        </Grid>
+      </Center>
     </div>
   );
 }
