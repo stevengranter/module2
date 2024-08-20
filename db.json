@@ -54,7 +54,7 @@
     {
       "id": 14,
       "taxon_id": 48586,
-      "imgSrc": "cepaea_nemoralis.png",
+      "imgSrc": "/images/cepaea_nemoralis.png",
       "commonName": "Common Garden Snail",
       "scientificName": "Cepaea nemoralis",
       "nickName": "Nemo",
@@ -66,7 +66,7 @@
     {
       "id": 11,
       "taxon_id": 48296,
-      "imgSrc": "armadillidiidae.png",
+      "imgSrc": "/images/armadillidiidae.png",
       "commonName": "Roly-Poly",
       "scientificName": "Armadillidiidae",
       "nickName": "Dilly",
@@ -78,7 +78,7 @@
     {
       "id": 12,
       "taxon_id": 68901,
-      "imgSrc": "salticus_scenicus.png",
+      "imgSrc": "/images/salticus_scenicus.png",
       "commonName": "Zebra Spider",
       "scientificName": "Salticus scenicus",
       "nickName": "Salty",
@@ -89,7 +89,7 @@
     },
     {
       "id": 13,
-      "imgSrc": "lumbricus_terrestris.png",
+      "imgSrc": "/images/lumbricus_terrestris.png",
       "commonName": "Earthworm",
       "scientificName": "Lumbricus terrestris",
       "nickName": "Lumby",
@@ -100,7 +100,7 @@
     },
     {
       "id": 1,
-      "imgSrc": "chrysopa_rufilabris.png",
+      "imgSrc": "/images/chrysopa_rufilabris.png",
       "commonName": "Common Green Lacewing",
       "scientificName": "Chrysopa rufilabris",
       "nickName": "Crissy",
@@ -111,7 +111,7 @@
     },
     {
       "id": 2,
-      "imgSrc": "apis_mellifera.png",
+      "imgSrc": "/images/apis_mellifera.png",
       "commonName": "Honeybee",
       "scientificName": "Apis mellifera",
       "nickName": "Melli",
@@ -122,7 +122,7 @@
     },
     {
       "id": 5,
-      "imgSrc": "formica_rufibarbis.png",
+      "imgSrc": "/images/formica_rufibarbis.png",
       "commonName": "Common Ant",
       "scientificName": "Formica rufibarbis",
       "nickName": "Rubarb",
@@ -133,7 +133,7 @@
     },
     {
       "id": 8,
-      "imgSrc": "hippodamia_convergens.png",
+      "imgSrc": "/images/hippodamia_convergens.png",
       "commonName": "Ladybug",
       "scientificName": "Hippodamia convergens",
       "nickName": "Damia",
@@ -144,7 +144,7 @@
     },
     {
       "id": 15,
-      "imgSrc": "enallagma_cyathigerum.png",
+      "imgSrc": "/images/enallagma_cyathigerum.png",
       "commonName": "Northern Bluet",
       "scientificName": "Enallagma cyathigerum",
       "nickName": "Llagma",
@@ -155,7 +155,7 @@
     },
     {
       "id": 18,
-      "imgSrc": "lophocampa_maculata.png",
+      "imgSrc": "/images/lophocampa_maculata.png",
       "commonName": "Spotted Tussock Moth",
       "scientificName": "Lophocampa maculata",
       "nickName": "Spotty",
@@ -166,7 +166,7 @@
     },
     {
       "id": 17,
-      "imgSrc": "polydrusus_formosus.png",
+      "imgSrc": "/images/polydrusus_formosus.png",
       "commonName": "Formosan Leaf Weevil",
       "scientificName": "Polydrusus formosus",
       "nickName": "Polly",
@@ -177,7 +177,7 @@
     },
     {
       "id": 19,
-      "imgSrc": "lophocampa_maculata_LARVA.png",
+      "imgSrc": "/images/lophocampa_maculata_LARVA.png",
       "commonName": "Yellow Wooly Bear Caterpillar",
       "scientificName": "Lophocampa maculata",
       "nickName": "Woolly",
