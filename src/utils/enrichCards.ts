@@ -1,11 +1,10 @@
-import type { speciesCardType } from 'models/speciesCardType';
-
+import { enrichedCardType } from 'models/enrichedCardType';
 import { iNatTaxaResponseType } from 'models/iNatTaxaResponseType';
 
 import { iNatAPIUrl } from './constants';
 import { fetchData } from './fetchData';
 
-export default async function enrichCards(cardsArray: speciesCardType[]) {
+export default async function enrichCards(cardsArray: enrichedCardType[]) {
   //Construct query for iNaturalist API (comma-seperated taxon IDs)
 
   // Filter out any undefined values

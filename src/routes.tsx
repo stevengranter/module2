@@ -52,7 +52,7 @@ export const router: ReturnType<typeof createBrowserRouter> =
                   params,
                 }: {
                   params: UserCollectionParams;
-                }): Promise<unknown> => UserCollectionLoader(params)}
+                }): Promise<typeof UserCollectionLoader> => UserCollectionLoader(params)}
                 element={<UserCollection />}
                 index
               ></Route>
