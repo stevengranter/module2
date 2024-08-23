@@ -8,35 +8,35 @@ export interface iNatTaxaResponseType {
 }
 
 export interface Result {
-  id: number;
+  id?: number;
   rank: string;
   rank_level: number;
   iconic_taxon_id: number;
   ancestor_ids: number[];
   is_active: boolean;
-  name: string;
+  name?: string;
   parent_id: number;
   ancestry: string;
   extinct: boolean;
-  default_photo: DefaultPhoto;
+  default_photo?: DefaultPhoto;
   taxon_changes_count: number;
   taxon_schemes_count: number;
   observations_count: number;
   photos_locked: boolean;
   flag_counts: FlagCounts;
   current_synonymous_taxon_ids: number[] | undefined;
-  taxon_photos: TaxonPhoto[];
+  taxon_photos?: TaxonPhoto[];
   atlas_id?: number;
   complete_species_count: number | undefined;
-  wikipedia_url: string;
+  wikipedia_url?: string;
   iconic_taxon_name: string;
-  preferred_common_name: string;
+  preferred_common_name?: string;
   ancestors: Ancestor[];
   conservation_statuses: Status[];
   conservation_status: string | undefined;
   listed_taxa_count: number;
   listed_taxa: ListedTaxa[];
-  wikipedia_summary: string;
+  wikipedia_summary?: string;
   vision: boolean;
   children?: Children[];
 }

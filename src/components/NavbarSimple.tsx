@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import {
   IconUserCircle,
   IconInfoCircle,
+  IconUsersGroup,
   IconArchive,
   IconLogout,
-  IconCards,
   IconHome,
   // IconRainbow,
   // IconSeeding,
@@ -17,7 +17,7 @@ import classes from './NavbarSimple.module.css';
 
 const data = [
   { icon: IconHome, label: 'Home', link: '/' },
-  { link: '/users/1/collection', label: 'Collection', icon: IconCards },
+  { icon: IconUsersGroup, label: 'Users', link: 'users' },
   { label: 'WilderKind Index', icon: IconArchive, link: '/cards' },
   // { link: '/nursery', label: 'Nursery', icon: IconSeeding },
   // { link: '/playroom', label: 'Playroom', icon: IconHorseToy },
