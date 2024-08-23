@@ -1,7 +1,7 @@
 import { ScrollRestoration, Outlet } from 'react-router-dom';
 
 import { AppShell, Burger, Group, Image } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import { useDisclosure, useHeadroom } from '@mantine/hooks';
 
 import { NavbarSimple } from '../components/NavbarSimple';
 
@@ -9,6 +9,7 @@ import logo from '/images/logo2.png';
 
 export default function Root() {
   const [opened, { toggle }] = useDisclosure();
+  const pinned = useHeadroom({ fixedAt: 150 });
   return (
     <AppShell
       navbar={{
@@ -16,7 +17,7 @@ export default function Root() {
         breakpoint: 'xs',
         width: '200',
       }}
-      header={{ height: 150 }}
+      header={{ collapsed: !pinned, offset: true, height: 150 }}
       padding='md'
     >
       <AppShell.Header>
