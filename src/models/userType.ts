@@ -1,6 +1,6 @@
 export interface userType {
-  collection?: string[];
-  description: string;
+  collection?: undefined | string[];
+  description: undefined | string;
   firstName: string;
   birthdate: string;
   lastName: string;

@@ -8,7 +8,7 @@
       "imgSrc": "https://xsgames.co/randomusers/avatar.php?g=female",
       "title": "Product Manager",
       "description": "Alice is a product manager with a passion for building user-friendly applications.",
-      "collection": [48586, 48296, 68901]
+      "collection": [5, 2, 1]
     },
     {
       "id": 2,
@@ -18,7 +18,7 @@
       "imgSrc": "https://xsgames.co/randomusers/avatar.php?g=male",
       "title": "Software Engineer",
       "description": "Bob is a skilled software engineer specializing in full-stack development.",
-      "collection": [48296]
+      "collection": [2, 10]
     },
     {
       "id": 3,
@@ -28,7 +28,7 @@
       "imgSrc": "https://xsgames.co/randomusers/avatar.php?g=male",
       "title": "UX Designer",
       "description": "Charlie is a UX designer focused on creating intuitive user interfaces.",
-      "collection": [68901, 48586]
+      "collection": [10, 8]
     },
     {
       "id": 4,
@@ -52,139 +52,64 @@
 
   "cards": [
     {
-      "id": 14,
+      "id": 1,
       "taxon_id": 48586,
       "imgSrc": "/images/cepaea_nemoralis.png",
-      "commonName": "Common Garden Snail",
-      "scientificName": "Cepaea nemoralis",
-      "nickName": "Nemo",
-      "family": "Helicidae",
-      "diet": "Herbivorous (feeds on leaves, flowers, and decaying plant matter)",
-      "habitat": "Woodlands, meadows, and gardens",
-      "description": "A terrestrial snail known for its variable shell color patterns, often found in gardens and grassy areas."
-    },
-    {
-      "id": 11,
-      "taxon_id": 48296,
-      "imgSrc": "/images/armadillidiidae.png",
-      "commonName": "Roly-Poly",
-      "scientificName": "Armadillidiidae",
-      "nickName": "Dilly",
-      "family": "Armadillidiidae",
-      "diet": "Decaying plant material (detritivore)",
-      "habitat": "Moist environments like leaf litter, under rocks and logs",
-      "description": "Also known as pillbugs, they are terrestrial crustaceans, known for their ability to roll into a ball."
-    },
-    {
-      "id": 12,
-      "taxon_id": 68901,
-      "imgSrc": "/images/salticus_scenicus.png",
-      "commonName": "Zebra Spider",
-      "scientificName": "Salticus scenicus",
-      "nickName": "Salty",
-      "family": "Salticidae",
-      "diet": "Small insects (hunts actively)",
-      "habitat": "Gardens, homes, and various outdoor environments",
-      "description": "A small jumping spider recognizable by its black and white striped pattern, known for its agile movement."
-    },
-    {
-      "id": 13,
-      "imgSrc": "/images/lumbricus_terrestris.png",
-      "commonName": "Earthworm",
-      "scientificName": "Lumbricus terrestris",
-      "nickName": "Lumby",
-      "family": "Lumbricidae",
-      "diet": "Decomposing organic matter (detritivore)",
-      "habitat": "Soil, especially in gardens and farmland",
-      "description": "A vital soil organism that aerates and enriches the soil through its burrowing and feeding habits."
-    },
-    {
-      "id": 1,
-      "imgSrc": "/images/chrysopa_rufilabris.png",
-      "commonName": "Common Green Lacewing",
-      "scientificName": "Chrysopa rufilabris",
-      "nickName": "Crissy",
-      "family": "Chrysopidae",
-      "diet": "Aphids, mealybugs, and other small insects (as larvae)",
-      "habitat": "Gardens and agricultural fields",
-      "description": "A small, delicate insect recognized by its green wings and golden eyes, useful for controlling pests."
+      "nickname": "Cepa"
     },
     {
       "id": 2,
+      "taxon_id": 81545,
+      "imgSrc": "/images/lumbricus_terrestris.png",
+      "nickname": "Lumbricus"
+    },
+    {
+      "id": 3,
+      "taxon_id": 59441,
+      "imgSrc": "/images/chrysopa_rufilabris.png",
+      "nickname": "Chrysopa"
+    },
+    {
+      "id": 4,
+      "taxon_id": 47219,
       "imgSrc": "/images/apis_mellifera.png",
-      "commonName": "Honeybee",
-      "scientificName": "Apis mellifera",
-      "nickName": "Melli",
-      "family": "Apidae",
-      "diet": "Nectar and pollen from flowers",
-      "habitat": "Gardens, farms, and natural areas",
-      "description": "Social insects renowned for their vital role in pollination and honey production."
+      "nickname": "Apis"
     },
     {
       "id": 5,
+      "taxon_id": 347465,
       "imgSrc": "/images/formica_rufibarbis.png",
-      "commonName": "Common Ant",
-      "scientificName": "Formica rufibarbis",
-      "nickName": "Rubarb",
-      "family": "Formicidae",
-      "diet": "Variety of foods including seeds, nectar, and other insects",
-      "habitat": "Forests, gardens, and urban areas",
-      "description": "Small social insects that live in colonies and play important roles in the ecosystem."
+      "nickname": "Formica"
+    },
+    {
+      "id": 6,
+      "taxon_id": 48987,
+      "imgSrc": "/images/hippodamia_convergens.png",
+      "nickname": "Hippodamia"
+    },
+    {
+      "id": 7,
+      "taxon_id": 99901,
+      "imgSrc": "/images/enallagma_cyathigerum.png",
+      "nickname": "Enallagma"
     },
     {
       "id": 8,
-      "imgSrc": "/images/hippodamia_convergens.png",
-      "commonName": "Ladybug",
-      "scientificName": "Hippodamia convergens",
-      "nickName": "Damia",
-      "family": "Coccinellidae",
-      "diet": "Aphids and other pests",
-      "habitat": "Gardens, fields, and forests",
-      "description": "Recognizable by their distinctive red or orange color with black spots, they are beneficial insects in pest control."
-    },
-    {
-      "id": 15,
-      "imgSrc": "/images/enallagma_cyathigerum.png",
-      "commonName": "Northern Bluet",
-      "scientificName": "Enallagma cyathigerum",
-      "nickName": "Llagma",
-      "family": "Coenagrionidae",
-      "diet": "Small insects, including mosquitoes (as adults)",
-      "habitat": "Wetlands, marshes, and along lakes and streams",
-      "description": "A small, slender damselfly recognized for its striking blue coloration and black markings, often found near freshwater."
-    },
-    {
-      "id": 18,
+      "taxon_id": 67691,
       "imgSrc": "/images/lophocampa_maculata.png",
-      "commonName": "Spotted Tussock Moth",
-      "scientificName": "Lophocampa maculata",
-      "nickName": "Spotty",
-      "family": "Erebidae",
-      "diet": "Leaves of deciduous trees and shrubs (larvae feed on various host plants)",
-      "habitat": "Wooded areas, gardens, and fields",
-      "description": "A distinctive moth known for its striking black and white coloration and hairy caterpillars, which are often found on plants."
+      "nickname": "Lophocampa"
     },
     {
-      "id": 17,
+      "id": 9,
+      "taxon_id": 494559,
       "imgSrc": "/images/polydrusus_formosus.png",
-      "commonName": "Formosan Leaf Weevil",
-      "scientificName": "Polydrusus formosus",
-      "nickName": "Polly",
-      "family": "Curculionidae",
-      "diet": "Leaves and tender shoots of various plants",
-      "habitat": "Forests, gardens, and agricultural areas",
-      "description": "A small, green weevil recognized for its elongated snout; it causes minimal damage to plants but can be a pest in gardens."
+      "nickname": "Polydrusus"
     },
     {
-      "id": 19,
+      "id": 10,
+      "taxon_id": 67691,
       "imgSrc": "/images/lophocampa_maculata_LARVA.png",
-      "commonName": "Yellow Wooly Bear Caterpillar",
-      "scientificName": "Lophocampa maculata",
-      "nickName": "Woolly",
-      "family": "Erebidae",
-      "diet": "Leaves of various plants (larvae feed on a variety of foliage)",
-      "habitat": "Fields, gardens, and wooded areas",
-      "description": "The larval stage of the Lophocampa maculata, recognized for its bright yellow color and long hair-like setae, often considered harmless."
+      "nickname": "Lophocampa"
     }
   ]
 }
