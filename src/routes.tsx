@@ -4,18 +4,16 @@ import {
   Route,
 } from 'react-router-dom';
 
+import { enrichedCardType } from 'models/enrichedCardType';
+import { speciesCardType } from 'models/speciesCardType';
 import { CardIdRoute } from 'routes/cards/cardId';
 import { cardIdLoader } from 'routes/cards/cardId/indexLoader';
-import { cardIdLoaderParams } from 'routes/cards/cardId/indexLoader';
 import { CardsIndexRoute } from 'routes/cards/index';
 import { cardsIndexLoader } from 'routes/cards/indexLoader.tsx';
 import HomePage from 'routes/index.tsx';
 import Root from 'routes/rootLayout.tsx';
 import { UserCollection } from 'routes/users/collection/index.tsx';
-import {
-  UserCollectionLoader,
-  UserCollectionParams,
-} from 'routes/users/collection/indexLoader';
+import { userCollectionLoader } from 'routes/users/collection/indexLoader';
 import UsersIndexRoute from 'routes/users/index.tsx';
 import { UserProfile } from 'routes/users/userId/index.tsx';
 import { jsonServerUrl } from 'utils/constants';
@@ -48,11 +46,9 @@ export const router: ReturnType<typeof createBrowserRouter> =
             /* /users/:userId */
             <Route path='collection'>
               <Route
-                loader={({
-                  params,
-                }: {
-                  params: UserCollectionParams;
-                }): Promise<typeof UserCollectionLoader> => UserCollectionLoader(params)}
+                loader={({ params }): Promise<enrichedCardType[]> =>
+                  userCollectionLoader(params.userId)
+                }
                 element={<UserCollection />}
                 index
               ></Route>
@@ -69,9 +65,9 @@ export const router: ReturnType<typeof createBrowserRouter> =
           /* /cards/:cardId */
           <Route path=':cardId'>
             <Route
-              loader={async ({ params }: { params: cardIdLoaderParams }) =>
-                cardIdLoader(params)
-              }
+              loader={({ params }): Promise<speciesCardType> => {
+                return cardIdLoader(params.cardId);
+              }}
               element={<CardIdRoute />}
               index
             ></Route>

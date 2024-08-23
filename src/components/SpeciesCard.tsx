@@ -17,7 +17,7 @@ import type { enrichedCardType } from 'models/enrichedCardType';
 
 import styles from './SpeciesCard.module.css';
 
-function SpeciesCard(props: { flipFn: () => void } & enrichedCardType) {
+function SpeciesCard(props: enrichedCardType) {
   const [showFlipSide, setShowFlipSide] = useState(false);
 
   function flipCard() {
@@ -153,7 +153,7 @@ function CardSideB(props: { flipFn: () => void } & enrichedCardType) {
         {props.imgSrc ? (
           <AspectRatio ratio={1 / 1}>
             <Image
-              src={props.default_photo.medium_url}
+              src={props?.default_photo?.medium_url}
               // radius='lg'
               className={styles.drop_shadow}
               alt={props.name}

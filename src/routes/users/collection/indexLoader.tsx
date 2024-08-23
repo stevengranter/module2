@@ -1,15 +1,15 @@
+import { enrichedCardType } from 'models/enrichedCardType';
+import { speciesCardType } from 'models/speciesCardType';
 import { userType } from 'models/userType';
 import { jsonServerUrl } from 'utils/constants';
 import enrichCards from 'utils/enrichCards';
 import { fetchData } from 'utils/fetchData';
 
-export interface UserCollectionParams {
-  userId: number | string;
-}
-
-export async function UserCollectionLoader(params: UserCollectionParams) {
+export async function userCollectionLoader(
+  userId: undefined | string
+): Promise<enrichedCardType[]> {
   const [user] = (await fetchData(
-    jsonServerUrl + '/users?id=' + params.userId
+    jsonServerUrl + '/users?id=' + userId
   )) as userType[];
   console.log(user);
   if (!user.collection) {
@@ -24,7 +24,7 @@ export async function UserCollectionLoader(params: UserCollectionParams) {
     })
   );
 
-  const flattenedUserCards = userCards.flat();
+  const flattenedUserCards = userCards.flat() as speciesCardType[];
 
   return enrichCards(flattenedUserCards); // Return enriched cards with combined data
 }

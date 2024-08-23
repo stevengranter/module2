@@ -3,13 +3,9 @@ import { speciesCardType } from 'models/speciesCardType';
 import { jsonServerUrl, iNatAPIUrl } from 'utils/constants';
 import { fetchData } from 'utils/fetchData';
 
-export interface cardIdLoaderParams {
-  cardId: string;
-}
-
-export async function cardIdLoader(params: cardIdLoaderParams) {
+export async function cardIdLoader(cardId: undefined | string) {
   const [data] = (await fetchData(
-    jsonServerUrl + '/cards?id=' + params.cardId
+    jsonServerUrl + '/cards?id=' + cardId
   )) as speciesCardType[];
   // const flatData = rawLocaldata.flat();
   // console.log(data);

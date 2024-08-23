@@ -1,10 +1,13 @@
 import { enrichedCardType } from 'models/enrichedCardType';
 import { iNatTaxaResponseType } from 'models/iNatTaxaResponseType';
+import { speciesCardType } from 'models/speciesCardType';
 
 import { iNatAPIUrl } from './constants';
 import { fetchData } from './fetchData';
 
-export default async function enrichCards(cardsArray: enrichedCardType[]) {
+export default async function enrichCards(
+  cardsArray: speciesCardType[]
+): Promise<enrichedCardType[]> {
   //Construct query for iNaturalist API (comma-seperated taxon IDs)
 
   // Filter out any undefined values
@@ -27,14 +30,15 @@ export default async function enrichCards(cardsArray: enrichedCardType[]) {
       (species) => species.id === card.taxon_id
     );
 
+    console.log(speciesData);
     // Combine card data with iNaturalist data
     return {
       ...card,
-      preferred_common_name: speciesData?.preferred_common_name || null,
-      wikipedia_summary: speciesData?.wikipedia_summary || null,
-      wikipedia_url: speciesData?.wikipedia_url || null,
-      default_photo: speciesData?.default_photo || null,
-      name: speciesData?.name || null,
+      preferred_common_name: speciesData?.preferred_common_name || undefined,
+      wikipedia_summary: speciesData?.wikipedia_summary || undefined,
+      wikipedia_url: speciesData?.wikipedia_url || undefined,
+      default_photo: speciesData?.default_photo || undefined,
+      name: speciesData?.name || undefined,
     };
   });
 
