@@ -4,8 +4,8 @@ import {
   Route,
 } from 'react-router-dom';
 
-import { enrichedCardType } from 'models/enrichedCardType';
-import { speciesCardType } from 'models/speciesCardType';
+import { EnrichedCardType } from 'models/EnrichedCardType';
+import { SpeciesCardType } from 'models/SpeciesCardType';
 import { CardIdRoute } from 'routes/cards/cardId';
 import { cardIdLoader } from 'routes/cards/cardId/indexLoader';
 import { CardsIndexRoute } from 'routes/cards/index';
@@ -46,7 +46,7 @@ export const router: ReturnType<typeof createBrowserRouter> =
             /* /users/:userId */
             <Route path='collection'>
               <Route
-                loader={({ params }): Promise<enrichedCardType[]> =>
+                loader={({ params }): Promise<EnrichedCardType[]> =>
                   userCollectionLoader(params.userId)
                 }
                 element={<UserCollection />}
@@ -65,7 +65,7 @@ export const router: ReturnType<typeof createBrowserRouter> =
           /* /cards/:cardId */
           <Route path=':cardId'>
             <Route
-              loader={({ params }): Promise<speciesCardType> => {
+              loader={({ params }): Promise<SpeciesCardType> => {
                 return cardIdLoader(params.cardId);
               }}
               element={<CardIdRoute />}

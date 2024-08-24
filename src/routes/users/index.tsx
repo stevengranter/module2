@@ -2,10 +2,10 @@ import { useLoaderData, Link } from 'react-router-dom';
 
 import { Title } from '@mantine/core';
 
-import { userType } from 'models/userType';
+import { UserType } from 'models/UserType';
 
 export default function UsersIndexRoute() {
-  const data = useLoaderData() as userType[];
+  const data = useLoaderData() as UserType[];
   console.log(data);
   return (
     <>

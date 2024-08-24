@@ -1,13 +1,13 @@
-import { enrichedCardType } from 'models/enrichedCardType';
+import { EnrichedCardType } from 'models/EnrichedCardType';
 import { iNatTaxaResponseType } from 'models/iNatTaxaResponseType';
-import { speciesCardType } from 'models/speciesCardType';
+import { SpeciesCardType } from 'models/SpeciesCardType';
 
 import { iNatAPIUrl } from './constants';
 import { fetchData } from './fetchData';
 
 export default async function enrichCards(
-  cardsArray: speciesCardType[]
-): Promise<enrichedCardType[]> {
+  cardsArray: SpeciesCardType[]
+): Promise<EnrichedCardType[]> {
   //Construct query for iNaturalist API (comma-seperated taxon IDs)
 
   // Filter out any undefined values
