@@ -2,10 +2,10 @@
 import { useLoaderData } from 'react-router-dom';
 
 import CardCollection from 'components/CardCollection';
-import { enrichedCardType } from 'models/enrichedCardType';
+import { EnrichedCardType } from 'models/EnrichedCardType';
 
 export function CardsIndexRoute() {
-  const data = useLoaderData() as enrichedCardType[];
+  const data = useLoaderData() as EnrichedCardType[];
 
   return <CardCollection data={data} />;
 }

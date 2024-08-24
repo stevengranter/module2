@@ -1,10 +1,10 @@
 /* eslint-disable react-refresh/only-export-components */
 import { useLoaderData, Outlet, Link } from 'react-router-dom';
 
-import type { userType } from 'models/userType';
+import type { UserType } from 'models/UserType';
 
 export function UserProfile() {
-  const [user] = useLoaderData() as userType[];
+  const [user] = useLoaderData() as UserType[];
   return (
     <>
       <h2>WilderNaut {user.firstName}</h2>

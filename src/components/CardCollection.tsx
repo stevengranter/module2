@@ -1,17 +1,17 @@
 import { GridCol, Center, Grid } from '@mantine/core';
 
-import { enrichedCardType } from 'models/enrichedCardType';
-import { speciesCardType } from 'models/speciesCardType';
+import { EnrichedCardType } from 'models/EnrichedCardType';
+import { SpeciesCardType } from 'models/SpeciesCardType';
 
 import SpeciesCard from './SpeciesCard';
 
-export default function CardCollection({ data }: { data: enrichedCardType[] }) {
+export default function CardCollection({ data }: { data: EnrichedCardType[] }) {
   return (
     <>
       <h1>Card Collection</h1>
       <Center>
         <Grid>
-          {data.map((item: speciesCardType) => (
+          {data.map((item: SpeciesCardType) => (
             <GridCol
               span={{ base: 12, xs: 6, sm: 6, md: 4, lg: 3, xl: 2 }}
               key={item.id}

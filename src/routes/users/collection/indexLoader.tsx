@@ -1,16 +1,16 @@
-import { enrichedCardType } from 'models/enrichedCardType';
-import { speciesCardType } from 'models/speciesCardType';
-import { userType } from 'models/userType';
+import { EnrichedCardType } from 'models/EnrichedCardType';
+import { SpeciesCardType } from 'models/SpeciesCardType';
+import { UserType } from 'models/UserType';
 import { jsonServerUrl } from 'utils/constants';
 import enrichCards from 'utils/enrichCards';
 import { fetchData } from 'utils/fetchData';
 
 export async function userCollectionLoader(
   userId: undefined | string
-): Promise<enrichedCardType[]> {
+): Promise<EnrichedCardType[]> {
   const [user] = (await fetchData(
     jsonServerUrl + '/users?id=' + userId
-  )) as userType[];
+  )) as UserType[];
   console.log(user);
   if (!user.collection) {
     throw new Error('User does not have a card collection');
@@ -24,7 +24,7 @@ export async function userCollectionLoader(
     })
   );
 
-  const flattenedUserCards = userCards.flat() as speciesCardType[];
+  const flattenedUserCards = userCards.flat() as SpeciesCardType[];
 
   return enrichCards(flattenedUserCards); // Return enriched cards with combined data
 }

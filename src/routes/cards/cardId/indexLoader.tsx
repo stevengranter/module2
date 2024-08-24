@@ -1,12 +1,12 @@
 import { iNatTaxaResponseType } from 'models/iNatTaxaResponseType';
-import { speciesCardType } from 'models/speciesCardType';
+import { SpeciesCardType } from 'models/SpeciesCardType';
 import { jsonServerUrl, iNatAPIUrl } from 'utils/constants';
 import { fetchData } from 'utils/fetchData';
 
 export async function cardIdLoader(cardId: undefined | string) {
   const [data] = (await fetchData(
     jsonServerUrl + '/cards?id=' + cardId
-  )) as speciesCardType[];
+  )) as SpeciesCardType[];
   // const flatData = rawLocaldata.flat();
   // console.log(data);
   const fetchediNatData = (await fetchData(

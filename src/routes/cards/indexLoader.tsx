@@ -1,13 +1,13 @@
 // src/routes/Cards/CardListLoader.tsx
 import { iNatTaxaResponseType } from 'models/iNatTaxaResponseType';
-import { speciesCardType } from 'models/speciesCardType';
+import { SpeciesCardType } from 'models/SpeciesCardType';
 import { jsonServerUrl, iNatAPIUrl } from 'utils/constants';
 import { fetchData } from 'utils/fetchData';
 
 export async function cardsIndexLoader() {
   const cards = (await fetchData(
     jsonServerUrl + '/cards'
-  )) as speciesCardType[];
+  )) as SpeciesCardType[];
 
   const taxonIds = cards.map((card) => card.taxon_id).filter(Boolean); // Filter out any undefined values
 

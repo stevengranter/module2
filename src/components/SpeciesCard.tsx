@@ -13,11 +13,11 @@ import {
 } from '@mantine/core';
 import { Interweave } from 'interweave';
 
-import type { enrichedCardType } from 'models/enrichedCardType';
+import type { EnrichedCardType } from 'models/EnrichedCardType';
 
 import styles from './SpeciesCard.module.css';
 
-function SpeciesCard(props: enrichedCardType) {
+function SpeciesCard(props: EnrichedCardType) {
   const [showFlipSide, setShowFlipSide] = useState(false);
 
   function flipCard() {
@@ -50,7 +50,7 @@ function SpeciesCard(props: enrichedCardType) {
   );
 }
 
-function CardSideA(props: { flipFn: () => void } & enrichedCardType) {
+function CardSideA(props: { flipFn: () => void } & EnrichedCardType) {
   return (
     <>
       <Card
@@ -121,7 +121,7 @@ function CardSideA(props: { flipFn: () => void } & enrichedCardType) {
   );
 }
 
-function CardSideB(props: { flipFn: () => void } & enrichedCardType) {
+function CardSideB(props: { flipFn: () => void } & EnrichedCardType) {
   return (
     <Card
       className={styles['card-back']}
