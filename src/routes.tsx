@@ -5,11 +5,10 @@ import {
 } from 'react-router-dom';
 
 import { EnrichedCardType } from 'models/EnrichedCardType';
-import { SpeciesCardType } from 'models/SpeciesCardType';
 import { CardIdRoute } from 'routes/cards/cardId';
-import { cardIdLoader } from 'routes/cards/cardId/indexLoader';
+import { loader as cardIdLoader } from 'routes/cards/cardId/indexLoader';
 import { CardsIndexRoute } from 'routes/cards/index';
-import { cardsIndexLoader } from 'routes/cards/indexLoader.tsx';
+import { loader as cardsIndexLoader } from 'routes/cards/indexLoader.tsx';
 import HomePage from 'routes/index.tsx';
 import Root from 'routes/rootLayout.tsx';
 import { UserCollection } from 'routes/users/collection/index.tsx';
@@ -65,7 +64,7 @@ export const router: ReturnType<typeof createBrowserRouter> =
           /* /cards/:cardId */
           <Route path=':cardId'>
             <Route
-              loader={({ params }): Promise<SpeciesCardType> => {
+              loader={({ params }) => {
                 return cardIdLoader(params.cardId);
               }}
               element={<CardIdRoute />}
