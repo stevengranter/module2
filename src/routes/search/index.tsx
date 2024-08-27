@@ -3,7 +3,16 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams, useLoaderData, Link } from 'react-router-dom';
 
-import { TextInput, Button, Title, Image, Flex } from '@mantine/core';
+import {
+  TextInput,
+  GridCol,
+  Button,
+  Title,
+  Image,
+  Flex,
+  Card,
+  Grid,
+} from '@mantine/core';
 import { useForm } from '@mantine/form';
 
 import SpeciesCard from 'components/SpeciesCard';
@@ -17,7 +26,6 @@ export default function SearchIndex() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [matchingCards, setMatchingCards] = useState([]);
   const data = useLoaderData() as iNatTaxaResponseType;
-  // console.log(data);
 
   function handleSubmit(values) {
     setSearchParams(values);
@@ -32,6 +40,7 @@ export default function SearchIndex() {
   }, [searchParams]);
 
   async function searchCards(data) {
+    if (!data.results) return;
     const { results } = data;
     const matchedCardsArray = [];
 
@@ -77,36 +86,45 @@ export default function SearchIndex() {
           <Button type='submit'>Submit</Button>
         </Flex>
       </form>
-      <h2>Results</h2>
-      {data?.results.map((record) => {
-        // Find the enriched card for the current record
-        const correspondingCard = matchingCards.find(
-          (card) => card.taxon_id === record.id
-        );
-        console.log(correspondingCard);
+      <Grid>
+        {data.results &&
+          data?.results.map((record) => {
+            // Find the enriched card for the current record
+            const correspondingCard = matchingCards.find(
+              (card) => card.taxon_id === record.id
+            );
+            console.log(correspondingCard);
 
-        return (
-          <div key={record.id}>
-            <Title size='h4'>{record.preferred_common_name}</Title>
-            <Title size='h5'>{record.name}</Title>
-            <Image
-              src={record.default_photo?.url}
-              radius='lg'
-              w={200}
-            />
-            {/* <Button onClick={() => searchCards(record.id)}>Search cards</Button> */}
-
-            {correspondingCard && (
-              <Link
-                to={'/cards/' + correspondingCard.id}
-                key={correspondingCard.id}
+            return (
+              <GridCol
+                span={{ base: 6, xs: 6, sm: 6, md: 4, lg: 3, xl: 2 }}
+                key={record.id}
               >
-                in WilderKind index: {correspondingCard.nickname}
-              </Link>
-            )}
-          </div>
-        );
-      })}
+                <Card key={record.id}>
+                  <Title size='h4'>{record.preferred_common_name}</Title>
+                  <Title size='h5'>{record.name}</Title>
+                  <Image
+                    src={record.default_photo?.url}
+                    // radius='lg'
+                    // w={200}
+                  />
+                  {/* <Button onClick={() => searchCards(record.id)}>Search cards</Button> */}
+
+                  {correspondingCard && (
+                    <Link
+                      to={'/cards/' + correspondingCard.id}
+                      key={correspondingCard.id}
+                    >
+                      in WilderKind index: {correspondingCard.nickname}
+                    </Link>
+                  )}
+                </Card>
+              </GridCol>
+            );
+          })}
+      </Grid>
     </>
   );
 }
+
+function SearchResultsGrid(array: []) {}
