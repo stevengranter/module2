@@ -5,7 +5,9 @@ import { jsonServerUrl, iNatAPIUrl } from 'utils/constants';
 import { fetchData } from 'utils/fetchData';
 
 export async function loader() {
-  const cards = await fetch(`${jsonServerUrl}/cards`).then((res) => res.json());
+  const cards = await fetch(
+    `${jsonServerUrl}/cards?_sort=nickname&order=asc`
+  ).then((res) => res.json());
 
   const taxonQueryString = constructTaxaQueryString(cards);
 

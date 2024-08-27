@@ -55,65 +55,87 @@
       "id": 1,
       "taxon_id": 48586,
       "imgSrc": "/images/cepaea_nemoralis.png",
-      "nickname": "Cepa"
+      "nickname": "Nemo",
+      "mnemonic": "nemo"
     },
     {
       "id": 2,
-      "taxon_id": 81545,
-      "imgSrc": "/images/lumbricus_terrestris.png",
-      "nickname": "Lumbricus"
+      "taxon_id": 99901,
+      "imgSrc": "/images/enallagma_cyathigerum.png",
+      "nickname": "Cya",
+      "mnemonic": "cya"
     },
+
     {
       "id": 3,
-      "taxon_id": 59441,
+      "taxon_id": 59442,
       "imgSrc": "/images/chrysopa_rufilabris.png",
-      "nickname": "Chrysopa"
+      "nickname": "Fila",
+      "mnemonic": "fila"
     },
     {
       "id": 4,
       "taxon_id": 47219,
       "imgSrc": "/images/apis_mellifera.png",
-      "nickname": "Apis"
+      "nickname": "Melli",
+      "mnemonic": "melli"
     },
     {
       "id": 5,
       "taxon_id": 347465,
       "imgSrc": "/images/formica_rufibarbis.png",
-      "nickname": "Formica"
+      "nickname": "Barbi",
+      "mnemonic": "barbi"
     },
     {
       "id": 6,
       "taxon_id": 48987,
       "imgSrc": "/images/hippodamia_convergens.png",
-      "nickname": "Hippodamia"
+      "nickname": "Connie",
+      "mnemonic": "con"
     },
     {
       "id": 7,
-      "taxon_id": 99901,
-      "imgSrc": "/images/enallagma_cyathigerum.png",
-      "nickname": "Enallagma"
+      "taxon_id": 81545,
+      "imgSrc": "/images/lumbricus_terrestris.png",
+      "nickname": "Terry",
+      "mnemonic": "terr"
     },
     {
       "id": 8,
       "taxon_id": 67691,
       "imgSrc": "/images/lophocampa_maculata.png",
-      "nickname": "Lophocampa",
-      "larva_id": 10,
-      "can_morph": false
+      "nickname": "Lata",
+      "mnemonic": "lata",
+      "stages": { "egg": "", "larva": 10, "pupa": "", "adult": 8 },
+      "current_stage": "adult",
+      "can_morph": true
     },
     {
       "id": 9,
       "taxon_id": 494559,
       "imgSrc": "/images/polydrusus_formosus.png",
-      "nickname": "Polydrusus"
+      "nickname": "Formo",
+      "mnemonic": "formo"
     },
     {
       "id": 10,
       "taxon_id": 67691,
       "imgSrc": "/images/lophocampa_maculata_LARVA.png",
-      "nickname": "Lophocampa",
+      "nickname": "Mac",
+      "mnemonic": "mac",
+      "stages": { "egg": "", "larva": 10, "pupa": "", "adult": 8 },
+      "current_stage": "larva",
       "morph_id": 8,
       "can_morph": true
+    },
+    {
+      "id": 11,
+      "taxon_id": 56083,
+      "imgSrc": "/images/armadillidiidae.png",
+      "nickname": "Gary",
+      "mnemonic": "gar",
+      "can_morph": false
     }
   ]
 }

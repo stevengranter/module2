@@ -15,6 +15,7 @@ import {
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 
+import SortComponent from 'components/SortComponent';
 import SpeciesCard from 'components/SpeciesCard';
 import { EnrichedCardType } from 'models/EnrichedCardType';
 import { iNatTaxaResponseType } from 'models/iNatTaxaResponseType';
@@ -86,6 +87,7 @@ export default function SearchIndex() {
           <Button type='submit'>Submit</Button>
         </Flex>
       </form>
+      <SortComponent />
       <Grid>
         {data.results &&
           data?.results.map((record) => {
@@ -103,11 +105,18 @@ export default function SearchIndex() {
                 <Card key={record.id}>
                   <Title size='h4'>{record.preferred_common_name}</Title>
                   <Title size='h5'>{record.name}</Title>
-                  <Image
-                    src={record.default_photo?.url}
-                    // radius='lg'
-                    // w={200}
-                  />
+                  <p>ID: {record.id}</p>
+                  {record.wikipedia_url && (
+                    <Link to={record.wikipedia_url}>Wikipedia link</Link>
+                  )}
+
+                  <Link to={record.default_photo?.medium_url}>
+                    <Image
+                      src={record.default_photo?.url}
+                      // radius='lg'
+                      // w={200}
+                    />
+                  </Link>
                   {/* <Button onClick={() => searchCards(record.id)}>Search cards</Button> */}
 
                   {correspondingCard && (
