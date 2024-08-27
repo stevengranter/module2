@@ -16,8 +16,6 @@ import {
 import { useForm } from '@mantine/form';
 
 import SortComponent from 'components/SortComponent';
-import SpeciesCard from 'components/SpeciesCard';
-import { EnrichedCardType } from 'models/EnrichedCardType';
 import { iNatTaxaResponseType } from 'models/iNatTaxaResponseType';
 import { SpeciesCardType } from 'models/SpeciesCardType';
 import { jsonServerUrl } from 'utils/constants';
@@ -25,22 +23,21 @@ import { jsonServerUrl } from 'utils/constants';
 export default function SearchIndex() {
   const form = useForm({ mode: 'uncontrolled' });
   const [searchParams, setSearchParams] = useSearchParams();
-  const [matchingCards, setMatchingCards] = useState([]);
+  const [matchingCards, setMatchingCards] = useState<SpeciesCardType[]>([]);
   const data = useLoaderData() as iNatTaxaResponseType;
 
-  function handleSubmit(values) {
+  function handleSubmit(values: typeof form.values) {
     setSearchParams(values);
-    console.log(values);
   }
 
   useEffect(() => {
-    console.log('side effect');
+    // console.log('side effect');
     if (searchParams.size > 0) console.log(data.results);
     // console.log(searchParams.get('q'));
     if (data) searchCards(data);
-  }, [searchParams]);
+  }, [searchParams, data]);
 
-  async function searchCards(data) {
+  async function searchCards(data: iNatTaxaResponseType) {
     if (!data.results) return;
     const { results } = data;
     const matchedCardsArray = [];
@@ -76,7 +73,7 @@ export default function SearchIndex() {
   return (
     <>
       <h1>Search</h1>
-      <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
+      <form onSubmit={form.onSubmit(handleSubmit)}>
         <Flex align='flex-end'>
           <TextInput
             placeholder='Enter search terms'
@@ -93,7 +90,7 @@ export default function SearchIndex() {
           data?.results.map((record) => {
             // Find the enriched card for the current record
             const correspondingCard = matchingCards.find(
-              (card) => card.taxon_id === record.id
+              (card: SpeciesCardType) => card.taxon_id === record.id
             );
             console.log(correspondingCard);
 
@@ -110,13 +107,16 @@ export default function SearchIndex() {
                     <Link to={record.wikipedia_url}>Wikipedia link</Link>
                   )}
 
-                  <Link to={record.default_photo?.medium_url}>
-                    <Image
-                      src={record.default_photo?.url}
-                      // radius='lg'
-                      // w={200}
-                    />
-                  </Link>
+                  {record.default_photo && (
+                    <Link to={record.default_photo?.medium_url}>
+                      <Image
+                        src={record.default_photo?.url}
+                        // radius='lg'
+                        // w={200}
+                      />
+                    </Link>
+                  )}
+
                   {/* <Button onClick={() => searchCards(record.id)}>Search cards</Button> */}
 
                   {correspondingCard && (
@@ -136,4 +136,4 @@ export default function SearchIndex() {
   );
 }
 
-function SearchResultsGrid(array: []) {}
+// function SearchResultsGrid(array: []) {}
