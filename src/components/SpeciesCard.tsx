@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import {
   AspectRatio,
+  SimpleGrid,
   Skeleton,
   GridCol,
   Center,
@@ -11,6 +12,7 @@ import {
   Card,
   Text,
 } from '@mantine/core';
+import { IconBabyCarriage, IconButterfly, IconEgg } from '@tabler/icons-react';
 import { Interweave } from 'interweave';
 
 import type { EnrichedCardType } from 'models/EnrichedCardType';
@@ -114,8 +116,11 @@ function CardSideA(props: { flipFn: () => void } & EnrichedCardType) {
         >
           {props.name}
         </Title>
-
-        <Card.Section></Card.Section>
+        <SimpleGrid>
+          {props.current_stage === 'egg' && <IconEgg />}
+          {props.current_stage === 'larva' && <IconBabyCarriage />}
+          {props.current_stage === 'adult' && <IconButterfly />}
+        </SimpleGrid>
       </Card>
     </>
   );
@@ -182,14 +187,11 @@ function CardSideB(props: { flipFn: () => void } & EnrichedCardType) {
       >
         {props.name}
       </Title>
-      {/* <Spoiler
-        showLabel='Show more...'
-        hideLabel='Hide'
-        maxHeight={40}
-      > */}
+
       <Text>
         <Interweave content={props.wikipedia_summary} />
       </Text>
+
       {/* </Spoiler> */}
     </Card>
   );

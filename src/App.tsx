@@ -1,21 +1,21 @@
-import { StrictMode } from 'react';
-import { RouterProvider } from 'react-router-dom';
+import { StrictMode } from "react";
+import { RouterProvider } from "react-router-dom";
 
-import { ColorSchemeScript, MantineProvider } from '@mantine/core';
+import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 // @mantine imports
-import '@mantine/core/styles.css';
-import ReactDOM from 'react-dom/client';
-import { router } from 'routes.tsx';
+import "@mantine/core/styles.css";
+import ReactDOM from "react-dom/client";
+import { router } from "routes.tsx";
 
-const rootElement = document.getElementById('root')!;
+const rootElement = document.getElementById("root")!;
 if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <StrictMode>
-      <ColorSchemeScript defaultColorScheme='auto' />
-      <MantineProvider defaultColorScheme='auto'>
+      <ColorSchemeScript defaultColorScheme="auto" />
+      <MantineProvider defaultColorScheme="auto">
         <RouterProvider router={router} />
       </MantineProvider>
-    </StrictMode>
+    </StrictMode>,
   );
 }

@@ -5,6 +5,7 @@ import {
   IconUserCircle,
   IconInfoCircle,
   IconUsersGroup,
+  IconBinoculars,
   IconArchive,
   IconLogout,
   IconHome,
@@ -19,6 +20,7 @@ const data = [
   { icon: IconHome, label: 'Home', link: '/' },
   { icon: IconUsersGroup, label: 'Users', link: 'users' },
   { label: 'WilderKind Index', icon: IconArchive, link: '/cards' },
+  { icon: IconBinoculars, label: 'Search', link: '/search' },
   // { link: '/nursery', label: 'Nursery', icon: IconSeeding },
   // { link: '/playroom', label: 'Playroom', icon: IconHorseToy },
 ];

@@ -11,6 +11,8 @@ import { CardsIndexRoute } from 'routes/cards/index';
 import { loader as cardsIndexLoader } from 'routes/cards/indexLoader.tsx';
 import HomePage from 'routes/index.tsx';
 import Root from 'routes/rootLayout.tsx';
+import SearchIndex from 'routes/search';
+import iNatSearch from 'routes/search/iNatSearch';
 import { UserCollection } from 'routes/users/collection/index.tsx';
 import { userCollectionLoader } from 'routes/users/collection/indexLoader';
 import UsersIndexRoute from 'routes/users/index.tsx';
@@ -29,6 +31,7 @@ export const router: ReturnType<typeof createBrowserRouter> =
           element={<HomePage />}
           index
         ></Route>
+        /* /users */
         <Route path='users'>
           <Route
             loader={() => fetchData(jsonServerUrl + '/users')}
@@ -71,7 +74,17 @@ export const router: ReturnType<typeof createBrowserRouter> =
               index
             ></Route>
           </Route>
-          /* /users */
+        </Route>
+        <Route path='search'>
+          <Route
+            loader={({ request }) => {
+              const url = new URL(request.url);
+              const searchTerm: string | null = url.searchParams.get('q');
+              return iNatSearch(searchTerm);
+            }}
+            element={<SearchIndex />}
+            index
+          ></Route>
         </Route>
       </Route>
     )
