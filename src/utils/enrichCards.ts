@@ -23,6 +23,7 @@ export default async function enrichCards(
   const fetchediNatData = (await fetchData(
     `${iNatAPIUrl}/taxa/${taxonIdQuery}`
   )) as iNatTaxaResponseType;
+  console.log(fetchediNatData);
 
   // Map over cards array
   const enrichedCards = cardsArray.map((card) => {

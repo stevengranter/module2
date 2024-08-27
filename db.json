@@ -97,7 +97,9 @@
       "id": 8,
       "taxon_id": 67691,
       "imgSrc": "/images/lophocampa_maculata.png",
-      "nickname": "Lophocampa"
+      "nickname": "Lophocampa",
+      "larva_id": 10,
+      "can_morph": false
     },
     {
       "id": 9,
@@ -109,7 +111,9 @@
       "id": 10,
       "taxon_id": 67691,
       "imgSrc": "/images/lophocampa_maculata_LARVA.png",
-      "nickname": "Lophocampa"
+      "nickname": "Lophocampa",
+      "morph_id": 8,
+      "can_morph": true
     }
   ]
 }
