@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 import {
   AspectRatio,
@@ -11,41 +11,32 @@ import {
   Grid,
   Card,
   Text,
-} from '@mantine/core';
-import { IconBabyCarriage, IconButterfly, IconEgg } from '@tabler/icons-react';
-import { Interweave } from 'interweave';
+} from "@mantine/core";
+import { IconBabyCarriage, IconButterfly, IconEgg } from "@tabler/icons-react";
+import { Interweave } from "interweave";
 
-import type { EnrichedCardType } from 'models/EnrichedCardType';
+import type { EnrichedCardType } from "models/EnrichedCardType.ts";
 
-import styles from './SpeciesCard.module.css';
+import styles from "./SpeciesCard.module.css";
 
 function SpeciesCard(props: EnrichedCardType) {
   const [showFlipSide, setShowFlipSide] = useState(false);
 
   function flipCard() {
-    console.log('flipping card');
+    console.log("flipping card");
     setShowFlipSide((prevState) => !prevState);
   }
 
   return (
     <>
       {showFlipSide ? (
-        <CardSideB
-          {...props}
-          flipFn={flipCard}
-        />
+        <CardSideB {...props} flipFn={flipCard} />
       ) : (
-        <CardSideA
-          {...props}
-          flipFn={flipCard}
-        />
+        <CardSideA {...props} flipFn={flipCard} />
       )}
       <Center>
-        <Text
-          style={{ cursor: 'pointer' }}
-          onClick={flipCard}
-        >
-          {showFlipSide ? 'Show front side' : 'Show back side'}
+        <Text style={{ cursor: "pointer" }} onClick={flipCard}>
+          {showFlipSide ? "Show front side" : "Show back side"}
         </Text>
       </Center>
     </>
@@ -56,23 +47,17 @@ function CardSideA(props: { flipFn: () => void } & EnrichedCardType) {
   return (
     <>
       <Card
-        className={styles['card-front']}
+        className={styles["card-front"]}
         key={props.id}
-        shadow='md'
+        shadow="md"
         // p='xl'
-        radius='lg'
+        radius="lg"
         withBorder
       >
-        <Grid
-          justify='space-between'
-          align='center'
-        >
+        <Grid justify="space-between" align="center">
           {props.nickname && (
             <GridCol span={9}>
-              <Title
-                order={4}
-                size='h2'
-              >
+              <Title order={4} size="h2">
                 {props.nickname}
               </Title>
             </GridCol>
@@ -90,36 +75,24 @@ function CardSideA(props: { flipFn: () => void } & EnrichedCardType) {
                 className={styles.drop_shadow}
                 src={props.imgSrc}
                 alt={props.name}
-                loading='lazy'
+                loading="lazy"
               />
             </AspectRatio>
           ) : (
-            <Skeleton
-              animate={false}
-              height={500}
-              width={500}
-            ></Skeleton>
+            <Skeleton animate={false} height={500} width={500}></Skeleton>
           )}
         </Card.Section>
 
-        <Title
-          lineClamp={1}
-          order={2}
-          size='h3'
-        >
+        <Title lineClamp={1} order={2} size="h3">
           {props.preferred_common_name}
         </Title>
-        <Title
-          lineClamp={1}
-          order={3}
-          size='h4'
-        >
+        <Title lineClamp={1} order={3} size="h4">
           {props.name}
         </Title>
         <SimpleGrid>
-          {props.current_stage === 'egg' && <IconEgg />}
-          {props.current_stage === 'larva' && <IconBabyCarriage />}
-          {props.current_stage === 'adult' && <IconButterfly />}
+          {props.current_stage === "egg" && <IconEgg />}
+          {props.current_stage === "larva" && <IconBabyCarriage />}
+          {props.current_stage === "adult" && <IconButterfly />}
         </SimpleGrid>
       </Card>
     </>
@@ -129,23 +102,17 @@ function CardSideA(props: { flipFn: () => void } & EnrichedCardType) {
 function CardSideB(props: { flipFn: () => void } & EnrichedCardType) {
   return (
     <Card
-      className={styles['card-back']}
+      className={styles["card-back"]}
       key={props.id}
-      shadow='md'
+      shadow="md"
       // p='xl'
-      radius='lg'
+      radius="lg"
       withBorder
     >
-      <Grid
-        justify='space-between'
-        align='center'
-      >
+      <Grid justify="space-between" align="center">
         {props.nickname && (
           <GridCol span={9}>
-            <Title
-              order={4}
-              size='h2'
-            >
+            <Title order={4} size="h2">
               {props.nickname}
             </Title>
           </GridCol>
@@ -162,29 +129,17 @@ function CardSideB(props: { flipFn: () => void } & EnrichedCardType) {
               // radius='lg'
               className={styles.drop_shadow}
               alt={props.name}
-              loading='lazy'
+              loading="lazy"
             />
           </AspectRatio>
         ) : (
-          <Skeleton
-            animate={false}
-            height={500}
-            width={500}
-          ></Skeleton>
+          <Skeleton animate={false} height={500} width={500}></Skeleton>
         )}
       </Card.Section>
-      <Title
-        lineClamp={1}
-        order={2}
-        size='h3'
-      >
+      <Title lineClamp={1} order={2} size="h3">
         {props.preferred_common_name}
       </Title>
-      <Title
-        lineClamp={1}
-        order={3}
-        size='h4'
-      >
+      <Title lineClamp={1} order={3} size="h4">
         {props.name}
       </Title>
 

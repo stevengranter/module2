@@ -1,7 +1,5 @@
-// /search/index.tsx
-
-import { useEffect, useState } from 'react';
-import { useSearchParams, useLoaderData, Link } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { useSearchParams, useLoaderData, Link } from "react-router-dom";
 
 import {
   TextInput,
@@ -12,16 +10,16 @@ import {
   Flex,
   Card,
   Grid,
-} from '@mantine/core';
-import { useForm } from '@mantine/form';
+} from "@mantine/core";
+import { useForm } from "@mantine/form";
 
-import SortComponent from 'components/SortComponent';
-import { iNatTaxaResponseType } from 'models/iNatTaxaResponseType';
-import { SpeciesCardType } from 'models/SpeciesCardType';
-import { jsonServerUrl } from 'utils/constants';
+import SortComponent from "components/ui/controls/SortComponent.tsx";
+import { iNatTaxaResponseType } from "models/iNatTaxaResponseType";
+import { SpeciesCardType } from "models/SpeciesCardType";
+import { JSON_SERVER_URL } from "utils/constants";
 
 export default function SearchIndex() {
-  const form = useForm({ mode: 'uncontrolled' });
+  const form = useForm({ mode: "uncontrolled" });
   const [searchParams, setSearchParams] = useSearchParams();
   const [matchingCards, setMatchingCards] = useState<SpeciesCardType[]>([]);
   const data = useLoaderData() as iNatTaxaResponseType;
@@ -31,8 +29,7 @@ export default function SearchIndex() {
   }
 
   useEffect(() => {
-    // console.log('side effect');
-    if (searchParams.size > 0) console.log(data.results);
+    // if (searchParams.size > 0) console.log(data.results);
     // console.log(searchParams.get('q'));
     if (data) searchCards(data);
   }, [searchParams, data]);
@@ -47,11 +44,11 @@ export default function SearchIndex() {
         // console.log(result);
 
         const matchingCardsResult = await fetch(
-          `${jsonServerUrl}/cards?taxon_id=${result.id}`
+          `${JSON_SERVER_URL}/cards?taxon_id=${result.id}`,
         );
 
         if (!matchingCardsResult.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
 
         const matchingCardsJSON = await matchingCardsResult.json();
@@ -62,26 +59,25 @@ export default function SearchIndex() {
           matchedCardsArray.push(enrichedCard);
         }
       } catch (error) {
-        console.error('Error fetching matching cards:', error);
+        console.error("Error fetching matching cards:", error);
       }
     }
 
     setMatchingCards(matchedCardsArray);
-    console.log(matchedCardsArray);
   }
 
   return (
     <>
       <h1>Search</h1>
       <form onSubmit={form.onSubmit(handleSubmit)}>
-        <Flex align='flex-end'>
+        <Flex align="flex-end">
           <TextInput
-            placeholder='Enter search terms'
-            key={form.key('q')}
-            label='Search'
-            {...form.getInputProps('q')}
+            placeholder="Enter search terms"
+            key={form.key("q")}
+            label="Search"
+            {...form.getInputProps("q")}
           />
-          <Button type='submit'>Submit</Button>
+          <Button type="submit">Submit</Button>
         </Flex>
       </form>
       <SortComponent />
@@ -90,9 +86,8 @@ export default function SearchIndex() {
           data?.results.map((record) => {
             // Find the enriched card for the current record
             const correspondingCard = matchingCards.find(
-              (card: SpeciesCardType) => card.taxon_id === record.id
+              (card: SpeciesCardType) => card.taxon_id === record.id,
             );
-            console.log(correspondingCard);
 
             return (
               <GridCol
@@ -100,8 +95,8 @@ export default function SearchIndex() {
                 key={record.id}
               >
                 <Card key={record.id}>
-                  <Title size='h4'>{record.preferred_common_name}</Title>
-                  <Title size='h5'>{record.name}</Title>
+                  <Title size="h4">{record.preferred_common_name}</Title>
+                  <Title size="h5">{record.name}</Title>
                   <p>ID: {record.id}</p>
                   {record.wikipedia_url && (
                     <Link to={record.wikipedia_url}>Wikipedia link</Link>
@@ -121,7 +116,7 @@ export default function SearchIndex() {
 
                   {correspondingCard && (
                     <Link
-                      to={'/cards/' + correspondingCard.id}
+                      to={"/cards/" + correspondingCard.id}
                       key={correspondingCard.id}
                     >
                       in WilderKind index: {correspondingCard.nickname}

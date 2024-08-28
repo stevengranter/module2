@@ -1,19 +1,19 @@
-import { defer } from 'react-router-dom';
+import { defer } from "react-router-dom";
 
 //
 // import { iNatTaxaResponseType } from 'models/iNatTaxaResponseType';
 // import { SpeciesCardType } from 'models/SpeciesCardType';
-import { jsonServerUrl, iNatAPIUrl } from 'utils/constants';
+import { JSON_SERVER_URL, INAT_API_URL } from "utils/constants.ts";
 
 export async function loader(cardId: undefined | string): Promise<unknown> {
-  const localData = await fetch(`${jsonServerUrl}/cards?id=${cardId}`).then(
-    (res) => res.json()
+  const localData = await fetch(`${JSON_SERVER_URL}/cards?id=${cardId}`).then(
+    (res) => res.json(),
   );
 
   const taxonId = localData[0].taxon_id;
 
-  const iNatData = fetch(`${iNatAPIUrl}/taxa/${taxonId}`).then((res) =>
-    res.json()
+  const iNatData = fetch(`${INAT_API_URL}/taxa/${taxonId}`).then((res) =>
+    res.json(),
   );
   return defer({ localData: await localData, iNatData });
 }

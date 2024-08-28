@@ -1,5 +1,5 @@
-import { Suspense } from 'react';
-import { useLoaderData, Await } from 'react-router-dom';
+import { Suspense } from "react";
+import { useLoaderData, Await } from "react-router-dom";
 
 import {
   AspectRatio,
@@ -9,11 +9,11 @@ import {
   Image,
   Card,
   Grid,
-} from '@mantine/core';
+} from "@mantine/core";
 
-import { SpeciesCardType } from 'models/SpeciesCardType';
+import { SpeciesCardType } from "models/SpeciesCardType.ts";
 
-import { iNatTaxaResponseType } from '../../../models/iNatTaxaResponseType';
+import { iNatTaxaResponseType } from "../../models/iNatTaxaResponseType.ts";
 
 export function CardIdRoute() {
   const { localData, iNatData } = useLoaderData() as {
@@ -29,21 +29,15 @@ export function CardIdRoute() {
     <Card
       // className={styles['card-front']}
       key={card.id}
-      shadow='md'
+      shadow="md"
       // p='xl'
-      radius='lg'
+      radius="lg"
       withBorder
     >
-      <Grid
-        justify='space-between'
-        align='center'
-      >
+      <Grid justify="space-between" align="center">
         {card.nickname && (
           <GridCol span={9}>
-            <Title
-              order={4}
-              size='h2'
-            >
+            <Title order={4} size="h2">
               {card.nickname}
             </Title>
           </GridCol>
@@ -61,29 +55,21 @@ export function CardIdRoute() {
               alt={card.nickname}
               // className={styles.drop_shadow}
               src={card.imgSrc}
-              loading='lazy'
+              loading="lazy"
             />
           </AspectRatio>
         ) : (
-          <Skeleton
-            animate={false}
-            height={500}
-            width={500}
-          ></Skeleton>
+          <Skeleton animate={false} height={500} width={500}></Skeleton>
         )}
       </Card.Section>
 
-      <Suspense fallback='Loading...'>
+      <Suspense fallback="Loading...">
         <Await resolve={iNatData}>
           {(iNatData) => {
             console.log(iNatData);
             return (
               <>
-                <Title
-                  lineClamp={1}
-                  order={2}
-                  size='h3'
-                >
+                <Title lineClamp={1} order={2} size="h3">
                   {iNatData.results[0].preferred_common_name}
                 </Title>
                 <p> {iNatData.results[0].name}</p>

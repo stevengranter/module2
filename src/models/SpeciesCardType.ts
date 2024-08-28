@@ -7,9 +7,9 @@ export interface SpeciesCardType {
         egg: undefined | number | string;
       }
     | undefined;
-  current_stage?: undefined | string;
-  nickname?: undefined | string;
-  taxon_id?: undefined | number;
-  imgSrc?: undefined | string;
-  id: string | number;
+  current_stage?: string;
+  nickname?: string;
+  taxon_id?: number;
+  imgSrc?: string;
+  id: string;
 }

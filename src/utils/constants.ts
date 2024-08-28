@@ -1,6 +1,6 @@
-const jsonServerUrl =
-  import.meta.env.VITE_JSONSERVER_URL || 'http://localhost:3000';
-const imagePathUrl = '/images/';
-const iNatAPIUrl = 'https://api.inaturalist.org/v1';
+const JSON_SERVER_URL =
+  import.meta.env.VITE_JSONSERVER_URL || "http://localhost:3000";
+const imagePathUrl = "/images/";
+const INAT_API_URL = "https://api.inaturalist.org/v1";
 
-export { jsonServerUrl, imagePathUrl, iNatAPIUrl };
+export { JSON_SERVER_URL, imagePathUrl, INAT_API_URL };

@@ -1,9 +1,9 @@
-import { GridCol, Center, Grid } from '@mantine/core';
+import { GridCol, Center, Grid } from "@mantine/core";
 
-import { EnrichedCardType } from 'models/EnrichedCardType';
-import { SpeciesCardType } from 'models/SpeciesCardType';
+import { EnrichedCardType } from "models/EnrichedCardType.ts";
+import { SpeciesCardType } from "models/SpeciesCardType.ts";
 
-import SpeciesCard from './SpeciesCard';
+import SpeciesCard from "./SpeciesCard.tsx";
 
 export default function CardCollection({
   data,

@@ -1,12 +1,12 @@
-import { EnrichedCardType } from 'models/EnrichedCardType';
-import { iNatTaxaResponseType } from 'models/iNatTaxaResponseType';
-import { SpeciesCardType } from 'models/SpeciesCardType';
+import { EnrichedCardType } from "models/EnrichedCardType";
+import { iNatTaxaResponseType } from "models/iNatTaxaResponseType";
+import { SpeciesCardType } from "models/SpeciesCardType";
 
-import { iNatAPIUrl } from './constants';
-import { fetchData } from './fetchData';
+import { INAT_API_URL } from "./constants.ts";
+import { fetchData } from "./fetchData";
 
 export default async function enrichCards(
-  cardsArray: SpeciesCardType[]
+  cardsArray: SpeciesCardType[],
 ): Promise<EnrichedCardType[]> {
   //Construct query for iNaturalist API (comma-seperated taxon IDs)
 
@@ -17,18 +17,19 @@ export default async function enrichCards(
   const uniqueTaxonIds = Array.from(new Set(taxonIds));
 
   // Create a comma-delimited string
-  const taxonIdQuery = uniqueTaxonIds.join(',');
+  const taxonIdQuery = uniqueTaxonIds.join(",");
 
   // Fetch data from iNaturalist API
-  const fetchediNatData = (await fetchData(
-    `${iNatAPIUrl}/taxa/${taxonIdQuery}`
+  const fetchedData = (await fetchData(
+    `${INAT_API_URL}/taxa/${taxonIdQuery}`,
   )) as iNatTaxaResponseType;
-  console.log(fetchediNatData);
+  console.log(fetchedData);
 
   // Map over cards array
-  const enrichedCards = cardsArray.map((card) => {
-    const speciesData = fetchediNatData.results.find(
-      (species) => species.id === card.taxon_id
+  // Return enriched cards with combined data
+  return cardsArray.map((card) => {
+    const speciesData = fetchedData.results.find(
+      (species) => species.id === card.taxon_id,
     );
 
     console.log(speciesData);
@@ -42,7 +43,4 @@ export default async function enrichCards(
       name: speciesData?.name || undefined,
     };
   });
-
-  // Return enriched cards with combined data
-  return enrichedCards;
 }

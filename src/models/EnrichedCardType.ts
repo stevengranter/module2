@@ -1,5 +1,5 @@
-import { DefaultPhoto } from './iNatTaxaResponseType';
-import { SpeciesCardType } from './SpeciesCardType';
+import { DefaultPhoto } from "./iNatTaxaResponseType";
+import { SpeciesCardType } from "./SpeciesCardType";
 
 export interface EnrichedCardType extends SpeciesCardType {
   preferred_common_name?: string;
