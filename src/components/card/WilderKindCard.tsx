@@ -111,13 +111,7 @@ export default function WilderKindCard(props: { cardId?: string }) {
   );
 }
 
-function CardSideA({
-  localData,
-  remoteData,
-  isLoadingLocal,
-  isLoadingRemote,
-  flipFn,
-}) {
+function CardSideA({ localData, remoteData, isLoadingRemote, flipFn }) {
   return (
     <>
       <Card
@@ -173,13 +167,7 @@ function CardSideA({
   );
 }
 
-function CardSideB({
-  localData,
-  remoteData,
-  isLoadingLocal,
-  isLoadingRemote,
-  flipFn,
-}) {
+function CardSideB({ localData, remoteData, isLoadingRemote, flipFn }) {
   return (
     <Card
       className={styles["card-back"]}
