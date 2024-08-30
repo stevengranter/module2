@@ -15,9 +15,6 @@ import {
 import { IconBabyCarriage, IconButterfly, IconEgg } from "@tabler/icons-react";
 import { Interweave } from "interweave";
 
-import type { EnrichedCardType } from "../../models/EnrichedCardType.ts";
-
-// import { EnrichedCardType } from "../../models/EnrichedCardType.ts";
 import { INAT_API_URL, JSON_SERVER_URL } from "../../utils/constants.ts";
 import styles from "./SpeciesCard.module.css";
 import { SpeciesCardSkeleton } from "./SpeciesCardSkeleton.tsx";
