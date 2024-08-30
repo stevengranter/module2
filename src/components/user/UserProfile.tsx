@@ -1,41 +1,37 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+import { useFetch } from "hooks/useFetch.ts";
+
+import { UserType } from "../../models/UserType.ts";
 import { JSON_SERVER_URL } from "../../utils/constants.ts";
+import CardCollection from "./CardCollection.tsx";
 
-export default function UserProfile() {
-  const { userId } = useParams();
-  // console.log(userId);
-  const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState([]);
+const apiURL = JSON_SERVER_URL;
+const endPoint = "/users/";
 
-  useEffect(() => {
-    async function fetchUser() {
-      try {
-        const response = await fetch(JSON_SERVER_URL + "/users?id=" + userId);
-        return await response.json();
-      } catch (err) {
-        console.log(err);
-      } finally {
-        setIsLoading(false);
-      }
-      return null;
-    }
-    fetchUser().then((result) => setData(result[0]));
-  }, [userId]);
+export default function UserProfile(props: { userId?: string }) {
+  let userId;
+  const params = useParams();
+  params.userId ? (userId = params.userId) : (userId = props.userId);
 
-  return isLoading ? (
-    "Loading..."
-  ) : (
+  const { isLoading, error, data } = useFetch<UserType>(
+    `${apiURL}${endPoint}${userId}`,
+  );
+
+  if (isLoading) return "Loading...";
+  if (error) return `Error: ${error}`;
+
+  return (
     <>
-      <h2>WilderNaut {data.firstName}</h2>
-      {data.collection ? (
-        <>View my collection</>
+      <h2>WilderNaut {data && data.firstName}</h2>
+      {data?.collection ? (
+        <>
+          View my collection
+          <CardCollection collection={data.collection} />
+        </>
       ) : (
         <>User has not started collecting yet.</>
       )}
-
-      {/*<Outlet />*/}
     </>
   );
 }

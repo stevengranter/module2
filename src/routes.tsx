@@ -4,18 +4,18 @@ import {
   Route,
 } from "react-router-dom";
 
-import { loader as cardsIndexLoader } from "routes/cards/cards__index.loader.tsx";
-import { CardsIndexRoute } from "routes/cards/cards__index.tsx";
-import { loader as cardIdLoader } from "routes/cards/cards_cardid_index.loader.tsx";
-import { CardIdRoute } from "routes/cards/cards_cardid_index.tsx";
+// import { loader as cardsIndexLoader } from "routes/cards/cards__index.loader.tsx";
+import CardsIndexRoute from "routes/cards/cards__index.tsx";
+// import { loader as cardIdLoader } from "routes/cards/cards_cardid_index.loader.tsx";
 import HomePage from "routes/root__index.tsx";
 import Root from "routes/rootLayout.tsx";
 import search__indexLoader from "routes/search/search__index.loader.ts";
 import SearchIndex from "routes/search/search__index.tsx";
 
+import WilderKindCard from "./components/card/WilderKindCard.tsx";
+// import CardCollection from "./components/user/CardCollection.tsx";
 import UserList from "./components/user/UserList.tsx";
 import UserProfile from "./components/user/UserProfile.tsx";
-import { UserCollection } from "./routes/users/users_userid_collection_index.tsx";
 
 export const router: ReturnType<typeof createBrowserRouter> =
   createBrowserRouter(
@@ -26,27 +26,17 @@ export const router: ReturnType<typeof createBrowserRouter> =
         <Route path="users">
           <Route element={<UserList />} index></Route>
           <Route element={<UserProfile />} path=":userId">
-            <Route path="collection">
-              <Route element={<UserCollection />} index></Route>
-            </Route>
+            {/*<Route path="collection">*/}
+            {/*  <Route element={<CardCollection />} index></Route>*/}
+            {/*</Route>*/}
           </Route>
         </Route>
         /* /cards */
         <Route path="cards">
-          <Route
-            element={<CardsIndexRoute />}
-            loader={cardsIndexLoader}
-            index
-          ></Route>
+          <Route element={<CardsIndexRoute />} index></Route>
           /* /cards/:cardId */
           <Route path=":cardId">
-            <Route
-              loader={({ params }) => {
-                return cardIdLoader(params.cardId);
-              }}
-              element={<CardIdRoute />}
-              index
-            ></Route>
+            <Route element={<WilderKindCard />} index></Route>
           </Route>
         </Route>
         <Route path="search">

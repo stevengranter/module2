@@ -1,6 +1,16 @@
 {
   "users": [
     {
+      "id": 0,
+      "firstName": "Default",
+      "lastName": "User",
+      "birthdate": "9999-000-000",
+      "imgSrc": "",
+      "title": "Default User",
+      "description": "",
+      "collection": []
+    },
+    {
       "id": 1,
       "firstName": "Alice",
       "lastName": "Smith",

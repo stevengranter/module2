@@ -1,15 +1,21 @@
-// import { useState } from 'react';
-import { useLoaderData } from "react-router-dom";
+import CardCollection from "../../components/user/CardCollection.tsx";
+import { useFetch } from "../../hooks/useFetch.ts";
+import { SpeciesCardType } from "../../models/SpeciesCardType.ts";
+import { JSON_SERVER_URL } from "../../utils/constants.ts";
 
-import CardCollection from "components/card/CardCollection.tsx";
-import { EnrichedCardType } from "models/EnrichedCardType";
-// import { EnrichedCardType } from 'models/EnrichedCardType';
+export default function CardsIndexRoute() {
+  const { isLoading, error, data } = useFetch<SpeciesCardType[]>(`
+    ${JSON_SERVER_URL}/cards`);
 
-// import { CardIdRoute } from './cardId';
+  if (error) {
+    return <p>Error: {error.message}</p>;
+  }
 
-export function CardsIndexRoute() {
-  const data = useLoaderData() as EnrichedCardType | unknown;
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
 
-  // return <CardIdRoute />;
-  return <CardCollection data={data} />;
+  const cardIds = data?.map((card) => card.id);
+
+  return <CardCollection collection={cardIds} />;
 }

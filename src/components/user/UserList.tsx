@@ -1,46 +1,35 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { Title } from "@mantine/core";
+import { useFetch } from "hooks/useFetch.ts";
 
-import { JSON_SERVER_URL } from "../../utils/constants.ts";
+import { UserType } from "models/UserType.ts";
+import { JSON_SERVER_URL } from "utils/constants.ts";
 
 export default function UserList() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState();
+  const apiURL = JSON_SERVER_URL;
+  const endPoint = "/users";
+  const { isLoading, error, data } = useFetch<UserType[]>(
+    `${apiURL}${endPoint}`,
+  );
 
-  async function fetchUsers() {
-    try {
-      const response = await fetch(`${JSON_SERVER_URL}/users`);
-      return await response.json();
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setIsLoading(false);
-    }
-    return null;
-  }
-
-  useEffect(() => {
-    fetchUsers().then((result) => setData(result));
-  }, []);
+  // noinspection BadExpressionStatementJS
+  error && <h1>Error: ${error.message}</h1>;
 
   return isLoading ? (
     "Loading..."
   ) : (
     <>
       <Title order={2}>Users</Title>
-      {data?.map((user) => {
-        return (
-          <li key={user.id}>
-            <Link to={`/users/${user.id}`}>
-              {" "}
-              {/* Ensure the correct path is used */}
-              {user.firstName}
-            </Link>
-          </li>
-        );
-      })}
+      <ul>
+        {data?.map((user: UserType) => {
+          return (
+            <li key={user.id}>
+              <Link to={`/users/${user.id}`}>{user.firstName}</Link>
+            </li>
+          );
+        })}
+      </ul>
     </>
   );
 }
