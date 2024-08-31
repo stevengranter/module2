@@ -74,11 +74,14 @@ export default function WilderKindCard(props: { cardId?: string }) {
           const remoteResponse = await fetch(
             `${INAT_API_URL}/taxa/${localData.taxon_id}`,
           );
+          console.log(remoteResponse);
           if (!remoteResponse.ok) {
             throw new Error("Network response was not ok");
           }
-          const remoteCardData: RemoteDataType = await remoteResponse.json();
-          setRemoteData(remoteCardData);
+          const remoteCardData: iNatTaxaResponseType =
+            await remoteResponse.json();
+          console.log(remoteCardData);
+          setRemoteData(remoteCardData.results[0]);
         } catch (err) {
           if (err instanceof Error) {
             setError(err.message);
@@ -95,7 +98,7 @@ export default function WilderKindCard(props: { cardId?: string }) {
   }, [localData]); // Fetch remote data whenever localData changes
 
   console.log(localData);
-
+  console.log(remoteData);
   function flipCard() {
     console.log("flipping card");
     setShowFlipSide((prevState) => !prevState);
@@ -166,7 +169,7 @@ function CardSideA({
                 // radius='lg'
                 className={styles.drop_shadow}
                 src={localData.imgSrc}
-                alt={remoteData?.name}
+                alt={isLoadingRemote ? remoteData?.name : "null"}
                 loading="lazy"
               />
             </AspectRatio>
@@ -176,10 +179,10 @@ function CardSideA({
         </Card.Section>
 
         <Title lineClamp={1} order={2} size="h3">
-          {isLoadingRemote ? "Loading..." : remoteData?.preferred_common_name}
+          {remoteData?.preferred_common_name}
         </Title>
         <Title lineClamp={1} order={3} size="h4">
-          {isLoadingRemote ? "Loading..." : remoteData?.name}
+          {remoteData?.name}
         </Title>
         <SimpleGrid>
           {localData?.current_stage === "egg" && <IconEgg />}
