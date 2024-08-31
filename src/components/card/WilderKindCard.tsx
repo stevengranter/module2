@@ -15,36 +15,51 @@ import {
 import { IconBabyCarriage, IconButterfly, IconEgg } from "@tabler/icons-react";
 import { Interweave } from "interweave";
 
+import { iNatTaxaResponseType } from "../../models/iNatTaxaResponseType.ts";
+import { WilderKindCardType } from "../../models/WilderKindCardType.ts";
 import { INAT_API_URL, JSON_SERVER_URL } from "../../utils/constants.ts";
-import styles from "./SpeciesCard.module.css";
-import { SpeciesCardSkeleton } from "./SpeciesCardSkeleton.tsx";
+import styles from "./WilderKindCard.module.css";
+import { WilderKindCardSkeleton } from "./WilderKindCardSkeleton.tsx";
+
+type LocalDataType = WilderKindCardType[];
+type RemoteDataType = iNatTaxaResponseType["results"][0];
+interface CardSideProps {
+  localData: WilderKindCardType | null | undefined; // assuming localData can be null if it's still loading
+  remoteData: RemoteDataType | null | undefined; // Change to the actual type or interface for your remote data
+  isLoadingRemote: boolean;
+  isLoadingLocal: boolean;
+  flipFn: () => void; // Function to flip the card
+}
 
 export default function WilderKindCard(props: { cardId?: string }) {
   let cardId;
   const params = useParams();
   params.cardId ? (cardId = params.cardId) : (cardId = props.cardId);
 
-  const [localData, setLocalData] = useState();
-  const [remoteData, setRemoteData] = useState();
+  const [localData, setLocalData] = useState<WilderKindCardType | null>(null);
+  const [remoteData, setRemoteData] = useState<RemoteDataType | null>(null);
   const [isLoadingLocal, setIsLoadingLocal] = useState(true);
   const [isLoadingRemote, setIsLoadingRemote] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   const [showFlipSide, setShowFlipSide] = useState(false);
 
   useEffect(() => {
-    const fetchLocalData = async () => {
+    const fetchLocalData = async (): Promise<void> => {
       try {
         const response = await fetch(`${JSON_SERVER_URL}/cards?id=${cardId}`);
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
-        const localCardData = await response.json();
-        if (localCardData) {
+        const localCardData: LocalDataType = await response.json();
+        if (localCardData.length > 0) {
           setLocalData(localCardData[0]);
         }
-        console.log(localData);
-      } catch (err: Error) {
-        setError(err.message);
+      } catch (err) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("An unknown error occurred");
+        }
       } finally {
         setIsLoadingLocal(false);
       }
@@ -53,7 +68,7 @@ export default function WilderKindCard(props: { cardId?: string }) {
   }, [cardId]);
 
   useEffect(() => {
-    const fetchRemoteData = async () => {
+    const fetchRemoteData = async (): Promise<void> => {
       if (localData?.taxon_id) {
         try {
           const remoteResponse = await fetch(
@@ -62,10 +77,14 @@ export default function WilderKindCard(props: { cardId?: string }) {
           if (!remoteResponse.ok) {
             throw new Error("Network response was not ok");
           }
-          const remoteCardData = await remoteResponse.json();
-          setRemoteData(remoteCardData.results[0]);
-        } catch (err: Error) {
-          setError(err.message);
+          const remoteCardData: RemoteDataType = await remoteResponse.json();
+          setRemoteData(remoteCardData);
+        } catch (err) {
+          if (err instanceof Error) {
+            setError(err.message);
+          } else {
+            setError("An unknown error occurred");
+          }
         } finally {
           setIsLoadingRemote(false);
         }
@@ -82,12 +101,12 @@ export default function WilderKindCard(props: { cardId?: string }) {
     setShowFlipSide((prevState) => !prevState);
   }
 
-  error && `Error: ${error.message}`;
+  error && `Error: ${error}`;
 
   // return <h1>test</h1>;
 
   return isLoadingLocal ? (
-    <SpeciesCardSkeleton />
+    <WilderKindCardSkeleton />
   ) : (
     <>
       {!showFlipSide ? (
@@ -111,7 +130,12 @@ export default function WilderKindCard(props: { cardId?: string }) {
   );
 }
 
-function CardSideA({ localData, remoteData, isLoadingRemote, flipFn }) {
+function CardSideA({
+  localData,
+  remoteData,
+  isLoadingRemote,
+  flipFn,
+}: CardSideProps) {
   return (
     <>
       <Card
@@ -167,21 +191,26 @@ function CardSideA({ localData, remoteData, isLoadingRemote, flipFn }) {
   );
 }
 
-function CardSideB({ localData, remoteData, isLoadingRemote, flipFn }) {
+function CardSideB({
+  localData,
+  remoteData,
+  isLoadingRemote,
+  flipFn,
+}: CardSideProps) {
   return (
     <Card
       className={styles["card-back"]}
-      key={localData.id}
+      key={localData?.id}
       shadow="md"
       // p='xl'
       radius="lg"
       withBorder
     >
       <Grid justify="space-between" align="center">
-        {localData.nickname && (
+        {localData?.nickname && (
           <GridCol span={9}>
             <Title order={4} size="h2">
-              {localData.nickname}
+              {localData?.nickname}
             </Title>
           </GridCol>
         )}
@@ -190,7 +219,7 @@ function CardSideB({ localData, remoteData, isLoadingRemote, flipFn }) {
         </GridCol>
       </Grid>
       <Card.Section>
-        {remoteData?.default_photo ? (
+        {!isLoadingRemote && remoteData?.default_photo ? (
           <AspectRatio ratio={1}>
             <Image
               src={remoteData.default_photo?.medium_url}
@@ -205,10 +234,10 @@ function CardSideB({ localData, remoteData, isLoadingRemote, flipFn }) {
         )}
       </Card.Section>
       <Title lineClamp={1} order={2} size="h3">
-        {remoteData?.preferred_common_name}
+        {!isLoadingRemote && remoteData?.preferred_common_name}
       </Title>
       <Title lineClamp={1} order={3} size="h4">
-        {remoteData?.name}
+        {!isLoadingRemote && remoteData?.name}
       </Title>
 
       <Text>

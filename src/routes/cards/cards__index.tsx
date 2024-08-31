@@ -1,10 +1,10 @@
 import CardCollection from "../../components/user/CardCollection.tsx";
 import { useFetch } from "../../hooks/useFetch.ts";
-import { SpeciesCardType } from "../../models/SpeciesCardType.ts";
+import { WilderKindCardType } from "../../models/WilderKindCardType.ts";
 import { JSON_SERVER_URL } from "../../utils/constants.ts";
 
 export default function CardsIndexRoute() {
-  const { isLoading, error, data } = useFetch<SpeciesCardType[]>(`
+  const { isLoading, error, data } = useFetch<WilderKindCardType[]>(`
     ${JSON_SERVER_URL}/cards`);
 
   if (error) {

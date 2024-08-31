@@ -4,16 +4,13 @@ import {
   Route,
 } from "react-router-dom";
 
-// import { loader as cardsIndexLoader } from "routes/cards/cards__index.loader.tsx";
 import CardsIndexRoute from "routes/cards/cards__index.tsx";
-// import { loader as cardIdLoader } from "routes/cards/cards_cardid_index.loader.tsx";
 import HomePage from "routes/root__index.tsx";
 import Root from "routes/rootLayout.tsx";
 import search__indexLoader from "routes/search/search__index.loader.ts";
 import SearchIndex from "routes/search/search__index.tsx";
 
 import WilderKindCard from "./components/card/WilderKindCard.tsx";
-// import CardCollection from "./components/user/CardCollection.tsx";
 import UserList from "./components/user/UserList.tsx";
 import UserProfile from "./components/user/UserProfile.tsx";
 
