@@ -15,13 +15,13 @@ import { useForm } from "@mantine/form";
 
 import SortComponent from "components/ui/controls/SortComponent.tsx";
 import { iNatTaxaResponseType } from "models/iNatTaxaResponseType";
-import { SpeciesCardType } from "models/SpeciesCardType";
+import { WilderKindCardType } from "models/WilderKindCardType.ts";
 import { JSON_SERVER_URL } from "utils/constants";
 
 export default function SearchIndex() {
   const form = useForm({ mode: "uncontrolled" });
   const [searchParams, setSearchParams] = useSearchParams();
-  const [matchingCards, setMatchingCards] = useState<SpeciesCardType[]>([]);
+  const [matchingCards, setMatchingCards] = useState<WilderKindCardType[]>([]);
   const data = useLoaderData() as iNatTaxaResponseType;
 
   function handleSubmit(values: typeof form.values) {
@@ -86,7 +86,7 @@ export default function SearchIndex() {
           data?.results.map((record) => {
             // Find the enriched card for the current record
             const correspondingCard = matchingCards.find(
-              (card: SpeciesCardType) => card.taxon_id === record.id,
+              (card: WilderKindCardType) => card.taxon_id === record.id,
             );
 
             return (

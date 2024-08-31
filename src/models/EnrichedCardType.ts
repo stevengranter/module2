@@ -1,7 +1,7 @@
 import { DefaultPhoto } from "./iNatTaxaResponseType";
-import { SpeciesCardType } from "./SpeciesCardType";
+import { WilderKindCardType } from "./WilderKindCardType.ts";
 
-export interface EnrichedCardType extends SpeciesCardType {
+export interface EnrichedCardType extends WilderKindCardType {
   preferred_common_name?: string;
   default_photo?: DefaultPhoto;
   wikipedia_summary?: string;

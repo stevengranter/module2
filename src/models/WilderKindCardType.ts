@@ -1,4 +1,4 @@
-export interface SpeciesCardType {
+export interface WilderKindCardType {
   stages?:
     | {
         larva: undefined | number | string;
