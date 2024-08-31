@@ -7,6 +7,7 @@ import {
   Grid,
   GridCol,
   Image,
+  Loader,
   SimpleGrid,
   Skeleton,
   Text,
@@ -48,22 +49,23 @@ export default function WilderKindCard(props: { cardId?: string }) {
       try {
         const response = await fetch(`${JSON_SERVER_URL}/cards?id=${cardId}`);
         if (!response.ok) {
-          throw new Error("Network response was not ok");
+          setError("Network response was not ok");
+          return;
         }
+
         const localCardData: LocalDataType = await response.json();
         if (localCardData.length > 0) {
           setLocalData(localCardData[0]);
         }
       } catch (err) {
-        if (err instanceof Error) {
-          setError(err.message);
-        } else {
-          setError("An unknown error occurred");
-        }
+        const errorMessage =
+          err instanceof Error ? err.message : "An unknown error occurred";
+        setError(errorMessage);
       } finally {
         setIsLoadingLocal(false);
       }
     };
+
     fetchLocalData();
   }, [cardId]);
 
@@ -76,18 +78,17 @@ export default function WilderKindCard(props: { cardId?: string }) {
           );
           console.log(remoteResponse);
           if (!remoteResponse.ok) {
-            throw new Error("Network response was not ok");
+            setError("Network response was not ok");
+            return;
           }
           const remoteCardData: iNatTaxaResponseType =
             await remoteResponse.json();
           console.log(remoteCardData);
           setRemoteData(remoteCardData.results[0]);
         } catch (err) {
-          if (err instanceof Error) {
-            setError(err.message);
-          } else {
-            setError("An unknown error occurred");
-          }
+          const errorMessage =
+            err instanceof Error ? err.message : "An unknown error occurred";
+          setError(errorMessage);
         } finally {
           setIsLoadingRemote(false);
         }
@@ -169,7 +170,7 @@ function CardSideA({
                 // radius='lg'
                 className={styles.drop_shadow}
                 src={localData.imgSrc}
-                alt={isLoadingRemote ? remoteData?.name : "null"}
+                alt={remoteData ? remoteData?.name : "null"}
                 loading="lazy"
               />
             </AspectRatio>
@@ -179,10 +180,14 @@ function CardSideA({
         </Card.Section>
 
         <Title lineClamp={1} order={2} size="h3">
-          {remoteData?.preferred_common_name}
+          {isLoadingRemote ? (
+            <Loader type="dots" />
+          ) : (
+            remoteData?.preferred_common_name
+          )}
         </Title>
         <Title lineClamp={1} order={3} size="h4">
-          {remoteData?.name}
+          {isLoadingRemote ? <Loader type="dots" /> : remoteData?.name}
         </Title>
         <SimpleGrid>
           {localData?.current_stage === "egg" && <IconEgg />}
@@ -237,14 +242,22 @@ function CardSideB({
         )}
       </Card.Section>
       <Title lineClamp={1} order={2} size="h3">
-        {!isLoadingRemote && remoteData?.preferred_common_name}
+        {isLoadingRemote ? (
+          <Loader type="dots" />
+        ) : (
+          remoteData?.preferred_common_name
+        )}
       </Title>
       <Title lineClamp={1} order={3} size="h4">
-        {!isLoadingRemote && remoteData?.name}
+        {!isLoadingRemote ? <Loader type="dots" /> : remoteData?.name}
       </Title>
 
       <Text>
-        <Interweave content={remoteData?.wikipedia_summary} />
+        <Interweave
+          content={
+            isLoadingRemote ? "Loading..." : remoteData?.wikipedia_summary
+          }
+        />
       </Text>
 
       {/* </Spoiler> */}
