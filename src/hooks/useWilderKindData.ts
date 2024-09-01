@@ -16,7 +16,10 @@ export function useWilderKindData(cardId: string | undefined) {
     const fetchLocalData = async () => {
       try {
         const response = await fetch(`${JSON_SERVER_URL}/cards?id=${cardId}`);
-        if (!response.ok) throw new Error("Network response was not ok");
+        if (!response.ok) {
+          setError("Network response was not ok");
+          return;
+        }
         const localCardData = await response.json();
         if (localCardData.length > 0) setLocalData(localCardData[0]);
       } catch (err) {
@@ -38,7 +41,10 @@ export function useWilderKindData(cardId: string | undefined) {
           const response = await fetch(
             `${INAT_API_URL}/taxa/${localData.taxon_id}`,
           );
-          if (!response.ok) throw new Error("Network response was not ok");
+          if (!response.ok) {
+            setError("Network response was not ok");
+            return;
+          }
           const remoteCardData = await response.json();
           setRemoteData(remoteCardData.results[0]);
         } catch (err) {
