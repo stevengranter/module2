@@ -13,6 +13,7 @@ import SearchIndex from "routes/search/search__index.tsx";
 import WilderKindCard from "./components/card/WilderKindCard.tsx";
 import UserList from "./components/user/UserList.tsx";
 import UserProfile from "./components/user/UserProfile.tsx";
+import UsersIndexRoute from "./routes/users/users__index.tsx";
 
 export const router: ReturnType<typeof createBrowserRouter> =
   createBrowserRouter(
@@ -21,7 +22,7 @@ export const router: ReturnType<typeof createBrowserRouter> =
         <Route element={<HomePage />} index></Route>
         /* /users */
         <Route path="users">
-          <Route element={<UserList />} index></Route>
+          <Route element={<UsersIndexRoute />} index></Route>
           <Route element={<UserProfile />} path=":userId">
             {/*<Route path="collection">*/}
             {/*  <Route element={<CardCollection />} index></Route>*/}
