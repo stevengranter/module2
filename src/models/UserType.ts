@@ -6,5 +6,7 @@ export interface UserType {
   lastName?: string;
   imgSrc?: string;
   title?: string;
+  email?: string;
   id: string;
+  name?: string;
 }

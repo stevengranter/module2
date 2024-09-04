@@ -1,16 +1,10 @@
-import { useEffect, useState } from "react";
-
 import { TextInput, Button } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import { Simulate } from "react-dom/test-utils";
 
-import { useSubmitUserRegistration } from "../../hooks/useSubmitUserRegistration.ts";
 import { JSON_SERVER_URL } from "../../utils/constants.ts";
 
-import resize = Simulate.resize;
-
 export default function UserLogin() {
-  const [token, setToken] = useState(null);
+  // const [token, setToken] = useState(null);
   const form = useForm({
     mode: "uncontrolled",
     initialValues: { email: "", password: "" },
@@ -18,7 +12,7 @@ export default function UserLogin() {
 
   function handleSubmit(formData: { email: string; password: string }) {
     {
-      console.log(formData);
+      // console.log(formData);
       const response = fetch(`${JSON_SERVER_URL}/register`, {
         method: "POST",
         headers: {
@@ -26,7 +20,6 @@ export default function UserLogin() {
         },
         body: JSON.stringify(formData),
       }).then((res) => res.json());
-
       console.log(response);
     }
   }

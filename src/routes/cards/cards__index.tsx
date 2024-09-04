@@ -3,7 +3,7 @@ import { useFetch } from "../../hooks/useFetch.ts";
 import { WilderKindCardType } from "../../models/WilderKindCardType.ts";
 import { JSON_SERVER_URL } from "../../utils/constants.ts";
 
-export default function CardsIndexRoute() {
+export default function Route__Cards() {
   const { isLoading, error, data } = useFetch<WilderKindCardType[]>(`
     ${JSON_SERVER_URL}/cards`);
 

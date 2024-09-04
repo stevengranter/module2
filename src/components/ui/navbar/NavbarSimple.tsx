@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 import {
   IconUserCircle,
@@ -12,21 +12,24 @@ import {
   // IconRainbow,
   // IconSeeding,
   // IconHorseToy,
-} from '@tabler/icons-react';
+} from "@tabler/icons-react";
 
-import classes from './NavbarSimple.module.css';
+import { useAuth } from "../../../hooks/useAuth.ts";
+import classes from "./NavbarSimple.module.css";
 
 const data = [
-  { icon: IconHome, label: 'Home', link: '/' },
-  { icon: IconUsersGroup, label: 'Users', link: 'users' },
-  { label: 'WilderKind Index', icon: IconArchive, link: '/cards' },
-  { icon: IconBinoculars, label: 'Search', link: '/search' },
+  { icon: IconHome, label: "Home", link: "/" },
+  { icon: IconUsersGroup, label: "Users", link: "users" },
+  { label: "WilderKind Index", icon: IconArchive, link: "/cards" },
+  { icon: IconBinoculars, label: "Search", link: "/search" },
   // { link: '/nursery', label: 'Nursery', icon: IconSeeding },
   // { link: '/playroom', label: 'Playroom', icon: IconHorseToy },
 ];
 
 export function NavbarSimple() {
-  const [active, setActive] = useState('Billing');
+  const { user } = useAuth();
+  console.log(user);
+  const [active, setActive] = useState("");
 
   function handleClick(label: string) {
     setActive(label);
@@ -40,10 +43,7 @@ export function NavbarSimple() {
       key={item.label}
       to={item.link}
     >
-      <item.icon
-        className={classes.linkIcon}
-        stroke={1.5}
-      />
+      <item.icon className={classes.linkIcon} stroke={1.5} />
       <span>{item.label}</span>
     </Link>
   ));
@@ -53,39 +53,19 @@ export function NavbarSimple() {
       <div className={classes.navbarMain}>{links}</div>
 
       <div className={classes.footer}>
-        <Link
-          className={classes.link}
-          to=''
-        >
-          <IconUserCircle
-            className={classes.linkIcon}
-            stroke={1.5}
-          />
+        <Link className={classes.link} to="">
+          <IconUserCircle className={classes.linkIcon} stroke={1.5} />
           <span>Profile</span>
         </Link>
 
-        <Link
-          className={classes.link}
-          to=''
-        >
-          <IconLogout
-            className={classes.linkIcon}
-            stroke={1.5}
-          />
+        <Link className={classes.link} to="">
+          <IconLogout className={classes.linkIcon} stroke={1.5} />
           <span>Logout</span>
         </Link>
 
-        <Link
-          className={classes.link}
-          to=''
-        >
-          <IconInfoCircle
-            className={classes.linkIcon}
-            stroke={1.5}
-          />
-          <span>
-            <span>TestAPI</span>
-          </span>
+        <Link className={classes.link} to="">
+          <IconInfoCircle className={classes.linkIcon} stroke={1.5} />
+          <span>{user?.name}</span>
         </Link>
       </div>
     </nav>
