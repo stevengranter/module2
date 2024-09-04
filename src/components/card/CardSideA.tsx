@@ -8,6 +8,7 @@ import {
   SimpleGrid,
   Skeleton,
   Title,
+  Button,
 } from "@mantine/core";
 import { IconBabyCarriage, IconButterfly, IconEgg } from "@tabler/icons-react";
 
@@ -30,14 +31,14 @@ export function CardSideA({
     >
       <Grid justify="space-between" align="center">
         {localData?.nickname && (
-          <GridCol span={9}>
+          <GridCol span={4}>
             <Title order={4} size="h2">
               {localData?.nickname}
             </Title>
           </GridCol>
         )}
-        <GridCol span={3}>
-          <button onClick={flipFn}>flip</button>
+        <GridCol span={4}>
+          <Button onClick={flipFn}>flip</Button>
         </GridCol>
       </Grid>
 

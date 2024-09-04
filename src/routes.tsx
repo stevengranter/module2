@@ -4,9 +4,9 @@ import {
   Route,
 } from "react-router-dom";
 
+import Layout_Root from "routes/_layouts/layout_root.tsx";
 import Route__Cards from "routes/cards/cards__index.tsx";
 import Route__Root from "routes/root__index.tsx";
-import Layout_Root from "routes/rootLayout.tsx";
 import search__indexLoader from "routes/search/search__index.loader.ts";
 
 import WilderKindCard from "./components/card/WilderKindCard.tsx";
