@@ -95,55 +95,63 @@
       "id": 10
     }
   ],
+
   "cards": [
     {
       "id": 1,
       "taxon_id": 48586,
       "imgSrc": "/images/cepaea_nemoralis.png",
       "nickname": "Nemo",
-      "mnemonic": "nemo"
+      "mnemonic": "nemo",
+      "created": 1704067200
     },
     {
       "id": 2,
       "taxon_id": 99901,
       "imgSrc": "/images/enallagma_cyathigerum.png",
       "nickname": "Cya",
-      "mnemonic": "cya"
+      "mnemonic": "cya",
+      "created": 1706745600
     },
     {
       "id": 3,
       "taxon_id": 59442,
       "imgSrc": "/images/chrysopa_rufilabris.png",
       "nickname": "Fila",
-      "mnemonic": "fila"
+      "mnemonic": "fila",
+      "created": 1709251200
     },
     {
       "id": 4,
       "taxon_id": 47219,
       "imgSrc": "/images/apis_mellifera.png",
       "nickname": "Melli",
-      "mnemonic": "melli"
+      "mnemonic": "melli",
+      "created": 1711929600
     },
     {
       "id": 5,
       "taxon_id": 347465,
       "imgSrc": "/images/formica_rufibarbis.png",
       "nickname": "Barbi",
-      "mnemonic": "barbi"
+      "mnemonic": "barbi",
+      "created": 1714521600
     },
     {
       "id": 6,
       "taxon_id": 48987,
       "imgSrc": "/images/hippodamia_convergens.png",
       "nickname": "Connie",
-      "mnemonic": "con"
+      "mnemonic": "con",
+      "created": 1717200000
     },
     {
       "id": 7,
       "taxon_id": 81545,
       "imgSrc": "/images/lumbricus_terrestris.png",
       "nickname": "Terry",
-      "mnemonic": "terr"
+      "mnemonic": "terr",
+      "created": 1719792000
     },
     {
       "id": 8,
@@ -158,14 +166,16 @@
         "adult": 8
       },
       "current_stage": "adult",
-      "can_morph": true
+      "can_morph": true,
+      "created": 1722470400
     },
     {
       "id": 9,
       "taxon_id": 494559,
       "imgSrc": "/images/polydrusus_formosus.png",
       "nickname": "Formo",
-      "mnemonic": "formo"
+      "mnemonic": "formo",
+      "created": 1725062400
     },
     {
       "id": 10,
@@ -181,7 +191,8 @@
       },
       "current_stage": "larva",
       "morph_id": 8,
-      "can_morph": true
+      "can_morph": true,
+      "created": 1727740800
     },
     {
       "id": 11,
@@ -189,7 +200,10 @@
       "imgSrc": "/images/armadillidiidae.png",
       "nickname": "Gary",
       "mnemonic": "gar",
-      "can_morph": false
+      "can_morph": false,
+      "created": 1730332800
     }
   ]
 }
+
+

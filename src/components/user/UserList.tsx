@@ -9,14 +9,12 @@ import { JSON_SERVER_URL } from "utils/constants.ts";
 export default function UserList() {
   const apiURL = JSON_SERVER_URL;
   const endPoint = "/users";
-  const { isLoading, error, data } = useFetch<UserType[]>(
-    `${apiURL}${endPoint}`,
-  );
+  const { loading, error, data } = useFetch<UserType[]>(`${apiURL}${endPoint}`);
 
   // noinspection BadExpressionStatementJS
   error && <h1>Error: ${error.message}</h1>;
 
-  return isLoading ? (
+  return loading ? (
     "Loading..."
   ) : (
     <>

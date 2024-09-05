@@ -12,4 +12,5 @@ export interface WilderKindCardType {
   taxon_id?: number;
   imgSrc?: string;
   id: string;
+  created: string;
 }

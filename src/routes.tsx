@@ -4,24 +4,23 @@ import {
   Route,
 } from "react-router-dom";
 
-import WilderKindCard from "components/card/WilderKindCard.tsx";
-import UserProfile from "components/user/UserProfile.tsx";
-import Layout_Root from "routes/_layouts/layout_root.tsx";
-import Route__Cards from "routes/cards/cards__index.tsx";
-import Route__Dashboard from "routes/dashboard/dashboard__index.tsx";
-import Route__Login from "routes/login/login__index.tsx";
-import Route__Root from "routes/Route__Root.tsx";
-import Route__Search from "routes/search/search__index.tsx";
-import Route__Users from "routes/users/users__index.tsx";
+import DefaultLayout from "DefaultLayout.tsx";
 
-import routeSearchLoader from "./search/search__index.loader.ts";
+import Route__Cards from "components/card/_route_cards.tsx";
+import WilderKindCard from "components/card/WilderKindCard.tsx";
+import Route__Dashboard from "components/dashboard/dashboard__index.tsx";
+import HomePage from "components/homepage/HomePage.tsx";
+import Route__Users from "components/user/_route_users.tsx";
+import UserProfile from "components/user/UserProfile.tsx";
+import Route__Search from "routes/search/search__index.tsx";
+
+import routeSearchLoader from "./routes/search/search__index.loader.ts";
 
 export const router: ReturnType<typeof createBrowserRouter> =
   createBrowserRouter(
     createRoutesFromElements(
-      <Route element={<Layout_Root />} path="/">
-        <Route element={<Route__Root />} index></Route>
-        <Route element={<Route__Login />} path="login"></Route>
+      <Route element={<DefaultLayout />} path="/">
+        <Route element={<HomePage />} index></Route>
         <Route element={<Route__Dashboard />} path="dashboard"></Route>
         /* /users */
         <Route path="users">

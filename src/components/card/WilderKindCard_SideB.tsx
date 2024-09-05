@@ -5,17 +5,16 @@ import {
   GridCol,
   Image,
   Loader,
-  SimpleGrid,
   Skeleton,
+  Text,
   Title,
-  Button,
 } from "@mantine/core";
-import { IconBabyCarriage, IconButterfly, IconEgg } from "@tabler/icons-react";
+import { Interweave } from "interweave";
 
 import styles from "./WilderKindCard.module.css";
 import { CardSideProps } from "./WilderKindCard.tsx";
 
-export function CardSideA({
+export function WilderKindCard_SideB({
   localData,
   remoteData,
   isLoadingRemote,
@@ -23,7 +22,7 @@ export function CardSideA({
 }: CardSideProps) {
   return (
     <Card
-      className={styles["card-front"]}
+      className={styles["card-back"]}
       key={localData?.id}
       shadow="md"
       radius="lg"
@@ -31,24 +30,23 @@ export function CardSideA({
     >
       <Grid justify="space-between" align="center">
         {localData?.nickname && (
-          <GridCol span={4}>
+          <GridCol span={9}>
             <Title order={4} size="h2">
               {localData?.nickname}
             </Title>
           </GridCol>
         )}
-        <GridCol span={4}>
-          <Button onClick={flipFn}>flip</Button>
+        <GridCol span={3}>
+          <button onClick={flipFn}>flip</button>
         </GridCol>
       </Grid>
-
       <Card.Section>
-        {localData?.imgSrc ? (
+        {!isLoadingRemote && remoteData?.default_photo ? (
           <AspectRatio ratio={1}>
             <Image
+              src={remoteData.default_photo?.medium_url}
               className={styles.drop_shadow}
-              src={localData.imgSrc}
-              alt={remoteData ? remoteData?.name : "null"}
+              alt={remoteData.name}
               loading="lazy"
             />
           </AspectRatio>
@@ -56,7 +54,6 @@ export function CardSideA({
           <Skeleton animate={false} height={500} width={500}></Skeleton>
         )}
       </Card.Section>
-
       <Title lineClamp={1} order={2} size="h3">
         {isLoadingRemote ? (
           <Loader type="dots" />
@@ -67,11 +64,14 @@ export function CardSideA({
       <Title lineClamp={1} order={3} size="h4">
         {isLoadingRemote ? <Loader type="dots" /> : remoteData?.name}
       </Title>
-      <SimpleGrid>
-        {localData?.current_stage === "egg" && <IconEgg />}
-        {localData?.current_stage === "larva" && <IconBabyCarriage />}
-        {localData?.current_stage === "adult" && <IconButterfly />}
-      </SimpleGrid>
+
+      <Text>
+        <Interweave
+          content={
+            isLoadingRemote ? "Loading..." : remoteData?.wikipedia_summary
+          }
+        />
+      </Text>
     </Card>
   );
 }

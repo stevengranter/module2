@@ -1,6 +1,6 @@
 import { AspectRatio, Skeleton, Title, Card, Text } from "@mantine/core";
 
-export function WilderKindCardSkeleton() {
+export function WilderKindCard_Skeleton() {
   return (
     <>
       <Card
@@ -14,7 +14,7 @@ export function WilderKindCardSkeleton() {
         </Title>
 
         <Card.Section>
-          <AspectRatio ratio={1 / 1}>
+          <AspectRatio ratio={1}>
             <Skeleton height={500} width={500}></Skeleton>
           </AspectRatio>
         </Card.Section>

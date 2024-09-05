@@ -6,9 +6,9 @@ import { useWilderKindData } from "hooks/useWilderKindData.ts";
 import type { iNatTaxaResponseType } from "../../models/iNatTaxaResponseType.ts";
 
 import { WilderKindCardType } from "../../models/WilderKindCardType.ts";
-import { CardSideA } from "./CardSideA.tsx";
-import { CardSideB } from "./CardSideB.tsx";
-import { WilderKindCardSkeleton } from "./WilderKindCardSkeleton.tsx";
+import { WilderKindCard_SideA } from "./WilderKindCard_SideA.tsx";
+import { WilderKindCard_SideB } from "./WilderKindCard_SideB.tsx";
+import { WilderKindCard_Skeleton } from "./WilderKindCard_Skeleton.tsx";
 
 type RemoteDataType = iNatTaxaResponseType["results"][number];
 
@@ -29,13 +29,13 @@ export default function WilderKindCard(props: { cardId?: string }) {
   const [showFlipSide, setShowFlipSide] = useState(false);
   const flipCard = useCallback(() => setShowFlipSide((prev) => !prev), []);
 
-  if (isLoading.local) return <WilderKindCardSkeleton />;
+  if (isLoading.local) return <WilderKindCard_Skeleton />;
   if (error) return <div>Error: {error}</div>;
 
   return (
     <>
       {!showFlipSide ? (
-        <CardSideA
+        <WilderKindCard_SideA
           isLoadingLocal={isLoading.local}
           isLoadingRemote={isLoading.remote}
           localData={localData}
@@ -43,7 +43,7 @@ export default function WilderKindCard(props: { cardId?: string }) {
           flipFn={flipCard}
         />
       ) : (
-        <CardSideB
+        <WilderKindCard_SideB
           isLoadingLocal={isLoading.local}
           isLoadingRemote={isLoading.remote}
           localData={localData}

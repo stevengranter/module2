@@ -6,30 +6,30 @@ interface FetchError {
 
 export function useFetch<T>(url: string): {
   error: FetchError | null;
-  isLoading: boolean;
+  loading: boolean;
   data: null | T;
 } {
   const [data, setData] = useState<null | T>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<FetchError | null>(null);
   useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
+    (async () => {
+      setLoading(true);
+      setError(null);
       try {
         const response = await fetch(url);
         if (!response.ok) {
-          throw new Error("Network response was not ok");
+          setError((error) => error as FetchError);
         }
         console.log("data fetched");
         const result: T = await response.json();
         setData(result);
-      } catch (error) {
-        setError(error as FetchError);
+      } catch (err) {
+        setError((error) => error as FetchError);
       } finally {
-        setIsLoading(false);
+        setLoading(false);
       }
-    };
-    fetchData();
+    })();
   }, [url]);
-  return { isLoading, error, data };
+  return { loading, error, data };
 }
