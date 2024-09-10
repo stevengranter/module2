@@ -23,56 +23,58 @@ export function WilderKindCard_SideA({
   flipFn,
 }: CardSideProps) {
   return (
-    <Card
-      className={styles["card-front"]}
-      key={localData?.id}
-      shadow="md"
-      radius="lg"
-      withBorder
-    >
-      <Grid justify="space-between" align="center">
-        {localData?.nickname && (
+    localData && (
+      <Card
+        className={styles["card-front"]}
+        key={localData?.id}
+        shadow="md"
+        radius="lg"
+        withBorder
+      >
+        <Grid justify="space-between" align="center">
+          {localData?.nickname && (
+            <GridCol span={4}>
+              <Title order={4} size="h2">
+                {localData?.nickname}
+              </Title>
+            </GridCol>
+          )}
           <GridCol span={4}>
-            <Title order={4} size="h2">
-              {localData?.nickname}
-            </Title>
+            <Button onClick={flipFn}>flip</Button>
           </GridCol>
-        )}
-        <GridCol span={4}>
-          <Button onClick={flipFn}>flip</Button>
-        </GridCol>
-      </Grid>
+        </Grid>
 
-      <Card.Section>
-        <Skeleton visible={isLoadingRemote}>
-          <AspectRatio ratio={1}>
-            <Image
-              className={styles.drop_shadow}
-              src={localData?.imgSrc}
-              alt={remoteData ? remoteData?.name : "null"}
-              loading="lazy"
-            />
-          </AspectRatio>
-        </Skeleton>
-      </Card.Section>
+        <Card.Section>
+          <Skeleton visible={isLoadingRemote}>
+            <AspectRatio ratio={1}>
+              <Image
+                className={styles.drop_shadow}
+                src={localData?.imgSrc}
+                alt={remoteData ? remoteData?.name : "null"}
+                loading="lazy"
+              />
+            </AspectRatio>
+          </Skeleton>
+        </Card.Section>
 
-      <Title lineClamp={1} order={2} size="h3">
-        {isLoadingRemote ? (
-          <Loader type="dots" />
-        ) : (
-          remoteData?.preferred_common_name
-        )}
-      </Title>
-      <Title lineClamp={1} order={3} size="h4">
-        {isLoadingRemote ? <Loader type="dots" /> : remoteData?.name}
-      </Title>
+        <Title lineClamp={1} order={2} size="h3">
+          {isLoadingRemote ? (
+            <Loader type="dots" />
+          ) : (
+            remoteData?.preferred_common_name
+          )}
+        </Title>
+        <Title lineClamp={1} order={3} size="h4">
+          {isLoadingRemote ? <Loader type="dots" /> : remoteData?.name}
+        </Title>
 
-      <SimpleGrid>
-        {localData?.current_stage === "egg" && <IconEgg />}
-        {localData?.current_stage === "larva" && <IconBabyCarriage />}
-        {localData?.current_stage === "adult" && <IconButterfly />}
-      </SimpleGrid>
-      <AddToCollectionButton />
-    </Card>
+        <SimpleGrid>
+          {localData?.current_stage === "egg" && <IconEgg />}
+          {localData?.current_stage === "larva" && <IconBabyCarriage />}
+          {localData?.current_stage === "adult" && <IconButterfly />}
+        </SimpleGrid>
+        {localData.id ? <AddToCollectionButton cardId={localData?.id} /> : null}
+      </Card>
+    )
   );
 }

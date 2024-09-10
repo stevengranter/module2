@@ -4,9 +4,14 @@ import { notifications } from "@mantine/notifications";
 import { IconPlus } from "@tabler/icons-react";
 
 import useAuth from "../../../hooks/useAuth.ts";
+import { useLocalStorage } from "../../../hooks/useLocalStorage.ts";
 
-export default function AddToCollectionButton() {
+export default function AddToCollectionButton({ cardId }: { cardId: string }) {
+  if (!cardId) {
+    console.error("No cardId specified");
+  }
   const { user, login } = useAuth();
+  const { setItem, getItem } = useLocalStorage();
 
   function openModal() {
     modals.openConfirmModal({
@@ -21,21 +26,43 @@ export default function AddToCollectionButton() {
       onConfirm: () => login(),
     });
   }
+  function displayNotification(title: string, message: string) {
+    notifications.show({
+      title: [title],
+      message: [message],
+    });
+  }
+  function addToCollection(cardId: string) {
+    console.log("Adding to collection...");
+    let collectionJSON = getItem("collection");
+    if (collectionJSON) {
+      const collection = JSON.parse(collectionJSON);
+      if (collection.includes(cardId)) {
+        return { title: "Error", message: "Card already in collection" };
+      } else {
+        const updatedCollection = [...collection, cardId];
+        setItem("collection", JSON.stringify(updatedCollection));
+        return { title: "Success!", message: "Card added to collection" };
+      }
+    } else {
+      collectionJSON = JSON.stringify([cardId]);
+      setItem("collection", collectionJSON);
+      return { title: "Success!", message: "Card added to collection" };
+    }
+  }
 
   function handleClick() {
     console.log("Button pressed");
     if (user) {
-      notifications.show({
-        title: "Hooray",
-        message: "Added to collection",
-      });
+      const { title, message } = addToCollection(cardId);
+      displayNotification(title, message);
     } else {
       openModal();
     }
   }
 
   return (
-    <Button onClick={handleClick} leftSection={<IconPlus />}>
+    <Button onClick={() => handleClick()} leftSection={<IconPlus />}>
       Add to collection
     </Button>
   );
