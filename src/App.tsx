@@ -21,7 +21,7 @@ if (!rootElement.innerHTML) {
         <ColorSchemeScript defaultColorScheme="auto" />
         <MantineProvider defaultColorScheme="auto" theme={defaultTheme}>
           <ModalsProvider />
-          <Notifications />
+          <Notifications position="top-center" />
           <RouterProvider router={router} />
         </MantineProvider>
       </AuthProvider>
