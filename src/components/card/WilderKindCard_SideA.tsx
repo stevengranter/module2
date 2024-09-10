@@ -66,12 +66,13 @@ export function WilderKindCard_SideA({
       <Title lineClamp={1} order={3} size="h4">
         {isLoadingRemote ? <Loader type="dots" /> : remoteData?.name}
       </Title>
-      <AddToCollectionButton />
+
       <SimpleGrid>
         {localData?.current_stage === "egg" && <IconEgg />}
         {localData?.current_stage === "larva" && <IconBabyCarriage />}
         {localData?.current_stage === "adult" && <IconButterfly />}
       </SimpleGrid>
+      <AddToCollectionButton />
     </Card>
   );
 }

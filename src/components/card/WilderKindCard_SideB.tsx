@@ -11,6 +11,7 @@ import {
 } from "@mantine/core";
 import { Interweave } from "interweave";
 
+import AddToCollectionButton from "../ui/buttons/AddToCollectionButton.tsx";
 import styles from "./WilderKindCard.module.css";
 import { CardSideProps } from "./WilderKindCard.tsx";
 
@@ -72,6 +73,7 @@ export function WilderKindCard_SideB({
           }
         />
       </Text>
+      <AddToCollectionButton />
     </Card>
   );
 }

@@ -1,37 +1,42 @@
-import { useEffect, useState } from "react";
-
-import { Button } from "@mantine/core";
+import { Button, Text } from "@mantine/core";
+import { modals } from "@mantine/modals";
 import { notifications } from "@mantine/notifications";
 import { IconPlus } from "@tabler/icons-react";
 
 import useAuth from "../../../hooks/useAuth.ts";
-// import useUser from "../../../hooks/useUser.ts";
 
 export default function AddToCollectionButton() {
-  const { user } = useAuth();
-  const [isAuthorized, setIsAuthorized] = useState(false);
+  const { user, login } = useAuth();
 
-  useEffect(() => {
+  function openModal() {
+    modals.openConfirmModal({
+      title: "Oh no!",
+      children: (
+        <Text size="sm">
+          You must be logged in to add this card to your collection.
+        </Text>
+      ),
+      labels: { confirm: "Login", cancel: "Cancel" },
+      onCancel: () => console.log("Cancel"),
+      onConfirm: () => login(),
+    });
+  }
+
+  function handleClick() {
+    console.log("Button pressed");
     if (user) {
-      setIsAuthorized(true);
+      notifications.show({
+        title: "Hooray",
+        message: "Added to collection",
+      });
     } else {
-      setIsAuthorized(false);
+      openModal();
     }
-  }, [user]);
+  }
 
   return (
-    isAuthorized && (
-      <Button
-        onClick={() =>
-          notifications.show({
-            title: "oh no!",
-            message: "User not logged in",
-          })
-        }
-        leftSection={<IconPlus />}
-      >
-        Add to collection
-      </Button>
-    )
+    <Button onClick={handleClick} leftSection={<IconPlus />}>
+      Add to collection
+    </Button>
   );
 }

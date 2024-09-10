@@ -3,6 +3,7 @@ import { RouterProvider } from "react-router-dom";
 
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
+import { ModalsProvider } from "@mantine/modals";
 import { Notifications } from "@mantine/notifications";
 import "@mantine/notifications/styles.css";
 import ReactDOM from "react-dom/client";
@@ -19,6 +20,7 @@ if (!rootElement.innerHTML) {
       <AuthProvider>
         <ColorSchemeScript defaultColorScheme="auto" />
         <MantineProvider defaultColorScheme="auto" theme={defaultTheme}>
+          <ModalsProvider />
           <Notifications />
           <RouterProvider router={router} />
         </MantineProvider>
