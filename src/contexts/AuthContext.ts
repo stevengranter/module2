@@ -1,13 +1,15 @@
 import { createContext } from "react";
 
-import { UserType } from "../models/UserType.ts";
+type AuthType = {
+  user: string | null;
+  login: () => void;
+  logout: () => void;
+};
 
-interface AuthContext {
-  user: UserType | null;
-  setUser: (user: UserType | null) => void;
-}
-
-export const AuthContext = createContext<AuthContext>({
+const AuthContext = createContext<AuthType>({
   user: null,
-  setUser: () => {},
+  login: () => {},
+  logout: () => {},
 });
+
+export default AuthContext;

@@ -22,6 +22,7 @@ export const router: ReturnType<typeof createBrowserRouter> =
       <Route element={<DefaultLayout />} path="/">
         <Route element={<HomePage />} index></Route>
         <Route element={<Route__Dashboard />} path="dashboard"></Route>
+        <Route element={<h1>Login Page</h1>} path="login"></Route>
         /* /users */
         <Route path="users">
           <Route element={<Route__Users />} index></Route>
