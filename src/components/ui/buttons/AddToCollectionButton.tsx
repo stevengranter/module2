@@ -1,10 +1,31 @@
 import { Button, Text } from "@mantine/core";
 import { modals } from "@mantine/modals";
-import { IconPlus, IconCheck, IconX } from "@tabler/icons-react";
+import useAuth from "hooks/useAuth.ts";
+import { useLocalStorage } from "hooks/useLocalStorage.ts";
 
-import useAuth from "../../../hooks/useAuth.ts";
-import { useLocalStorage } from "../../../hooks/useLocalStorage.ts";
-import { displayNotification } from "../../../lib/utils.ts";
+import { IconX, IconPlus, IconCheck } from "lib/icons.tsx";
+import { displayNotification } from "lib/utils.ts";
+
+const successNotification = {
+  title: "Success!",
+  message: "Card added to collection",
+  color: "green",
+  icon: <IconCheck />,
+};
+
+const duplicateNotification = {
+  title: "Error",
+  message: "Card already in collection",
+  icon: <IconX />,
+  color: "red",
+};
+
+const errorNotification = {
+  title: "Error",
+  message: "An unknown error occurred",
+  icon: <IconX />,
+  color: "red",
+};
 
 export default function AddToCollectionButton({ cardId }: { cardId: string }) {
   if (!cardId) {
@@ -38,12 +59,7 @@ export default function AddToCollectionButton({ cardId }: { cardId: string }) {
     let collectionJSON = getItem("collection");
     if (collectionJSON) {
       if (isCardInCollection()) {
-        return {
-          title: "Error",
-          message: "Card already in collection",
-          icon: <IconX />,
-          color: "red",
-        };
+        return duplicateNotification;
       } else {
         // else: card is not already in collection
         const collection = JSON.parse(collectionJSON);
@@ -51,25 +67,15 @@ export default function AddToCollectionButton({ cardId }: { cardId: string }) {
         setItem("collection", JSON.stringify(updatedCollection));
 
         if (isCardInCollection()) {
-          return {
-            title: "Success!",
-            message: "Card added to collection",
-            color: "green",
-            icon: <IconCheck />,
-          };
+          return successNotification;
         } else {
-          return {
-            title: "Error",
-            message: "An unknown error occurred",
-            icon: <IconX />,
-            color: "red",
-          };
+          return errorNotification;
         }
       }
     } else {
       collectionJSON = JSON.stringify([cardId]);
       setItem("collection", collectionJSON);
-      return { title: "Success!", message: "Card added to collection" };
+      return successNotification;
     }
   }
 
