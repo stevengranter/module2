@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
+import { INAT_API_URL, JSON_SERVER_URL } from "lib/constants.ts";
 import { iNatTaxaResponseType } from "models/iNatTaxaResponseType.ts";
 import { WilderKindCardType } from "models/WilderKindCardType.ts";
-import { INAT_API_URL, JSON_SERVER_URL } from "utils/constants.ts";
 
 export function useWilderKindData(cardId: string | undefined) {
   const [localData, setLocalData] = useState<WilderKindCardType | null>(null);

@@ -14,9 +14,9 @@ import {
 import { useForm } from "@mantine/form";
 
 import SortComponent from "components/ui/controls/SortComponent.tsx";
+import { JSON_SERVER_URL } from "lib/constants.ts";
 import { iNatTaxaResponseType } from "models/iNatTaxaResponseType.ts";
 import { WilderKindCardType } from "models/WilderKindCardType.ts";
-import { JSON_SERVER_URL } from "utils/constants.ts";
 
 export default function SearchForm() {
   const form = useForm({ mode: "uncontrolled" });

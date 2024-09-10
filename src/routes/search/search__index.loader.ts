@@ -1,4 +1,4 @@
-import { INAT_API_URL } from "utils/constants";
+import { INAT_API_URL } from "lib/constants";
 
 export default async function routeSearchLoader(
   queryString: undefined | string | null,

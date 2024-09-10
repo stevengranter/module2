@@ -23,7 +23,7 @@ module.exports = {
         internalPattern: [
           "components/**",
           "models/**",
-          "utils/**",
+          "lib/**",
           "routes/**",
         ],
         groups: [

@@ -98,7 +98,7 @@
 
   "cards": [
     {
-      "id": 1,
+      "id": "1",
       "taxon_id": 48586,
       "imgSrc": "/images/cepaea_nemoralis.png",
       "nickname": "Nemo",
@@ -106,7 +106,7 @@
       "created": 1704067200
     },
     {
-      "id": 2,
+      "id": "2",
       "taxon_id": 99901,
       "imgSrc": "/images/enallagma_cyathigerum.png",
       "nickname": "Cya",
@@ -114,7 +114,7 @@
       "created": 1706745600
     },
     {
-      "id": 3,
+      "id": "3",
       "taxon_id": 59442,
       "imgSrc": "/images/chrysopa_rufilabris.png",
       "nickname": "Fila",
@@ -122,7 +122,7 @@
       "created": 1709251200
     },
     {
-      "id": 4,
+      "id": "4",
       "taxon_id": 47219,
       "imgSrc": "/images/apis_mellifera.png",
       "nickname": "Melli",
@@ -130,7 +130,7 @@
       "created": 1711929600
     },
     {
-      "id": 5,
+      "id": "5",
       "taxon_id": 347465,
       "imgSrc": "/images/formica_rufibarbis.png",
       "nickname": "Barbi",
@@ -138,7 +138,7 @@
       "created": 1714521600
     },
     {
-      "id": 6,
+      "id": "6",
       "taxon_id": 48987,
       "imgSrc": "/images/hippodamia_convergens.png",
       "nickname": "Connie",
@@ -146,7 +146,7 @@
       "created": 1717200000
     },
     {
-      "id": 7,
+      "id": "7",
       "taxon_id": 81545,
       "imgSrc": "/images/lumbricus_terrestris.png",
       "nickname": "Terry",
@@ -154,7 +154,7 @@
       "created": 1719792000
     },
     {
-      "id": 8,
+      "id": "8",
       "taxon_id": 67691,
       "imgSrc": "/images/lophocampa_maculata.png",
       "nickname": "Lata",
@@ -170,7 +170,7 @@
       "created": 1722470400
     },
     {
-      "id": 9,
+      "id": "9",
       "taxon_id": 494559,
       "imgSrc": "/images/polydrusus_formosus.png",
       "nickname": "Formo",
@@ -178,7 +178,7 @@
       "created": 1725062400
     },
     {
-      "id": 10,
+      "id": "10",
       "taxon_id": 67691,
       "imgSrc": "/images/lophocampa_maculata_LARVA.png",
       "nickname": "Mac",
@@ -195,7 +195,7 @@
       "created": 1727740800
     },
     {
-      "id": 11,
+      "id": "11",
       "taxon_id": 56083,
       "imgSrc": "/images/armadillidiidae.png",
       "nickname": "Gary",
