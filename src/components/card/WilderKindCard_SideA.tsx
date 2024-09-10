@@ -9,10 +9,12 @@ import {
   Skeleton,
   Title,
   Button,
+  Group,
 } from "@mantine/core";
 import { IconBabyCarriage, IconButterfly, IconEgg } from "@tabler/icons-react";
 
 import AddToCollectionButton from "../ui/buttons/AddToCollectionButton.tsx";
+import FavoriteToggleButton from "../ui/buttons/FavoriteToggleButton.tsx";
 import styles from "./WilderKindCard.module.css";
 import { CardSideProps } from "./WilderKindCard.tsx";
 
@@ -73,7 +75,12 @@ export function WilderKindCard_SideA({
           {localData?.current_stage === "larva" && <IconBabyCarriage />}
           {localData?.current_stage === "adult" && <IconButterfly />}
         </SimpleGrid>
-        {localData.id ? <AddToCollectionButton cardId={localData?.id} /> : null}
+        {localData.id ? (
+          <Group justify="space-between">
+            <AddToCollectionButton cardId={localData?.id} />
+            <FavoriteToggleButton />
+          </Group>
+        ) : null}
       </Card>
     )
   );

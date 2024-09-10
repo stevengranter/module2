@@ -90,7 +90,7 @@ export default function AddToCollectionButton({ cardId }: { cardId: string }) {
 
   return (
     <Button onClick={() => handleClick()} leftSection={<IconPlus />}>
-      Add to collection
+      Add
     </Button>
   );
 }
