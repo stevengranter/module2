@@ -14,9 +14,7 @@ import {
   // IconHorseToy,
 } from "@tabler/icons-react";
 
-import { useAuth } from "../../../hooks/useAuth.ts";
 import classes from "./NavbarSimple.module.css";
-
 const data = [
   { icon: IconHome, label: "Home", link: "/" },
   { icon: IconUsersGroup, label: "Users", link: "users" },
@@ -27,8 +25,6 @@ const data = [
 ];
 
 export function NavbarSimple() {
-  const { user } = useAuth();
-  console.log(user);
   const [active, setActive] = useState("");
 
   function handleClick(label: string) {
@@ -65,7 +61,6 @@ export function NavbarSimple() {
 
         <Link className={classes.link} to="">
           <IconInfoCircle className={classes.linkIcon} stroke={1.5} />
-          <span>{user?.name}</span>
         </Link>
       </div>
     </nav>
