@@ -4,7 +4,7 @@ import { IconPlus, IconCheck, IconX } from "@tabler/icons-react";
 
 import useAuth from "../../../hooks/useAuth.ts";
 import { useLocalStorage } from "../../../hooks/useLocalStorage.ts";
-import { displayNotification } from "../../../utils/displayNotification.ts";
+import { displayNotification } from "../../../lib/utils.ts";
 
 export default function AddToCollectionButton({ cardId }: { cardId: string }) {
   if (!cardId) {

@@ -1,7 +1,7 @@
 import { TextInput, Button } from "@mantine/core";
 import { useForm } from "@mantine/form";
 
-import { JSON_SERVER_URL } from "../../utils/constants.ts";
+import { JSON_SERVER_URL } from "../../lib/constants.ts";
 
 export default function UserLogin() {
   // const [token, setToken] = useState(null);

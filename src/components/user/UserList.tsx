@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { Title } from "@mantine/core";
 import { useFetch } from "hooks/useFetch.ts";
 
+import { JSON_SERVER_URL } from "lib/constants.ts";
 import { UserType } from "models/UserType.ts";
-import { JSON_SERVER_URL } from "utils/constants.ts";
 
 export default function UserList() {
   const apiURL = JSON_SERVER_URL;
