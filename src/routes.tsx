@@ -14,6 +14,7 @@ import Route__Users from "components/user/_route_users.tsx";
 import UserProfile from "components/user/UserProfile.tsx";
 import Route__Search from "routes/search/search__index.tsx";
 
+import UserLogin from "./components/form/UserLogin.tsx";
 import routeSearchLoader from "./routes/search/search__index.loader.ts";
 
 export const router: ReturnType<typeof createBrowserRouter> =
@@ -22,7 +23,7 @@ export const router: ReturnType<typeof createBrowserRouter> =
       <Route element={<DefaultLayout />} path="/">
         <Route element={<HomePage />} index></Route>
         <Route element={<Route__Dashboard />} path="dashboard"></Route>
-        <Route element={<h1>Login Page</h1>} path="login"></Route>
+        <Route element={<UserLogin />} path="login"></Route>
         /* /users */
         <Route path="users">
           <Route element={<Route__Users />} index></Route>
