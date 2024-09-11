@@ -1,7 +1,9 @@
 import { createContext } from "react";
 
+import { UserType } from "../models/UserType.ts";
+
 type AuthType = {
-  user: string | null;
+  user: UserType | null;
   login: () => void;
   logout: () => void;
 };

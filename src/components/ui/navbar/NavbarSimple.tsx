@@ -43,7 +43,11 @@ function NavbarUserFooter() {
       {user
         ? userLinks.map((userLink) => {
             return (
-              <Link className={classes.link} to={userLink.to}>
+              <Link
+                className={classes.link}
+                to={userLink.to}
+                key={userLink.label}
+              >
                 <userLink.icon className={classes.linkIcon} stroke={1.5} />
                 <span>{userLink.label}</span>
               </Link>

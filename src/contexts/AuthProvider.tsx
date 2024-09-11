@@ -13,4 +13,4 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   );
 }
 
-export default AuthContext;
+// export default AuthContext;

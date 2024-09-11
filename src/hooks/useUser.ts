@@ -1,13 +1,20 @@
 import { useState } from "react";
 
+import { UserType } from "../models/UserType.ts";
+
 export default function useUser() {
-  const [user, setUser] = useState<null | string>(null);
+  const [user, setUser] = useState<null | UserType>(null);
 
   function login() {
-    setUser("userName");
+    const localUserJSON = localStorage.getItem("user");
+    const localUser = localUserJSON
+      ? JSON.parse(localUserJSON)
+      : { id: "X", name: "guestUser", collection: [] };
+    setUser(localUser);
   }
 
   function logout() {
+    localStorage.setItem("user", JSON.stringify(user));
     setUser(null);
   }
 
