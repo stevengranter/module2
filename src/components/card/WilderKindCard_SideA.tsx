@@ -78,7 +78,7 @@ export function WilderKindCard_SideA({
         {localData.id ? (
           <Group justify="space-between">
             <AddToCollectionButton cardId={localData?.id} />
-            <FavoriteToggleButton />
+            <FavoriteToggleButton cardId={localData?.id} />
           </Group>
         ) : null}
       </Card>
