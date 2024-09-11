@@ -25,34 +25,6 @@ export default function AddToCollectionButton({ cardId }: { cardId: string }) {
     });
   }
 
-  // function addToCollection(
-  //   cardId: string,
-  //   userCollection: string = "collection",
-  // ) {
-  //   console.log(`Adding cardId: ${cardId} to collection: ${userCollection}`);
-  //   let collectionJSON = getItem(userCollection);
-  //   if (collectionJSON) {
-  //     if (isCardInCollection()) {
-  //       return duplicateNotification;
-  //     } else {
-  //       // else: card is not already in collection
-  //       const collection = JSON.parse(collectionJSON);
-  //       const updatedCollection = [...collection, cardId];
-  //       setItem("collection", JSON.stringify(updatedCollection));
-  //
-  //       if (isCardInCollection()) {
-  //         return successNotification(userCollection);
-  //       } else {
-  //         return errorNotification;
-  //       }
-  //     }
-  //   } else {
-  //     collectionJSON = JSON.stringify([cardId]);
-  //     setItem("collection", collectionJSON);
-  //     return successNotification(userCollection);
-  //   }
-  // }
-
   function handleClick() {
     console.log("Button pressed");
     if (user) {

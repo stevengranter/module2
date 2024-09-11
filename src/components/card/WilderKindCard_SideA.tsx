@@ -23,6 +23,7 @@ export function WilderKindCard_SideA({
   remoteData,
   isLoadingRemote,
   flipFn,
+  // isInUserCollection,
 }: CardSideProps) {
   return (
     localData && (
