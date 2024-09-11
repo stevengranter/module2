@@ -32,7 +32,7 @@ export default function DefaultLayout() {
       padding="md"
     >
       <AppShell.Header style={{ backgroundColor: theme.colors.darkteal[3] }}>
-        <Group h="100%" px="md">
+        <Group h="100%" px="md" justify="space-between" align="flex-start">
           <Burger onClick={toggle} opened={opened} hiddenFrom="xs" size="sm" />
 
           <Image
@@ -44,8 +44,16 @@ export default function DefaultLayout() {
             py="lg"
             px="md"
           />
-          {!user && <Button onClick={login}>Login</Button>}
-          {user && <Button onClick={logout}>Logout</Button>}
+          {!user && (
+            <Button onClick={login} mt="md">
+              Login
+            </Button>
+          )}
+          {user && (
+            <Button mt="md" onClick={logout}>
+              Logout
+            </Button>
+          )}
         </Group>
       </AppShell.Header>
 
