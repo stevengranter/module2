@@ -12,7 +12,7 @@ export default function Dashboard() {
     userCollectionJSON
       ? setUserCollection(JSON.parse(userCollectionJSON))
       : null;
-  }, [user, userCollection]);
+  }, [user]);
 
   return (
     <ProtectedRoute>
