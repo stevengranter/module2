@@ -23,6 +23,7 @@ export function WilderKindCard_SideA({
   remoteData,
   isLoadingRemote,
   flipFn,
+  // isInUserCollection,
 }: CardSideProps) {
   return (
     localData && (
@@ -78,7 +79,7 @@ export function WilderKindCard_SideA({
         {localData.id ? (
           <Group justify="space-between">
             <AddToCollectionButton cardId={localData?.id} />
-            <FavoriteToggleButton />
+            <FavoriteToggleButton cardId={localData?.id} />
           </Group>
         ) : null}
       </Card>

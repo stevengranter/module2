@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "id": 0,
+      "id": "0",
       "firstName": "Default",
       "lastName": "User",
       "birthdate": "9999-000-000",
@@ -11,7 +11,7 @@
       "collection": []
     },
     {
-      "id": 1,
+      "id": "1",
       "firstName": "Alice",
       "lastName": "Smith",
       "birthdate": "1998-05-15",
@@ -19,13 +19,13 @@
       "title": "Product Manager",
       "description": "Alice is a product manager with a passion for building user-friendly applications.",
       "collection": [
-        5,
-        2,
-        1
+        "5",
+        "2",
+        "1"
       ]
     },
     {
-      "id": 2,
+      "id": "2",
       "firstName": "Bob",
       "lastName": "Johnson",
       "birthdate": "1987-11-20",
@@ -33,12 +33,12 @@
       "title": "Software Engineer",
       "description": "Bob is a skilled software engineer specializing in full-stack development.",
       "collection": [
-        2,
-        10
+        "2",
+        "10"
       ]
     },
     {
-      "id": 3,
+      "id": "3",
       "firstName": "Charlie",
       "lastName": "Williams",
       "birthdate": "1976-02-30",
@@ -46,8 +46,8 @@
       "title": "UX Designer",
       "description": "Charlie is a UX designer focused on creating intuitive user interfaces.",
       "collection": [
-        10,
-        8
+        "10",
+        "8"
       ]
     },
     {
@@ -68,31 +68,6 @@
       "imgSrc": "https://xsgames.co/randomusers/avatar.php?g=female",
       "title": "Project Coordinator",
       "description": "Eva is a project coordinator adept at multitasking and managing timelines."
-    },
-    {
-      "email": "user@gmail.com",
-      "password": "$2a$10$89412VItHr.Zi1r8P2y3L.u5nkyBLCSQm0yrh4DkjH8i89f0ndxE.",
-      "id": 6
-    },
-    {
-      "email": "someUser@gmail.com",
-      "password": "$2a$10$EB07olZA0SGNTlaTOxq4MerXepdK4T4dVWnnNjUbvfWazegmo7WZy",
-      "id": 7
-    },
-    {
-      "email": "asdad@dsada.coj",
-      "password": "$2a$10$TKb96YX55G7wyZz5GB9treK6g6abfh3LpKLzhoUOWFC4wZI/Kw8nu",
-      "id": 8
-    },
-    {
-      "email": "sadads@sdsd.com",
-      "password": "$2a$10$h1e4I.Dglv1YAzlVpems9.Q1RSMA9JnLKEGb0d5cfiUtClM1ITtfO",
-      "id": 9
-    },
-    {
-      "email": "dsadsad@jit.com",
-      "password": "$2a$10$xlbD6xeNPflv8XwV0T3spOkov0bpqC7c/R/wBH7FyFhJd2xXd9bzC",
-      "id": 10
     }
   ],
 

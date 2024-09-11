@@ -18,9 +18,13 @@ export interface CardSideProps {
   isLoadingLocal: boolean;
   isLoadingRemote: boolean;
   flipFn: () => void;
+  isInUserCollection?: boolean;
 }
 
-export default function WilderKindCard(props: { cardId?: string }) {
+export default function WilderKindCard(props: {
+  cardId?: string;
+  isInUserCollection?: false;
+}) {
   const params = useParams();
   const cardId = params.cardId || props.cardId;
 
@@ -41,6 +45,7 @@ export default function WilderKindCard(props: { cardId?: string }) {
           localData={localData}
           remoteData={remoteData}
           flipFn={flipCard}
+          isInUserCollection={props.isInUserCollection}
         />
       ) : (
         <WilderKindCard_SideB
@@ -49,6 +54,7 @@ export default function WilderKindCard(props: { cardId?: string }) {
           localData={localData}
           remoteData={remoteData}
           flipFn={flipCard}
+          isInUserCollection={props.isInUserCollection}
         />
       )}
     </>

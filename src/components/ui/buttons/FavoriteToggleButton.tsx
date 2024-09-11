@@ -6,12 +6,15 @@ import { modals } from "@mantine/modals";
 import { IconStar, IconStarFilled } from "lib/icons";
 
 import useAuth from "../../../hooks/useAuth.ts";
+import { addToCollection } from "../../../lib/utils.ts";
+import { displayNotification } from "../../../lib/utils.ts";
 
-export default function FavoriteToggleButton() {
+export default function FavoriteToggleButton({ cardId }: { cardId: string }) {
   const { user, login } = useAuth();
   const [isFavorite, setIsFavorite] = useState(false);
 
   function toggleFavorite() {
+    displayNotification(addToCollection(cardId, "favorites"));
     setIsFavorite(!isFavorite);
   }
 
