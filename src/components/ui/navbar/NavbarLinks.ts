@@ -3,7 +3,6 @@ import {
   IconBinoculars,
   IconHome,
   IconLayout,
-  IconUserCircle,
   IconUsersGroup,
 } from "@tabler/icons-react";
 
