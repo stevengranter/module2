@@ -3,7 +3,6 @@ import {
   IconBinoculars,
   IconHome,
   IconLayout,
-  IconUserCircle,
   IconUsersGroup,
 } from "@tabler/icons-react";
 
@@ -14,6 +13,5 @@ export const publicLinks = [
   { icon: IconBinoculars, label: "Search", to: "/search" },
 ];
 export const userLinks = [
-  { icon: IconUserCircle, label: "Profile", to: "/profile" },
   { icon: IconLayout, label: "Dashboard", to: "/dashboard" },
 ];
