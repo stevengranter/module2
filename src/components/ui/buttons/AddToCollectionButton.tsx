@@ -3,7 +3,10 @@ import { modals } from "@mantine/modals";
 import useAuth from "hooks/useAuth.ts";
 
 import { IconPlus } from "lib/icons.tsx";
-import { addToCollection, displayNotification } from "lib/utils.ts";
+// import { displayNotification } from "lib/utils.ts";
+
+import { addToCollection } from "../../../lib/localStorage/addToCollection.ts";
+import { displayNotification } from "../../../lib/utils.ts";
 
 export default function AddToCollectionButton({ cardId }: { cardId: string }) {
   if (!cardId) {

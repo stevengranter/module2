@@ -6,15 +6,21 @@ export default function useUser() {
   const [user, setUser] = useState<null | UserType>(null);
 
   function login() {
-    const localUserJSON = localStorage.getItem("user");
-    const localUser = localUserJSON
-      ? JSON.parse(localUserJSON)
-      : { id: "X", name: "guestUser", collection: [] };
+    let localUserJSON = localStorage.getItem("user");
+    if (!localUserJSON)
+      localUserJSON = JSON.stringify({
+        id: "X",
+        name: "guestUser",
+        collection: [],
+      });
+    localStorage.setItem("user", localUserJSON);
+    const localUser = JSON.parse(localUserJSON);
     setUser(localUser);
   }
 
   function logout() {
-    localStorage.setItem("user", JSON.stringify(user));
+    console.log(user);
+    // localStorage.setItem("user", JSON.stringify(user));
     setUser(null);
   }
 

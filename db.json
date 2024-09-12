@@ -68,9 +68,13 @@
       "imgSrc": "https://xsgames.co/randomusers/avatar.php?g=female",
       "title": "Project Coordinator",
       "description": "Eva is a project coordinator adept at multitasking and managing timelines."
+    },
+    {
+      "email": "sdasda@dsadasd.ca",
+      "password": "$2a$10$udwl5y0tUgYS9ThQB2VnJO9F7TQt6kpEJ6hWsPBLB5Boi9uV3/oC2",
+      "id": 6
     }
   ],
-
   "cards": [
     {
       "id": "1",
@@ -180,5 +184,3 @@
     }
   ]
 }
-
-
