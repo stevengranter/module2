@@ -73,6 +73,11 @@
       "email": "sdasda@dsadasd.ca",
       "password": "$2a$10$udwl5y0tUgYS9ThQB2VnJO9F7TQt6kpEJ6hWsPBLB5Boi9uV3/oC2",
       "id": 6
+    },
+    {
+      "email": "bob@here.com",
+      "password": "$2a$10$LQCAjW/iwh/J.FDw.O4Qg.Um8Vsjhi3Erye5ve3YaIVP/C8W1902G",
+      "id": 7
     }
   ],
   "cards": [

@@ -1,7 +1,7 @@
-import { TextInput, Button } from "@mantine/core";
+import { TextInput, Button, Group } from "@mantine/core";
 import { useForm } from "@mantine/form";
-
-import { JSON_SERVER_URL } from "../../lib/constants.ts";
+import AddToCollectionButton from "~/components/ui/buttons/AddToCollectionButton.tsx";
+import { JSON_SERVER_URL } from "~/lib/constants.ts";
 
 export default function UserLogin() {
   // const [token, setToken] = useState(null);
@@ -40,7 +40,11 @@ export default function UserLogin() {
         key={form.key("password")}
         {...form.getInputProps("password")}
       />
-      <Button type="submit">Submit</Button>
+      <Group mt="sm">
+        <Button type="submit">Login</Button> or
+        <Button variant="subtle">Continue as Guest</Button>
+      </Group>
+      <AddToCollectionButton cardId="2" />
     </form>
   );
 }
