@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { UserType } from "../models/UserType.ts";
 
-export default function useUser() {
+export default function useGuest() {
   const [user, setUser] = useState<null | UserType>(null);
 
   function login() {

@@ -8,5 +8,6 @@ export interface UserType {
   title?: string;
   email?: string;
   id: string;
-  name?: string;
+  username: string;
+  password: string;
 }

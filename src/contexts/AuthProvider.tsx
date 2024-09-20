@@ -1,10 +1,10 @@
 import { ReactNode } from "react";
 
-import useUser from "../hooks/useUser.ts";
+import useGuest from "../hooks/useGuest.ts";
 import AuthContext from "./AuthContext.ts";
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const { user, login, logout } = useUser();
+  const { user, login, logout } = useGuest();
 
   return (
     <AuthContext.Provider value={{ user, login, logout }}>
