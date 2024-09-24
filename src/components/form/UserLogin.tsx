@@ -1,10 +1,11 @@
 import { Alert, Button, Group, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
+import useGuest from "~/hooks/useGuest.ts";
 import { useUser } from "~/hooks/useUser.ts";
 
 export default function UserLogin() {
   const { user, login, logout, error } = useUser();
-  // const [formData, setFormData] = useState();
+  const { guest, continueAsGuest, endGuestSession } = useGuest();
 
   const form = useForm({
     mode: "uncontrolled",
@@ -45,7 +46,15 @@ export default function UserLogin() {
             <Button onClick={logout}>Logout</Button>
           )}{" "}
           or
-          <Button variant="subtle">Continue as Guest</Button>
+          {!guest ? (
+            <Button variant="subtle" onClick={continueAsGuest}>
+              Continue as Guest
+            </Button>
+          ) : (
+            <Button variant="subtle" onClick={endGuestSession}>
+              End Guest Session
+            </Button>
+          )}
         </Group>
       </form>
     </>

@@ -1,17 +1,17 @@
 import { NotificationData } from "@mantine/notifications";
 import { UserType } from "~/models/UserType.ts";
 
-function initLocalStorage() {
-  const localStorageObject = {
-    collections: {
-      favorites: [],
-      default: [],
-    },
-    name: "Guest",
-    id: "1",
-  };
-  localStorage.setItem("user", JSON.stringify(localStorageObject));
-}
+// function initLocalStorage() {
+//   const localStorageObject = {
+//     collections: {
+//       favorites: [],
+//       default: [],
+//     },
+//     name: "Guest",
+//     id: "1",
+//   };
+//   localStorage.setItem("user", JSON.stringify(localStorageObject));
+// }
 
 export function addToCollection(
   cardId: string,

@@ -1,17 +1,16 @@
 import { Button, Text } from "@mantine/core";
 import { modals } from "@mantine/modals";
 import { IconPlus } from "~/lib/icons.tsx";
-import useAuth from "hooks/useAuth.ts";
 // import { displayNotification } from "lib/utils.ts";
-
 import { addToCollection } from "~/lib/localStorage/addToCollection.ts";
 import { displayNotification } from "~/lib/utils.ts";
+import useAuth from "hooks/useAuth.ts";
 
 export default function AddToCollectionButton({ cardId }: { cardId: string }) {
   if (!cardId) {
     console.error("No cardId specified");
   }
-  const { user, login } = useAuth();
+  const { user, login, guest } = useAuth();
 
   function openModal() {
     modals.openConfirmModal({
@@ -29,7 +28,7 @@ export default function AddToCollectionButton({ cardId }: { cardId: string }) {
 
   function handleClick() {
     console.log("Button pressed");
-    if (user) {
+    if (user || guest) {
       displayNotification(addToCollection(cardId));
     } else {
       openModal();

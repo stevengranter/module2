@@ -1,11 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { UserType } from "../models/UserType.ts";
 
 export default function useGuest() {
-  const [user, setUser] = useState<null | UserType>(null);
+  const [guest, setGuest] = useState<null | UserType>(null);
 
-  function login() {
+  useEffect(() => {
+    console.log({ guest });
+  }, [guest]);
+
+  function continueAsGuest() {
+    console.log("in Guest session");
+
     let localUserJSON = localStorage.getItem("user");
     if (!localUserJSON)
       localUserJSON = JSON.stringify({
@@ -15,14 +21,15 @@ export default function useGuest() {
       });
     localStorage.setItem("user", localUserJSON);
     const localUser = JSON.parse(localUserJSON);
-    setUser(localUser);
+    setGuest(localUser);
+    console.log(localUser);
   }
 
-  function logout() {
-    console.log(user);
-    // localStorage.setItem("user", JSON.stringify(user));
-    setUser(null);
+  function endGuestSession() {
+    console.log(guest);
+    // localStorage.setItem("user", JSON.stringify(guest));
+    setGuest(null);
   }
 
-  return { user, login, logout };
+  return { guest, continueAsGuest, endGuestSession };
 }

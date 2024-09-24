@@ -17,7 +17,7 @@ import useAuth from "./hooks/useAuth.ts";
 import logo from "/images/logo2.png";
 
 export default function DefaultLayout() {
-  const { user, login, logout } = useAuth();
+  const { user, login, logout, guest, continueAsGuest } = useAuth();
   const theme = useMantineTheme();
   const [opened, { toggle }] = useDisclosure();
   const pinned = useHeadroom({ fixedAt: 150 });
@@ -58,6 +58,10 @@ export default function DefaultLayout() {
               Logout
             </Button>
           )}
+
+          {!guest ? (
+            <Button onClick={continueAsGuest}>Continue As Guest</Button>
+          ) : null}
         </Group>
       </AppShell.Header>
 

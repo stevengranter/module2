@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { JSON_SERVER_URL } from "~/lib/constants.ts";
 
 export function useUser() {
-  const [user, setUser] = useState<string | null>(null);
+  const [user, setUser] = useState<{ username: string; collection: [] } | null>(
+    null,
+  );
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    console.log("Logged in user:");
+    console.log({ user });
+  }, [user]);
 
   async function login(formData: { username: string; password: string }) {
     try {
@@ -22,7 +29,10 @@ export function useUser() {
         const jsonResponse = await response.json();
         if (jsonResponse.length > 0) {
           console.log("login successful");
-          setUser(formData.username);
+          const { username, collection } = jsonResponse[0];
+          console.log(jsonResponse[0]);
+          const userData = { username, collection };
+          setUser(userData);
           console.log(user);
         } else {
           setError("Username does not exist");
