@@ -10,7 +10,7 @@ import ReactDOM from "react-dom/client";
 import { router } from "routes.tsx";
 import { defaultTheme } from "theme/defaultTheme";
 
-import { AuthProvider } from "./contexts/AuthProvider.tsx";
+import AuthProvider from "./contexts/AuthProvider.tsx";
 
 const rootElement = document.getElementById("root")!;
 if (!rootElement.innerHTML) {

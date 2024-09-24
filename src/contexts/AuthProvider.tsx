@@ -1,10 +1,15 @@
-import { ReactNode } from "react";
+import { createContext, ReactNode } from "react";
 
-import useGuest from "../hooks/useGuest.ts";
-import AuthContext from "./AuthContext.ts";
+import { useUser } from "~/hooks/useUser.ts";
 
-export function AuthProvider({ children }: { children: ReactNode }) {
-  const { user, login, logout } = useGuest();
+export const AuthContext = createContext({
+  user: "",
+  login: () => {},
+  logout: () => {},
+});
+
+export default function AuthProvider({ children }: { children: ReactNode }) {
+  const { user, login, logout } = useUser();
 
   return (
     <AuthContext.Provider value={{ user, login, logout }}>
@@ -12,5 +17,3 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     </AuthContext.Provider>
   );
 }
-
-// export default AuthContext;

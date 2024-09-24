@@ -1,4 +1,5 @@
-import { ScrollRestoration, Outlet } from "react-router-dom";
+import { useEffect } from "react";
+import { Outlet, ScrollRestoration } from "react-router-dom";
 
 import {
   AppShell,
@@ -20,6 +21,10 @@ export default function DefaultLayout() {
   const theme = useMantineTheme();
   const [opened, { toggle }] = useDisclosure();
   const pinned = useHeadroom({ fixedAt: 150 });
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
 
   return (
     <AppShell
@@ -44,12 +49,11 @@ export default function DefaultLayout() {
             py="lg"
             px="md"
           />
-          {!user && (
+          {!user ? (
             <Button onClick={login} mt="md">
               Login
             </Button>
-          )}
-          {user && (
+          ) : (
             <Button mt="md" onClick={logout}>
               Logout
             </Button>
