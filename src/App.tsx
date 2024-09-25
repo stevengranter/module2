@@ -6,7 +6,8 @@ import "@mantine/core/styles.css";
 import { ModalsProvider } from "@mantine/modals";
 import { Notifications } from "@mantine/notifications";
 import "@mantine/notifications/styles.css";
-import ErrorBoundary from "~/components/ErrorBoundary.tsx";
+import AuthContextProvider from "~/contexts/AuthContextProvider.tsx";
+import GuestContextProvider from "~/contexts/GuestContextProvider.tsx";
 import RoleContextProvider from "~/contexts/RoleContextProvider.tsx";
 import ReactDOM from "react-dom/client";
 import { router } from "routes.tsx";
@@ -19,16 +20,20 @@ if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <StrictMode>
-      <ErrorBoundary>
+      {/*<ErrorBoundary>*/}
+      <AuthContextProvider>
         <RoleContextProvider>
-          <ColorSchemeScript defaultColorScheme="auto" />
-          <MantineProvider defaultColorScheme="auto" theme={defaultTheme}>
-            <ModalsProvider />
-            <Notifications position="top-center" />
-            <RouterProvider router={router} />
-          </MantineProvider>
+          <GuestContextProvider>
+            <ColorSchemeScript defaultColorScheme="auto" />
+            <MantineProvider defaultColorScheme="auto" theme={defaultTheme}>
+              <ModalsProvider />
+              <Notifications position="top-center" />
+              <RouterProvider router={router} />
+            </MantineProvider>
+          </GuestContextProvider>
         </RoleContextProvider>
-      </ErrorBoundary>
+      </AuthContextProvider>
+      {/*</ErrorBoundary>*/}
     </StrictMode>,
   );
 }
