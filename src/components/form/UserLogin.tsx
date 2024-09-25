@@ -1,5 +1,7 @@
-import { Alert, Button, Group, TextInput } from "@mantine/core";
+import { Alert, Group, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
+import LoginLogoutButton from "~/components/ui/buttons/LoginLogoutButton.tsx";
+import StartEndGuestSessionButton from "~/components/ui/buttons/StartEndGuestSessionButton.tsx";
 import useGuest from "~/hooks/useGuest.ts";
 import { useUser } from "~/hooks/useUser.ts";
 
@@ -40,21 +42,9 @@ export default function UserLogin() {
         )}
 
         <Group mt="sm">
-          {!user ? (
-            <Button type="submit">Login</Button>
-          ) : (
-            <Button onClick={logout}>Logout</Button>
-          )}{" "}
+          <LoginLogoutButton />
           or
-          {!guest ? (
-            <Button variant="subtle" onClick={continueAsGuest}>
-              Continue as Guest
-            </Button>
-          ) : (
-            <Button variant="subtle" onClick={endGuestSession}>
-              End Guest Session
-            </Button>
-          )}
+          <StartEndGuestSessionButton />
         </Group>
       </form>
     </>

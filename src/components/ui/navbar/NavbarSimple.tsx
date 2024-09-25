@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-import { Button } from "@mantine/core";
-import { IconLogin, IconLogout } from "@tabler/icons-react";
+import LoginLogoutButton from "~/components/ui/buttons/LoginLogoutButton.tsx";
 
 import useAuth from "../../../hooks/useAuth.ts";
 import { publicLinks, userLinks } from "./NavbarLinks.ts";
@@ -55,26 +54,7 @@ function NavbarUserFooter() {
           })
         : null}
 
-      {user ? (
-        <Button
-          onClick={logout}
-          variant="transparent"
-          leftSection={<IconLogout />}
-          color="gray"
-        >
-          Logout
-        </Button>
-      ) : (
-        <Button
-          onClick={login}
-          variant="outline"
-          leftSection={<IconLogin />}
-          // color="gray"
-          fullWidth
-        >
-          Login
-        </Button>
-      )}
+      <LoginLogoutButton fullWidth={true} />
     </div>
   );
 }

@@ -10,6 +10,7 @@ import {
   useMantineTheme,
 } from "@mantine/core";
 import { useDisclosure, useHeadroom } from "@mantine/hooks";
+import LoginLogoutButton from "~/components/ui/buttons/LoginLogoutButton.tsx";
 
 import { NavbarSimple } from "./components/ui/navbar/NavbarSimple.tsx";
 import useAuth from "./hooks/useAuth.ts";
@@ -49,15 +50,7 @@ export default function DefaultLayout() {
             py="lg"
             px="md"
           />
-          {!user ? (
-            <Button onClick={login} mt="md">
-              Login
-            </Button>
-          ) : (
-            <Button mt="md" onClick={logout}>
-              Logout
-            </Button>
-          )}
+          <LoginLogoutButton />
 
           {!guest ? (
             <Button onClick={continueAsGuest}>Continue As Guest</Button>
