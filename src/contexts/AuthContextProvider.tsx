@@ -3,6 +3,7 @@ import { createContext, PropsWithChildren, useContext, useState } from "react";
 import { JSON_SERVER_URL } from "~/lib/constants.ts";
 
 type AuthContext = {
+  id: string | null;
   isAuthenticated?: boolean | null;
   login?: (formData: { username: string; password: string }) => Promise<void>;
   logout?: () => void;
@@ -17,13 +18,14 @@ export function useAuth() {
   if (!context) {
     throw new Error("useAuth must be used within an AuthContextProvider");
   }
-  const { isAuthenticated, login, logout, error } = context;
-  return { isAuthenticated, login, logout, error };
+  const { id, isAuthenticated, login, logout, error } = context;
+  return { id, isAuthenticated, login, logout, error };
 }
 
 export default function AuthContextProvider({ children }: PropsWithChildren) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [error, setError] = useState("");
+  const [id, setId] = useState(null);
 
   async function login(
     formData: { username: string; password: string } | null = null,
@@ -56,6 +58,7 @@ export default function AuthContextProvider({ children }: PropsWithChildren) {
           // console.log(jsonResponse[0]);
           // const userData = { id, username, collections };
           // setUser(userData);
+          setId(jsonResponse[0].id);
           setIsAuthenticated(true);
           // console.log(user);
         } else {
@@ -75,7 +78,7 @@ export default function AuthContextProvider({ children }: PropsWithChildren) {
   }
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout, error }}>
+    <AuthContext.Provider value={{ id, isAuthenticated, login, logout, error }}>
       {children}
     </AuthContext.Provider>
   );
