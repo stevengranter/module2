@@ -1,13 +1,10 @@
-import { Alert, Group, TextInput } from "@mantine/core";
+import { Alert, Button, Group, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import LoginLogoutButton from "~/components/ui/buttons/LoginLogoutButton.tsx";
 import StartEndGuestSessionButton from "~/components/ui/buttons/StartEndGuestSessionButton.tsx";
-import useGuest from "~/hooks/useGuest.ts";
 import { useUser } from "~/hooks/useUser.ts";
 
 export default function UserLogin() {
-  const { user, login, logout, error } = useUser();
-  const { guest, continueAsGuest, endGuestSession } = useGuest();
+  const { user, login, error } = useUser();
 
   const form = useForm({
     mode: "uncontrolled",
@@ -38,11 +35,11 @@ export default function UserLogin() {
             />
           </>
         ) : (
-          "Already logged in"
+          "Login = success! 🥳"
         )}
 
         <Group mt="sm">
-          <LoginLogoutButton />
+          <Button type="submit">Login</Button>
           or
           <StartEndGuestSessionButton />
         </Group>

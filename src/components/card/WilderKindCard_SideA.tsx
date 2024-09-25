@@ -1,17 +1,18 @@
 import {
   AspectRatio,
+  Button,
   Card,
   Grid,
   GridCol,
+  Group,
   Image,
   Loader,
   SimpleGrid,
   Skeleton,
   Title,
-  Button,
-  Group,
 } from "@mantine/core";
 import { IconBabyCarriage, IconButterfly, IconEgg } from "@tabler/icons-react";
+import AddRemoveCardButton from "~/components/ui/buttons/AddRemoveCardButton.tsx";
 
 import AddToCollectionButton from "../ui/buttons/AddToCollectionButton.tsx";
 import FavoriteToggleButton from "../ui/buttons/FavoriteToggleButton.tsx";
@@ -78,6 +79,7 @@ export function WilderKindCard_SideA({
         </SimpleGrid>
         {localData.id ? (
           <Group justify="space-between">
+            <AddRemoveCardButton cardId={localData?.id} />
             <AddToCollectionButton cardId={localData?.id} />
             <FavoriteToggleButton cardId={localData?.id} />
           </Group>

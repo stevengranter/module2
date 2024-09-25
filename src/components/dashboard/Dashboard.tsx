@@ -8,6 +8,8 @@ export default function Dashboard() {
   const { user, guest } = useAuth();
   const [userCollection, setUserCollection] = useState<string[]>([]);
 
+  // const collections = useCollections();
+
   useEffect(() => {
     if (user || guest) {
       const localUserJSON = localStorage.getItem("user");

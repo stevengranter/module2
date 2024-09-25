@@ -15,7 +15,7 @@ export default function useGuest() {
     let localUserJSON = localStorage.getItem("user");
     if (!localUserJSON)
       localUserJSON = JSON.stringify({
-        id: "X",
+        id: "guest",
         name: "guestUser",
         collection: [],
       });

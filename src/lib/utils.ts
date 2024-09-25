@@ -5,19 +5,3 @@ export function displayNotification(notificationData: NotificationData) {
     ...notificationData,
   });
 }
-
-export function login() {
-  console.log("login()");
-}
-
-export function logout() {
-  console.log("logout()");
-}
-
-export function startGuestSession() {
-  console.log("startGuestSession()");
-}
-
-export function endGuestSession() {
-  console.log("endGuestSession()");
-}

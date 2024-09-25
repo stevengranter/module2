@@ -1,12 +1,13 @@
 import { useContext } from "react";
 
-import { Button } from "@mantine/core";
+import { Button, ButtonProps } from "@mantine/core";
 import { IconLogin, IconLogout } from "@tabler/icons-react";
 import { RoleContext } from "~/contexts/RoleContextProvider.tsx";
-import { login, logout } from "~/lib/utils.ts";
+import { useUser } from "~/hooks/useUser.ts";
 
-export default function LoginLogoutButton(props: any) {
+export default function LoginLogoutButton(props: ButtonProps) {
   const { isAuthenticated } = useContext(RoleContext);
+  const { login, logout } = useUser();
 
   if (!isAuthenticated) {
     return (
