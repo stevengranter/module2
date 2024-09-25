@@ -1,10 +1,5 @@
-import { useContext } from "react";
-
 import { Button } from "@mantine/core";
-import { IconMinus } from "@tabler/icons-react";
-import { RoleContext } from "~/contexts/RoleContextProvider.tsx";
 import useCollections from "~/hooks/useCollections.ts";
-import { useUser } from "~/hooks/useUser.ts";
 import { IconPlus } from "~/lib/icons.tsx";
 
 // function openModal() {
@@ -21,12 +16,19 @@ import { IconPlus } from "~/lib/icons.tsx";
 //   });
 // }
 
-function AddCardButton({ cardId }) {
-  const { collections, getCollections } = useCollections();
-  const { user } = useUser();
-  console.log(getCollections);
+interface AddCardButtonProps {
+  cardId?: string | undefined;
+}
+
+function AddCardButton({ cardId }: AddCardButtonProps) {
+  // { cardId }: AddCardButtonProps
+  console.log(cardId);
+  // { cardId }
+  const { getCollections } = useCollections();
+  // const { user } = useContext(RoleContext);
+  // console.log(getCollections);
   function handleClick() {
-    console.log(getCollections("1"));
+    console.log(getCollections());
   }
 
   return (
@@ -36,19 +38,19 @@ function AddCardButton({ cardId }) {
   );
 }
 
-function RemoveCardButton({ cardId }) {
-  function removeCard() {
-    console.log(`removeCard(${cardId})`);
-  }
-  return (
-    <Button onClick={removeCard} leftSection={<IconMinus />}>
-      Remove from collection
-    </Button>
-  );
-}
+// function RemoveCardButton({ cardId : string}) {
+//   function removeCard() {
+//     console.log(`removeCard(${cardId})`);
+//   }
+//   return (
+//     <Button onClick={removeCard} leftSection={<IconMinus />}>
+//       Remove from collection
+//     </Button>
+//   );
+// }
 
-export default function AddRemoveCardButton({ cardId }: { cardId: string }) {
-  const { role, user, isAuthenticated } = useContext(RoleContext);
+export default function AddRemoveCardButton({ cardId }: AddCardButtonProps) {
+  // const { role, user, isAuthenticated } = useContext(RoleContext);
   return <AddCardButton cardId={cardId} />;
 
   // if (permissionMap[role].includes("edit-collection")) {

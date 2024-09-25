@@ -1,24 +1,25 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
-import useAuth from "hooks/useAuth";
+import { RoleContext } from "~/contexts/RoleContextProvider.tsx";
 
+// import useAuth from "hooks/useAuth";
 import CardCollection from "components/card/CardCollection";
 
 export default function Dashboard() {
-  const { user, guest } = useAuth();
+  const { user } = useContext(RoleContext);
   const [userCollection, setUserCollection] = useState<string[]>([]);
 
   // const collections = useCollections();
 
   useEffect(() => {
-    if (user || guest) {
+    if (user) {
       const localUserJSON = localStorage.getItem("user");
       const localUser = localUserJSON ? JSON.parse(localUserJSON) : null;
       const collection = localUser?.collection ?? [];
       console.log(collection);
       setUserCollection(collection);
     }
-  }, [user, guest]);
+  }, [user]);
 
   return (
     <>

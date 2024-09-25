@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
 import LoginLogoutButton from "~/components/ui/buttons/LoginLogoutButton.tsx";
+import { RoleContext } from "~/contexts/RoleContextProvider.tsx";
 
-import useAuth from "../../../hooks/useAuth.ts";
 import { publicLinks, userLinks } from "./NavbarLinks.ts";
 import classes from "./NavbarSimple.module.css";
 
@@ -36,7 +36,7 @@ export function NavbarSimple() {
 }
 
 function NavbarUserFooter() {
-  const { user, logout, login } = useAuth();
+  const { user } = useContext(RoleContext);
   return (
     <div className={classes.footer}>
       {user

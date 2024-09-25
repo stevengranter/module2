@@ -1,18 +1,19 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { Button, ButtonProps } from "@mantine/core";
 import { IconLogin, IconLogout } from "@tabler/icons-react";
 import { RoleContext } from "~/contexts/RoleContextProvider.tsx";
-import { useUser } from "~/hooks/useUser.ts";
 
 export default function LoginLogoutButton(props: ButtonProps) {
-  const { isAuthenticated } = useContext(RoleContext);
-  const { login, logout } = useUser();
+  const { isAuthenticated, logout } = useContext(RoleContext);
+  const navigate = useNavigate();
+  // const { login, logout } = useUser();
 
   if (!isAuthenticated) {
     return (
       <Button
-        onClick={login}
+        onClick={() => navigate("/login")}
         variant="outline"
         leftSection={<IconLogin />}
         {...props}

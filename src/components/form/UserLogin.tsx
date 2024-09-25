@@ -1,10 +1,13 @@
+import { useContext } from "react";
+
 import { Alert, Button, Group, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import StartEndGuestSessionButton from "~/components/ui/buttons/StartEndGuestSessionButton.tsx";
-import { useUser } from "~/hooks/useUser.ts";
+import { RoleContext } from "~/contexts/RoleContextProvider.tsx";
 
 export default function UserLogin() {
-  const { user, login, error } = useUser();
+  const { user, login, logout, error } = useContext(RoleContext);
+  // const navigate = useNavigate();
 
   const form = useForm({
     mode: "uncontrolled",
@@ -14,7 +17,9 @@ export default function UserLogin() {
   return (
     <>
       {/*{user ? "user logged in" : "user logged out"}*/}
-      <form onSubmit={form.onSubmit((values) => login(values))}>
+      <form
+        onSubmit={form.onSubmit((values) => (login ? login(values) : null))}
+      >
         {error && <Alert>{error}</Alert>}
 
         {!user ? (
@@ -39,9 +44,17 @@ export default function UserLogin() {
         )}
 
         <Group mt="sm">
-          <Button type="submit">Login</Button>
-          or
-          <StartEndGuestSessionButton />
+          {!user ? (
+            <Button type="submit">Login</Button>
+          ) : (
+            <Button onClick={logout}>Logout</Button>
+          )}
+
+          {!user && (
+            <>
+              or <StartEndGuestSessionButton />
+            </>
+          )}
         </Group>
       </form>
     </>

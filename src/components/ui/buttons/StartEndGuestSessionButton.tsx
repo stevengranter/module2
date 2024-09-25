@@ -1,8 +1,10 @@
+import { useContext } from "react";
+
 import { Button } from "@mantine/core";
-import { useUser } from "~/hooks/useUser.ts";
+import { RoleContext } from "~/contexts/RoleContextProvider.tsx";
 
 export default function StartEndGuestSessionButton() {
-  const { user, startGuestSession, endGuestSession } = useUser();
+  const { user, startGuestSession, endGuestSession } = useContext(RoleContext);
   // const { role } = useContext(RoleContext);
 
   if (!user || user.id !== "guest") {

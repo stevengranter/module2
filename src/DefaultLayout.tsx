@@ -1,24 +1,17 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { Outlet, ScrollRestoration } from "react-router-dom";
 
-import {
-  AppShell,
-  Burger,
-  Button,
-  Group,
-  Image,
-  useMantineTheme,
-} from "@mantine/core";
+import { AppShell, Burger, Group, Image, useMantineTheme } from "@mantine/core";
 import { useDisclosure, useHeadroom } from "@mantine/hooks";
 import LoginLogoutButton from "~/components/ui/buttons/LoginLogoutButton.tsx";
+import { RoleContext } from "~/contexts/RoleContextProvider.tsx";
 
 import { NavbarSimple } from "./components/ui/navbar/NavbarSimple.tsx";
-import useAuth from "./hooks/useAuth.ts";
 
 import logo from "/images/logo2.png";
 
 export default function DefaultLayout() {
-  const { user, login, logout, guest, continueAsGuest } = useAuth();
+  const { user } = useContext(RoleContext);
   const theme = useMantineTheme();
   const [opened, { toggle }] = useDisclosure();
   const pinned = useHeadroom({ fixedAt: 150 });
@@ -51,15 +44,12 @@ export default function DefaultLayout() {
             px="md"
           />
           <LoginLogoutButton />
-
-          {!guest ? (
-            <Button onClick={continueAsGuest}>Continue As Guest</Button>
-          ) : null}
         </Group>
       </AppShell.Header>
 
       <AppShell.Navbar>
         <NavbarSimple />
+        {user && user.username}
       </AppShell.Navbar>
 
       <AppShell.Main>

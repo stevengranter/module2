@@ -10,6 +10,7 @@ export const publicLinks = [
   { icon: IconHome, label: "Home", to: "/" },
   { icon: IconUsersGroup, label: "Users", to: "users" },
   { label: "WilderKind Index", icon: IconArchive, to: "/cards" },
+  { label: "Dashboard", icon: IconLayout, to: "/dashboard" },
   { icon: IconBinoculars, label: "Search", to: "/search" },
 ];
 export const userLinks = [

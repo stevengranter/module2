@@ -1,6 +1,5 @@
 import { Grid, GridCol } from "@mantine/core";
 
-// import useAuth from "../../hooks/useAuth.ts";
 import WilderKindCard from "./WilderKindCard.tsx";
 
 export default function CardCollection({

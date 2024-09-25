@@ -1,17 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { Button, Text } from "@mantine/core";
 import { modals } from "@mantine/modals";
+import { RoleContext } from "~/contexts/RoleContextProvider.tsx";
+import { addToCollection } from "~/lib/localStorage/addToCollection.ts";
+import { displayNotification } from "~/lib/utils.ts";
 
 import { IconStar, IconStarFilled } from "lib/icons";
 
-import useAuth from "../../../hooks/useAuth.ts";
-import { addToCollection } from "../../../lib/localStorage/addToCollection.ts";
-import { displayNotification } from "../../../lib/utils.ts";
-
 export default function FavoriteToggleButton({ cardId }: { cardId: string }) {
-  const { user, login } = useAuth();
+  const { user } = useContext(RoleContext);
   const [isFavorite, setIsFavorite] = useState(false);
+  const navigate = useNavigate();
 
   function toggleFavorite() {
     displayNotification(addToCollection(cardId, "favorites"));
@@ -25,7 +26,7 @@ export default function FavoriteToggleButton({ cardId }: { cardId: string }) {
         children: <Text size="sm">You must be logged in to do that.</Text>,
         labels: { confirm: "Login", cancel: "Cancel" },
         onCancel: () => console.log("Cancel"),
-        onConfirm: () => login(),
+        onConfirm: () => navigate("/login"),
       });
     } else {
       toggleFavorite();
