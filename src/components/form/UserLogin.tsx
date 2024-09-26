@@ -1,12 +1,10 @@
-import { useContext } from "react";
-
 import { Alert, Button, Group, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import StartEndGuestSessionButton from "~/components/ui/buttons/StartEndGuestSessionButton.tsx";
-import { RoleContext } from "~/contexts/RoleContextProvider.tsx";
+import { useAuth } from "~/contexts/AuthContextProvider.tsx";
 
 export default function UserLogin() {
-  const { user, login, logout, error } = useContext(RoleContext);
+  const { login, logout, error, isAuthenticated } = useAuth();
   // const navigate = useNavigate();
 
   const form = useForm({
@@ -22,7 +20,7 @@ export default function UserLogin() {
       >
         {error && <Alert>{error}</Alert>}
 
-        {!user ? (
+        {!isAuthenticated ? (
           <>
             <TextInput
               description="Username"
@@ -44,13 +42,13 @@ export default function UserLogin() {
         )}
 
         <Group mt="sm">
-          {!user ? (
+          {!isAuthenticated ? (
             <Button type="submit">Login</Button>
           ) : (
             <Button onClick={logout}>Logout</Button>
           )}
 
-          {!user && (
+          {!isAuthenticated && (
             <>
               or <StartEndGuestSessionButton />
             </>

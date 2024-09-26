@@ -7,6 +7,7 @@ import {
 } from "react";
 
 import { useAuth } from "~/contexts/AuthContextProvider.tsx";
+import { JSON_SERVER_URL } from "~/lib/constants.ts";
 
 type UserDataContext = {
   username: string | null;
@@ -34,48 +35,44 @@ export default function UserDataContextProvider({
   children,
 }: PropsWithChildren) {
   const [userData, setUserData] = useState<UserDataContext | null>(null);
-  const [_error, _setError] = useState("");
+  const [_error, setError] = useState("");
   const { id } = useAuth();
 
   useEffect(() => {
-    setUserData({ username: "Bob", collections: [] });
-    // const userDataJSON = fetchUserData();
-    // if (userDataJSON) setUserData(userDataJSON);
+    fetchUserData();
   }, [id]);
 
-  // async function fetchUserData() {
-  //   try {
-  //     const response = await fetch(`${JSON_SERVER_URL}/users?id=${id}`, {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
-  //
-  //     if (response.ok) {
-  //       console.log("got response");
-  //
-  //       const jsonResponse = await response.json();
-  //       console.log(jsonResponse);
-  //       if (jsonResponse.length > 0) {
-  //         console.log("login successful");
-  //         const { id, username, collections } = jsonResponse[0];
-  //         // console.log(jsonResponse[0]);
-  //
-  //         // setUser(userData);
-  //         setUserData({ id, username, collections });
-  //         // console.log(user);
-  //       } else {
-  //         setError("Username does not exist");
-  //       }
-  //     } else {
-  //       setError(`Error logging in: ${response.status} ${response.statusText}`);
-  //     }
-  //   } catch (error) {
-  //     setError(`Error fetching user data: ${error}`);
-  //   }
-  // }
-  //
+  async function fetchUserData() {
+    try {
+      const response = await fetch(`${JSON_SERVER_URL}/users?id=${id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        const jsonResponse = await response.json();
+        console.log(jsonResponse);
+        if (jsonResponse.length > 0) {
+          console.log("login successful");
+          const { username, collections } = jsonResponse[0];
+          // console.log(jsonResponse[0]);
+
+          // setUser(userData);
+          setUserData({ username, collections });
+          // console.log(user);
+        } else {
+          setError("Username does not exist");
+        }
+      } else {
+        setError(`Error logging in: ${response.status} ${response.statusText}`);
+      }
+    } catch (error) {
+      setError(`Error fetching user data: ${error}`);
+    }
+  }
+
   return (
     <UserDataContext.Provider value={userData}>
       {children}
