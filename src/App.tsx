@@ -9,7 +9,7 @@ import "@mantine/notifications/styles.css";
 import AuthContextProvider from "~/contexts/AuthContextProvider.tsx";
 import GuestContextProvider from "~/contexts/GuestContextProvider.tsx";
 import RoleContextProvider from "~/contexts/RoleContextProvider.tsx";
-import UserDataContextProvider from "~/contexts/UserDataContext.tsx";
+import UserDataContextProvider from "~/contexts/UserDataContextProvider.tsx";
 import ReactDOM from "react-dom/client";
 import { router } from "routes.tsx";
 import { defaultTheme } from "theme/defaultTheme";
@@ -23,18 +23,18 @@ if (!rootElement.innerHTML) {
     <StrictMode>
       {/*<ErrorBoundary>*/}
       <AuthContextProvider>
-        <UserDataContextProvider>
-          <RoleContextProvider>
-            <GuestContextProvider>
+        <RoleContextProvider>
+          <GuestContextProvider>
+            <UserDataContextProvider>
               <ColorSchemeScript defaultColorScheme="auto" />
               <MantineProvider defaultColorScheme="auto" theme={defaultTheme}>
                 <ModalsProvider />
                 <Notifications position="top-center" />
                 <RouterProvider router={router} />
               </MantineProvider>
-            </GuestContextProvider>
-          </RoleContextProvider>
-        </UserDataContextProvider>
+            </UserDataContextProvider>
+          </GuestContextProvider>
+        </RoleContextProvider>
       </AuthContextProvider>
       {/*</ErrorBoundary>*/}
     </StrictMode>,

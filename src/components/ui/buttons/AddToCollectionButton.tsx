@@ -1,9 +1,7 @@
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Button, Text } from "@mantine/core";
 import { modals } from "@mantine/modals";
-import { RoleContext } from "~/contexts/RoleContextProvider.tsx";
 import { IconPlus } from "~/lib/icons.tsx";
 // import { displayNotification } from "lib/utils.ts";
 import { addToCollection } from "~/lib/localStorage/addToCollection.ts";
@@ -13,7 +11,7 @@ export default function AddToCollectionButton({ cardId }: { cardId: string }) {
   if (!cardId) {
     console.error("No cardId specified");
   }
-  const { user } = useContext(RoleContext);
+
   const navigate = useNavigate();
 
   function openModal() {

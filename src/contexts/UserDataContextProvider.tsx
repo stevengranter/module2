@@ -22,11 +22,11 @@ const UserDataContext = createContext<UserDataContext | null>({
 export function useUserData() {
   const context = useContext(UserDataContext);
 
-  if (!context) {
-    throw new Error(
-      "useUserData must be used within a UserDataContextProvider",
-    );
-  }
+  // if (!context) {
+  //   throw new Error(
+  //     "useUserData must be used within a UserDataContextProvider",
+  //   );
+  // }
   const { username, collections } = context;
   return { username, collections };
 }

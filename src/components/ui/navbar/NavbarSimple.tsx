@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
 import LoginLogoutButton from "~/components/ui/buttons/LoginLogoutButton.tsx";
+import StartEndGuestSessionButton from "~/components/ui/buttons/StartEndGuestSessionButton.tsx";
 import { RoleContext } from "~/contexts/RoleContextProvider.tsx";
 
 import { publicLinks, userLinks } from "./NavbarLinks.ts";
@@ -55,6 +56,7 @@ function NavbarUserFooter() {
         : null}
 
       <LoginLogoutButton fullWidth={true} />
+      <StartEndGuestSessionButton />
     </div>
   );
 }

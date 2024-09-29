@@ -1,32 +1,32 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-import { RoleContext } from "~/contexts/RoleContextProvider.tsx";
-import { Role } from "~/contexts/Roles.ts";
+import { useGuest } from "~/contexts/GuestContextProvider.tsx";
 
-type Collection = Record<string, string[]>;
+type Collection = { name: string; items: [] };
 type Collections = Collection[];
 
 export default function useCollections() {
-  const { role, user, isAuthenticated } = useContext(RoleContext);
   const [collections, setCollections] = useState<Collections | null>(null);
-  // const [error, setError] = useState<string | null>(null);
-  console.log({ user });
+  const { guest } = useGuest();
+  // const { user } = useUserData();
+  const [error, setError] = useState<string | null>(null);
+
   useEffect(() => {
-    if (user && user.id === "guest") {
+    if (guest) {
       try {
         const guestJSON = localStorage.getItem("guest");
-        console.log(guestJSON);
-        if (guestJSON) {
-          console.log(guestJSON);
+        const guest = JSON.parse(guestJSON);
+        if (guest && guest.collections) {
+          setCollections(guest.collections);
         }
       } catch {
-        throw new Error("Something went wrong");
+        setError("Something went wrong");
       }
     }
-  }, [user]);
+  }, [guest]);
 
   function getCollections() {
-    if (user && user.id === "guest") {
+    if (guest) {
       getGuestCollections();
     }
   }
@@ -42,30 +42,30 @@ export default function useCollections() {
   function getGuestCollections() {
     // const guestJSON = localStorage.getItem("guest");
     // const guestObj = JSON.parse(guestJSON);
-    if (user && !user.collections) {
+    if (guest && !guest.collections) {
       console.log("Guest user has no collections");
     }
   }
 
-  if (isAuthenticated) {
-    console.log("Fetching collections from database...");
-    // const myCollections = [
-    //   { default: ["10"] },
-    //   { favorites: ["1", "2", "3"] },
-    //   { wishlist: ["6", "7", "8"] },
-    // ];
-    // setCollections([...myCollections]);
-  } else if (role === Role.Guest) {
-    console.log("Fetching collections from localStorage");
-    const myCollections = [{ favorites: ["4", "5", "6"] }];
-    setCollections([...myCollections]);
-  } else {
-    // console.log("No collections defined");
-  }
+  // if (isAuthenticated) {
+  //   console.log("Fetching collections from database...");
+  //   // const myCollections = [
+  //   //   { default: ["10"] },
+  //   //   { favorites: ["1", "2", "3"] },
+  //   //   { wishlist: ["6", "7", "8"] },
+  //   // ];
+  //   // setCollections([...myCollections]);
+  // } else if (role === Role.Guest) {
+  //   console.log("Fetching collections from localStorage");
+  //   const myCollections = [{ favorites: ["4", "5", "6"] }];
+  //   setCollections([...myCollections]);
+  // } else {
+  //   // console.log("No collections defined");
+  // }
   return {
     collections,
     getCollections,
     setCollections,
-    getGuestCollections,
+    error,
   };
 }

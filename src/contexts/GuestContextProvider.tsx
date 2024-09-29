@@ -46,7 +46,7 @@ export default function GuestContextProvider({ children }: PropsWithChildren) {
     if (!localUserJSON)
       localUserJSON = JSON.stringify({
         id: "guest",
-        name: "guestUser",
+        username: "guest",
         collections: [{ starter: ["1", "2", "3"] }],
       });
     localStorage.setItem("guest", localUserJSON);

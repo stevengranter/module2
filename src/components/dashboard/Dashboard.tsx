@@ -1,34 +1,39 @@
-import { useState } from "react";
-
 // import useAuth from "hooks/useAuth";
+import { useEffect } from "react";
+
+import { useGuest } from "~/contexts/GuestContextProvider.tsx";
+import useCollections from "~/hooks/useCollections.ts";
+
 import CardCollection from "components/card/CardCollection";
 
 export default function Dashboard() {
-  // const { isAuthenticated } = useAuth();
-  // const { guest } = useGuest();
-  // const { collections } = useUserData();
+  const { guest } = useGuest();
+  const { collections } = useCollections();
 
-  const [userCollection, _setUserCollection] = useState<string[]>([]);
-
-  // const collections = useCollections();
-
-  // useEffect(() => {
-  //   if (!isAuthenticated && collections) {
-  //     // const localUserJSON = localStorage.getItem("user");
-  //     // const localUser = localUserJSON ? JSON.parse(localUserJSON) : null;
-  //     // const collection = localUser?.collection ?? [];
-  //     // console.log(collection);
-  //     setUserCollection(collections.default);
-  //   } else if (guest) {
-  //     setUserCollection(guest.collection);
-  //   }
-  // }, [!isAuthenticated, guest]);
+  useEffect(() => {
+    console.log({ collections });
+  }, [guest]);
 
   return (
     <>
       <h2>Dashboard</h2>
-      <h3>Collection</h3>
-      <CardCollection collection={userCollection} />
+      <h3>Collections</h3>
+      {collections &&
+        collections.map((collection) => {
+          return (
+            <>
+              <h4>{collection.name}</h4>
+              {collection.items.length > 0 ? (
+                <CardCollection
+                  collection={collection.items}
+                  key={collection.name}
+                />
+              ) : (
+                "No items in collection"
+              )}
+            </>
+          );
+        })}
     </>
   );
 }

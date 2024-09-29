@@ -45,7 +45,7 @@ export default function WilderKindCard(props: {
           localData={localData}
           remoteData={remoteData}
           flipFn={flipCard}
-          isInUserCollection={props.isInUserCollection}
+          // isInUserCollection={props.isInUserCollection}
         />
       ) : (
         <WilderKindCard_SideB
@@ -54,7 +54,7 @@ export default function WilderKindCard(props: {
           localData={localData}
           remoteData={remoteData}
           flipFn={flipCard}
-          isInUserCollection={props.isInUserCollection}
+          // isInUserCollection={props.isInUserCollection}
         />
       )}
     </>

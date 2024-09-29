@@ -7,7 +7,6 @@ export default function CardCollection({
 }: {
   collection: string[] | undefined;
 }) {
-  // const { user } = useAuth();
   return (
     <Grid gutter={{ xs: 16, sm: 20, lg: 24 }}>
       {collection?.map((cardId) => {

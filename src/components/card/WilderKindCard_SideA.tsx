@@ -14,7 +14,6 @@ import {
 import { IconBabyCarriage, IconButterfly, IconEgg } from "@tabler/icons-react";
 import AddRemoveCardButton from "~/components/ui/buttons/AddRemoveCardButton.tsx";
 
-import AddToCollectionButton from "../ui/buttons/AddToCollectionButton.tsx";
 import FavoriteToggleButton from "../ui/buttons/FavoriteToggleButton.tsx";
 import styles from "./WilderKindCard.module.css";
 import { CardSideProps } from "./WilderKindCard.tsx";
@@ -80,7 +79,6 @@ export function WilderKindCard_SideA({
         {localData.id ? (
           <Group justify="space-between">
             <AddRemoveCardButton cardId={localData?.id} />
-            <AddToCollectionButton cardId={localData?.id} />
             <FavoriteToggleButton cardId={localData?.id} />
           </Group>
         ) : null}
