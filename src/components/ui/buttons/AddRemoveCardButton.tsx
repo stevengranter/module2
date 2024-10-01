@@ -20,15 +20,15 @@ interface AddCardButtonProps {
   cardId?: string | undefined;
 }
 
-function AddCardButton({ cardId }: AddCardButtonProps) {
+function AddCardButton({ _cardId }: AddCardButtonProps) {
   // { cardId }: AddCardButtonProps
-  console.log(cardId);
+  // console.log(cardId);
   // { cardId }
   const { getCollections } = useCollections();
   // const { user } = useContext(RoleContext);
   // console.log(getCollections);
   function handleClick() {
-    console.log(getCollections());
+    // console.log(getCollections());
   }
 
   return (

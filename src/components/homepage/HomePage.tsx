@@ -1,8 +1,8 @@
 import { Grid, Title } from "@mantine/core";
+import { useFetch } from "~/hooks/useFetch.ts";
+import { JSON_SERVER_URL } from "~/lib/constants.ts";
+import { WilderKindCardType } from "~/models/WilderKindCardType.ts";
 
-import { useFetch } from "../../hooks/useFetch.ts";
-import { JSON_SERVER_URL } from "../../lib/constants.ts";
-import { WilderKindCardType } from "../../models/WilderKindCardType.ts";
 import CardCollection from "../card/CardCollection.tsx";
 
 export default function HomePage() {
@@ -41,14 +41,14 @@ function MostRecentCards({
   );
 
   if (data) {
-    console.log({ data });
+    // console.log({ data });
     const sortedCards = data.sort(
       (a, b) => Number(b.created) - Number(a.created),
     );
     const selectedCards = sortedCards.slice(0, cardQuantity);
-    console.log(selectedCards);
+    // console.log(selectedCards);
     const selectedCardsArray = selectedCards.map((card) => card.id);
-    console.log(selectedCardsArray);
+    // console.log(selectedCardsArray);
     // const selectedCardsIds selectedCards.map(card => card.id)
 
     return !loading && <CardCollection collection={selectedCardsArray} />;

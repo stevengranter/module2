@@ -39,7 +39,7 @@ export default function UserDataContextProvider({
   const { id } = useAuth();
 
   useEffect(() => {
-    fetchUserData();
+    fetchUserData().then();
   }, [id]);
 
   async function fetchUserData() {
@@ -53,7 +53,7 @@ export default function UserDataContextProvider({
 
       if (response.ok) {
         const jsonResponse = await response.json();
-        console.log(jsonResponse);
+        // console.log(jsonResponse);
         if (jsonResponse.length > 0) {
           console.log("login successful");
           const { username, collections } = jsonResponse[0];

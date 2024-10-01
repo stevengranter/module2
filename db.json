@@ -14,10 +14,17 @@
     },
     {
       "birthdate": "1998-05-15",
-      "collection": [
-        "5",
-        "2",
-        "1"
+      "collections": [
+        {
+          "id": "c991fb44-1a27-4b5d-be0a-dda631d1c5c6",
+          "name": "favorites",
+          "items": [4,6,7]
+        },
+        {
+          "id": "04f64e08-d838-4ab1-9f67-bb50cbb8e9e2",
+          "name":  "default",
+          "items": [1,2,3]
+        }
       ],
       "description": "Alice is a product manager with a passion for building user-friendly applications.",
       "firstName": "Alice",

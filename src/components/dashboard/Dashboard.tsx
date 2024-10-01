@@ -1,6 +1,7 @@
 // import useAuth from "hooks/useAuth";
 import { useEffect } from "react";
 
+import WIPComponent from "~/components/wip/WIPComponent.tsx";
 import { useGuest } from "~/contexts/GuestContextProvider.tsx";
 import useCollections from "~/hooks/useCollections.ts";
 
@@ -17,6 +18,7 @@ export default function Dashboard() {
   return (
     <>
       <h2>Dashboard</h2>
+      <WIPComponent />
       <h3>Collections</h3>
       {collections &&
         collections.map((collection) => {
