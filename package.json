@@ -17,10 +17,12 @@
     "@mantine/modals": "^7.12.2",
     "@mantine/notifications": "^7.12.2",
     "@tabler/icons-react": "^3.14.0",
+    "@types/uuid": "^10.0.0",
     "interweave": "^13.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.26.1"
+    "react-router-dom": "^6.26.1",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "@html-eslint/eslint-plugin": "^0.26.0",

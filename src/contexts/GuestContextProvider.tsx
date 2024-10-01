@@ -6,8 +6,16 @@ import {
   useState,
 } from "react";
 
+import { v4 } from "uuid";
+
+type Guest = {
+  id: typeof v4;
+  name: string;
+  collections: [];
+};
+
 type GuestContext = {
-  guest?: { id: string } | null;
+  guest?: Guest | null;
   startGuestSession?: () => void;
   endGuestSession?: () => void;
   error?: string | undefined | null;
@@ -35,28 +43,46 @@ export default function GuestContextProvider({ children }: PropsWithChildren) {
   const [error, _setError] = useState(null);
 
   useEffect(() => {
-    console.log("Guest is now:");
-    console.table({ guest });
+    if (guest) saveGuestToLocalStorage();
   }, [guest]);
 
-  function startGuestSession() {
-    console.log("in Guest session");
-
-    let localUserJSON = localStorage.getItem("guest");
-    if (!localUserJSON)
-      localUserJSON = JSON.stringify({
+  function loadGuestFromLocalStorage() {
+    console.log("Loading guest from LocalStorage: ");
+    const localGuestJSON = localStorage.getItem("guest");
+    if (typeof localGuestJSON === "string") {
+      const localGuest = JSON.parse(localGuestJSON) ?? {
         id: "guest",
         username: "guest",
-        collections: [{ starter: ["1", "2", "3"] }],
-      });
-    localStorage.setItem("guest", localUserJSON);
-    const localUser = JSON.parse(localUserJSON);
-    setGuest(localUser);
+        collections: [
+          {
+            name: "starter",
+            id: v4(),
+            items: ["1", "2", "3"],
+          },
+        ],
+      };
+      console.log({ localGuest });
+      setGuest(localGuest);
+    }
+  }
+
+  function saveGuestToLocalStorage() {
+    console.log("Saving guest object to LocalStorage: ");
+    console.log({ guest });
+    if (guest) {
+      const stateGuestJSON = JSON.stringify(guest);
+      localStorage.setItem("guest", stateGuestJSON);
+    }
+  }
+
+  function startGuestSession() {
+    console.log("START: Guest session");
+    loadGuestFromLocalStorage();
   }
 
   function endGuestSession() {
-    // console.log(guest);
-    // localStorage.setItem("user", JSON.stringify(guest));
+    saveGuestToLocalStorage();
+    console.log("END: Guest session");
     setGuest(null);
   }
 

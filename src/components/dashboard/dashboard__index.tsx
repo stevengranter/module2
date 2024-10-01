@@ -1,4 +1,5 @@
-import Dashboard from "components/dashboard/Dashboard.tsx";
+import Collections from "~/components/dashboard/Collections.tsx";
+
 export default function Route__Dashboard() {
-  return <Dashboard />;
+  return <Collections />;
 }

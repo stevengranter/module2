@@ -25,23 +25,35 @@ export default function WilderKindCard(props: {
   cardId?: string;
   isInUserCollection?: false;
 }) {
+  // Get cardId from URL params, or if not provided, from props
   const params = useParams();
   const cardId = params.cardId || props.cardId;
 
-  const { localData, remoteData, isLoading, error } = useWilderKindData(cardId);
+  // Get collections data from user/guest data
+  // const { collections } = useCollections();
+  //
+  // useEffect(() => {
+  //   console.log(collections);
+  // }, [collections]);
 
+  // Get data for populating card values
+  const { localData, remoteData, loading, error } = useWilderKindData(cardId);
+
+  // State for setting which side of card to show
   const [showFlipSide, setShowFlipSide] = useState(false);
   const flipCard = useCallback(() => setShowFlipSide((prev) => !prev), []);
 
-  if (isLoading.local) return <WilderKindCard_Skeleton />;
+  //  If card data is still loading, return the skeleton
+  if (loading.local) return <WilderKindCard_Skeleton />;
+
   if (error) return <div>Error: {error}</div>;
 
   return (
     <>
       {!showFlipSide ? (
         <WilderKindCard_SideA
-          isLoadingLocal={isLoading.local}
-          isLoadingRemote={isLoading.remote}
+          isLoadingLocal={loading.local}
+          isLoadingRemote={loading.remote}
           localData={localData}
           remoteData={remoteData}
           flipFn={flipCard}
@@ -49,8 +61,8 @@ export default function WilderKindCard(props: {
         />
       ) : (
         <WilderKindCard_SideB
-          isLoadingLocal={isLoading.local}
-          isLoadingRemote={isLoading.remote}
+          isLoadingLocal={loading.local}
+          isLoadingRemote={loading.remote}
           localData={localData}
           remoteData={remoteData}
           flipFn={flipCard}

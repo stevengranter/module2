@@ -1,16 +1,15 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Button, Text } from "@mantine/core";
 import { modals } from "@mantine/modals";
-import { RoleContext } from "~/contexts/RoleContextProvider.tsx";
 import { addToCollection } from "~/lib/localStorage/addToCollection.ts";
 import { displayNotification } from "~/lib/utils.ts";
 
 import { IconStar, IconStarFilled } from "lib/icons";
 
 export default function FavoriteToggleButton({ cardId }: { cardId: string }) {
-  const { user } = useContext(RoleContext);
+  // const { user } = useContext(UserContext);
   const [isFavorite, setIsFavorite] = useState(false);
   const navigate = useNavigate();
 

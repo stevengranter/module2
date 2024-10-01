@@ -5,7 +5,7 @@
       "collection": [],
       "description": "",
       "firstName": "Default",
-      "id": "0",
+      "id": "b6a7e47a-d3d1-4b3e-a7e4-7ad3d1eb3e1e",
       "imgSrc": "",
       "lastName": "User",
       "password": "password",
@@ -28,7 +28,7 @@
       ],
       "description": "Alice is a product manager with a passion for building user-friendly applications.",
       "firstName": "Alice",
-      "id": "1",
+      "id": "3957116e-8771-4a0b-9711-6e8771ea0bb6",
       "imgSrc": "https://xsgames.co/randomusers/avatar.php?g=female",
       "lastName": "Smith",
       "password": "mypassword",
@@ -37,9 +37,13 @@
     },
     {
       "birthdate": "1987-11-20",
-      "collection": [
-        "2",
-        "10"
+      "collections": [
+        {"id": "9e59dba6-ec81-4875-99db-a6ec81d875e0",
+          "name": "favorites",
+          "items": [6,1,8]
+        },
+        {"id": "8574b54e-e181-4012-b4b5-4ee181201291",
+        "name": "default"}
       ],
       "description": "Bob is a skilled software engineer specializing in full-stack development.",
       "firstName": "Bob",

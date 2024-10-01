@@ -1,10 +1,4 @@
-import {
-  createContext,
-  PropsWithChildren,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, PropsWithChildren, useEffect, useState } from "react";
 
 import { useAuth } from "~/contexts/AuthContextProvider.tsx";
 import { JSON_SERVER_URL } from "~/lib/constants.ts";
@@ -20,15 +14,14 @@ const UserDataContext = createContext<UserDataContext | null>({
 });
 
 export function useUserData() {
-  const context = useContext(UserDataContext);
-
+  // const context = useContext(UserDataContext);
   // if (!context) {
   //   throw new Error(
   //     "useUserData must be used within a UserDataContextProvider",
   //   );
   // }
-  const { username, collections } = context;
-  return { username, collections };
+  // const { username, collections } = context;
+  // return { username, collections };
 }
 
 export default function UserDataContextProvider({

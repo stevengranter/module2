@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { MultiSelect } from "@mantine/core";
 import { JSON_SERVER_URL } from "~/lib/constants.ts";
 
-export default function CollectionDropdown() {
+export default function CollectionDropdown({ cardId }) {
   const [collections, setCollections] = useState<
     {
       id: string;

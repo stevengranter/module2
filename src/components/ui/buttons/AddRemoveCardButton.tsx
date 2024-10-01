@@ -1,5 +1,4 @@
 import { Button } from "@mantine/core";
-import useCollections from "~/hooks/useCollections.ts";
 import { IconPlus } from "~/lib/icons.tsx";
 
 // function openModal() {
@@ -20,15 +19,16 @@ interface AddCardButtonProps {
   cardId?: string | undefined;
 }
 
-function AddCardButton({ _cardId }: AddCardButtonProps) {
+function AddCardButton({ cardId }: AddCardButtonProps) {
   // { cardId }: AddCardButtonProps
   // console.log(cardId);
   // { cardId }
-  const { getCollections } = useCollections();
+  // const { getCollections } = useCollections();
   // const { user } = useContext(RoleContext);
   // console.log(getCollections);
   function handleClick() {
     // console.log(getCollections());
+    console.log(cardId);
   }
 
   return (

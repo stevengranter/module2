@@ -9,7 +9,7 @@ export function useWilderKindData(cardId: string | undefined) {
   const [remoteData, setRemoteData] = useState<
     iNatTaxaResponseType["results"][0] | null
   >(null);
-  const [isLoading, setIsLoading] = useState({ local: true, remote: true });
+  const [loading, setLoading] = useState({ local: true, remote: true });
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export function useWilderKindData(cardId: string | undefined) {
           err instanceof Error ? err.message : "An unknown error occurred";
         setError(errorMessage);
       } finally {
-        setIsLoading((prev) => ({ ...prev, local: false }));
+        setLoading((prev) => ({ ...prev, local: false }));
       }
     };
 
@@ -52,7 +52,7 @@ export function useWilderKindData(cardId: string | undefined) {
             err instanceof Error ? err.message : "An unknown error occurred";
           setError(errorMessage);
         } finally {
-          setIsLoading((prev) => ({ ...prev, remote: false }));
+          setLoading((prev) => ({ ...prev, remote: false }));
         }
       }
     };
@@ -60,5 +60,5 @@ export function useWilderKindData(cardId: string | undefined) {
     if (localData) fetchRemoteData();
   }, [localData]);
 
-  return { localData, remoteData, isLoading, error };
+  return { localData, remoteData, loading, error };
 }
