@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 
 import { useGuest } from "~/contexts/GuestContextProvider.tsx";
+import CollectionCreateButton from "~/lib/localStorage/CollectionCreateButton.tsx";
 
 import CardCollection from "components/card/CardCollection";
 
@@ -19,7 +20,7 @@ export default function Collections() {
     guest && (
       <>
         <h2>Collections</h2>
-        {/*<WIPComponent />*/}
+        <CollectionCreateButton />
         <h3>Collections</h3>
         {guest.collections &&
           guest.collections.map((collection) => {

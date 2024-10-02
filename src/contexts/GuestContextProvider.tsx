@@ -18,6 +18,8 @@ type GuestContext = {
   guest?: Guest | null;
   startGuestSession?: () => void;
   endGuestSession?: () => void;
+  saveGuest: () => void;
+  loadGuest: () => void;
   error?: string | undefined | null;
 };
 
@@ -25,6 +27,8 @@ const GuestContext = createContext<GuestContext | null>({
   guest: null,
   startGuestSession: () => {},
   endGuestSession: () => {},
+  saveGuest: () => {},
+  loadGuest: () => {},
   error: null,
 });
 
@@ -34,12 +38,27 @@ export function useGuest() {
   if (!context) {
     throw new Error("useGuest must be used within an AuthGuestProvider");
   }
-  const { guest, startGuestSession, endGuestSession, error } = context;
-  return { guest, startGuestSession, endGuestSession, error };
+  const {
+    guest,
+    startGuestSession,
+    endGuestSession,
+    loadGuest,
+    saveGuest,
+    error,
+  } = context;
+  return {
+    guest,
+    startGuestSession,
+    endGuestSession,
+    loadGuest,
+    saveGuest,
+    error,
+  };
 }
 
 export default function GuestContextProvider({ children }: PropsWithChildren) {
   const [guest, setGuest] = useState(null);
+  // const [collections, setCollections] = useState();
   const [error, _setError] = useState(null);
 
   useEffect(() => {
@@ -88,7 +107,14 @@ export default function GuestContextProvider({ children }: PropsWithChildren) {
 
   return (
     <GuestContext.Provider
-      value={{ guest, startGuestSession, endGuestSession, error }}
+      value={{
+        guest,
+        startGuestSession,
+        endGuestSession,
+        error,
+        saveGuest: saveGuestToLocalStorage,
+        loadGuest: loadGuestFromLocalStorage,
+      }}
     >
       {children}
     </GuestContext.Provider>
