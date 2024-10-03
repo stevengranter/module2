@@ -2,19 +2,20 @@ import { useNavigate } from "react-router-dom";
 
 import { Button, Text } from "@mantine/core";
 import { modals } from "@mantine/modals";
+import { useGuest } from "~/hooks/useGuest.ts";
 import { IconPlus } from "~/lib/icons.tsx";
+import AddCardToCollectionForm from "~/lib/localStorage/AddCardToCollectionForm.tsx";
 // import { displayNotification } from "lib/utils.ts";
-import { addToCollection } from "~/lib/localStorage/addToCollection.ts";
-import { displayNotification } from "~/lib/utils.ts";
 
 export default function AddToCollectionButton({ cardId }: { cardId: string }) {
+  const { guest } = useGuest();
   if (!cardId) {
     console.error("No cardId specified");
   }
 
   const navigate = useNavigate();
 
-  function openModal() {
+  function openErrorModal() {
     modals.openConfirmModal({
       title: "Oh no!",
       children: (
@@ -28,12 +29,20 @@ export default function AddToCollectionButton({ cardId }: { cardId: string }) {
     });
   }
 
+  function openFormModal() {
+    modals.open({
+      title: "Add card to collection",
+      children: <AddCardToCollectionForm cardId={cardId} />,
+    });
+  }
+
   function handleClick() {
     console.log("Button pressed");
-    if (user) {
-      displayNotification(addToCollection(cardId));
+    if (guest) {
+      console.log("Guest requesting adding card to collection");
+      openFormModal();
     } else {
-      openModal();
+      openErrorModal();
     }
   }
 

@@ -14,6 +14,7 @@ export default function CardCollection({
           <GridCol span={{ base: 12, xs: 6, sm: 4, lg: 3, xl: 2 }} key={cardId}>
             <WilderKindCard
               cardId={cardId}
+
               // isInUserCollection={!!userCollection?.includes(cardId)}
             />
           </GridCol>

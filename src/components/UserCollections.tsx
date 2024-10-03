@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { useGuest } from "~/contexts/GuestContextProvider.tsx";
+import { useGuest } from "~/hooks/useGuest.ts";
 
 export default function UserCollections() {
   // const { collections } = useCollections();

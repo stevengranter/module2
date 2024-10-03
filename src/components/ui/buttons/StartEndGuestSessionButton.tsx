@@ -1,5 +1,5 @@
 import { Button } from "@mantine/core";
-import { useGuest } from "~/contexts/GuestContextProvider.tsx";
+import { useGuest } from "~/hooks/useGuest.ts";
 
 export default function StartEndGuestSessionButton() {
   const { guest, startGuestSession, endGuestSession } = useGuest();

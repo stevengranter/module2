@@ -1,17 +1,14 @@
 // import useAuth from "hooks/useAuth";
 import { useEffect } from "react";
 
-import { useGuest } from "~/contexts/GuestContextProvider.tsx";
-import CollectionCreateButton from "~/lib/localStorage/CollectionCreateButton.tsx";
+import { useGuest } from "~/hooks/useGuest.ts";
+import CollectionCreateForm from "~/lib/localStorage/CollectionCreateForm.tsx";
 
 import CardCollection from "components/card/CardCollection";
 
 export default function Collections() {
   const { guest } = useGuest();
-  // const { collections, error } = useCollections();
-  // if (error) {
-  //   console.log(error);
-  // }
+
   useEffect(() => {
     console.log("Collections.useEffect()");
   }, [guest]);
@@ -20,20 +17,22 @@ export default function Collections() {
     guest && (
       <>
         <h2>Collections</h2>
-        <CollectionCreateButton />
+        <CollectionCreateForm />
+        {/*<CollectionCreateButton />*/}
         <h3>Collections</h3>
         {guest.collections &&
           guest.collections.map((collection) => {
             return (
               <>
                 <h4>{collection.name}</h4>
-                {collection.items.length > 0 ? (
+                <p>{collection.description}</p>
+                {collection.items && collection.items.length > 0 ? (
                   <CardCollection
                     collection={collection.items}
-                    key={collection.name}
+                    key={collection.id}
                   />
                 ) : (
-                  "No items in collection"
+                  "No items in collection. Add some items"
                 )}
               </>
             );
