@@ -1,166 +1,196 @@
 {
-  "users": [
+  "users" : [
     {
-      "birthdate": "9999-000-000",
-      "collection": [],
-      "description": "",
-      "firstName": "Default",
-      "id": "b6a7e47a-d3d1-4b3e-a7e4-7ad3d1eb3e1e",
-      "imgSrc": "",
-      "lastName": "User",
-      "password": "password",
-      "title": "Default User",
-      "username": "user"
+      "birthdate" : "9999-000-000",
+      "description" : "",
+      "firstName" : "Default",
+      "id" : "b6a7e47a-d3d1-4b3e-a7e4-7ad3d1eb3e1e",
+      "imgSrc" : "",
+      "lastName" : "User",
+      "password" : "password",
+      "title" : "Default User",
+      "username" : "user"
     },
     {
-      "birthdate": "1998-05-15",
-      "collections": [
+      "nest" : {
+        "creatures" : [
+          1,
+          2,
+          3,
+          4,
+          6,
+          7
+        ]
+      },
+      "collections" : [
         {
-          "id": "c991fb44-1a27-4b5d-be0a-dda631d1c5c6",
-          "name": "favorites",
-          "items": [4,6,7]
+          "id" : "c991fb44-1a27-4b5d-be0a-dda631d1c5c6",
+          "name" : "favorites",
+          "items" : [
+            4,
+            6,
+            7
+          ]
         },
         {
-          "id": "04f64e08-d838-4ab1-9f67-bb50cbb8e9e2",
-          "name":  "default",
-          "items": [1,2,3]
+          "id" : "04f64e08-d838-4ab1-9f67-bb50cbb8e9e2",
+          "name" : "default",
+          "items" : [
+            1,
+            2,
+            3
+          ]
         }
       ],
-      "description": "Alice is a product manager with a passion for building user-friendly applications.",
-      "firstName": "Alice",
-      "id": "3957116e-8771-4a0b-9711-6e8771ea0bb6",
-      "imgSrc": "https://xsgames.co/randomusers/avatar.php?g=female",
-      "lastName": "Smith",
-      "password": "mypassword",
-      "title": "Product Manager",
-      "username": "asmith"
+      "description" : "Alice is a product manager with a passion for building user-friendly applications.",
+      "firstName" : "Alice",
+      "id" : "3957116e-8771-4a0b-9711-6e8771ea0bb6",
+      "imgSrc" : "https://xsgames.co/randomusers/avatar.php?g=female",
+      "lastName" : "Smith",
+      "password" : "mypassword",
+      "title" : "Product Manager",
+      "username" : "asmith"
     },
     {
-      "birthdate": "1987-11-20",
-      "collections": [
-        {"id": "9e59dba6-ec81-4875-99db-a6ec81d875e0",
-          "name": "favorites",
-          "items": [6,1,8]
+      "nest" : {
+        "creatures" : [
+          1,
+          6,
+          8
+        ]
+      },
+      "birthdate" : "1987-11-20",
+      "collections" : [
+        {
+          "id" : "9e59dba6-ec81-4875-99db-a6ec81d875e0",
+          "name" : "favorites",
+          "items" : [
+            6,
+            1,
+            8
+          ]
         },
-        {"id": "8574b54e-e181-4012-b4b5-4ee181201291",
-        "name": "default"}
+        {
+          "id" : "8574b54e-e181-4012-b4b5-4ee181201291",
+          "name" : "default"
+        }
       ],
-      "description": "Bob is a skilled software engineer specializing in full-stack development.",
-      "firstName": "Bob",
-      "id": "2",
-      "imgSrc": "https://xsgames.co/randomusers/avatar.php?g=male",
-      "lastName": "Johnson",
-      "password": "123456",
-      "title": "Software Engineer",
-      "username": "bobbio"
+      "description" : "Bob is a skilled software engineer specializing in full-stack development.",
+      "firstName" : "Bob",
+      "id" : "2",
+      "imgSrc" : "https://xsgames.co/randomusers/avatar.php?g=male",
+      "lastName" : "Johnson",
+      "password" : "123456",
+      "title" : "Software Engineer",
+      "username" : "bobbio"
     }
   ],
-  "cards": [
+  "cards" : [
     {
-      "id": "1",
-      "taxon_id": 48586,
-      "imgSrc": "/images/cepaea_nemoralis.png",
-      "nickname": "Nemo",
-      "mnemonic": "nemo",
-      "created": 1704067200
+      "id" : "1",
+      "taxon_id" : 48586,
+      "imgSrc" : "/images/cepaea_nemoralis.png",
+      "nickname" : "Nemo",
+      "mnemonic" : "nemo",
+      "created" : 1704067200
     },
     {
-      "id": "2",
-      "taxon_id": 99901,
-      "imgSrc": "/images/enallagma_cyathigerum.png",
-      "nickname": "Cya",
-      "mnemonic": "cya",
-      "created": 1706745600
+      "id" : "2",
+      "taxon_id" : 99901,
+      "imgSrc" : "/images/enallagma_cyathigerum.png",
+      "nickname" : "Cya",
+      "mnemonic" : "cya",
+      "created" : 1706745600
     },
     {
-      "id": "3",
-      "taxon_id": 59442,
-      "imgSrc": "/images/chrysopa_rufilabris.png",
-      "nickname": "Fila",
-      "mnemonic": "fila",
-      "created": 1709251200
+      "id" : "3",
+      "taxon_id" : 59442,
+      "imgSrc" : "/images/chrysopa_rufilabris.png",
+      "nickname" : "Fila",
+      "mnemonic" : "fila",
+      "created" : 1709251200
     },
     {
-      "id": "4",
-      "taxon_id": 47219,
-      "imgSrc": "/images/apis_mellifera.png",
-      "nickname": "Melli",
-      "mnemonic": "melli",
-      "created": 1711929600
+      "id" : "4",
+      "taxon_id" : 47219,
+      "imgSrc" : "/images/apis_mellifera.png",
+      "nickname" : "Melli",
+      "mnemonic" : "melli",
+      "created" : 1711929600
     },
     {
-      "id": "5",
-      "taxon_id": 347465,
-      "imgSrc": "/images/formica_rufibarbis.png",
-      "nickname": "Barbi",
-      "mnemonic": "barbi",
-      "created": 1714521600
+      "id" : "5",
+      "taxon_id" : 347465,
+      "imgSrc" : "/images/formica_rufibarbis.png",
+      "nickname" : "Barbi",
+      "mnemonic" : "barbi",
+      "created" : 1714521600
     },
     {
-      "id": "6",
-      "taxon_id": 48987,
-      "imgSrc": "/images/hippodamia_convergens.png",
-      "nickname": "Connie",
-      "mnemonic": "con",
-      "created": 1717200000
+      "id" : "6",
+      "taxon_id" : 48987,
+      "imgSrc" : "/images/hippodamia_convergens.png",
+      "nickname" : "Connie",
+      "mnemonic" : "con",
+      "created" : 1717200000
     },
     {
-      "id": "7",
-      "taxon_id": 81545,
-      "imgSrc": "/images/lumbricus_terrestris.png",
-      "nickname": "Terry",
-      "mnemonic": "terr",
-      "created": 1719792000
+      "id" : "7",
+      "taxon_id" : 81545,
+      "imgSrc" : "/images/lumbricus_terrestris.png",
+      "nickname" : "Terry",
+      "mnemonic" : "terr",
+      "created" : 1719792000
     },
     {
-      "id": "8",
-      "taxon_id": 67691,
-      "imgSrc": "/images/lophocampa_maculata.png",
-      "nickname": "Lata",
-      "mnemonic": "lata",
-      "stages": {
-        "egg": "",
-        "larva": 10,
-        "pupa": "",
-        "adult": 8
+      "id" : "8",
+      "taxon_id" : 67691,
+      "imgSrc" : "/images/lophocampa_maculata.png",
+      "nickname" : "Lata",
+      "mnemonic" : "lata",
+      "stages" : {
+        "egg" : "",
+        "larva" : 10,
+        "pupa" : "",
+        "adult" : 8
       },
-      "current_stage": "adult",
-      "can_morph": true,
-      "created": 1722470400
+      "current_stage" : "adult",
+      "can_morph" : true,
+      "created" : 1722470400
     },
     {
-      "id": "9",
-      "taxon_id": 494559,
-      "imgSrc": "/images/polydrusus_formosus.png",
-      "nickname": "Formo",
-      "mnemonic": "formo",
-      "created": 1725062400
+      "id" : "9",
+      "taxon_id" : 494559,
+      "imgSrc" : "/images/polydrusus_formosus.png",
+      "nickname" : "Formo",
+      "mnemonic" : "formo",
+      "created" : 1725062400
     },
     {
-      "id": "10",
-      "taxon_id": 67691,
-      "imgSrc": "/images/lophocampa_maculata_LARVA.png",
-      "nickname": "Mac",
-      "mnemonic": "mac",
-      "stages": {
-        "egg": "",
-        "larva": 10,
-        "pupa": "",
-        "adult": 8
+      "id" : "10",
+      "taxon_id" : 67691,
+      "imgSrc" : "/images/lophocampa_maculata_LARVA.png",
+      "nickname" : "Mac",
+      "mnemonic" : "mac",
+      "stages" : {
+        "egg" : "",
+        "larva" : 10,
+        "pupa" : "",
+        "adult" : 8
       },
-      "current_stage": "larva",
-      "morph_id": 8,
-      "can_morph": true,
-      "created": 1727740800
+      "current_stage" : "larva",
+      "morph_id" : 8,
+      "can_morph" : true,
+      "created" : 1727740800
     },
     {
-      "id": "11",
-      "taxon_id": 56083,
-      "imgSrc": "/images/armadillidiidae.png",
-      "nickname": "Gary",
-      "mnemonic": "gar",
-      "can_morph": false,
-      "created": 1730332800
+      "id" : "11",
+      "taxon_id" : 56083,
+      "imgSrc" : "/images/armadillidiidae.png",
+      "nickname" : "Gary",
+      "mnemonic" : "gar",
+      "can_morph" : false,
+      "created" : 1730332800
     }
   ]
 }

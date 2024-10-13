@@ -51,7 +51,7 @@ export default function GuestContextProvider({ children }: PropsWithChildren) {
         return {
           ...g,
           collections: [
-            ...guest.collections,
+            ...g.collections,
             {
               id: v4(),
               name: values.name,

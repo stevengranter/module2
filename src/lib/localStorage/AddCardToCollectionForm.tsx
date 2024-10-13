@@ -2,13 +2,13 @@ import { Button, Checkbox, Group } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useGuest } from "~/hooks/useGuest.ts";
 
-export default function AddCardToCollectionForm(cardId) {
+export default function AddCardToCollectionForm(cardId: string) {
   const { guest, addCardToCollection, removeCardFromCollection } = useGuest();
   const form = useForm({
     mode: "uncontrolled",
   });
 
-  function handleSubmit(cardId, values) {
+  function handleSubmit(cardId:string, values) {
     console.log(`Please add cardID: ${Object.values(cardId)} to:`);
     console.log(values);
     for (const [key, value] of Object.entries(values)) {

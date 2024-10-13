@@ -9,7 +9,7 @@ import {
 export const publicLinks = [
   { icon: IconHome, label: "Home", to: "/" },
   { icon: IconUsersGroup, label: "Users", to: "users" },
-  { label: "WilderKind Index", icon: IconArchive, to: "/cards" },
+  { label: "my WilderNest", icon: IconArchive, to: "/cards" },
   { label: "Collections", icon: IconLayout, to: "/dashboard" },
   { icon: IconBinoculars, label: "Search", to: "/search" },
 ];

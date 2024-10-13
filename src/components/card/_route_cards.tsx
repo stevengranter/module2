@@ -1,6 +1,7 @@
-import { useFetch } from "../../hooks/useFetch.ts";
-import { JSON_SERVER_URL } from "../../lib/constants.ts";
-import { WilderKindCardType } from "../../models/WilderKindCardType.ts";
+import { useFetch } from "~/hooks/useFetch.ts";
+import { JSON_SERVER_URL } from "~/lib/constants.ts";
+import { WilderKindCardType } from "~/models/WilderKindCardType.ts";
+
 import CardCollection from "./CardCollection.tsx";
 
 export default function Route__Cards() {
