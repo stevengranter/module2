@@ -1,5 +1,6 @@
 // import UserList from "components/user/UserList.tsx";
-import UserLogin from "../form/UserLogin.tsx";
+import UserList from "~/components/user/UserList.tsx";
+
 export default function Route__Users() {
-  return <UserLogin />;
+  return <UserList />;
 }

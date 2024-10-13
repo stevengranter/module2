@@ -1,6 +1,4 @@
-import { Link } from "react-router-dom";
-
-import { Title } from "@mantine/core";
+import { Table, Title } from "@mantine/core";
 import { useFetch } from "hooks/useFetch.ts";
 
 import { JSON_SERVER_URL } from "lib/constants.ts";
@@ -14,20 +12,33 @@ export default function UserList() {
   // noinspection BadExpressionStatementJS
   error && <h1>Error: ${error.message}</h1>;
 
+  const rows =
+    data &&
+    data.map((user: UserType) => (
+      <Table.Tr key={user.id}>
+        <Table.Td>{user.id}</Table.Td>
+        <Table.Td>{user.username}</Table.Td>
+        <Table.Td>{user.firstName}</Table.Td>
+        <Table.Td>{user.lastName}</Table.Td>
+      </Table.Tr>
+    ));
+
   return loading ? (
     "Loading..."
   ) : (
     <>
       <Title order={2}>Users</Title>
-      <ul>
-        {data?.map((user: UserType) => {
-          return (
-            <li key={user.id}>
-              <Link to={`/users/${user.id}`}>{user.firstName}</Link>
-            </li>
-          );
-        })}
-      </ul>
+      <Table>
+        <Table.Thead>
+          <Table.Tr>
+            <Table.Th>ID</Table.Th>
+            <Table.Th>Username</Table.Th>
+            <Table.Th>First Name</Table.Th>
+            <Table.Th>Last Name</Table.Th>
+          </Table.Tr>
+        </Table.Thead>
+        <Table.Tbody>{rows}</Table.Tbody>
+      </Table>
     </>
   );
 }
