@@ -1,17 +1,9 @@
 import { useEffect, useState } from "react";
-import { useSearchParams, useLoaderData, Link } from "react-router-dom";
+import { useLoaderData, useSearchParams } from "react-router-dom";
 
-import {
-  TextInput,
-  GridCol,
-  Button,
-  Title,
-  Image,
-  Flex,
-  Card,
-  Grid,
-} from "@mantine/core";
+import { Button, Flex, Grid, GridCol, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
+import GenericCard from "~/components/card/GenericCard.tsx";
 
 import SortComponent from "components/ui/controls/SortComponent.tsx";
 import { JSON_SERVER_URL } from "lib/constants.ts";
@@ -96,35 +88,36 @@ export default function SearchForm() {
                 span={{ base: 6, xs: 6, sm: 6, md: 4, lg: 3, xl: 2 }}
                 key={record.id}
               >
-                <Card key={record.id}>
-                  <Title size="h4">{record.preferred_common_name}</Title>
-                  <Title size="h5">{record.name}</Title>
-                  <p>ID: {record.id}</p>
-                  {record.wikipedia_url && (
-                    <Link to={record.wikipedia_url}>Wikipedia link</Link>
-                  )}
+                <GenericCard record={record} />
+                {/*<Card key={record.id}>*/}
+                {/*  <Title size="h4">{record.preferred_common_name}</Title>*/}
+                {/*  <Title size="h5">{record.name}</Title>*/}
+                {/*  <p>ID: {record.id}</p>*/}
+                {/*  {record.wikipedia_url && (*/}
+                {/*    <Link to={record.wikipedia_url}>Wikipedia link</Link>*/}
+                {/*  )}*/}
 
-                  {record.default_photo && (
-                    <Link to={record.default_photo?.medium_url}>
-                      <Image
-                        src={record.default_photo?.url}
-                        // radius='lg'
-                        // w={200}
-                      />
-                    </Link>
-                  )}
+                {/*  {record.default_photo && (*/}
+                {/*    <Link to={record.default_photo?.medium_url}>*/}
+                {/*      <Image*/}
+                {/*        src={record.default_photo?.url}*/}
+                {/*        // radius='lg'*/}
+                {/*        // w={200}*/}
+                {/*      />*/}
+                {/*    </Link>*/}
+                {/*  )}*/}
 
-                  {/* <Button onClick={() => searchCards(record.id)}>Search cards</Button> */}
+                {/*  /!* <Button onClick={() => searchCards(record.id)}>Search cards</Button> *!/*/}
 
-                  {correspondingCard && (
-                    <Link
-                      to={"/cards/" + correspondingCard.id}
-                      key={correspondingCard.id}
-                    >
-                      in WilderKind index: {correspondingCard.nickname}
-                    </Link>
-                  )}
-                </Card>
+                {/*  {correspondingCard && (*/}
+                {/*    <Link*/}
+                {/*      to={"/cards/" + correspondingCard.id}*/}
+                {/*      key={correspondingCard.id}*/}
+                {/*    >*/}
+                {/*      in WilderKind index: {correspondingCard.nickname}*/}
+                {/*    </Link>*/}
+                {/*  )}*/}
+                {/*</Card>*/}
               </GridCol>
             );
           })}
