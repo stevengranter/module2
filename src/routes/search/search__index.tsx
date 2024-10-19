@@ -16,7 +16,7 @@ export default function Route__Search() {
     return <p>Loading...</p>;
   }
 
-  const cardIds = data?.map((card) => card.id);
+  const _cardIds = data?.map((card) => card.id);
 
   return (
     <>

@@ -13,7 +13,7 @@ import { WilderKindCardType } from "models/WilderKindCardType.ts";
 export default function SearchForm() {
   const form = useForm({ mode: "uncontrolled" });
   const [searchParams, setSearchParams] = useSearchParams();
-  const [matchingCards, setMatchingCards] = useState<WilderKindCardType[]>([]);
+  const [_matchingCards, setMatchingCards] = useState<WilderKindCardType[]>([]);
   const data = useLoaderData() as iNatTaxaResponseType;
   const [error, setError] = useState<string | null>(null);
 
