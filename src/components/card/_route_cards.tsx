@@ -1,4 +1,4 @@
-import { useFetch } from "~/hooks/useFetch.ts";
+import { useFetch } from "@mantine/hooks";
 import { JSON_SERVER_URL } from "~/lib/constants.ts";
 import { WilderKindCardType } from "~/models/WilderKindCardType.ts";
 

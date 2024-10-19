@@ -1,5 +1,5 @@
 import { Table, Title } from "@mantine/core";
-import { useFetch } from "hooks/useFetch.ts";
+import { useFetch } from "@mantine/hooks";
 
 import { JSON_SERVER_URL } from "lib/constants.ts";
 import { UserType } from "models/UserType.ts";

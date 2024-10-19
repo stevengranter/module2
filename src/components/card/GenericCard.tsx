@@ -3,21 +3,21 @@ import { Link } from "react-router-dom";
 import { Card, Image, Title } from "@mantine/core";
 import { Result } from "~/models/iNatTaxaResponseType.ts";
 
-export default function GenericCard({ record }: { record: Result }) {
+export default function GenericCard({ taxon }: { taxon: Result }) {
   return (
-    <Card key={record.id}>
-      <Title size="h4">{record.preferred_common_name}</Title>
-      <Title size="h5">{record.name}</Title>
+    <Card key={taxon.id}>
+      <Title size="h4">{taxon.preferred_common_name}</Title>
+      <Title size="h5">{taxon.name}</Title>
       <Title size="h6">GenericCard</Title>
-      <p>ID: {record.id}</p>
-      {record.wikipedia_url && (
-        <Link to={record.wikipedia_url}>Wikipedia link</Link>
+      <p>ID: {taxon.id}</p>
+      {taxon.wikipedia_url && (
+        <Link to={taxon.wikipedia_url}>Wikipedia link</Link>
       )}
 
-      {record.default_photo && (
-        <Link to={record.default_photo?.medium_url}>
+      {taxon.default_photo && (
+        <Link to={taxon.default_photo?.medium_url}>
           <Image
-            src={record.default_photo?.url}
+            src={taxon.default_photo?.url}
             // radius='lg'
             // w={200}
           />

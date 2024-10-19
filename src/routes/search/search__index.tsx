@@ -1,6 +1,4 @@
-import { Title } from "@mantine/core";
-import CardCollection from "~/components/card/CardCollection.tsx";
-import { useFetch } from "~/hooks/useFetch.ts";
+import { useFetch } from "@mantine/hooks";
 import { JSON_SERVER_URL } from "~/lib/constants.ts";
 import { WilderKindCardType } from "~/models/WilderKindCardType.ts";
 
@@ -24,8 +22,6 @@ export default function Route__Search() {
     <>
       <SearchForm />
       <br />
-      <Title order={3}>Featured</Title>
-      <CardCollection collection={cardIds} />
     </>
   );
 }

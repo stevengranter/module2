@@ -3,13 +3,35 @@
     {
       "birthdate" : "9999-000-000",
       "description" : "",
-      "firstName" : "Default",
-      "id" : "b6a7e47a-d3d1-4b3e-a7e4-7ad3d1eb3e1e",
+      "firstName" : "Anon E.",
+      "id" : "0",
+      "imgSrc" : "",
+      "lastName" : "Mouse",
+      "password" : "",
+      "title" : "Anonymous",
+      "username" : "anonymous",
+      "nest" : {
+        "creatures" : [
+        ]
+      }
+    },
+    {
+      "birthdate" : "9999-000-000",
+      "description" : "",
+      "firstName" : "Guest",
+      "id" : "1",
       "imgSrc" : "",
       "lastName" : "User",
-      "password" : "password",
-      "title" : "Default User",
-      "username" : "user"
+      "password" : "",
+      "title" : "Guest User",
+      "username" : "guest",
+      "nest" : {
+        "creatures" : [
+          48586,
+          59442,
+          494559
+        ]
+      }
     },
     {
       "nest" : {

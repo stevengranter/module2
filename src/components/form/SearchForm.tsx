@@ -77,37 +77,37 @@ export default function SearchForm() {
       <SortComponent />
       <Grid>
         {data.results &&
-          data?.results.map((record) => {
-            // Find the enriched card for the current record
+          data?.results.map((result) => {
+            // Find the enriched card for the current result
             const correspondingCard = matchingCards.find(
-              (card: WilderKindCardType) => card.taxon_id === record.id,
+              (card: WilderKindCardType) => card.taxon_id === result.id,
             );
 
             return (
               <GridCol
                 span={{ base: 6, xs: 6, sm: 6, md: 4, lg: 3, xl: 2 }}
-                key={record.id}
+                key={result.id}
               >
-                <GenericCard record={record} />
-                {/*<Card key={record.id}>*/}
-                {/*  <Title size="h4">{record.preferred_common_name}</Title>*/}
-                {/*  <Title size="h5">{record.name}</Title>*/}
-                {/*  <p>ID: {record.id}</p>*/}
-                {/*  {record.wikipedia_url && (*/}
-                {/*    <Link to={record.wikipedia_url}>Wikipedia link</Link>*/}
+                <GenericCard taxon={result} />
+                {/*<Card key={result.id}>*/}
+                {/*  <Title size="h4">{result.preferred_common_name}</Title>*/}
+                {/*  <Title size="h5">{result.name}</Title>*/}
+                {/*  <p>ID: {result.id}</p>*/}
+                {/*  {result.wikipedia_url && (*/}
+                {/*    <Link to={result.wikipedia_url}>Wikipedia link</Link>*/}
                 {/*  )}*/}
 
-                {/*  {record.default_photo && (*/}
-                {/*    <Link to={record.default_photo?.medium_url}>*/}
+                {/*  {result.default_photo && (*/}
+                {/*    <Link to={result.default_photo?.medium_url}>*/}
                 {/*      <Image*/}
-                {/*        src={record.default_photo?.url}*/}
+                {/*        src={result.default_photo?.url}*/}
                 {/*        // radius='lg'*/}
                 {/*        // w={200}*/}
                 {/*      />*/}
                 {/*    </Link>*/}
                 {/*  )}*/}
 
-                {/*  /!* <Button onClick={() => searchCards(record.id)}>Search cards</Button> *!/*/}
+                {/*  /!* <Button onClick={() => searchCards(result.id)}>Search cards</Button> *!/*/}
 
                 {/*  {correspondingCard && (*/}
                 {/*    <Link*/}
