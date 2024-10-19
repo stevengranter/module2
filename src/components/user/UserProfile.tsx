@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
 
 import { useFetch } from "@mantine/hooks";
+import { JSON_SERVER_URL } from "~/lib/constants.ts";
+import { UserType } from "~/models/UserType.ts";
 
-import { JSON_SERVER_URL } from "../../lib/constants.ts";
-import { UserType } from "../../models/UserType.ts";
 import CardCollection from "../card/CardCollection.tsx";
 
 const apiURL = JSON_SERVER_URL;

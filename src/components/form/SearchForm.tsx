@@ -79,9 +79,9 @@ export default function SearchForm() {
         {data.results &&
           data?.results.map((result) => {
             // Find the enriched card for the current result
-            const correspondingCard = matchingCards.find(
-              (card: WilderKindCardType) => card.taxon_id === result.id,
-            );
+            // const correspondingCard = matchingCards.find(
+            //   (card: WilderKindCardType) => card.taxon_id === result.id,
+            // );
 
             return (
               <GridCol
