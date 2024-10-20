@@ -24,7 +24,7 @@ export default function SearchForm() {
   useEffect(() => {
     // if (searchParams.size > 0) console.log(data.results);
     // console.log(searchParams.get('q'));
-    if (data) searchCards(data);
+    if (data) searchCards(data).then((r) => console.log(r));
   }, [searchParams, data]);
 
   async function searchCards(data: iNatTaxaResponseType) {
@@ -56,7 +56,7 @@ export default function SearchForm() {
       }
     }
 
-    setMatchingCards(matchedCardsArray);
+    return matchedCardsArray;
   }
 
   return (
