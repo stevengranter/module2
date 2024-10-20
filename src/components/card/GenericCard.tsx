@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 
 import { Card, Image, Title } from "@mantine/core";
-import { Result } from "~/models/iNatTaxaResponseType.ts";
+import { iNatTaxonRecord } from "~/models/iNatTaxaResponseType.ts";
 
-export default function GenericCard({ taxon }: { taxon: Result }) {
+export default function GenericCard({ taxon }: { taxon: iNatTaxonRecord }) {
   return (
     <Card key={taxon.id}>
       <Title size="h4">{taxon.preferred_common_name}</Title>

@@ -14,7 +14,7 @@ type RemoteDataType = iNatTaxaResponseType["results"][number];
 
 export interface CardSideProps {
   localData: WilderKindCardType | null | undefined;
-  remoteData: RemoteDataType | null | undefined;
+  iNatData: RemoteDataType | null | undefined;
   isLoadingLocal: boolean;
   isLoadingRemote: boolean;
   flipFn: () => void;
@@ -55,7 +55,7 @@ export default function WilderKindCard(props: {
           isLoadingLocal={loading.local}
           isLoadingRemote={loading.remote}
           localData={localData}
-          remoteData={remoteData}
+          iNatData={remoteData}
           flipFn={flipCard}
           // isInUserCollection={props.isInUserCollection}
         />
@@ -64,7 +64,7 @@ export default function WilderKindCard(props: {
           isLoadingLocal={loading.local}
           isLoadingRemote={loading.remote}
           localData={localData}
-          remoteData={remoteData}
+          iNatData={remoteData}
           flipFn={flipCard}
           // isInUserCollection={props.isInUserCollection}
         />

@@ -189,23 +189,6 @@
       "created" : 1725062400
     },
     {
-      "id" : "10",
-      "taxon_id" : 67691,
-      "imgSrc" : "/images/lophocampa_maculata_LARVA.png",
-      "nickname" : "Mac",
-      "mnemonic" : "mac",
-      "stages" : {
-        "egg" : "",
-        "larva" : 10,
-        "pupa" : "",
-        "adult" : 8
-      },
-      "current_stage" : "larva",
-      "morph_id" : 8,
-      "can_morph" : true,
-      "created" : 1727740800
-    },
-    {
       "id" : "11",
       "taxon_id" : 56083,
       "imgSrc" : "/images/armadillidiidae.png",

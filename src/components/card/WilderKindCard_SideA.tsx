@@ -19,7 +19,7 @@ import { CardSideProps } from "./WilderKindCard.tsx";
 
 export function WilderKindCard_SideA({
   localData,
-  remoteData,
+  iNatData,
   isLoadingRemote,
   flipFn,
   // isInUserCollection,
@@ -50,7 +50,7 @@ export function WilderKindCard_SideA({
               <Image
                 className={styles.drop_shadow}
                 src={localData?.imgSrc}
-                alt={remoteData ? remoteData?.name : "null"}
+                alt={iNatData ? iNatData?.name : "null"}
                 loading="lazy"
               />
             </AspectRatio>
@@ -61,11 +61,11 @@ export function WilderKindCard_SideA({
           {isLoadingRemote ? (
             <Loader type="dots" />
           ) : (
-            remoteData?.preferred_common_name
+            iNatData?.preferred_common_name
           )}
         </Title>
         <Title lineClamp={1} order={3} size="h4">
-          {isLoadingRemote ? <Loader type="dots" /> : remoteData?.name}
+          {isLoadingRemote ? <Loader type="dots" /> : iNatData?.name}
         </Title>
 
         <SimpleGrid>

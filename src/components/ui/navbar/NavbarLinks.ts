@@ -12,6 +12,7 @@ export const publicLinks = [
   { label: "my WilderNest", icon: IconArchive, to: "/cards" },
   { label: "Collections", icon: IconLayout, to: "/dashboard" },
   { icon: IconBinoculars, label: "Search", to: "/search" },
+  { label: "SamplePage", to: "/sample", icon: IconHome },
 ];
 export const userLinks = [
   { icon: IconLayout, label: "Collections", to: "/dashboard" },

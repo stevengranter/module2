@@ -9,8 +9,8 @@ import AddCardToCollectionForm from "~/lib/localStorage/AddCardToCollectionForm.
 
 export default function AddToCollectionButton(props) {
   const { guest } = useGuest();
-  if (!props.cardId) {
-    console.error("No cardId specified");
+  if (!props.id) {
+    console.log("No id specified for AddToCollectionButton");
   }
 
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ export default function AddToCollectionButton(props) {
   function openFormModal() {
     modals.open({
       title: "Add card to collection",
-      children: <AddCardToCollectionForm cardId={props.cardId} />,
+      children: <AddCardToCollectionForm id={id} />,
     });
   }
 

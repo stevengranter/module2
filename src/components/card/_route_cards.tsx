@@ -16,7 +16,7 @@ export default function Route__Cards() {
     return <p>Loading...</p>;
   }
 
-  const cardIds = data?.map((card) => card.id);
+  const cardIds = data?.map((card) => card.taxon_id);
 
   return <CardCollection collection={cardIds} />;
 }

@@ -11,6 +11,7 @@ export default function Collections() {
 
   useEffect(() => {
     console.log("Collections.useEffect()");
+    console.log({ guest });
   }, [guest]);
 
   return (

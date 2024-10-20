@@ -14,7 +14,7 @@ import { UserType } from "~/models/UserType.ts";
 // }
 
 export function addToCollection(
-  cardId: string,
+  cardId: string | number,
   cardCollection: string = "collection",
 ) {
   let notificationData: NotificationData;

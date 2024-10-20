@@ -1,36 +1,35 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { ActionIcon, Text } from "@mantine/core";
-import { modals } from "@mantine/modals";
+import { ActionIcon } from "@mantine/core";
 import { addToCollection } from "~/lib/localStorage/addToCollection.ts";
 import { displayNotification } from "~/lib/utils.ts";
 
 import { IconHeart, IconHeartFilled } from "lib/icons";
 
-export default function ToggleFavoriteButton({ cardId }: { cardId: string }) {
+export default function ToggleFavoriteButton({ id }: { id: string | number }) {
   // const { user } = useContext(UserContext);
   const [isFavorite, setIsFavorite] = useState(false);
   const navigate = useNavigate();
 
   function toggleFavorite() {
-    displayNotification(addToCollection(cardId, "favorites"));
+    displayNotification(addToCollection(id, "favorites"));
     setIsFavorite(!isFavorite);
   }
 
-  function handleClick() {
-    if (!user) {
-      modals.openConfirmModal({
-        title: "Oh no!",
-        children: <Text size="sm">You must be logged in to do that.</Text>,
-        labels: { confirm: "Login", cancel: "Cancel" },
-        onCancel: () => console.log("Cancel"),
-        onConfirm: () => navigate("/login"),
-      });
-    } else {
-      toggleFavorite();
-    }
-  }
+  // function handleClick() {
+  //   if (!user) {
+  //     modals.openConfirmModal({
+  //       title: "Oh no!",
+  //       children: <Text size="sm">You must be logged in to do that.</Text>,
+  //       labels: { confirm: "Login", cancel: "Cancel" },
+  //       onCancel: () => console.log("Cancel"),
+  //       onConfirm: () => navigate("/login"),
+  //     });
+  //   } else {
+  //     toggleFavorite();
+  //   }
+  // }
 
   return (
     <ActionIcon variant="default" radius="md" size={36}>

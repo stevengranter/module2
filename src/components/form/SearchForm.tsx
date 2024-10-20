@@ -1,12 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useLoaderData, useSearchParams } from "react-router-dom";
 
 import { Button, Flex, Grid, GridCol, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import GenericCard from "~/components/card/GenericCard.tsx";
+import { WildCard } from "~/components/card/WildCard.tsx";
 
 import SortComponent from "components/ui/controls/SortComponent.tsx";
-import { JSON_SERVER_URL } from "lib/constants.ts";
 import { iNatTaxaResponseType } from "models/iNatTaxaResponseType.ts";
 import { WilderKindCardType } from "models/WilderKindCardType.ts";
 
@@ -21,43 +20,43 @@ export default function SearchForm() {
     setSearchParams(values);
   }
 
-  useEffect(() => {
-    // if (searchParams.size > 0) console.log(data.results);
-    // console.log(searchParams.get('q'));
-    if (data) searchCards(data).then((r) => console.log(r));
-  }, [searchParams, data]);
+  // useEffect(() => {
+  //   // if (searchParams.size > 0) console.log(data.results);
+  //   // console.log(searchParams.get('q'));
+  //   // if (data) searchCards(data).then((r) => console.log(r));
+  // }, [searchParams, data]);
 
-  async function searchCards(data: iNatTaxaResponseType) {
-    if (!data.results) return;
-    const { results } = data;
-    const matchedCardsArray = [];
-
-    for (const result of results) {
-      try {
-        // console.log(result);
-
-        const matchingCardsResult = await fetch(
-          `${JSON_SERVER_URL}/cards?taxon_id=${result.id}`,
-        );
-
-        if (!matchingCardsResult.ok) {
-          setError("Network response was not okay");
-        }
-
-        const matchingCardsJSON = await matchingCardsResult.json();
-
-        if (matchingCardsJSON.length > 0) {
-          const match = matchingCardsJSON[0];
-          const enrichedCard = { ...result, ...match };
-          matchedCardsArray.push(enrichedCard);
-        }
-      } catch (error) {
-        console.error("Error fetching matching cards:", error);
-      }
-    }
-
-    return matchedCardsArray;
-  }
+  // async function searchCards(data: iNatTaxaResponseType) {
+  //   if (!data.results) return;
+  //   const { results } = data;
+  //   const matchedCardsArray = [];
+  //
+  //   for (const result of results) {
+  //     try {
+  //       // console.log(result);
+  //
+  //       const matchingCardsResult = await fetch(
+  //         `${JSON_SERVER_URL}/cards?taxon_id=${result.id}`,
+  //       );
+  //
+  //       if (!matchingCardsResult.ok) {
+  //         setError("Network response was not okay");
+  //       }
+  //
+  //       const matchingCardsJSON = await matchingCardsResult.json();
+  //
+  //       if (matchingCardsJSON.length > 0) {
+  //         const match = matchingCardsJSON[0];
+  //         const enrichedCard = { ...result, ...match };
+  //         matchedCardsArray.push(enrichedCard);
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching matching cards:", error);
+  //     }
+  //   }
+  //
+  //   return matchedCardsArray;
+  // }
 
   return (
     <>
@@ -88,36 +87,7 @@ export default function SearchForm() {
                 span={{ base: 6, xs: 6, sm: 6, md: 4, lg: 3, xl: 2 }}
                 key={result.id}
               >
-                <GenericCard taxon={result} />
-                {/*<Card key={result.id}>*/}
-                {/*  <Title size="h4">{result.preferred_common_name}</Title>*/}
-                {/*  <Title size="h5">{result.name}</Title>*/}
-                {/*  <p>ID: {result.id}</p>*/}
-                {/*  {result.wikipedia_url && (*/}
-                {/*    <Link to={result.wikipedia_url}>Wikipedia link</Link>*/}
-                {/*  )}*/}
-
-                {/*  {result.default_photo && (*/}
-                {/*    <Link to={result.default_photo?.medium_url}>*/}
-                {/*      <Image*/}
-                {/*        src={result.default_photo?.url}*/}
-                {/*        // radius='lg'*/}
-                {/*        // w={200}*/}
-                {/*      />*/}
-                {/*    </Link>*/}
-                {/*  )}*/}
-
-                {/*  /!* <Button onClick={() => searchCards(result.id)}>Search cards</Button> *!/*/}
-
-                {/*  {correspondingCard && (*/}
-                {/*    <Link*/}
-                {/*      to={"/cards/" + correspondingCard.id}*/}
-                {/*      key={correspondingCard.id}*/}
-                {/*    >*/}
-                {/*      in WilderKind index: {correspondingCard.nickname}*/}
-                {/*    </Link>*/}
-                {/*  )}*/}
-                {/*</Card>*/}
+                <WildCard dataObject={result} />
               </GridCol>
             );
           })}

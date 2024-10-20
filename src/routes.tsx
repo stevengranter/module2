@@ -1,9 +1,10 @@
 import {
-  createRoutesFromElements,
   createBrowserRouter,
+  createRoutesFromElements,
   Route,
 } from "react-router-dom";
 
+import SamplePage from "~/components/dummy/SamplePage.tsx";
 import DefaultLayout from "DefaultLayout.tsx";
 
 import Route__Cards from "components/card/_route_cards.tsx";
@@ -52,6 +53,7 @@ export const router: ReturnType<typeof createBrowserRouter> =
             index
           ></Route>
         </Route>
+        <Route path="sample" element={<SamplePage />} />
       </Route>,
     ),
   );
