@@ -1,6 +1,5 @@
 import {
   AspectRatio,
-  Button,
   Card,
   Grid,
   GridCol,
@@ -13,8 +12,8 @@ import {
 } from "@mantine/core";
 import { IconBabyCarriage, IconButterfly, IconEgg } from "@tabler/icons-react";
 import AddToCollectionButton from "~/components/ui/buttons/AddToCollectionButton.tsx";
+import ToggleFavoriteButton from "~/components/ui/buttons/ToggleFavoriteButton.tsx";
 
-import FavoriteToggleButton from "../ui/buttons/FavoriteToggleButton.tsx";
 import styles from "./WilderKindCard.module.css";
 import { CardSideProps } from "./WilderKindCard.tsx";
 
@@ -42,9 +41,7 @@ export function WilderKindCard_SideA({
               </Title>
             </GridCol>
           )}
-          <GridCol span={4}>
-            <Button onClick={flipFn}>flip</Button>
-          </GridCol>
+          <ToggleFavoriteButton />
         </Grid>
 
         <Card.Section>
@@ -78,9 +75,8 @@ export function WilderKindCard_SideA({
         </SimpleGrid>
         {localData.id ? (
           <Group justify="space-between">
-            <AddToCollectionButton cardId={localData?.id} />
+            <AddToCollectionButton cardId={localData?.id} fullWidth />
             {/*<AddRemoveCardButton cardId={localData?.id} />*/}
-            <FavoriteToggleButton cardId={localData?.id} />
           </Group>
         ) : null}
       </Card>

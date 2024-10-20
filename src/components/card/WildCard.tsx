@@ -14,7 +14,7 @@ import {
 import { IconBabyCarriage, IconButterfly, IconEgg } from "@tabler/icons-react";
 import styles from "~/components/card/WilderKindCard.module.css";
 import AddToCollectionButton from "~/components/ui/buttons/AddToCollectionButton.tsx";
-import FavoriteToggleButton from "~/components/ui/buttons/FavoriteToggleButton.tsx";
+import ToggleFavoriteButton from "~/components/ui/buttons/ToggleFavoriteButton.tsx";
 
 export default function WildCard({ data }: { data: any }) {
   return (
@@ -71,7 +71,7 @@ export default function WildCard({ data }: { data: any }) {
         <Group justify="space-between">
           <AddToCollectionButton cardId={data?.id} />
           {/*<AddRemoveCardButton cardId={data?.id} />*/}
-          <FavoriteToggleButton cardId={localData?.id} />
+          <ToggleFavoriteButton cardId={localData?.id} />
         </Group>
       ) : null}
     </Card>

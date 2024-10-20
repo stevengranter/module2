@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Button, Text } from "@mantine/core";
+import { ActionIcon, Text } from "@mantine/core";
 import { modals } from "@mantine/modals";
 import { addToCollection } from "~/lib/localStorage/addToCollection.ts";
 import { displayNotification } from "~/lib/utils.ts";
 
-import { IconStar, IconStarFilled } from "lib/icons";
+import { IconHeart, IconHeartFilled } from "lib/icons";
 
-export default function FavoriteToggleButton({ cardId }: { cardId: string }) {
+export default function ToggleFavoriteButton({ cardId }: { cardId: string }) {
   // const { user } = useContext(UserContext);
   const [isFavorite, setIsFavorite] = useState(false);
   const navigate = useNavigate();
@@ -33,8 +33,8 @@ export default function FavoriteToggleButton({ cardId }: { cardId: string }) {
   }
 
   return (
-    <Button onClick={handleClick}>
-      {isFavorite ? <IconStarFilled /> : <IconStar />}
-    </Button>
+    <ActionIcon variant="default" radius="md" size={36}>
+      {isFavorite ? <IconHeartFilled /> : <IconHeart />}
+    </ActionIcon>
   );
 }

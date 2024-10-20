@@ -7,9 +7,9 @@ import { IconPlus } from "~/lib/icons.tsx";
 import AddCardToCollectionForm from "~/lib/localStorage/AddCardToCollectionForm.tsx";
 // import { displayNotification } from "lib/utils.ts";
 
-export default function AddToCollectionButton({ cardId }: { cardId: string }) {
+export default function AddToCollectionButton(props) {
   const { guest } = useGuest();
-  if (!cardId) {
+  if (!props.cardId) {
     console.error("No cardId specified");
   }
 
@@ -32,7 +32,7 @@ export default function AddToCollectionButton({ cardId }: { cardId: string }) {
   function openFormModal() {
     modals.open({
       title: "Add card to collection",
-      children: <AddCardToCollectionForm cardId={cardId} />,
+      children: <AddCardToCollectionForm cardId={props.cardId} />,
     });
   }
 
@@ -47,8 +47,8 @@ export default function AddToCollectionButton({ cardId }: { cardId: string }) {
   }
 
   return (
-    <Button onClick={() => handleClick()} leftSection={<IconPlus />}>
-      Add
+    <Button onClick={() => handleClick()} leftSection={<IconPlus />} {...props}>
+      Found it!
     </Button>
   );
 }
