@@ -1,4 +1,4 @@
-import { INAT_API_URL } from "lib/constants";
+import { INAT_API_URL } from "~/lib/constants.ts";
 
 export default async function routeSearchLoader(
   queryString: undefined | string | null,

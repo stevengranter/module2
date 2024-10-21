@@ -5,6 +5,8 @@ import {
 } from "react-router-dom";
 
 import SamplePage from "~/components/dummy/SamplePage.tsx";
+import Route__LocalUsers from "~/features/localUser";
+import Route__Search from "~/features/search/search__index.tsx";
 import DefaultLayout from "DefaultLayout.tsx";
 
 import Route__Cards from "components/card/_route_cards.tsx";
@@ -13,10 +15,9 @@ import Route__Dashboard from "components/dashboard/dashboard__index.tsx";
 import HomePage from "components/homepage/HomePage.tsx";
 import Route__Users from "components/user/_route_users.tsx";
 import UserProfile from "components/user/UserProfile.tsx";
-import Route__Search from "routes/search/search__index.tsx";
 
 import UserLogin from "./components/form/UserLogin.tsx";
-import routeSearchLoader from "./routes/search/search__index.loader.ts";
+import routeSearchLoader from "./features/search/search__index.loader.ts";
 
 export const router: ReturnType<typeof createBrowserRouter> =
   createBrowserRouter(
@@ -33,6 +34,9 @@ export const router: ReturnType<typeof createBrowserRouter> =
             {/*  <Route element={<CardCollection />} index></Route>*/}
             {/*</Route>*/}
           </Route>
+        </Route>
+        <Route path="local-users">
+          <Route element={<Route__LocalUsers />} index></Route>
         </Route>
         /* /cards */
         <Route path="cards">

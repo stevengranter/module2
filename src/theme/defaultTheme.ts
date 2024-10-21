@@ -1,6 +1,14 @@
 import { createTheme } from "@mantine/core";
 
 export const defaultTheme = createTheme({
+  breakpoints: {
+    xs: "30em",
+    sm: "48em",
+    md: "64em",
+    lg: "74em",
+    xl: "100em",
+    xxl: "135em",
+  },
   primaryColor: "teal",
   colors: {
     teal: [

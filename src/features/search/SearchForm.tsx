@@ -4,10 +4,9 @@ import { useLoaderData, useSearchParams } from "react-router-dom";
 import { Button, Flex, Grid, GridCol, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { WildCard } from "~/components/card/WildCard.tsx";
-
-import SortComponent from "components/ui/controls/SortComponent.tsx";
-import { iNatTaxaResponseType } from "models/iNatTaxaResponseType.ts";
-import { WilderKindCardType } from "models/WilderKindCardType.ts";
+import SortComponent from "~/components/ui/controls/SortComponent.tsx";
+import { iNatTaxaResponseType } from "~/models/iNatTaxaResponseType.ts";
+import { WilderKindCardType } from "~/models/WilderKindCardType.ts";
 
 export default function SearchForm() {
   const form = useForm({ mode: "uncontrolled" });
@@ -84,7 +83,7 @@ export default function SearchForm() {
 
             return (
               <GridCol
-                span={{ base: 6, xs: 6, sm: 6, md: 4, lg: 3, xl: 2 }}
+                span={{ base: 12, xs: 12, sm: 6, md: 6, lg: 4, xl: 3, xxl: 2 }}
                 key={result.id}
               >
                 <WildCard dataObject={result} />

@@ -2,13 +2,11 @@ import { useNavigate } from "react-router-dom";
 
 import { Button, Text } from "@mantine/core";
 import { modals } from "@mantine/modals";
-import { useGuest } from "~/hooks/useGuest.ts";
 import { IconPlus } from "~/lib/icons.tsx";
 import AddCardToCollectionForm from "~/lib/localStorage/AddCardToCollectionForm.tsx";
 // import { displayNotification } from "lib/utils.ts";
 
 export default function AddToCollectionButton(props) {
-  const { guest } = useGuest();
   if (!props.id) {
     console.log("No id specified for AddToCollectionButton");
   }

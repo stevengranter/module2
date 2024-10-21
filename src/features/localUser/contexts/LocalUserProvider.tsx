@@ -1,6 +1,6 @@
-import { createContext, ReactNode } from "react";
+import { createContext, ReactNode, useState } from "react";
 
-import useLocalStorage from "~/features/localUser/hooks/useLocalStorage.ts";
+import useStorage from "~/features/localUser/hooks/useStorage.ts";
 
 type LocalUserContextValue = {
   storage: object;
@@ -14,9 +14,25 @@ export default function LocalUserProvider({
 }: {
   children: ReactNode;
 }) {
-  const { storage, updateStorage, saveStorage } = useLocalStorage("test-user");
+  const { storage, updateStorage, saveStorage } = useStorage("__local_user__");
+  const localUserStorage = {
+    storage,
+    save: saveStorage,
+    update: updateStorage,
+  };
+  const [localUserName, setLocalUserName] = useState("");
+
+  function login() {
+    console.log(storage);
+    console.log(`Hi ${localUserName}`);
+  }
+
+  function logout() {
+    console.log(storage);
+  }
+
   return (
-    <LocalUserContext.Provider value={{ storage, updateStorage, saveStorage }}>
+    <LocalUserContext.Provider value={localUserStorage}>
       {children}
     </LocalUserContext.Provider>
   );

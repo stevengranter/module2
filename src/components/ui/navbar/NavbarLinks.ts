@@ -8,8 +8,9 @@ import {
 
 export const publicLinks = [
   { icon: IconHome, label: "Home", to: "/" },
-  { icon: IconUsersGroup, label: "Users", to: "users" },
-  { label: "my WilderNest", icon: IconArchive, to: "/cards" },
+  // { icon: IconUsersGroup, label: "Users", to: "users" },
+  { icon: IconUsersGroup, label: "Local Users", to: "local-users" },
+  { label: "Cards", icon: IconArchive, to: "/cards" },
   { label: "Collections", icon: IconLayout, to: "/dashboard" },
   { icon: IconBinoculars, label: "Search", to: "/search" },
   { label: "SamplePage", to: "/sample", icon: IconHome },
