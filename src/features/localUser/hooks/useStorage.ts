@@ -14,6 +14,10 @@ export default function useStorage(
     saveStorage();
   }, [storage]);
 
+  useEffect(() => {
+    init();
+  }, []);
+
   function init() {
     console.log("initStorage()");
     setStorage(storage);
@@ -22,7 +26,11 @@ export default function useStorage(
 
   function saveStorage() {
     console.log("saveStorage()");
-    storageType.setItem(STORAGE_KEY, JSON.stringify(storage));
+    try {
+      storageType.setItem(STORAGE_KEY, JSON.stringify(storage));
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   function updateStorage(updates: object) {

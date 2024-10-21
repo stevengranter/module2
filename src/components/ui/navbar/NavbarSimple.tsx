@@ -2,8 +2,8 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
 import LoginLogoutButton from "~/components/ui/buttons/LoginLogoutButton.tsx";
-import StartEndGuestSessionButton from "~/components/ui/buttons/StartEndGuestSessionButton.tsx";
 import { RoleContext } from "~/contexts/RoleContextProvider.tsx";
+import StartEndGuestSessionButton from "~/features/guest/ToggleGuestSessionButton.tsx";
 
 import { publicLinks, userLinks } from "./NavbarLinks.ts";
 import classes from "./NavbarSimple.module.css";

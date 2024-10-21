@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { AspectRatio, Card, Group, Image, Text } from "@mantine/core";
 import { useFetch } from "@mantine/hooks";
 import styles from "~/components/card/WilderKindCard.module.css";
-import AddToCollectionButton from "~/components/ui/buttons/AddToCollectionButton.tsx";
+import FoundItButton from "~/components/ui/buttons/FoundItButton.tsx";
 import ToggleFavoriteButton from "~/components/ui/buttons/ToggleFavoriteButton.tsx";
 import { INAT_API_URL } from "~/lib/constants.ts";
 import {
@@ -72,7 +72,8 @@ function WildCard_Front({ data }: { data: iNatTaxonRecord | null }) {
         </Card.Section>
 
         <Card.Section mt="md">
-          <AddToCollectionButton id={data.id} fullWidth />
+          <FoundItButton id={data.id} />
+          {/*<AddToCollectionButton id={data.id} fullWidth />*/}
         </Card.Section>
       </Card>
     )

@@ -18,18 +18,37 @@
     {
       "birthdate" : "9999-000-000",
       "description" : "",
-      "firstName" : "Guest",
+      "firstName" : "Local",
       "id" : "1",
       "imgSrc" : "",
       "lastName" : "User",
       "password" : "",
-      "title" : "Guest User",
-      "username" : "guest",
+      "title" : "Local User",
+      "username" : "localUser",
       "nest" : {
-        "creatures" : [
+        "creatures": [
           48586,
           59442,
           494559
+        ],
+        "collections": [
+          {
+            "id": "c991fb44-1a27-4b5d-be0a-dda631d1c5c6",
+            "name": "starter",
+            "items": [
+              48586,
+              59442,
+              494559
+            ]
+          },
+          {
+            "id": "c991fb44-1a27-4b5d-be0a-dda631d1c5c6",
+            "name": "other",
+            "items": [
+              81545,
+              99901
+            ]
+          }
         ]
       }
     },

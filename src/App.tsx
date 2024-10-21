@@ -9,7 +9,7 @@ import "@mantine/notifications/styles.css";
 import AuthContextProvider from "~/contexts/AuthContextProvider.tsx";
 import RoleContextProvider from "~/contexts/RoleContextProvider.tsx";
 import UserDataContextProvider from "~/contexts/UserDataContextProvider.tsx";
-import GuestSessionProvider from "~/features/localUser/contexts/GuestSessionProvider.tsx";
+import GuestSessionProvider from "~/features/guest/GuestSessionProvider.tsx";
 import LocalUserProvider from "~/features/localUser/contexts/LocalUserProvider.tsx";
 import ReactDOM from "react-dom/client";
 import { router } from "routes.tsx";

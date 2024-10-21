@@ -1,38 +1,56 @@
 import { createContext, ReactNode, useState } from "react";
 
 import useStorage from "~/features/localUser/hooks/useStorage.ts";
+import { JSON_SERVER_URL } from "~/lib/constants.ts";
 
 type LocalUserContextValue = {
-  storage: object;
-  saveStorage: () => void;
-  updateStorage: (updates: object) => void;
+  localUserData: object;
+  login: () => void;
+  logout: () => void;
 };
-const LocalUserContext = createContext<LocalUserContextValue | null>(null);
+export const LocalUserContext = createContext<LocalUserContextValue>({
+  localUserData: {},
+  login: () => {},
+  logout: () => {},
+});
+
+const localUserTemplate = {
+  birthdate: "9999-000-000",
+  description: "",
+  firstName: "Local",
+  id: "1",
+  imgSrc: "",
+  lastName: "User",
+  password: "",
+  title: "Local User",
+  username: "localUser",
+  nest: {
+    creatures: [48586, 59442, 494559],
+  },
+};
 
 export default function LocalUserProvider({
   children,
 }: {
   children: ReactNode;
 }) {
-  const { storage, updateStorage, saveStorage } = useStorage("__local_user__");
-  const localUserStorage = {
-    storage,
-    save: saveStorage,
-    update: updateStorage,
-  };
+  const localUserData = useStorage("__local_user__", localStorage);
   const [localUserName, setLocalUserName] = useState("");
 
-  function login() {
-    console.log(storage);
+  function login(userName) {
+    localUserData.saveStorage();
+    localUserData.updateStorage({ userName: userName });
+    console.log(localUserData.storage);
     console.log(`Hi ${localUserName}`);
   }
 
   function logout() {
-    console.log(storage);
+    localUserData.saveStorage();
+    console.log(localUserData.storage);
   }
 
   return (
-    <LocalUserContext.Provider value={localUserStorage}>
+    <LocalUserContext.Provider value={{ localUserData, login, logout }}>
       {children}
     </LocalUserContext.Provider>
   );

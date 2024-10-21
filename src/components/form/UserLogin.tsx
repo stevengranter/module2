@@ -1,7 +1,7 @@
 import { Alert, Button, Group, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import StartEndGuestSessionButton from "~/components/ui/buttons/StartEndGuestSessionButton.tsx";
 import { useAuth } from "~/contexts/AuthContextProvider.tsx";
+import StartEndGuestSessionButton from "~/features/guest/ToggleGuestSessionButton.tsx";
 
 export default function UserLogin() {
   const { login, logout, error, isAuthenticated } = useAuth();
