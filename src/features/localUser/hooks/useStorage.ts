@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 
-const STORAGE_KEY = "__local_user__";
-
 export default function useStorage(
-  STORAGE_KEY: string,
+  storageKey: string,
   storageType = localStorage,
 ) {
   const [storage, setStorage] = useState(
-    JSON.parse(storageType.getItem(STORAGE_KEY) || "{}"),
+    JSON.parse(storageType.getItem(storageKey) || "{}"),
   );
 
   useEffect(() => {
@@ -27,7 +25,7 @@ export default function useStorage(
   function saveStorage() {
     console.log("saveStorage()");
     try {
-      storageType.setItem(STORAGE_KEY, JSON.stringify(storage));
+      storageType.setItem(storageKey, JSON.stringify(storage));
     } catch (error) {
       console.log(error);
     }
@@ -44,7 +42,7 @@ export default function useStorage(
 
   function clearStorage() {
     console.log("clearStorage()");
-    storageType.removeItem(STORAGE_KEY);
+    storageType.removeItem(storageKey);
     setStorage({});
   }
 

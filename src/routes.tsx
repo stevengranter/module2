@@ -4,7 +4,7 @@ import {
   Route,
 } from "react-router-dom";
 
-import SamplePage from "~/components/dummy/SamplePage.tsx";
+import { SampleGuest } from "~/components/dummy/SampleGuest.tsx";
 import Route__LocalUsers from "~/features/localUser";
 import Route__Search from "~/features/search/search__index.tsx";
 import DefaultLayout from "DefaultLayout.tsx";
@@ -57,7 +57,7 @@ export const router: ReturnType<typeof createBrowserRouter> =
             index
           ></Route>
         </Route>
-        <Route path="sample" element={<SamplePage />} />
+        <Route path="sample" element={<SampleGuest />} />
       </Route>,
     ),
   );

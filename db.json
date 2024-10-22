@@ -11,7 +11,7 @@
       "title" : "Anonymous",
       "username" : "anonymous",
       "nest" : {
-        "creatures" : [
+        "items" : [
         ]
       }
     },
@@ -26,7 +26,7 @@
       "title" : "Local User",
       "username" : "localUser",
       "nest" : {
-        "creatures": [
+        "items": [
           48586,
           59442,
           494559
@@ -54,7 +54,7 @@
     },
     {
       "nest" : {
-        "creatures" : [
+        "items" : [
           1,
           2,
           3,
@@ -94,7 +94,7 @@
     },
     {
       "nest" : {
-        "creatures" : [
+        "items" : [
           1,
           6,
           8

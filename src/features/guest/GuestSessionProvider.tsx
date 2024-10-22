@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useState } from "react";
 
-import useStorage from "~/features/localUser/hooks/useStorage.ts";
+import { useSessionStorage } from "@mantine/hooks";
 
 type GuestSessionContext = {
   isGuest: boolean;
@@ -17,21 +17,13 @@ export const GuestSessionContext = createContext<GuestSessionContext>({
 });
 
 const guestSessionDataTemplate = {
-  birthdate: "9999-000-000",
-  description: "",
-  firstName: "Local",
   id: "1",
-  imgSrc: "",
-  lastName: "User",
-  password: "",
-  title: "Local User",
-  username: "localUser",
+  username: "guest",
   nest: {
     creatures: [48586, 59442, 494559],
   },
   collections: [
     {
-      id: "c991fb44-1a27-4b5d-be0a-dda631d1c5c6",
       name: "favorites",
       items: [48586, 59442, 494559],
     },
@@ -43,27 +35,53 @@ export default function GuestSessionProvider({
 }: {
   children: ReactNode;
 }) {
-  const guestData = useStorage("__guest__", sessionStorage);
+  const [guestData, setGuestData] = useSessionStorage({
+    key: "guest",
+    defaultValue: {
+      id: "1",
+      username: "guest",
+      nest: {
+        items: [48586, 59442, 494559],
+        collections: [
+          {
+            name: "favorites",
+            items: [48586, 59442, 494559],
+          },
+        ],
+      },
+    },
+  });
   const [isGuest, setIsGuest] = useState(false);
 
   function startGuestSession() {
     console.log("START: Guest session");
-    guestData.clearStorage();
-    guestData.updateStorage(guestSessionDataTemplate);
+    try {
+      sessionStorage.get("guest");
+    } catch {
+      sessionStorage.setItem("guest", JSON.stringify(guestSessionDataTemplate));
+      console.log("No guest in sessionStorage, creating guest");
+      sessionStorage.getItem("guest");
+      console.log(sessionStorage.getItem("guest"));
+    }
     setIsGuest(true);
+  }
+
+  function updateGuestSessionStorage(data) {
+    const currentGuest = sessionStorage.getItem("guest");
+    console.log(currentGuest);
   }
 
   function endGuestSession() {
     console.log("END: Guest session");
-    guestData.clearStorage();
+    sessionStorage.removeItem("guest");
     setIsGuest(false);
   }
 
   return (
     <GuestSessionContext.Provider
       value={{
-        guestData,
         isGuest,
+        guestData,
         startGuestSession,
         endGuestSession,
       }}
