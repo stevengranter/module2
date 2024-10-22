@@ -10,17 +10,20 @@ export const GuestSessionContext = createContext<GuestSessionContext>({
 });
 
 const guestSessionDataTemplate = {
-  id: "1",
-  username: "guest",
-  nest: {
-    creatures: [48586, 59442, 494559],
-  },
-  collections: [
-    {
-      name: "favorites",
+  key: "guest",
+  defaultValue: {
+    id: "1",
+    username: "guest",
+    nest: {
       items: [48586, 59442, 494559],
+      collections: [
+        {
+          name: "starter",
+          items: [48586, 59442, 494559],
+        },
+      ],
     },
-  ],
+  },
 };
 
 export default function GuestSessionProvider({
@@ -28,9 +31,12 @@ export default function GuestSessionProvider({
 }: {
   children: ReactNode;
 }) {
-  const [guestData, setGuestData] = useSessionStorage({
-    key: "guest",
-    defaultValue: {
+  const [guestData, setGuestData] = useSessionStorage(guestSessionDataTemplate);
+
+  const [isGuest, setIsGuest] = useState(false);
+
+  function startGuestSession() {
+    setGuestData({
       id: "1",
       username: "guest",
       nest: {
@@ -42,26 +48,9 @@ export default function GuestSessionProvider({
           },
         ],
       },
-    },
-  });
-  const [isGuest, setIsGuest] = useState(false);
-
-  function startGuestSession() {
+    });
     console.log("START: Guest session");
-    try {
-      sessionStorage.get("guest");
-    } catch {
-      sessionStorage.setItem("guest", JSON.stringify(guestSessionDataTemplate));
-      console.log("No guest in sessionStorage, creating guest");
-      sessionStorage.getItem("guest");
-      console.log(sessionStorage.getItem("guest"));
-    }
     setIsGuest(true);
-  }
-
-  function updateGuestSessionStorage(data) {
-    const currentGuest = sessionStorage.getItem("guest");
-    console.log(currentGuest);
   }
 
   function endGuestSession() {
