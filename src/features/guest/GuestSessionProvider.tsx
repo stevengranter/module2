@@ -2,13 +2,6 @@ import { createContext, ReactNode, useState } from "react";
 
 import { useSessionStorage } from "@mantine/hooks";
 
-type GuestSessionContext = {
-  isGuest: boolean;
-  guestData: object | null;
-  startGuestSession: () => void | null;
-  endGuestSession: () => void | null;
-};
-
 export const GuestSessionContext = createContext<GuestSessionContext>({
   isGuest: false,
   guestData: null,
@@ -44,7 +37,7 @@ export default function GuestSessionProvider({
         items: [48586, 59442, 494559],
         collections: [
           {
-            name: "favorites",
+            name: "starter",
             items: [48586, 59442, 494559],
           },
         ],
