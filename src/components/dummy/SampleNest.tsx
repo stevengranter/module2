@@ -17,8 +17,7 @@ export default function SampleNest() {
   const [id, setId] = useState<string | number>(null);
   const [collection, setCollection] = useState<string>("");
   const [newCollection, setNewCollection] = useState<string>("");
-
-  console.log(collections);
+  const [collectionsSelected, setCollectionsSelected] = useState([]);
 
   return (
     <>
@@ -44,18 +43,35 @@ export default function SampleNest() {
             value={collection}
             onChange={(event) => setCollection(event.currentTarget.value)}
           ></TextInput>
-          <CollectionDropdown taxonId={id} />
+          <CollectionDropdown
+            initialValue={() => {
+              // console.log(collections.getMatchingNames(id));
+              return collections.getMatchingNames(id);
+            }}
+            initialData={() =>
+              collections.get().map((collection) => collection.name)
+            }
+            taxonId={id}
+          />
         </Group>
         <Space></Space>
         <Button onClick={() => nest.addId(id)}>Add iD to nest</Button>
-        <Button onClick={() => collections.addId(collection, id)}>
+        <Button onClick={() => collections.addId(id, collection)}>
           Add iD to collection
         </Button>
-      </Fieldset>
 
-      <Button
-        onClick={() => console.log(() => collections.getNames())}
-      ></Button>
+        <Button onClick={() => collections.removeId(id, collection)}>
+          Remove id from collection
+        </Button>
+        <Button
+          onClick={() => {
+            console.log(collections.getMatchingNames(id));
+            return collections.getMatchingNames(id);
+          }}
+        >
+          Get Matching Collections
+        </Button>
+      </Fieldset>
     </>
   );
 }

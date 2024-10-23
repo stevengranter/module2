@@ -1,32 +1,33 @@
 // import useAuth from "hooks/useAuth";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 
-import { useGuest } from "~/hooks/useGuest.ts";
-import CollectionCreateForm from "~/lib/localStorage/CollectionCreateForm.tsx";
+import { GuestSessionContext } from "~/features/guest/GuestSessionProvider.tsx";
+import { NestContext } from "~/features/nest/NestProvider.tsx";
 
 import CardCollection from "components/card/CardCollection";
 
 export default function Collections() {
-  const { guest } = useGuest();
+  const { isGuest } = useContext(GuestSessionContext);
+  const { collections } = useContext(NestContext);
 
   useEffect(() => {
     console.log("Collections.useEffect()");
-    console.log({ guest });
-  }, [guest]);
+    console.log({ isGuest });
+  }, [isGuest]);
 
   return (
-    guest && (
+    isGuest && (
       <>
         <h2>Collections</h2>
-        <CollectionCreateForm />
+
         {/*<CollectionCreateButton />*/}
         <h3>Collections</h3>
-        {guest.collections &&
-          guest.collections.map((collection) => {
+        {collections &&
+          collections.get().map((collection) => {
             return (
               <>
                 <h4>{collection.name}</h4>
-                <p>{collection.description}</p>
+                {/*<p>{collection.description}</p>*/}
                 {collection.items && collection.items.length > 0 ? (
                   <CardCollection
                     collection={collection.items}

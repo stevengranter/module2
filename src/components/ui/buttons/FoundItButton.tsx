@@ -13,7 +13,7 @@ export default function FoundItButton(props: {
   return (
     <>
       <Button onClick={() => setOpened(!opened)}>Found it!</Button>{" "}
-      {opened && <CollectionDropdown />}
+      {opened && <CollectionDropdown taxonId={props.id} />}
     </>
   );
 }

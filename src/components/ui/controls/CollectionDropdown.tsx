@@ -10,15 +10,7 @@ import {
 } from "@mantine/core";
 import { NestContext } from "~/features/nest/NestProvider.tsx";
 
-const groceries = [
-  "🍎 Apples",
-  "🍌 Bananas",
-  "🥦 Broccoli",
-  "🥕 Carrots",
-  "🍫 Chocolate",
-];
-
-export function CollectionDropdown({ taxonId }) {
+export function CollectionDropdown({ initialData, initialValue, taxonId }) {
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
     onDropdownOpen: () => combobox.updateSelectedOptionIndex("active"),
@@ -26,25 +18,21 @@ export function CollectionDropdown({ taxonId }) {
 
   const { collections } = useContext(NestContext);
 
-  useEffect(() => {
-    console.log(`taxonId is now ${taxonId}`);
-  }, [taxonId]);
+  const [search, setSearch] = useState("");
+  const [data, setData] = useState(initialData || []);
+  const [value, setValue] = useState<string[]>(initialValue || []);
 
   useEffect(() => {
     const collectionNames = collections
       .get()
       .map((collection) => collection.name);
-
     setData(collectionNames);
-  }, [collections]);
-
-  const [search, setSearch] = useState("");
-  const [data, setData] = useState([""]);
-  const [value, setValue] = useState<string[]>([]);
+  }, []);
 
   useEffect(() => {
-    console.log(`value is now: ${value}`);
-  }, [value]);
+    const collectionsIncludingTaxonId = collections.getMatchingNames(taxonId);
+    setValue(collectionsIncludingTaxonId);
+  }, []);
 
   const exactOptionMatch = data.some((item) => item === search);
 
@@ -55,17 +43,22 @@ export function CollectionDropdown({ taxonId }) {
     if (val === "$create") {
       setData((current) => [...current, search]);
       setValue((current) => [...current, search]);
+      collections.addId(taxonId, search);
     } else {
       setValue((current) =>
         current.includes(val)
           ? current.filter((v) => v !== val)
           : [...current, val],
       );
+      collections.addId(taxonId, val);
     }
   };
 
-  const handleValueRemove = (val: string) =>
+  const handleValueRemove = (val: string) => {
+    console.log(val);
     setValue((current) => current.filter((v) => v !== val));
+    collections.removeId(taxonId, val);
+  };
 
   const values = value.map((item) => (
     <Pill key={item} withRemoveButton onRemove={() => handleValueRemove(item)}>
