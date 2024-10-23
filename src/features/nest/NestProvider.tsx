@@ -1,54 +1,134 @@
-import { createContext, ReactNode, useContext } from "react";
+import { createContext, ReactNode } from "react";
 
-import { GuestSessionContext } from "~/features/guest/GuestSessionProvider.tsx";
-import { LocalUserContext } from "~/features/localUser/contexts/LocalUserProvider.tsx";
+import { useSessionStorage } from "@mantine/hooks";
 
 type NestContext = {
-  nest: { items: number[] | string[] | null; collections: object[] };
-  getNest: () => void;
-  saveNest: () => void;
+  nest: { get: () => number[]; addId: (id: number) => void };
+  collections: {
+    get: () => Collection[];
+    addId: (name: string, id: number) => void;
+    create: (name: string) => void;
+  };
 };
 
-export const NestContext = createContext({
-  nest: null,
-  getNest: () => {},
-  saveNest: () => {},
-});
+type Collection = {
+  name: string;
+  id: string | null;
+  items: number[];
+};
+
+export const NestContext = createContext<NestContext | null>(null);
 
 export default function NestProvider({ children }: { children: ReactNode }) {
-  const { isGuest, guestData } = useContext(GuestSessionContext);
-  const { isLocalUser } = useContext(LocalUserContext);
+  const [nestData, setNestData] = useSessionStorage<number[]>({
+    key: "nest",
+    defaultValue: [],
+  });
+  const [collectionsData, setCollectionsData] = useSessionStorage<Collection[]>(
+    {
+      key: "collections",
+      defaultValue: [],
+    },
+  );
 
-  const nest = { nest: "Nest data here" };
+  function clearNest() {
+    setNestData([]);
+  }
+
+  function clearCollections() {
+    setCollectionsData([]);
+  }
 
   function getNest() {
-    if (isGuest) {
-      console.log(localStorage.getItem("guest"));
+    console.log(nestData);
+    return nestData;
+  }
+
+  function getCollections() {
+    console.log(collectionsData);
+    return collectionsData;
+  }
+
+  function createCollection(name: string) {
+    if (hasCollection(name)) {
+      return console.log(
+        `Collection ${name} already exists (id: ${getCollectionIdByName(name)}`,
+      );
     }
+    const newCollection = { name: name, id: crypto.randomUUID(), items: [] };
+    setCollectionsData((current) => [...current, newCollection]);
+    console.log(`Collection ${name} created`);
   }
 
-  function saveNest() {
-    console.log("saveNest()");
+  function hasCollection(name: string) {
+    return collectionsData.some((collection) => collection.name === name);
   }
 
-  function addToCollection() {
-    console.log("addToCollection()");
+  function addIdToNest(id: number) {
+    if (isIdInNest(id)) return console.log(`id:${id} is already in nest`);
+    setNestData((current) => [...current, id]);
+    console.log(`id: ${id} has been added to nest`);
   }
 
-  function removeFromCollection() {
-    console.log("removeFromCollection()");
+  function addIdToCollection(name: string, id: number) {
+    if (!hasCollection(name)) {
+      return console.log(`Collection ${name} doesn't exist!`);
+    }
+    if (isIdInCollection(name, id)) {
+      return console.log(`Collection ${name} already includes id: ${id}!`);
+    }
+    addIdToNest(id);
+    setCollectionsData((collections) =>
+      collections.map((collection: Collection) =>
+        collection.name === name
+          ? { ...collection, items: [...collection.items, id] }
+          : collection,
+      ),
+    );
+    console.log(`id: ${id} has been added to collection: ${name}`);
   }
 
-  function createCollection() {
-    console.log("createCollection()");
+  function getCollectionByName(name: string) {
+    const namedCollection = collectionsData.find(
+      (collection) => collection.name === name,
+    );
+    if (!namedCollection) return null;
+    return namedCollection;
   }
 
-  function deleteCollection() {
-    console.log("deleteCollection()");
+  function getCollectionIdByName(name: string) {
+    const namedCollection = getCollectionByName(name);
+    if (!namedCollection) return null;
+    else return namedCollection.id;
   }
+
+  function isIdInNest(id: number) {
+    return nestData.includes(id);
+  }
+
+  function isIdInCollection(name: string, id: number) {
+    if (!hasCollection(name)) {
+      return console.log(`Collection ${name} doesn't exist!`);
+    }
+    const namedCollection = getCollectionByName(name);
+    if (namedCollection) return namedCollection.items.includes(id);
+  }
+
+  const nest = { get: getNest, addId: addIdToNest, clear: clearNest };
+  const collections = {
+    get: getCollections,
+    addId: addIdToCollection,
+    create: createCollection,
+    clear: clearCollections,
+  };
 
   return (
-    <NestContext.Provider value={{ nest, getNest, saveNest }}>
+    <NestContext.Provider
+      value={{
+        nest,
+        collections,
+      }}
+    >
       {children}
     </NestContext.Provider>
   );
