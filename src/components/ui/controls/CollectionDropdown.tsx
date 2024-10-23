@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import {
   CheckIcon,
@@ -8,6 +8,7 @@ import {
   PillsInput,
   useCombobox,
 } from "@mantine/core";
+import { NestContext } from "~/features/nest/NestProvider.tsx";
 
 const groceries = [
   "🍎 Apples",
@@ -17,15 +18,33 @@ const groceries = [
   "🍫 Chocolate",
 ];
 
-export function CollectionDropdown() {
+export function CollectionDropdown({ taxonId }) {
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
     onDropdownOpen: () => combobox.updateSelectedOptionIndex("active"),
   });
 
+  const { collections } = useContext(NestContext);
+
+  useEffect(() => {
+    console.log(`taxonId is now ${taxonId}`);
+  }, [taxonId]);
+
+  useEffect(() => {
+    const collectionNames = collections
+      .get()
+      .map((collection) => collection.name);
+
+    setData(collectionNames);
+  }, [collections]);
+
   const [search, setSearch] = useState("");
-  const [data, setData] = useState(groceries);
+  const [data, setData] = useState([""]);
   const [value, setValue] = useState<string[]>([]);
+
+  useEffect(() => {
+    console.log(`value is now: ${value}`);
+  }, [value]);
 
   const exactOptionMatch = data.some((item) => item === search);
 

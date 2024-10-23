@@ -17,10 +17,18 @@ type Collection = {
   items: number[];
 };
 
-export const NestContext = createContext<NestContext | null>(null);
+const storageHook = useSessionStorage;
 
+export const NestContext = createContext<NestContext>({
+  nest: { get: () => [], addId: () => {} },
+  collections: {
+    get: () => [],
+    addId: () => {},
+    create: () => {},
+  },
+});
 export default function NestProvider({ children }: { children: ReactNode }) {
-  const [nestData, setNestData] = useSessionStorage<number[]>({
+  const [nestData, setNestData] = storageHook<number[]>({
     key: "nest",
     defaultValue: [],
   });

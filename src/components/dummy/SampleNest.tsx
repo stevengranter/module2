@@ -9,13 +9,16 @@ import {
   TextInput,
   Title,
 } from "@mantine/core";
+import { CollectionDropdown } from "~/components/ui/controls/CollectionDropdown.tsx";
 import { NestContext } from "~/features/nest/NestProvider.tsx";
 
 export default function SampleNest() {
+  const { nest, collections } = useContext(NestContext);
   const [id, setId] = useState<string | number>(null);
   const [collection, setCollection] = useState<string>("");
   const [newCollection, setNewCollection] = useState<string>("");
-  const { nest, collections } = useContext(NestContext);
+
+  console.log(collections);
 
   return (
     <>
@@ -41,6 +44,7 @@ export default function SampleNest() {
             value={collection}
             onChange={(event) => setCollection(event.currentTarget.value)}
           ></TextInput>
+          <CollectionDropdown taxonId={id} />
         </Group>
         <Space></Space>
         <Button onClick={() => nest.addId(id)}>Add iD to nest</Button>
@@ -48,6 +52,10 @@ export default function SampleNest() {
           Add iD to collection
         </Button>
       </Fieldset>
+
+      <Button
+        onClick={() => console.log(() => collections.getNames())}
+      ></Button>
     </>
   );
 }
