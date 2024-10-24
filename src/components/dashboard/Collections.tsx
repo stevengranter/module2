@@ -1,7 +1,9 @@
 // import useAuth from "hooks/useAuth";
 import { useContext, useEffect } from "react";
 
+import { Title } from "@mantine/core";
 import { GuestSessionContext } from "~/features/guest/GuestSessionProvider.tsx";
+import ToggleGuestSessionButton from "~/features/guest/ToggleGuestSessionButton.tsx";
 import { NestContext } from "~/features/nest/NestProvider.tsx";
 
 import CardCollection from "components/card/CardCollection";
@@ -15,14 +17,26 @@ export default function Collections() {
     console.log({ isGuest });
   }, [isGuest]);
 
-  return (
-    isGuest && (
+  if (!isGuest) {
+    return (
       <>
-        <h2>Collections</h2>
+        <p>You must be a guest to create a collection</p>
+        <ToggleGuestSessionButton />
+      </>
+    );
+  }
 
-        {/*<CollectionCreateButton />*/}
-        <h3>Collections</h3>
-        {collections &&
+  if (collections.get().length === 0) {
+    return (
+      <p>No collections yet, add creatures in search to add to collections.</p>
+    );
+  }
+
+  return (
+    <>
+      <Title order={3}>Collections</Title>
+      {isGuest ? (
+        collections.get().length > 0 ? (
           collections.get().map((collection) => {
             return (
               <>
@@ -38,8 +52,17 @@ export default function Collections() {
                 )}
               </>
             );
-          })}
-      </>
-    )
+          })
+        ) : (
+          <p>Add a collection</p>
+        )
+      ) : (
+        <>
+          <Title order={3}>No collections</Title>
+          <p>You must be a guest to create a collection.</p>
+          <ToggleGuestSessionButton />
+        </>
+      )}
+    </>
   );
 }
