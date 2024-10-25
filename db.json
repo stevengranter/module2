@@ -8,6 +8,7 @@
       "imgSrc" : "",
       "lastName" : "Mouse",
       "password" : "",
+      "email": "anon.e.mouse@mousehouse.net",
       "title" : "Anonymous",
       "username" : "anonymous",
       "nest" : {

@@ -7,8 +7,7 @@ import {
 
 export const publicLinks = [
   { icon: IconHome, label: "Home", to: "/" },
-  // { icon: IconUsersGroup, label: "Users", to: "users" },
-  { icon: IconUsersGroup, label: "Local Users", to: "local-users" },
+  { icon: IconUsersGroup, label: "Users", to: "users" },
   // { label: "Cards", icon: IconArchive, to: "/cards" },
   { label: "Collections", icon: IconLayout, to: "/dashboard" },
   { icon: IconBinoculars, label: "Search", to: "/search" },

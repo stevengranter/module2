@@ -1,4 +1,5 @@
 export interface UserType {
+  nest: { items: [number] };
   collection?: string[];
   description?: string;
   firstName?: string;
