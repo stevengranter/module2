@@ -11,6 +11,7 @@ import {
   iNatTaxaResponseType,
   iNatTaxonRecord,
 } from "~/models/iNatTaxaResponseType.ts";
+import { Interweave } from "interweave";
 
 export function WildCard({
   id,
@@ -47,7 +48,7 @@ export function WildCard({
       <>
         <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
           <WildCard_Front data={taxonData} />
-          <WildCard_Front data={taxonData} />
+          <WildCard_Back data={taxonData} />
         </ReactCardFlip>
         <Button onClick={(e) => handleFlip(e)}>Flip</Button>
       </>
@@ -58,9 +59,9 @@ export function WildCard({
 function WildCard_Front({ data }: { data: iNatTaxonRecord | null }) {
   // if (loading) return "Loading...";
 
-  useEffect(() => {
-    console.log(data);
-  }, []);
+  // useEffect(() => {
+  //   console.log(data);
+  // }, []);
   return (
     data && (
       <Card key={data.id} withBorder>
@@ -92,6 +93,18 @@ function WildCard_Front({ data }: { data: iNatTaxonRecord | null }) {
           <FoundItButton id={data.id} />
           {/*<AddToCollectionButton id={data.id} fullWidth />*/}
         </Card.Section>
+      </Card>
+    )
+  );
+}
+
+function WildCard_Back({ data }: { data: iNatTaxonRecord | null }) {
+  return (
+    data && (
+      <Card>
+        <Text size="sm">
+          <Interweave content={data.wikipedia_summary} />
+        </Text>
       </Card>
     )
   );

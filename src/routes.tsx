@@ -6,6 +6,7 @@ import {
 
 import SampleNest from "~/components/dummy/SampleNest.tsx";
 import Route__LocalUsers from "~/features/localUser";
+import routeSearchLoader from "~/features/search/search__index.loader.ts";
 import Route__Search from "~/features/search/search__index.tsx";
 import UserManagement from "~/features/userManagement/UserManagement.tsx";
 import DefaultLayout from "DefaultLayout.tsx";
@@ -17,7 +18,6 @@ import HomePage from "components/homepage/HomePage.tsx";
 import UserProfile from "components/user/UserProfile.tsx";
 
 import UserLogin from "./components/form/UserLogin.tsx";
-import routeSearchLoader from "./features/search/search__index.loader.ts";
 
 export const router: ReturnType<typeof createBrowserRouter> =
   createBrowserRouter(
@@ -51,6 +51,7 @@ export const router: ReturnType<typeof createBrowserRouter> =
             loader={({ request }) => {
               const url = new URL(request.url);
               const searchTerm: string | null = url.searchParams.get("q");
+              console.log(`Search params: ${searchTerm}`);
               return routeSearchLoader(searchTerm);
             }}
             element={<Route__Search />}

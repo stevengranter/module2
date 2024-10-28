@@ -1,7 +1,15 @@
 import { useState } from "react";
 import { useLoaderData, useSearchParams } from "react-router-dom";
 
-import { Button, Flex, Grid, GridCol, TextInput } from "@mantine/core";
+import {
+  Button,
+  Flex,
+  Grid,
+  GridCol,
+  NumberInput,
+  Pagination,
+  TextInput,
+} from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { WildCard } from "~/components/card/WildCard.tsx";
 import SortComponent from "~/components/ui/controls/SortComponent.tsx";
@@ -10,52 +18,28 @@ import { WilderKindCardType } from "~/models/WilderKindCardType.ts";
 
 export default function SearchForm() {
   const form = useForm({ mode: "uncontrolled" });
+
   const [searchParams, setSearchParams] = useSearchParams();
+  const [pageNumber, setPageNumber] = useState(0);
+
   const [_matchingCards, setMatchingCards] = useState<WilderKindCardType[]>([]);
   const data = useLoaderData() as iNatTaxaResponseType;
   const [error, setError] = useState<string | null>(null);
 
-  function handleSubmit(values: typeof form.values) {
+  if (data) {
+    const totalPages = Math.ceil(data.total_results / data.per_page);
+    console.log(totalPages);
+  }
+
+  function handleSubmit(values: FormValues) {
+    console.log(values);
     setSearchParams(values);
   }
 
-  // useEffect(() => {
-  //   // if (searchParams.size > 0) console.log(data.results);
-  //   // console.log(searchParams.get('q'));
-  //   // if (data) searchCards(data).then((r) => console.log(r));
-  // }, [searchParams, data]);
-
-  // async function searchCards(data: iNatTaxaResponseType) {
-  //   if (!data.results) return;
-  //   const { results } = data;
-  //   const matchedCardsArray = [];
-  //
-  //   for (const result of results) {
-  //     try {
-  //       // console.log(result);
-  //
-  //       const matchingCardsResult = await fetch(
-  //         `${JSON_SERVER_URL}/cards?taxon_id=${result.id}`,
-  //       );
-  //
-  //       if (!matchingCardsResult.ok) {
-  //         setError("Network response was not okay");
-  //       }
-  //
-  //       const matchingCardsJSON = await matchingCardsResult.json();
-  //
-  //       if (matchingCardsJSON.length > 0) {
-  //         const match = matchingCardsJSON[0];
-  //         const enrichedCard = { ...result, ...match };
-  //         matchedCardsArray.push(enrichedCard);
-  //       }
-  //     } catch (error) {
-  //       console.error("Error fetching matching cards:", error);
-  //     }
-  //   }
-  //
-  //   return matchedCardsArray;
-  // }
+  function changePage(pageNumber: number) {
+    console.log(`Page #: ${pageNumber} requested`);
+    setSearchParams({ page: pageNumber.toString() });
+  }
 
   return (
     <>
@@ -69,8 +53,15 @@ export default function SearchForm() {
             label="Search"
             {...form.getInputProps("q")}
           />
+          <NumberInput hidden key={form.key("page")}></NumberInput>
           <Button type="submit">Submit</Button>
         </Flex>
+        <Pagination
+          total={data.results && Math.ceil(data.total_results / data.per_page)}
+          defaultValue={1}
+          onChange={(page) => changePage(page)}
+          key={form.key("page")}
+        />
       </form>
       <SortComponent />
       <Grid>
