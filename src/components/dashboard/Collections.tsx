@@ -35,6 +35,7 @@ export default function Collections() {
   return (
     <>
       <Title order={3}>Collections</Title>
+
       {isGuest ? (
         collections.get().length > 0 ? (
           collections.get().map((collection) => {
