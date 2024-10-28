@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import ReactCardFlip from "react-card-flip";
 
-import { AspectRatio, Card, Group, Image, Text } from "@mantine/core";
+import { AspectRatio, Button, Card, Group, Image, Text } from "@mantine/core";
 import { useFetch } from "@mantine/hooks";
 import styles from "~/components/card/WilderKindCard.module.css";
 import FoundItButton from "~/components/ui/buttons/FoundItButton.tsx";
@@ -22,6 +23,7 @@ export function WildCard({
   const { data, loading, error, refetch } = useFetch<iNatTaxaResponseType>(
     id ? `${INAT_API_URL}/taxa/${id}` : "",
   );
+  const [isFlipped, setIsFlipped] = useState(false);
 
   // If dataObject was passed, use that data
   useEffect(() => {
@@ -33,9 +35,24 @@ export function WildCard({
     console.log(dataObject);
   }, [data, dataObject]);
 
+  function handleFlip(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    e.preventDefault();
+    setIsFlipped((prevState) => !prevState);
+  }
+
   if (loading) return null;
 
-  return (data || dataObject) && <WildCard_Front data={taxonData} />;
+  return (
+    (data || dataObject) && (
+      <>
+        <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
+          <WildCard_Front data={taxonData} />
+          <WildCard_Front data={taxonData} />
+        </ReactCardFlip>
+        <Button onClick={(e) => handleFlip(e)}>Flip</Button>
+      </>
+    )
+  );
 }
 
 function WildCard_Front({ data }: { data: iNatTaxonRecord | null }) {
