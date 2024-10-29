@@ -6,6 +6,7 @@ import "@mantine/core/styles.css";
 import { ModalsProvider } from "@mantine/modals";
 import { Notifications } from "@mantine/notifications";
 import "@mantine/notifications/styles.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import AuthContextProvider from "~/contexts/AuthContextProvider.tsx";
 import RoleContextProvider from "~/contexts/RoleContextProvider.tsx";
 import UserDataContextProvider from "~/contexts/UserDataContextProvider.tsx";
@@ -16,7 +17,7 @@ import ReactDOM from "react-dom/client";
 import { router } from "routes.tsx";
 import { defaultTheme } from "theme/defaultTheme";
 
-``;
+const queryClient = new QueryClient();
 
 const rootElement = document.getElementById("root")!;
 if (!rootElement.innerHTML) {
@@ -24,27 +25,29 @@ if (!rootElement.innerHTML) {
   root.render(
     <StrictMode>
       {/*<ErrorBoundary>*/}
-      <AuthContextProvider>
-        <NestProvider>
-          <LocalUserProvider>
-            <RoleContextProvider>
-              <GuestSessionProvider>
-                <UserDataContextProvider>
-                  <ColorSchemeScript defaultColorScheme="auto" />
-                  <MantineProvider
-                    defaultColorScheme="auto"
-                    theme={defaultTheme}
-                  >
-                    <ModalsProvider />
-                    <Notifications position="top-center" />
-                    <RouterProvider router={router} />
-                  </MantineProvider>
-                </UserDataContextProvider>
-              </GuestSessionProvider>
-            </RoleContextProvider>
-          </LocalUserProvider>
-        </NestProvider>
-      </AuthContextProvider>
+      <QueryClientProvider client={queryClient}>
+        <AuthContextProvider>
+          <NestProvider>
+            <LocalUserProvider>
+              <RoleContextProvider>
+                <GuestSessionProvider>
+                  <UserDataContextProvider>
+                    <ColorSchemeScript defaultColorScheme="auto" />
+                    <MantineProvider
+                      defaultColorScheme="auto"
+                      theme={defaultTheme}
+                    >
+                      <ModalsProvider />
+                      <Notifications position="top-center" />
+                      <RouterProvider router={router} />
+                    </MantineProvider>
+                  </UserDataContextProvider>
+                </GuestSessionProvider>
+              </RoleContextProvider>
+            </LocalUserProvider>
+          </NestProvider>
+        </AuthContextProvider>
+      </QueryClientProvider>
       {/*</ErrorBoundary>*/}
     </StrictMode>,
   );
