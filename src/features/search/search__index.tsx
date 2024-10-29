@@ -1,13 +1,12 @@
 import { Title } from "@mantine/core";
 
-import SearchForm from "./SearchForm.tsx";
+import Search from "./Search.tsx";
 
 export default function Route__Search() {
   return (
     <>
-      <SearchForm />
+      <Search />
       <br />
-      <Title order={2}>Featured</Title>
     </>
   );
 }

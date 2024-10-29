@@ -48,12 +48,12 @@ export const router: ReturnType<typeof createBrowserRouter> =
         </Route>
         <Route path="search">
           <Route
-            loader={({ request }) => {
-              const url = new URL(request.url);
-              const searchTerm: string | null = url.searchParams.get("q");
-              console.log(`Search params: ${searchTerm}`);
-              return routeSearchLoader(searchTerm);
-            }}
+            // loader={({ request }) => {
+            //   const url = new URL(request.url);
+            //   const searchTerm: string | null = url.searchParams.get("q");
+            //   console.log(`Search params: ${searchTerm}`);
+            //   return routeSearchLoader(searchTerm);
+            // }}
             element={<Route__Search />}
             index
           ></Route>

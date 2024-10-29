@@ -13,11 +13,18 @@ import UserDataContextProvider from "~/contexts/UserDataContextProvider.tsx";
 import GuestSessionProvider from "~/features/guest/GuestSessionProvider.tsx";
 import LocalUserProvider from "~/features/localUser/contexts/LocalUserProvider.tsx";
 import NestProvider from "~/features/nest/NestProvider.tsx";
+import { iNatQueryFunction } from "~/lib/utils.ts";
 import ReactDOM from "react-dom/client";
 import { router } from "routes.tsx";
 import { defaultTheme } from "theme/defaultTheme";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      queryFn: iNatQueryFunction,
+    },
+  },
+});
 
 const rootElement = document.getElementById("root")!;
 if (!rootElement.innerHTML) {
