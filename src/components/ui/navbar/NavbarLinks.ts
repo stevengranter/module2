@@ -12,7 +12,7 @@ export const publicLinks = [
   { label: "Collections", icon: IconLayout, to: "/dashboard" },
   { icon: IconBinoculars, label: "Search", to: "/search" },
   // { label: "SamplePage", to: "/sample", icon: IconHome },
-  { label: "SampleNest", to: "/sample", icon: IconHome },
+  { label: "SampleCard", to: "/sample", icon: IconHome },
 ];
 export const userLinks = [
   { icon: IconLayout, label: "Collections", to: "/dashboard" },

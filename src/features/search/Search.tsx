@@ -13,9 +13,6 @@ import {
 import { useForm } from "@mantine/form";
 import { useQuery } from "@tanstack/react-query";
 import { WildCard } from "~/components/card/WildCard.tsx";
-import SortComponent from "~/components/ui/controls/SortComponent.tsx";
-import { iNatTaxaResponseType } from "~/models/iNatTaxaResponseType.ts";
-import { WilderKindCardType } from "~/models/WilderKindCardType.ts";
 
 export default function Search() {
   const form = useForm({ mode: "uncontrolled" });
@@ -31,12 +28,12 @@ export default function Search() {
 
   useEffect(() => {
     const currentParams = Object.fromEntries([...searchParams]);
-    console.log(currentParams);
+    // console.log(currentParams);
   }, [searchParams]);
 
   useEffect(() => {
-    console.log(`Data updated`);
-    console.log(data);
+    // console.log(`Data updated`);
+    // console.log(data);
     if (data) {
       const totalPageNumber = Math.ceil(data.total_results / data.per_page);
       setTotalPages(totalPageNumber);

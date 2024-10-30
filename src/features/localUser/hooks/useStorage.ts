@@ -17,13 +17,13 @@ export default function useStorage(
   }, []);
 
   function init() {
-    console.log("initStorage()");
+    // console.log("initStorage()");
     setStorage(storage);
     saveStorage();
   }
 
   function saveStorage() {
-    console.log("saveStorage()");
+    // console.log("saveStorage()");
     try {
       storageType.setItem(storageKey, JSON.stringify(storage));
     } catch (error) {

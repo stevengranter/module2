@@ -4,7 +4,8 @@ import {
   Route,
 } from "react-router-dom";
 
-import SampleNest from "~/components/dummy/SampleNest.tsx";
+import SampleNest from "~/components/samples/SampleNest.tsx";
+import SampleStandardCardPage from "~/components/samples/SampleStandardCardPage.tsx";
 import Route__LocalUsers from "~/features/localUser";
 import routeSearchLoader from "~/features/search/search__index.loader.ts";
 import Route__Search from "~/features/search/search__index.tsx";
@@ -58,7 +59,7 @@ export const router: ReturnType<typeof createBrowserRouter> =
             index
           ></Route>
         </Route>
-        <Route path="sample" element={<SampleNest />} />
+        <Route path="sample" element={<SampleStandardCardPage />} />
       </Route>,
     ),
   );

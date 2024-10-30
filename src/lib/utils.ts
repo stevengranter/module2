@@ -8,9 +8,9 @@ export function displayNotification(notificationData: NotificationData) {
 }
 
 export async function iNatQueryFunction({ queryKey }) {
-  console.log(`iNatQueryFunction: ${queryKey}`);
+  console.log(`iNatQueryFunction()`);
   const queryUrl = `${INAT_API_URL}${queryKey[0]}`;
-  console.log(queryUrl);
+  console.log(`fetching ${queryUrl}`);
   const response = await fetch(`${INAT_API_URL}${queryKey[0]}`);
   if (!response.ok) {
     throw new Error("Network response was not ok");
