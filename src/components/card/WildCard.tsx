@@ -7,15 +7,15 @@ import {
   Card,
   Group,
   Image,
+  px,
   Skeleton,
   Text,
+  Title,
 } from "@mantine/core";
-import { useFetch } from "@mantine/hooks";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import styles from "~/components/card/WilderKindCard.module.css";
 import FoundItButton from "~/components/ui/buttons/FoundItButton.tsx";
 import ToggleFavoriteButton from "~/components/ui/buttons/ToggleFavoriteButton.tsx";
-import { INAT_API_URL } from "~/lib/constants.ts";
 import {
   iNatTaxaResponseType,
   iNatTaxonRecord,
@@ -52,7 +52,12 @@ export function WildCard({
     setIsFlipped((prevState) => !prevState);
   }
 
-  if (query.isLoading) return "Loading...";
+  if (query.isLoading)
+    return (
+      <Card mah={400} mih={400}>
+        <Skeleton width={400} height={400} />
+      </Card>
+    );
 
   return (
     cardData && (
@@ -67,15 +72,27 @@ export function WildCard({
   );
 }
 
+export function WildCardSkeleton() {
+  return (
+    <>
+      Loading...
+      {/*<Card*/}
+      {/*  shadow="md"*/}
+      {/*  // p='xl'*/}
+      {/*  radius="lg"*/}
+      {/*  withBorder*/}
+      {/*  mah="400"*/}
+      {/*  mih="400"*/}
+      {/*>*/}
+      {/*    */}
+      {/*</Card>*/}
+    </>
+  );
+}
 function WildCard_Front({ data }: { data: iNatTaxonRecord | null }) {
-  // if (loading) return "Loading...";
-
-  // useEffect(() => {
-  //   console.log(data);
-  // }, []);
   return (
     data && (
-      <Card key={data.id} withBorder>
+      <Card key={data.id} withBorder mah="400" mih="400">
         <Card.Section>
           <Group justify="space-between">
             <Text fz="lg">{data.preferred_common_name}</Text>
@@ -102,7 +119,6 @@ function WildCard_Front({ data }: { data: iNatTaxonRecord | null }) {
 
         <Card.Section mt="md">
           <FoundItButton id={data.id} />
-          {/*<AddToCollectionButton id={data.id} fullWidth />*/}
         </Card.Section>
       </Card>
     )
@@ -112,29 +128,28 @@ function WildCard_Front({ data }: { data: iNatTaxonRecord | null }) {
 function WildCard_Back({ data }: { data: iNatTaxonRecord | null }) {
   return (
     data && (
-      <Card withBorder>
+      <Card withBorder mah="400" mih="400">
         <Card.Section>
           <Group justify="space-between">
             <Text fz="lg">{data.preferred_common_name}</Text>
-            <ToggleFavoriteButton id={data.id} />
+            {data.id && <ToggleFavoriteButton id={data.id.toString()} />}
           </Group>
         </Card.Section>
-        <Card.Section>
-          <AspectRatio ratio={1}>
-            {data.default_photo && (
-              <Image
-                src={data.default_photo?.medium_url}
-                className={styles.drop_shadow}
-                alt={data.name}
-                loading="lazy"
-                height={100}
-              />
-            )}
-          </AspectRatio>
-        </Card.Section>
-        <Text size="md">
-          <Interweave content={data.wikipedia_summary} />
-        </Text>
+
+        <Group>
+          {data.default_photo && (
+            <Image
+              src={data.default_photo?.square_url}
+              className={styles.drop_shadow}
+              alt={data.name}
+              loading="lazy"
+            />
+          )}
+
+          <Text size="md">
+            <Interweave content={data.wikipedia_summary} />
+          </Text>
+        </Group>
       </Card>
     )
   );

@@ -1,5 +1,5 @@
-import StandardCard from "~/components/card/StandardCard.tsx";
+import { WildCard } from "~/components/card/WildCard.tsx";
 
 export default function SampleStandardCardPage() {
-  return <StandardCard taxon_id="99901" />;
+  return <WildCard taxonId="99901" />;
 }
