@@ -4,7 +4,7 @@ import { WildCard } from "~/components/card/WildCard.tsx";
 export default function CardCollection({
   collection,
 }: {
-  collection: string[] | number[] | undefined;
+  collection: number[];
 }) {
   return (
     <Grid gutter={{ xs: 16, sm: 20, lg: 24 }}>
@@ -16,7 +16,7 @@ export default function CardCollection({
           >
             {/*{taxon_id}*/}
             <WildCard
-              id={taxon_id}
+              taxonId={taxon_id}
 
               // isInUserCollection={!!userCollection?.includes(cardId)}
             />

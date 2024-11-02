@@ -9,7 +9,7 @@ export interface WilderKindCardType {
     | undefined;
   current_stage?: string;
   nickname?: string;
-  taxon_id?: number;
+  taxon_id: number;
   imgSrc?: string;
   id: string;
   created: string;

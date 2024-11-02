@@ -4,6 +4,7 @@ import {
   Route,
 } from "react-router-dom";
 
+import { WildCard } from "~/components/card/WildCard.tsx";
 import SampleNest from "~/components/samples/SampleNest.tsx";
 import SampleStandardCardPage from "~/components/samples/SampleStandardCardPage.tsx";
 import Route__LocalUsers from "~/features/localUser";
@@ -13,7 +14,6 @@ import UserManagement from "~/features/userManagement/UserManagement.tsx";
 import DefaultLayout from "DefaultLayout.tsx";
 
 import Route__Cards from "components/card/_route_cards.tsx";
-import WilderKindCard from "components/card/WilderKindCard.tsx";
 import Route__Dashboard from "components/dashboard/dashboard__index.tsx";
 import HomePage from "components/homepage/HomePage.tsx";
 import UserProfile from "components/user/UserProfile.tsx";
@@ -44,7 +44,7 @@ export const router: ReturnType<typeof createBrowserRouter> =
           <Route element={<Route__Cards />} index></Route>
           /* /cards/:cardId */
           <Route path=":cardId">
-            <Route element={<WilderKindCard />} index></Route>
+            <Route element={<WildCard />} index></Route>
           </Route>
         </Route>
         <Route path="search">

@@ -16,7 +16,15 @@ export default function Route__Cards() {
     return <p>Loading...</p>;
   }
 
-  const cardIds = data?.map((card) => card.taxon_id);
+  if (!data) {
+    return null;
+  }
 
-  return <CardCollection collection={cardIds} />;
+  return <CardCollection collection={data && getCardIds(data)} />;
+}
+
+function getCardIds(data: WilderKindCardType[]) {
+  const cardIds = data.map((card) => card.taxon_id);
+  console.log(cardIds);
+  return cardIds;
 }
