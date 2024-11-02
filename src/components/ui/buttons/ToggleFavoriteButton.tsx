@@ -2,8 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { ActionIcon } from "@mantine/core";
-import { addToCollection } from "~/lib/localStorage/addToCollection.ts";
-import { displayNotification } from "~/lib/utils.ts";
 
 import { IconHeart, IconHeartFilled } from "lib/icons";
 
@@ -13,7 +11,7 @@ export default function ToggleFavoriteButton({ id }: { id: string | number }) {
   const navigate = useNavigate();
 
   function toggleFavorite() {
-    displayNotification(addToCollection(id, "favorites"));
+    // displayNotification(addToCollection(id, "favorites"));
     setIsFavorite(!isFavorite);
   }
 
