@@ -11,9 +11,8 @@ import {
   Text,
 } from "@mantine/core";
 import { useQuery } from "@tanstack/react-query";
-import styles from "~/components/card/WilderKindCard.module.css";
-import FoundItButton from "~/components/ui/buttons/FoundItButton.tsx";
-import ToggleFavoriteButton from "~/components/ui/buttons/ToggleFavoriteButton.tsx";
+import FoundItButton from "~/components/buttons/FoundItButton.tsx";
+import ToggleFavoriteButton from "~/components/buttons/ToggleFavoriteButton.tsx";
 import {
   iNatTaxaResponseType,
   iNatTaxonRecord,
@@ -86,7 +85,6 @@ function WildCard_Front({ data }: { data: iNatTaxonRecord | null }) {
           {data.default_photo && (
             <Image
               src={data.default_photo?.medium_url}
-              className={styles.drop_shadow}
               alt={data.name}
               loading="lazy"
             />
@@ -120,7 +118,6 @@ function WildCard_Back({ data }: { data: iNatTaxonRecord | null }) {
         {data.default_photo && (
           <Image
             src={data.default_photo?.square_url}
-            className={styles.drop_shadow}
             alt={data.name}
             loading="lazy"
           />

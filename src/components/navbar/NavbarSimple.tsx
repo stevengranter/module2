@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
-import LoginLogoutButton from "~/components/ui/buttons/LoginLogoutButton.tsx";
+import LoginLogoutButton from "~/components/buttons/LoginLogoutButton.tsx";
 import { RoleContext } from "~/contexts/RoleContextProvider.tsx";
 import StartEndGuestSessionButton from "~/features/guest/ToggleGuestSessionButton.tsx";
 

@@ -2,7 +2,7 @@ import { useFetch } from "@mantine/hooks";
 import { JSON_SERVER_URL } from "~/lib/constants.ts";
 import { WilderKindCardType } from "~/models/WilderKindCardType.ts";
 
-import CardCollection from "./CardCollection.tsx";
+import CardCollection from "../components/card/CardCollection.tsx";
 
 export default function Route__Cards() {
   const { loading, error, data } = useFetch<WilderKindCardType[]>(`
@@ -25,6 +25,6 @@ export default function Route__Cards() {
 
 function getCardIds(data: WilderKindCardType[]) {
   const cardIds = data.map((card) => card.taxon_id);
-  console.log(cardIds);
+  console.log(`<Route__Cards> getCardIds() => ${cardIds}`);
   return cardIds;
 }

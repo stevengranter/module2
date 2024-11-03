@@ -1,4 +1,4 @@
-import FoundItButton from "~/components/ui/buttons/FoundItButton.tsx";
+import FoundItButton from "~/components/buttons/FoundItButton.tsx";
 
 const mockData = { id: "2323", name: "spider" };
 

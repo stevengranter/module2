@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { Button } from "@mantine/core";
-import { CollectionDropdown } from "~/components/ui/controls/CollectionDropdown.tsx";
+import { CollectionDropdown } from "~/components/controls/CollectionDropdown.tsx";
 
 export default function FoundItButton(props: {
   id: number | string | undefined;

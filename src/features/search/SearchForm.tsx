@@ -12,7 +12,7 @@ import {
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { WildCard } from "~/components/card/WildCard.tsx";
-import SortComponent from "~/components/ui/controls/SortComponent.tsx";
+import SortComponent from "~/components/controls/SortComponent.tsx";
 import { iNatTaxaResponseType } from "~/models/iNatTaxaResponseType.ts";
 import { WilderKindCardType } from "~/models/WilderKindCardType.ts";
 

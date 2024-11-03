@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 
 import { Title } from "@mantine/core";
 import CardCollection from "~/components/card/CardCollection.tsx";
-import { GuestSessionContext } from "~/features/guest/GuestSessionProvider.tsx";
+import useGuest from "~/features/guest/useGuest.ts";
 import { NestContext } from "~/features/nest/NestProvider.tsx";
 
 export default function Nest() {
-  const { isGuest } = useContext(GuestSessionContext);
+  const { isGuest } = useGuest();
   const { nest } = useContext(NestContext);
 
   if (nest.get().length === 0) {

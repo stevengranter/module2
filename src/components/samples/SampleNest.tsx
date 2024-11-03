@@ -9,7 +9,7 @@ import {
   TextInput,
   Title,
 } from "@mantine/core";
-import { CollectionDropdown } from "~/components/ui/controls/CollectionDropdown.tsx";
+import { CollectionDropdown } from "~/components/controls/CollectionDropdown.tsx";
 import { NestContext } from "~/features/nest/NestProvider.tsx";
 
 export default function SampleNest() {

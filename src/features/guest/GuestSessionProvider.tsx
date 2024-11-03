@@ -2,11 +2,9 @@ import { createContext, ReactNode, useContext, useState } from "react";
 
 import { NestContext } from "~/features/nest/NestProvider.tsx";
 
-export const GuestSessionContext = createContext<GuestSessionContext>({
-  isGuest: false,
-  startGuestSession: () => {},
-  endGuestSession: () => {},
-});
+export const GuestSessionContext = createContext<GuestSessionContext | null>(
+  null,
+);
 
 export default function GuestSessionProvider({
   children,

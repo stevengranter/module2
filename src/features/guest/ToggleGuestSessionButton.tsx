@@ -2,11 +2,10 @@ import { useContext } from "react";
 
 import { Button, Text } from "@mantine/core";
 import { modals } from "@mantine/modals";
-import { GuestSessionContext } from "~/features/guest/GuestSessionProvider.tsx";
+import useGuest from "~/features/guest/useGuest.ts";
 
 export default function ToggleGuestSessionButton() {
-  const { isGuest, startGuestSession, endGuestSession, guestData } =
-    useContext(GuestSessionContext);
+  const { isGuest, startGuestSession, endGuestSession, guestData } = useGuest();
   const openStartModal = () =>
     modals.openConfirmModal({
       title: "Please confirm",

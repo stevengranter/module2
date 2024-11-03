@@ -5,18 +5,15 @@ import {
 } from "react-router-dom";
 
 import { WildCard } from "~/components/card/WildCard.tsx";
-import SampleNest from "~/components/samples/SampleNest.tsx";
 import SampleStandardCardPage from "~/components/samples/SampleStandardCardPage.tsx";
 import Route__LocalUsers from "~/features/localUser";
-import routeSearchLoader from "~/features/search/search__index.loader.ts";
-import Route__Search from "~/features/search/search__index.tsx";
 import UserManagement from "~/features/userManagement/UserManagement.tsx";
+import Route__Cards from "~/routes/cards__index.tsx";
+import Route__Dashboard from "~/routes/dashboard/dashboard__index.tsx";
+import HomePage from "~/routes/home/HomePage.tsx";
+import Route__Search from "~/routes/search__index.tsx";
+import UserProfile from "~/routes/users/UserProfile.tsx";
 import DefaultLayout from "DefaultLayout.tsx";
-
-import Route__Cards from "components/card/_route_cards.tsx";
-import Route__Dashboard from "components/dashboard/dashboard__index.tsx";
-import HomePage from "components/homepage/HomePage.tsx";
-import UserProfile from "components/user/UserProfile.tsx";
 
 import UserLogin from "./components/form/UserLogin.tsx";
 

@@ -4,7 +4,7 @@ import { useFetch } from "@mantine/hooks";
 import { JSON_SERVER_URL } from "~/lib/constants.ts";
 import { UserType } from "~/models/UserType.ts";
 
-import CardCollection from "../card/CardCollection.tsx";
+import CardCollection from "../../components/card/CardCollection.tsx";
 
 const apiURL = JSON_SERVER_URL;
 const endPoint = "/users/";

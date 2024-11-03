@@ -1,8 +1,8 @@
 import { useContext } from "react";
 
 import { Title } from "@mantine/core";
-import { GuestSessionContext } from "~/features/guest/GuestSessionProvider.tsx";
 import ToggleGuestSessionButton from "~/features/guest/ToggleGuestSessionButton.tsx";
+import useGuest from "~/features/guest/useGuest.ts";
 
 export function SampleGuest() {
   const { isGuest, startGuestSession, endGuestSession } =

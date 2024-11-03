@@ -2,9 +2,8 @@ import { Outlet, ScrollRestoration } from "react-router-dom";
 
 import { AppShell, Burger, Group, Image, useMantineTheme } from "@mantine/core";
 import { useDisclosure, useHeadroom } from "@mantine/hooks";
-import LoginLogoutButton from "~/components/ui/buttons/LoginLogoutButton.tsx";
-
-import { NavbarSimple } from "./components/ui/navbar/NavbarSimple.tsx";
+import LoginLogoutButton from "~/components/buttons/LoginLogoutButton.tsx";
+import { NavbarSimple } from "~/components/navbar/NavbarSimple.tsx";
 
 import logo from "/images/logo2.png";
 
