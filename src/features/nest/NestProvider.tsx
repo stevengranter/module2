@@ -37,23 +37,10 @@ export default function NestProvider({ children }: { children: ReactNode }) {
     },
   );
 
-  function clearNest() {
-    setNestData([]);
-  }
-
-  function clearCollections() {
-    setCollectionsData([]);
-  }
-
-  function getNest() {
-    if (nestData) console.log(nestData);
-    return nestData;
-  }
-
-  function getCollections() {
-    if (collectionsData) console.log(collectionsData);
-    return collectionsData;
-  }
+  const clearNest = () => setNestData([]);
+  const clearCollections = () => setCollectionsData([]);
+  const getNest = () => nestData;
+  const getCollections = () => collectionsData;
 
   function createCollection(name: string) {
     if (name.length === 0) {
