@@ -5,9 +5,9 @@ import { useSessionStorage } from "@mantine/hooks";
 type NestContext = {
   nest: { get: () => number[]; addId: (id: number) => void };
   collections: {
-    removeId: (taxonId: string | number, collectionName: string) => void;
+    removeId: (taxonId: number, collectionName: string) => void;
     get: () => Collection[];
-    addId: (id: number | string, name: string) => void;
+    addId: (id: number, name: string) => void;
     create: (name: string) => void;
   };
 };
@@ -26,6 +26,7 @@ export const NestContext = createContext<NestContext>({
     get: () => [],
     addId: () => {},
     create: () => {},
+    removeId: () => {},
   },
 });
 export default function NestProvider({ children }: { children: ReactNode }) {
@@ -81,7 +82,7 @@ export default function NestProvider({ children }: { children: ReactNode }) {
   }
 
   function checkId(id: number) {
-    if (!id || id === null || id === undefined) {
+    if (!id) {
       return false;
     }
   }
@@ -93,6 +94,7 @@ export default function NestProvider({ children }: { children: ReactNode }) {
     console.log(`id: ${id} has been added to nest`);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   function removeIdFromNest(id: number) {
     if (checkId(id)) return console.log(`${id} is not a valid Id`);
     if (!isIdInNest(id)) return console.log(`id:${id} is not in nest`);
@@ -121,26 +123,30 @@ export default function NestProvider({ children }: { children: ReactNode }) {
     console.log(`id: ${id} has been added to collection: ${name}`);
   }
 
-  function removeIdFromCollection(id: number, name: string) {
-    if (checkId(id)) return console.log(`${id} is not a valid Id`);
-    if (!hasCollection(name)) {
-      return console.log(`Collection ${name} doesn't exist!`);
+  function removeIdFromCollection(taxonId: number, collectionName: string) {
+    if (checkId(taxonId)) return console.log(`${taxonId} is not a valid Id`);
+    if (!hasCollection(collectionName)) {
+      return console.log(`Collection ${collectionName} doesn't exist!`);
     }
-    if (!isIdInCollection(name, id)) {
-      return console.log(`Collection ${name} doesn't include: ${id}!`);
+    if (!isIdInCollection(collectionName, taxonId)) {
+      return console.log(
+        `Collection ${collectionName} doesn't include: ${taxonId}!`,
+      );
     }
     setCollectionsData((collections) =>
       collections.map((collection: Collection) =>
-        collection.name === name
+        collection.name === collectionName
           ? {
               ...collection,
-              items: [...collection.items].filter((item) => item !== id),
+              items: [...collection.items].filter((item) => item !== taxonId),
             }
           : collection,
       ),
     );
 
-    console.log(`id: ${id} has been added to collection: ${name}`);
+    console.log(
+      `id: ${taxonId} has been added to collection: ${collectionName}`,
+    );
   }
 
   function getCollectionByName(name: string) {
@@ -173,7 +179,7 @@ export default function NestProvider({ children }: { children: ReactNode }) {
     const matchingCollections = collectionsData.filter(
       (collection: Collection) => collection.items.includes(id),
     );
-    if (!matchingCollections) return "No matching collections";
+    if (!matchingCollections) return null;
     return matchingCollections;
   }
 
@@ -187,10 +193,21 @@ export default function NestProvider({ children }: { children: ReactNode }) {
 
   function getMatchingCollectionNames(id: number) {
     const matchingCollections = getMatchingCollections(id);
-    return matchingCollections.map((collection: Collection) => collection.name);
+    if (!matchingCollections) {
+      return "No matching collections";
+    } else {
+      return matchingCollections.map(
+        (collection: Collection) => collection.name,
+      );
+    }
   }
 
-  const nest = { get: getNest, addId: addIdToNest, clear: clearNest };
+  const nest = {
+    get: getNest,
+    addId: addIdToNest,
+    removeId: removeIdFromNest,
+    clear: clearNest,
+  };
   const collections = {
     get: getCollections,
     getNames: getCollectionNames,
