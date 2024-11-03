@@ -5,10 +5,14 @@ import { useSessionStorage } from "@mantine/hooks";
 type NestContext = {
   nest: { get: () => number[]; addId: (id: number) => void };
   collections: {
-    removeId: (taxonId: number, collectionName: string) => void;
     get: () => Collection[];
+    getNames: () => string[] | null;
+    getMatching: (id: number) => Collection[] | null;
+    getMatchingNames: (id: number) => string[] | null;
     addId: (id: number, name: string) => void;
+    removeId: (taxonId: number, collectionName: string) => void;
     create: (name: string) => void;
+    clear: () => void;
   };
 };
 
@@ -20,15 +24,7 @@ type Collection = {
 
 const storageHook = useSessionStorage;
 
-export const NestContext = createContext<NestContext>({
-  nest: { get: () => [], addId: () => {} },
-  collections: {
-    get: () => [],
-    addId: () => {},
-    create: () => {},
-    removeId: () => {},
-  },
-});
+export const NestContext = createContext<NestContext | undefined>(undefined);
 export default function NestProvider({ children }: { children: ReactNode }) {
   const [nestData, setNestData] = storageHook<number[]>({
     key: "nest",
@@ -187,14 +183,14 @@ export default function NestProvider({ children }: { children: ReactNode }) {
     const collectionNames = collectionsData.map(
       (collection: Collection) => collection.name,
     );
-    if (!collectionNames) return "No collections found.";
+    if (!collectionNames) return null;
     return collectionNames;
   }
 
   function getMatchingCollectionNames(id: number) {
     const matchingCollections = getMatchingCollections(id);
     if (!matchingCollections) {
-      return "No matching collections";
+      return null;
     } else {
       return matchingCollections.map(
         (collection: Collection) => collection.name,
