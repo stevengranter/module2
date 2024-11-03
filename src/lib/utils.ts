@@ -7,7 +7,7 @@ export function displayNotification(notificationData: NotificationData) {
   });
 }
 
-export async function iNatQueryFunction({ queryKey }) {
+export async function queryINatAPI({ queryKey }: { queryKey: string }) {
   console.log(`iNatQueryFunction()`);
   const queryUrl = `${INAT_API_URL}${queryKey[0]}`;
   console.log(`fetching ${queryUrl}`);

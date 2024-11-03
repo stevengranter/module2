@@ -11,8 +11,8 @@ import {
   Text,
 } from "@mantine/core";
 import { useQuery } from "@tanstack/react-query";
-import FoundItButton from "~/components/buttons/FoundItButton.tsx";
 import ToggleFavoriteButton from "~/components/buttons/ToggleFavoriteButton.tsx";
+import { CollectionDropdown } from "~/components/controls/CollectionDropdown.tsx";
 import {
   iNatTaxaResponseType,
   iNatTaxonRecord,
@@ -97,7 +97,7 @@ function WildCard_Front({ data }: { data: iNatTaxonRecord | null }) {
       </Card.Section>
 
       <Card.Section mt="md">
-        <FoundItButton id={data.id} />
+        <CollectionDropdown taxonId={data.id} />
       </Card.Section>
     </Card>
   );

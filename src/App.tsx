@@ -7,13 +7,9 @@ import { ModalsProvider } from "@mantine/modals";
 import { Notifications } from "@mantine/notifications";
 import "@mantine/notifications/styles.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import AuthContextProvider from "~/contexts/AuthContextProvider.tsx";
-import RoleContextProvider from "~/contexts/RoleContextProvider.tsx";
-import UserDataContextProvider from "~/contexts/UserDataContextProvider.tsx";
 import GuestSessionProvider from "~/features/guest/GuestSessionProvider.tsx";
-import LocalUserProvider from "~/features/localUser/contexts/LocalUserProvider.tsx";
 import NestProvider from "~/features/nest/NestProvider.tsx";
-import { iNatQueryFunction } from "~/lib/utils.ts";
+import { queryINatAPI } from "~/lib/utils.ts";
 import ReactDOM from "react-dom/client";
 import { router } from "routes.tsx";
 import { defaultTheme } from "theme/defaultTheme";
@@ -21,7 +17,7 @@ import { defaultTheme } from "theme/defaultTheme";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      queryFn: iNatQueryFunction,
+      queryFn: queryINatAPI,
     },
   },
 });
@@ -31,31 +27,18 @@ if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <StrictMode>
-      {/*<ErrorBoundary>*/}
       <QueryClientProvider client={queryClient}>
-        <AuthContextProvider>
-          <NestProvider>
-            <LocalUserProvider>
-              <RoleContextProvider>
-                <GuestSessionProvider>
-                  <UserDataContextProvider>
-                    <ColorSchemeScript defaultColorScheme="auto" />
-                    <MantineProvider
-                      defaultColorScheme="auto"
-                      theme={defaultTheme}
-                    >
-                      <ModalsProvider />
-                      <Notifications position="top-center" />
-                      <RouterProvider router={router} />
-                    </MantineProvider>
-                  </UserDataContextProvider>
-                </GuestSessionProvider>
-              </RoleContextProvider>
-            </LocalUserProvider>
-          </NestProvider>
-        </AuthContextProvider>
+        <NestProvider>
+          <GuestSessionProvider>
+            <ColorSchemeScript defaultColorScheme="auto" />
+            <MantineProvider defaultColorScheme="auto" theme={defaultTheme}>
+              <ModalsProvider />
+              <Notifications position="top-center" />
+              <RouterProvider router={router} />
+            </MantineProvider>
+          </GuestSessionProvider>
+        </NestProvider>
       </QueryClientProvider>
-      {/*</ErrorBoundary>*/}
     </StrictMode>,
   );
 }
