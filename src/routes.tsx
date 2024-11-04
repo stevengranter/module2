@@ -4,25 +4,24 @@ import {
   Route,
 } from "react-router-dom";
 
-import { WildCard } from "~/components/card/WildCard.tsx";
-import SampleStandardCardPage from "~/components/samples/SampleStandardCardPage.tsx";
-import Route__LocalUsers from "~/features/localUser";
-import UserManagement from "~/features/userManagement/UserManagement.tsx";
-import Route__Cards from "~/routes/cards__index.tsx";
-import Route__Dashboard from "~/routes/dashboard/dashboard__index.tsx";
-import HomePage from "~/routes/home/HomePage.tsx";
-import Route__Search from "~/routes/search__index.tsx";
-import UserProfile from "~/routes/users/UserProfile.tsx";
-import DefaultLayout from "DefaultLayout.tsx";
-
-import UserLogin from "./components/form/UserLogin.tsx";
+import SampleStandardCardPage from "~/features/_shared/samples/SampleStandardCardPage.tsx";
+import { WildCard } from "~/features/card/components/WildCard/WildCard.tsx";
+import CardsPage from "~/features/card/pages/CardsPage.tsx";
+import DashboardPage from "~/features/dashboard/pages/DashboardPage.tsx";
+import HomePage from "~/features/home/pages/HomePage.tsx";
+import UserLogin from "~/features/local-user/components/UserLogin.tsx";
+import UserProfile from "~/features/local-user/components/UserProfile.tsx";
+import Route__LocalUsers from "~/features/local-user/pages";
+import SearchPage from "~/features/search/pages/SearchPage.tsx";
+import UserManagement from "~/features/user-management/components/UserManagement.tsx";
+import DefaultLayout from "~/theme/DefaultLayout.tsx";
 
 export const router: ReturnType<typeof createBrowserRouter> =
   createBrowserRouter(
     createRoutesFromElements(
       <Route element={<DefaultLayout />} path="/">
         <Route element={<HomePage />} index></Route>
-        <Route element={<Route__Dashboard />} path="dashboard"></Route>
+        <Route element={<DashboardPage />} path="dashboard"></Route>
         <Route element={<UserLogin />} path="login"></Route>
         /* /users */
         <Route path="users">
@@ -38,7 +37,7 @@ export const router: ReturnType<typeof createBrowserRouter> =
         </Route>
         /* /cards */
         <Route path="cards">
-          <Route element={<Route__Cards />} index></Route>
+          <Route element={<CardsPage />} index></Route>
           /* /cards/:cardId */
           <Route path=":cardId">
             <Route element={<WildCard />} index></Route>
@@ -49,10 +48,10 @@ export const router: ReturnType<typeof createBrowserRouter> =
             // loader={({ request }) => {
             //   const url = new URL(request.url);
             //   const searchTerm: string | null = url.searchParams.get("q");
-            //   console.log(`Search params: ${searchTerm}`);
+            //   console.log(`SearchPage params: ${searchTerm}`);
             //   return routeSearchLoader(searchTerm);
             // }}
-            element={<Route__Search />}
+            element={<SearchPage />}
             index
           ></Route>
         </Route>
