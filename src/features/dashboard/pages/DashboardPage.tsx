@@ -1,19 +1,36 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { Title } from "@mantine/core";
 import { useFetch } from "@mantine/hooks";
+import useNest from "~/features/_shared/contexts/nest/useNest.ts";
 import { JSON_SERVER_URL } from "~/features/api/constants.ts";
 import CardCollection from "~/features/card/components/CardCollection/CardCollection.tsx";
-import Collections from "~/features/dashboard/components/Collections.tsx";
-import Nest from "~/features/dashboard/components/Nest.tsx";
+import CollectionSelectBox from "~/features/card/components/CollectionSelectBox.tsx";
 import ToggleGuestSessionButton from "~/features/guest-session/components/ToggleGuestSessionButton.tsx";
 import useGuest from "~/features/guest-session/hooks/useGuest.ts";
 import { WilderKindCardType } from "~/models/WilderKindCardType.ts";
 
 export default function DashboardPage() {
   const { isGuest } = useGuest();
+  const { collections, nest } = useNest();
   const { loading, error, data } = useFetch<WilderKindCardType[]>(`
     ${JSON_SERVER_URL}/cards`);
+
+  const [userCollections, setUserCollections] = useState(() => [
+    ...collections.getNames(),
+    "nest",
+  ]);
+  const [selectedCollection, setSelectedCollection] = useState<string>("nest");
+  const [collectionItems, setCollectionItems] = useState<number[]>([]);
+
+  useEffect(() => {
+    if (!selectedCollection) return console.log("No collection selected");
+    if (selectedCollection === "nest") {
+      const nestItems = nest.get();
+      console.log({ nestItems });
+      setCollectionItems(nestItems);
+    }
+  }, [selectedCollection]);
 
   if (error) {
     return <p>Error: {error.message}</p>;
@@ -38,9 +55,12 @@ export default function DashboardPage() {
   return (
     isGuest && (
       <>
-        <Nest />
+        <CollectionSelectBox
+          data={userCollections}
+          value={selectedCollection}
+        />
 
-        <Collections />
+        <CardCollection collection={collectionItems} />
       </>
     )
   );

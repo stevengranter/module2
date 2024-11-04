@@ -44,16 +44,7 @@ export const router: ReturnType<typeof createBrowserRouter> =
           </Route>
         </Route>
         <Route path="search">
-          <Route
-            // loader={({ request }) => {
-            //   const url = new URL(request.url);
-            //   const searchTerm: string | null = url.searchParams.get("q");
-            //   console.log(`SearchPage params: ${searchTerm}`);
-            //   return routeSearchLoader(searchTerm);
-            // }}
-            element={<SearchPage />}
-            index
-          ></Route>
+          <Route element={<SearchPage />} index></Route>
         </Route>
         <Route path="sample" element={<SampleStandardCardPage />} />
       </Route>,

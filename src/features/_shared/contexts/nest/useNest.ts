@@ -3,9 +3,12 @@ import { useContext } from "react";
 import { NestContext } from "~/features/_shared/contexts/nest/NestProvider.tsx";
 
 export default function useNest() {
-  const ctx = useContext(NestContext) as NestContext | null;
-  if (!ctx) {
-    return console.log("useNest must be used inside a NestProvider");
+  try {
+    const context = useContext(NestContext);
+    return context && context.nest
+      ? { nest: context.nest, collections: context.collections }
+      : null;
+  } catch (error) {
+    console.error(error);
   }
-  return ctx;
 }

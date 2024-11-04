@@ -1,4 +1,4 @@
-import { createContext, ReactNode } from "react";
+import { createContext, ReactNode, useEffect } from "react";
 
 import { useSessionStorage } from "@mantine/hooks";
 
@@ -43,22 +43,23 @@ export default function NestProvider({ children }: { children: ReactNode }) {
   const getCollections = () => collectionsData;
 
   function createCollection(name: string) {
+    console.log("createCollection()");
     if (name.length === 0) {
       return console.log("Name must be at least 1 character");
-    }
-    if (name.length === 0) {
-      console.log("Name must be at least 1 character");
-      return;
-    }
-    if (hasCollection(name)) {
+    } else if (hasCollection(name)) {
       return console.log(
         `Collection ${name} already exists (id: ${getCollectionIdByName(name)}`,
       );
+    } else {
+      const newCollection = { name: name, id: crypto.randomUUID(), items: [] };
+      setCollectionsData((current) => [...current, newCollection]);
+      console.log(`Collection ${name} created`);
     }
-    const newCollection = { name: name, id: crypto.randomUUID(), items: [] };
-    setCollectionsData((current) => [...current, newCollection]);
-    console.log(`Collection ${name} created`);
   }
+
+  useEffect(() => {
+    console.log(collectionsData);
+  }, [collectionsData]);
 
   function hasCollection(name: string) {
     return collectionsData.some((collection) => collection.name === name);
@@ -88,7 +89,7 @@ export default function NestProvider({ children }: { children: ReactNode }) {
 
   function addIdToCollection(id: number, name: string) {
     if (checkId(id)) return console.log(`${id} is not a valid Id`);
-    if (isIdInCollection(name, id)) {
+    if (isIdInCollection(id, name)) {
       return console.log(`Collection ${name} already includes id: ${id}!`);
     }
     if (!hasCollection(name)) {
@@ -96,9 +97,10 @@ export default function NestProvider({ children }: { children: ReactNode }) {
       console.log(`Collection ${name} didn't exist - created collection `);
     }
     addIdToNest(id);
+    const collectionId = getCollectionIdByName(name);
     setCollectionsData((collections) =>
       collections.map((collection: Collection) =>
-        collection.name === name
+        collection.id === collectionId
           ? { ...collection, items: [...collection.items, id] }
           : collection,
       ),
@@ -150,7 +152,7 @@ export default function NestProvider({ children }: { children: ReactNode }) {
     return nestData.includes(id);
   }
 
-  function isIdInCollection(name: string, id: number) {
+  function isIdInCollection(id: number, name: string) {
     if (!hasCollection(name)) {
       return console.log(`Collection ${name} doesn't exist!`);
     }

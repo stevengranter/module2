@@ -20,7 +20,7 @@ import {
 import { Interweave } from "interweave";
 
 type Props = {
-  taxonId?: number | undefined;
+  taxonId?: number;
   dataObject?: iNatTaxonRecord | undefined;
 };
 
@@ -71,8 +71,9 @@ export function WildCard({ taxonId, dataObject }: Props) {
 
 function WildCard_Front({ data }: { data: iNatTaxonRecord | null }) {
   if (!data) return null;
+  console.log(data);
   return (
-    <Card key={data.id} withBorder mah="400" mih="400">
+    <Card key={data.id} withBorder>
       <Card.Section>
         <Group justify="space-between">
           <Text fz="lg">{data.preferred_common_name}</Text>
@@ -93,11 +94,11 @@ function WildCard_Front({ data }: { data: iNatTaxonRecord | null }) {
       </Card.Section>
 
       <Card.Section mt="md">
-        <a href={data.wikipedia_url}>Wikipedia Link</a>
+        {data.wikipedia_url && <a href={data.wikipedia_url}>Wikipedia Link</a>}
       </Card.Section>
 
       <Card.Section mt="md">
-        <CollectionDropdown taxonId={data.id} />
+        {data.id && <CollectionDropdown taxonId={data.id} />}
       </Card.Section>
     </Card>
   );

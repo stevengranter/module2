@@ -11,8 +11,8 @@ import {
 import useNest from "~/features/_shared/contexts/nest/useNest.ts";
 
 type CollectionDropdownProps = {
-  userCollections: string[];
-  collectionsIncludingTaxonId: string[];
+  userCollections?: string[];
+  collectionsIncludingTaxonId?: string[];
   taxonId: number;
 };
 

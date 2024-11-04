@@ -1,10 +1,13 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 
 import { NestContext } from "~/features/_shared/contexts/nest/NestProvider.tsx";
+import useNest from "~/features/_shared/contexts/nest/useNest.ts";
 
 export const GuestSessionContext = createContext<GuestSessionContext | null>(
   null,
 );
+
+const starterPack = [48586, 99901, 59442];
 
 export default function GuestSessionProvider({
   children,
@@ -12,7 +15,7 @@ export default function GuestSessionProvider({
   children: ReactNode;
 }) {
   const [isGuest, setIsGuest] = useState(false);
-  const { nest, collections } = useContext(NestContext);
+  const { nest, collections } = useNest();
 
   function startGuestSession() {
     console.log("START: Guest session");
@@ -20,6 +23,14 @@ export default function GuestSessionProvider({
     collections.clear();
     setIsGuest(true);
   }
+
+  // function createGuestCollection(items: number[], collectionName: string) {
+  //   console.log("createGuestCollection");
+  //   collections.create(collectionName);
+  //   items.forEach((item) => {
+  //     collections.addId(item, collectionName);
+  //   });
+  // }
 
   function endGuestSession() {
     console.log("END: Guest session");
