@@ -1,6 +1,6 @@
 import { createContext, PropsWithChildren, useContext, useState } from "react";
 
-import { JSON_SERVER_URL } from "~/features/_shared/lib/constants.ts";
+import { JSON_SERVER_URL } from "~/features/api/constants.ts";
 
 type AuthContext = {
   id: string | null;

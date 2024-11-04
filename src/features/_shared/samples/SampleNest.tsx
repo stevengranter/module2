@@ -48,7 +48,7 @@ export default function SampleNest() {
               // console.log(collections.getMatchingNames(id));
               return collections.getMatchingNames(id);
             }}
-            initialData={() =>
+            userCollections={() =>
               collections.get().map((collection) => collection.name)
             }
             taxonId={id}

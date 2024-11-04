@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { ActionIcon } from "@mantine/core";
-import { IconHeart, IconHeartFilled } from "~/features/_shared/lib/icons.tsx";
+import { IconHeart, IconHeartFilled } from "~/features/_shared/icons/icons.tsx";
 
 export default function ToggleFavoriteButton({ id }: { id: string | number }) {
   // const { user } = useContext(UserContext);

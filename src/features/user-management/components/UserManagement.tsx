@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import { Table, Title } from "@mantine/core";
 import { createColumnHelper, useReactTable } from "@tanstack/react-table";
-import { JSON_SERVER_URL } from "~/features/_shared/lib/constants.ts";
+import { JSON_SERVER_URL } from "~/features/api/constants.ts";
 import { UserType } from "~/models/UserType.ts";
 import { create } from "axios";
 

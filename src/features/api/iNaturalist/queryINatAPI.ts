@@ -1,11 +1,4 @@
-import { NotificationData, notifications } from "@mantine/notifications";
-import { INAT_API_URL } from "~/features/_shared/lib/constants.ts";
-
-export function displayNotification(notificationData: NotificationData) {
-  notifications.show({
-    ...notificationData,
-  });
-}
+import { INAT_API_URL } from "~/features/api/constants.ts";
 
 export async function queryINatAPI({ queryKey }: { queryKey: string }) {
   console.log(`queryINatAPI()`);

@@ -20,7 +20,7 @@ module.exports = {
       {
         type: "natural",
         order: "asc",
-        internalPattern: ["components/**", "models/**", "lib/**", "routes/**"],
+        internalPattern: ["components/**", "models/**", "icons/**", "routes/**"],
         groups: [
           "react",
           "type",

@@ -2,7 +2,7 @@ import { useContext } from "react";
 
 import { Title } from "@mantine/core";
 import { useFetch } from "@mantine/hooks";
-import { JSON_SERVER_URL } from "~/features/_shared/lib/constants.ts";
+import { JSON_SERVER_URL } from "~/features/api/constants.ts";
 import CardCollection from "~/features/card/components/CardCollection/CardCollection.tsx";
 import Collections from "~/features/dashboard/components/Collections.tsx";
 import Nest from "~/features/dashboard/components/Nest.tsx";

@@ -8,7 +8,7 @@ import { Notifications } from "@mantine/notifications";
 import "@mantine/notifications/styles.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import NestProvider from "~/features/_shared/contexts/nest/NestProvider.tsx";
-import { queryINatAPI } from "~/features/_shared/lib/utils.ts";
+import { queryINatAPI } from "~/features/api/iNaturalist/queryINatAPI.ts";
 import GuestSessionProvider from "~/features/guest-session/context/GuestSessionProvider.tsx";
 import ReactDOM from "react-dom/client";
 import { router } from "routes.tsx";

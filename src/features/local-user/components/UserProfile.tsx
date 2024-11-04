@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 
 import { useFetch } from "@mantine/hooks";
-import { JSON_SERVER_URL } from "~/features/_shared/lib/constants.ts";
+import { JSON_SERVER_URL } from "~/features/api/constants.ts";
 import CardCollection from "~/features/card/components/CardCollection/CardCollection.tsx";
 import { UserType } from "~/models/UserType.ts";
 

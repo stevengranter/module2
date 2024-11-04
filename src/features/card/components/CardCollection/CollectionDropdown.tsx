@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   CheckIcon,
@@ -8,44 +8,56 @@ import {
   PillsInput,
   useCombobox,
 } from "@mantine/core";
-import { NestContext } from "~/features/_shared/contexts/nest/NestProvider.tsx";
+import useNest from "~/features/_shared/contexts/nest/useNest.ts";
 
-export function CollectionDropdown({ initialData, initialValue, taxonId }) {
+type CollectionDropdownProps = {
+  userCollections: string[];
+  collectionsIncludingTaxonId: string[];
+  taxonId: number;
+};
+
+export function CollectionDropdown({
+  userCollections,
+  collectionsIncludingTaxonId,
+  taxonId,
+}: CollectionDropdownProps) {
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
     onDropdownOpen: () => combobox.updateSelectedOptionIndex("active"),
   });
 
-  const { collections } = useContext(NestContext);
+  const { collections } = useNest();
 
   const [search, setSearch] = useState("");
-  const [data, setData] = useState(initialData || []);
-  const [value, setValue] = useState<string[]>(initialValue || []);
+  const [allCollections, setAllCollections] = useState(userCollections || []);
+  const [selection, setSelection] = useState<string[]>(
+    collectionsIncludingTaxonId || [],
+  );
 
   useEffect(() => {
     const collectionNames = collections
       .get()
-      .map((collection) => collection.name);
-    setData(collectionNames);
-  }, []);
+      .map((collection: { name: string }) => collection.name);
+    setAllCollections(collectionNames);
+  }, [collections]);
 
   useEffect(() => {
     const collectionsIncludingTaxonId = collections.getMatchingNames(taxonId);
-    setValue(collectionsIncludingTaxonId);
-  }, []);
+    setSelection(collectionsIncludingTaxonId);
+  }, [collections, taxonId]);
 
-  const exactOptionMatch = data.some((item) => item === search);
+  const exactOptionMatch = allCollections.some((item) => item === search);
 
   const handleValueSelect = (val: string) => {
     console.log(`handleValueSelect(${val})`);
     setSearch("");
 
     if (val === "$create") {
-      setData((current) => [...current, search]);
-      setValue((current) => [...current, search]);
+      setAllCollections((current) => [...current, search]);
+      setSelection((current) => [...current, search]);
       collections.addId(taxonId, search);
     } else {
-      setValue((current) =>
+      setSelection((current) =>
         current.includes(val)
           ? current.filter((v) => v !== val)
           : [...current, val],
@@ -56,22 +68,28 @@ export function CollectionDropdown({ initialData, initialValue, taxonId }) {
 
   const handleValueRemove = (val: string) => {
     console.log(val);
-    setValue((current) => current.filter((v) => v !== val));
+    setSelection((current) => current.filter((v) => v !== val));
     collections.removeId(taxonId, val);
   };
 
-  const values = value.map((item) => (
+  const values = selection.map((item) => (
     <Pill key={item} withRemoveButton onRemove={() => handleValueRemove(item)}>
       {item}
     </Pill>
   ));
 
-  const options = data
-    .filter((item) => item.toLowerCase().includes(search.trim().toLowerCase()))
+  const options = allCollections
+    .filter((item) =>
+      item.toString().toLowerCase().includes(search.trim().toLowerCase()),
+    )
     .map((item) => (
-      <Combobox.Option value={item} key={item} active={value.includes(item)}>
+      <Combobox.Option
+        value={item}
+        key={item}
+        active={selection.includes(item)}
+      >
         <Group gap="sm">
-          {value.includes(item) ? <CheckIcon size={12} /> : null}
+          {selection.includes(item) ? <CheckIcon size={12} /> : null}
           <span>{item}</span>
         </Group>
       </Combobox.Option>
@@ -101,7 +119,7 @@ export function CollectionDropdown({ initialData, initialValue, taxonId }) {
                 onKeyDown={(event) => {
                   if (event.key === "Backspace" && search.length === 0) {
                     event.preventDefault();
-                    handleValueRemove(value[value.length - 1]);
+                    handleValueRemove(selection[selection.length - 1]);
                   }
                 }}
               />

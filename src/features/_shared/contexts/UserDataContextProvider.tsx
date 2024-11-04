@@ -1,7 +1,7 @@
 import { createContext, PropsWithChildren, useEffect, useState } from "react";
 
 import { useAuth } from "~/features/_shared/contexts/AuthContextProvider.tsx";
-import { JSON_SERVER_URL } from "~/features/_shared/lib/constants.ts";
+import { JSON_SERVER_URL } from "~/features/api/constants.ts";
 
 type UserDataContext = {
   username: string | null;
