@@ -11,10 +11,12 @@ import useGuest from "~/features/guest-session/hooks/useGuest.ts";
 import { WilderKindCardType } from "~/models/WilderKindCardType.ts";
 
 export default function DashboardPage() {
-  const { isGuest } = useGuest();
-  const { collections, nest } = useNest();
+  const { isGuest, guestData } = useGuest();
+
   const { loading, error, data } = useFetch<WilderKindCardType[]>(`
     ${JSON_SERVER_URL}/cards`);
+
+  const { nest, collections } = guestData;
 
   const [userCollections, setUserCollections] = useState(() => [
     ...collections.getNames(),
@@ -22,6 +24,12 @@ export default function DashboardPage() {
   ]);
   const [selectedCollection, setSelectedCollection] = useState<string>("nest");
   const [collectionItems, setCollectionItems] = useState<number[]>([]);
+
+  useEffect(() => {
+    if (isGuest) {
+      console.log(guestData);
+    }
+  }, [isGuest, guestData]);
 
   useEffect(() => {
     if (!selectedCollection) return console.log("No collection selected");

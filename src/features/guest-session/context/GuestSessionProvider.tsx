@@ -45,6 +45,7 @@ export default function GuestSessionProvider({
         isGuest,
         startGuestSession,
         endGuestSession,
+        guestData: { nest, collections },
       }}
     >
       {children}
