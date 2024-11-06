@@ -1,31 +1,52 @@
 import { useEffect, useState } from "react";
 
-import type { NestContextProps } from "~/features/_shared/contexts/nest/NestProvider.tsx";
-
-import { Title } from "@mantine/core";
-import { useFetch } from "@mantine/hooks";
-import { JSON_SERVER_URL } from "~/features/api/constants.ts";
+import {
+  ComboboxItem,
+  ComboboxOptionProps,
+  ComboboxProps,
+  SelectProps,
+} from "@mantine/core";
+import { NestContextProps } from "~/features/_shared/contexts/nest/NestProvider";
 import CardCollection from "~/features/card/components/CardCollection/CardCollection.tsx";
 import CollectionSelectBox from "~/features/card/components/CollectionSelectBox.tsx";
-import ToggleGuestSessionButton from "~/features/guest-session/components/ToggleGuestSessionButton.tsx";
-import useGuest from "~/features/guest-session/hooks/useGuest.ts";
-import { WilderKindCardType } from "~/models/WilderKindCardType.ts";
 
-export default function CollectionView({
-  nest,
-  collections,
-}: NestContextProps) {
+export default function CollectionView({ collections }: NestContextProps) {
   const [data, setData] = useState(() => {
-    if (collections) {
-      return collections.getNames();
-    } else return [];
+    if (collections && collections.length > 0) {
+      collections.map((collection) => {
+        const dataObject = { value: "", label: "" };
+        dataObject.value = collection.id;
+        dataObject.label = collection.name;
+        return dataObject;
+      });
+    } else return { value: "11111", label: "oh no" };
   });
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
+  const [selectedCollectionName, setSelectedCollectionName] =
+    useState<string>("");
+
+  // TODO: Fix for choosing current option (errors with null value)
+  function handleSelect(option: ComboboxItem) {
+    console.log(option);
+    if (option) setSelectedCollectionName((_prevState) => option.value);
+    console.log(option.value);
+  }
 
   return (
     <>
-      <CollectionSelectBox data={data} value="" />
+      <CollectionSelectBox
+        data={data}
+        value={selectedCollectionName}
+        handleSelect={handleSelect}
+      />
 
-      <CardCollection collection={[]} />
+      <CardCollection
+        collection={() => collections.getCollection(selectedCollectionName)}
+      />
     </>
   );
 }

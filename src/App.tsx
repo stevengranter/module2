@@ -30,8 +30,8 @@ if (!rootElement.innerHTML) {
       <QueryClientProvider client={queryClient}>
         <NestProvider>
           <GuestSessionProvider>
-            <ColorSchemeScript defaultColorScheme="auto" />
-            <MantineProvider defaultColorScheme="auto" theme={defaultTheme}>
+            <ColorSchemeScript defaultColorScheme="light" />
+            <MantineProvider defaultColorScheme="light" theme={defaultTheme}>
               <ModalsProvider />
               <Notifications position="top-center" />
               <RouterProvider router={router} />
