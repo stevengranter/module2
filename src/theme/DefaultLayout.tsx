@@ -1,6 +1,14 @@
-import { Outlet, ScrollRestoration } from "react-router-dom";
+import { Link, Outlet, ScrollRestoration } from "react-router-dom";
 
-import { AppShell, Burger, Group, Image, useMantineTheme } from "@mantine/core";
+import {
+  AppShell,
+  Burger,
+  Group,
+  Image,
+  rgba,
+  useMantineTheme,
+  Text,
+} from "@mantine/core";
 import { useDisclosure, useHeadroom } from "@mantine/hooks";
 import { NavbarSimple } from "~/features/_shared/components/navbar/NavbarSimple.tsx";
 import LoginLogoutButton from "~/features/local-user/components/LoginLogoutButton.tsx";
@@ -20,36 +28,49 @@ export default function DefaultLayout() {
   return (
     <AppShell
       navbar={{
-        collapsed: { mobile: !opened },
+        collapsed: { desktop: !opened, mobile: !opened },
         breakpoint: "xs",
         width: "200",
       }}
       header={{ collapsed: !pinned, offset: true, height: 150 }}
       padding="md"
     >
-      <AppShell.Header style={{ backgroundColor: theme.colors.darkteal[3] }}>
-        <Group h="100%" px="md" justify="space-between" align="flex-start">
+      <AppShell.Header style={{ backgroundColor: "transparent" }}>
+        <Group h="100%" px="md" justify="space-between" align="center">
           <Burger onClick={toggle} opened={opened} hiddenFrom="xs" size="sm" />
 
-          <Image
-            alt="WilderNest Logo"
-            fit="contain"
-            src={logo}
-            h="100%"
-            w="auto"
-            py="lg"
-            px="md"
-          />
+          <Link to="/">
+            <Image
+              alt="WilderNest Logo"
+              fit="contain"
+              src={logo}
+              h="200px"
+              w="auto"
+              py="lg"
+              px="md"
+            />
+          </Link>
+
+          <Link to="/dashboard">
+            <Text>myNest</Text>
+          </Link>
+          <Link to="/search">
+            <Text>Search</Text>
+          </Link>
           <LoginLogoutButton />
         </Group>
       </AppShell.Header>
 
-      <AppShell.Navbar>
+      {/*  TODO: Define styles in external css*/}
+      <AppShell.Navbar style={{ backgroundColor: rgba("#C7F17A", 1) }}>
         <NavbarSimple />
         {/*{user && user.username}*/}
       </AppShell.Navbar>
 
-      <AppShell.Main>
+      {/*  TODO: Define styles in external css*/}
+      <AppShell.Main
+        style={{ backgroundColor: "transparent", paddingTop: "200px" }}
+      >
         <ScrollRestoration />
         <Outlet />
       </AppShell.Main>

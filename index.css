@@ -1,1 +1,5 @@
-h1,h2,h3,h4,h5 {text-transform: capitalize}
+/* TODO: Define as MantineGradient */
+body {
+    background: rgb(39,215,255);
+    background: linear-gradient(180deg, rgba(39,215,255,1) 0%, rgba(39,215,255,1) 40%, rgba(177,223,92,1) 89%);
+}
