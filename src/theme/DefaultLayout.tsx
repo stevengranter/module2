@@ -32,7 +32,7 @@ export default function DefaultLayout() {
   return (
     <AppShell
       navbar={{
-        collapsed: { desktop: !opened, mobile: !opened },
+        collapsed: { desktop: opened, mobile: !opened },
         breakpoint: "xs",
         width: "200",
       }}

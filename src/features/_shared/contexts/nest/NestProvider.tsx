@@ -2,7 +2,7 @@ import { createContext, ReactNode, useEffect } from "react";
 
 import { useSessionStorage } from "@mantine/hooks";
 
-type NestContext = {
+export type NestContextProps = {
   nest: { get: () => number[]; addId: (id: number) => void };
   collections: {
     get: () => Collection[];
@@ -24,7 +24,9 @@ type Collection = {
 
 const storageHook = useSessionStorage;
 
-export const NestContext = createContext<NestContext | undefined>(undefined);
+export const NestContext = createContext<NestContextProps | undefined>(
+  undefined,
+);
 export default function NestProvider({ children }: { children: ReactNode }) {
   const [nestData, setNestData] = storageHook<number[]>({
     key: "nest",
