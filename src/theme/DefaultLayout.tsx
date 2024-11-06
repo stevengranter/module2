@@ -13,6 +13,7 @@ import {
 import { useDisclosure, useHeadroom } from "@mantine/hooks";
 import { NavbarSimple } from "~/features/_shared/components/navbar/NavbarSimple.tsx";
 import LoginLogoutButton from "~/features/local-user/components/LoginLogoutButton.tsx";
+import CloudBackground from "~/theme/CloudBackground.tsx";
 
 import nestImage from "/assets/images/ui/nest-main-01.png";
 import searchImage from "/assets/images/ui/search-main-01.png";
@@ -35,10 +36,11 @@ export default function DefaultLayout() {
         breakpoint: "xs",
         width: "200",
       }}
-      header={{ collapsed: !pinned, offset: true, height: 150 }}
+      header={{ collapsed: !pinned, offset: true, height: 175 }}
       padding="md"
     >
-      <AppShell.Header style={{ backgroundColor: "transparent" }}>
+      <AppShell.Header style={{ backgroundColor: "#28D7FE" }}>
+        {/*<CloudBackground />*/}
         <Group h="100%" px="md" justify="space-between" align="center">
           <Burger onClick={toggle} opened={opened} hiddenFrom="xs" size="sm" />
 
@@ -47,36 +49,36 @@ export default function DefaultLayout() {
               alt="WilderNest Logo"
               fit="contain"
               src={logo}
-              h="200px"
+              h="150"
+              pt="10"
               w="auto"
-              py="lg"
-              px="md"
             />
           </Link>
 
-          <Link to="/dashboard">
-            <Stack align="center" justify="center" gap="0">
-              <Image
-                alt="illustration: a bird's nest with three bright blue eggs in it"
-                src={nestImage}
-                h="100px"
-                m="xs"
-              />
-              <Text>myNest</Text>
-            </Stack>
-          </Link>
-          <Link to="/search">
-            <Stack align="center" justify="center" gap="0">
-              <Image
-                alt="illustraition: a magnifying glass showing a ladybug on a blade of grass"
-                src={searchImage}
-                h="100px"
-                m="xs"
-              />
-              <Text>search</Text>
-            </Stack>
-          </Link>
-          <LoginLogoutButton />
+          <Group gap="xl">
+            <Link to="/dashboard">
+              <Stack align="center" justify="center" gap="0">
+                <Image
+                  alt="illustration: a bird's nest with three bright blue eggs in it"
+                  src={nestImage}
+                  h="85"
+                  m="xs"
+                />
+                <Text>myNest</Text>
+              </Stack>
+            </Link>
+            <Link to="/search">
+              <Stack align="center" justify="center" gap="0">
+                <Image
+                  alt="illustraition: a magnifying glass showing a ladybug on a blade of grass"
+                  src={searchImage}
+                  h="80"
+                  m="xs"
+                />
+                <Text>search</Text>
+              </Stack>
+            </Link>
+          </Group>
         </Group>
       </AppShell.Header>
 
