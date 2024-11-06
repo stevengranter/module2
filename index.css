@@ -1,8 +1,19 @@
 /* TODO: Define as MantineGradient */
-body {
-    background: rgb(39,215,255);
-    background: linear-gradient(180deg, rgba(39,215,255,1) 0%, rgba(39,215,255,1) 65%, rgba(177,223,92,1) 80%);
-}
+
+
+body {background: rgb(39,147,255);
+    background: linear-gradient(180deg, rgba(1,184,255,1) 200px, rgba(1,184,255,1) 15%, rgba(39,197,255,1) 49%, rgba(39,215,255,1) 60%, rgba(223,252,255,1) 95%);}
+
+header {background: linear-gradient(0deg,rgba(177,237,92,1) 0%, rgba(177,237,92,1) 15%, rgba(123,172,30,1) 90%)}
+
+footer {background: linear-gradient(180deg,rgba(177,237,92,1) 0%, rgba(177,237,92,1) 10%, rgba(119,153,55,1) 90%)}
+
+/*body {background: rgb(39,147,255);*/
+/*    background: linear-gradient(180deg, rgba(39,147,255,1) 20%, rgba(39,197,255,1) 44%, rgba(39,215,255,1) 56%, rgba(223,252,255,1) 80%, rgba(177,223,92,1) 80%, rgba(119,153,55,1) 100%);}*/
+/*body {*/
+/*    background: rgb(39,215,255);*/
+/*    background: linear-gradient(180deg, rgba(39,215,255,1) 0%, rgba(39,215,255,1) 65%, rgba(177,223,92,1) 80%);*/
+/*}*/
 
 
 /*

@@ -37,9 +37,13 @@ export default function DefaultLayout() {
         width: "200",
       }}
       header={{ collapsed: !pinned, offset: true, height: 175 }}
+      footer={{
+        collapsed: true,
+        height: 100,
+      }}
       padding="md"
     >
-      <AppShell.Header style={{ backgroundColor: "#28D7FE" }}>
+      <AppShell.Header style={{ backgroundColor: "#B1ED5C" }}>
         {/*<CloudBackground />*/}
         <Group h="100%" px="md" justify="space-between" align="center">
           <Burger onClick={toggle} opened={opened} hiddenFrom="xs" size="sm" />
@@ -95,6 +99,11 @@ export default function DefaultLayout() {
         <ScrollRestoration />
         <Outlet />
       </AppShell.Main>
+
+      <AppShell.Footer
+        id="footer"
+        style={{ position: "relative" }}
+      ></AppShell.Footer>
     </AppShell>
   );
 }
