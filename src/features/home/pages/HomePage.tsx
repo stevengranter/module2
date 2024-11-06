@@ -5,7 +5,7 @@ export default function HomePage() {
     <Grid>
       <Grid.Col span={12}>
         <Title order={2}>Welcome</Title>
-        <Card></Card>
+        {/*<Card></Card>*/}
       </Grid.Col>
     </Grid>
   );
