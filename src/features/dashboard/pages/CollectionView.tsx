@@ -6,47 +6,68 @@ import {
   ComboboxProps,
   SelectProps,
 } from "@mantine/core";
-import { NestContextProps } from "~/features/_shared/contexts/nest/NestProvider";
+import { NestContextState } from "~/features/_shared/contexts/nest/NestProvider.types.ts";
+import { Collection } from "~/features/_shared/contexts/nest/NestProvider.types.ts";
 import CardCollection from "~/features/card/components/CardCollection/CardCollection.tsx";
 import CollectionSelectBox from "~/features/card/components/CollectionSelectBox.tsx";
 
-export default function CollectionView({ collections }: NestContextProps) {
+export default function CollectionView({ collections }: NestContextState) {
   const [data, setData] = useState(() => {
-    if (collections && collections.length > 0) {
-      collections.map((collection) => {
+    let dataArray = [];
+    if (collections && collections.get().length > 0) {
+      dataArray = collections.get().map((collection: Collection) => {
         const dataObject = { value: "", label: "" };
         dataObject.value = collection.id;
         dataObject.label = collection.name;
         return dataObject;
       });
-    } else return { value: "11111", label: "oh no" };
+    } else {
+      return "";
+    }
+    return dataArray;
   });
 
+  const [selectedCollectionId, setSelectedCollectionId] = useState<string>("");
+  const [itemIds, setItemIds] = useState<number[]>([]);
+
   useEffect(() => {
-    console.log(data);
+    console.log({ data });
   }, [data]);
 
-  const [selectedCollectionName, setSelectedCollectionName] =
-    useState<string>("");
+  useEffect(() => {
+    console.log({ selectedCollectionId: selectedCollectionId });
+    const collection = collections
+      .get()
+      .filter((collection) => collection.id === selectedCollectionId);
+    console.dir({ collection });
+    const itemIds = collection.items;
+    setItemIds(itemIds);
+  }, [collections, selectedCollectionId]);
 
   // TODO: Fix for choosing current option (errors with null value)
-  function handleSelect(option: ComboboxItem) {
-    console.log(option);
-    if (option) setSelectedCollectionName((_prevState) => option.value);
-    console.log(option.value);
+  function handleSelect(selectedValue: ComboboxItem) {
+    console.log(selectedValue);
+    if (selectedValue) setSelectedCollectionId(selectedValue);
+    console.log(selectedValue);
   }
 
+  function getItemIds() {
+    const collection = collections
+      .get()
+      .filter((collection) => collection.id === selectedCollectionId);
+    console.dir({ collection });
+    const itemIds = collection.items;
+    return itemIds;
+  }
   return (
     <>
       <CollectionSelectBox
         data={data}
-        value={selectedCollectionName}
+        value={selectedCollectionId}
         handleSelect={handleSelect}
       />
 
-      <CardCollection
-        collection={() => collections.getCollection(selectedCollectionName)}
-      />
+      <CardCollection collection={() => getItemIds()} />
     </>
   );
 }

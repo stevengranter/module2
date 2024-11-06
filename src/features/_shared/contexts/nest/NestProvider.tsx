@@ -1,26 +1,7 @@
 import { createContext, ReactNode, useEffect } from "react";
 
 import { useSessionStorage } from "@mantine/hooks";
-
-export type NestContextProps = {
-  nest: { get: () => number[]; addId: (id: number) => void };
-  collections: {
-    get: () => Collection[];
-    getNames: () => string[] | null;
-    getMatching: (id: number) => Collection[] | null;
-    getMatchingNames: (id: number) => string[] | null;
-    addId: (id: number, name: string) => void;
-    removeId: (taxonId: number, collectionName: string) => void;
-    create: (name: string) => void;
-    clear: () => void;
-  };
-};
-
-type Collection = {
-  name: string;
-  id: string | null;
-  items: number[];
-};
+import { Collection } from "~/features/_shared/contexts/nest/NestProvider.types.ts";
 
 const storageHook = useSessionStorage;
 
@@ -60,7 +41,8 @@ export default function NestProvider({ children }: { children: ReactNode }) {
   }
 
   useEffect(() => {
-    console.log(collectionsData);
+    console.log(`NestProvider.tsx => collectionsData: `);
+    console.dir(collectionsData);
   }, [collectionsData]);
 
   function hasCollection(name: string) {

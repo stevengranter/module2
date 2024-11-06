@@ -14,6 +14,6 @@ export type NestContextState = {
 };
 export type Collection = {
   name: string;
-  id: string | null;
+  id: string;
   items: number[];
 };
