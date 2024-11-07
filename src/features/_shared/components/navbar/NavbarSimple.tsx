@@ -55,7 +55,6 @@ function NavbarUserFooter() {
           })
         : null}
 
-      <LoginLogoutButton fullWidth={true} />
       <StartEndGuestSessionButton />
     </div>
   );

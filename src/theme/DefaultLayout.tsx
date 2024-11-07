@@ -12,8 +12,6 @@ import {
 } from "@mantine/core";
 import { useDisclosure, useHeadroom } from "@mantine/hooks";
 import { NavbarSimple } from "~/features/_shared/components/navbar/NavbarSimple.tsx";
-import LoginLogoutButton from "~/features/local-user/components/LoginLogoutButton.tsx";
-import CloudBackground from "~/theme/CloudBackground.tsx";
 
 import nestImage from "/assets/images/ui/nest-main-01.png";
 import searchImage from "/assets/images/ui/search-main-01.png";
