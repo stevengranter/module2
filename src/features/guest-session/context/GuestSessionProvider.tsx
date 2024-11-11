@@ -1,17 +1,16 @@
 import {
+  ContextType,
   createContext,
   ReactNode,
+  useCallback,
   useContext,
   useEffect,
   useState,
 } from "react";
 
-import { NestContext } from "~/features/_shared/contexts/nest/NestProvider.tsx";
 import useNest from "~/features/_shared/contexts/nest/useNest.ts";
 
-export const GuestSessionContext = createContext<GuestSessionContext | null>(
-  null,
-);
+export const GuestSessionContext = createContext<ContextType<any> | null>(null);
 
 const starterPack = [48586, 99901, 59442];
 
@@ -21,14 +20,22 @@ export default function GuestSessionProvider({
   children: ReactNode;
 }) {
   const [isGuest, setIsGuest] = useState(false);
-  const { nest, collections } = useNest();
+  const nestCtx = useNest();
+  if (!nestCtx) {
+    throw new Error("Nest Context is undefined");
+  }
+  const { nest, collections } = nestCtx;
 
-  function startGuestSession() {
-    console.log("START: Guest session");
+  const clearGuestData = useCallback(() => {
     nest.clear();
     collections.clear();
+  }, [nest, collections]);
+
+  const startGuestSession = useCallback(() => {
+    console.log("START: Guest Session");
+    clearGuestData();
     setIsGuest(true);
-  }
+  }, []);
 
   useEffect(() => {
     startGuestSession();
@@ -44,8 +51,7 @@ export default function GuestSessionProvider({
 
   function endGuestSession() {
     console.log("END: Guest session");
-    nest.clear();
-    collections.clear();
+    clearGuestData();
     setIsGuest(false);
   }
 

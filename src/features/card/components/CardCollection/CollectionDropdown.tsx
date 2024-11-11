@@ -26,7 +26,9 @@ export function CollectionDropdown({
     onDropdownOpen: () => combobox.updateSelectedOptionIndex("active"),
   });
 
-  const { collections } = useNest();
+  const nestCtx = useNest();
+  if (!nestCtx) throw new Error("Nest Context is not defined");
+  const { collections } = nestCtx;
 
   const [search, setSearch] = useState("");
   const [allCollections, setAllCollections] = useState(userCollections || []);
@@ -43,7 +45,9 @@ export function CollectionDropdown({
 
   useEffect(() => {
     const collectionsIncludingTaxonId = collections.getMatchingNames(taxonId);
-    setSelection(collectionsIncludingTaxonId);
+    collectionsIncludingTaxonId
+      ? setSelection(collectionsIncludingTaxonId)
+      : null;
   }, [collections, taxonId]);
 
   const exactOptionMatch = allCollections.some((item) => item === search);

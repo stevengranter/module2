@@ -1,11 +1,14 @@
-import { createContext, ReactNode, useEffect } from "react";
+import { createContext, ReactNode, useEffect, useMemo } from "react";
 
 import { useSessionStorage } from "@mantine/hooks";
-import { Collection } from "~/features/_shared/contexts/nest/NestProvider.types.ts";
+import {
+  Collection,
+  NestContextState,
+} from "~/features/_shared/contexts/nest/NestProvider.types.ts";
 
 const storageHook = useSessionStorage;
 
-export const NestContext = createContext<NestContextProps | undefined>(
+export const NestContext = createContext<NestContextState | undefined>(
   undefined,
 );
 export default function NestProvider({ children }: { children: ReactNode }) {
@@ -97,7 +100,7 @@ export default function NestProvider({ children }: { children: ReactNode }) {
     if (!hasCollection(collectionName)) {
       return console.log(`Collection ${collectionName} doesn't exist!`);
     }
-    if (!isIdInCollection(collectionName, taxonId)) {
+    if (!isIdInCollection(taxonId, collectionName)) {
       return console.log(
         `Collection ${collectionName} doesn't include: ${taxonId}!`,
       );
@@ -128,7 +131,7 @@ export default function NestProvider({ children }: { children: ReactNode }) {
 
   function getCollectionIdByName(name: string) {
     const namedCollection = getCollectionByName(name);
-    if (!namedCollection) return null;
+    if (!namedCollection) return "";
     else return namedCollection.id;
   }
 
@@ -156,7 +159,7 @@ export default function NestProvider({ children }: { children: ReactNode }) {
     const collectionNames = collectionsData.map(
       (collection: Collection) => collection.name,
     );
-    if (!collectionNames) return null;
+    if (!collectionNames) return [""];
     return collectionNames;
   }
 
@@ -182,6 +185,7 @@ export default function NestProvider({ children }: { children: ReactNode }) {
     getNames: getCollectionNames,
     getMatching: getMatchingCollections,
     getMatchingNames: getMatchingCollectionNames,
+    getCollection: getCollectionByName,
     addId: addIdToCollection,
     removeId: removeIdFromCollection,
     create: createCollection,
