@@ -1,4 +1,10 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 import { NestContext } from "~/features/_shared/contexts/nest/NestProvider.tsx";
 import useNest from "~/features/_shared/contexts/nest/useNest.ts";
@@ -23,6 +29,10 @@ export default function GuestSessionProvider({
     collections.clear();
     setIsGuest(true);
   }
+
+  useEffect(() => {
+    startGuestSession();
+  }, []);
 
   // function createGuestCollection(items: number[], collectionName: string) {
   //   console.log("createGuestCollection");

@@ -44,7 +44,7 @@ export function WildCard({ taxonId, dataObject }: Props) {
     }
   }, [query.data]);
 
-  function handleFlip(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+  function handleFlip(e: React.MouseEvent) {
     e.preventDefault();
     if (cardData && cardData.id) setCardId(cardData.id);
     setIsFlipped((prevState) => !prevState);
@@ -62,8 +62,14 @@ export function WildCard({ taxonId, dataObject }: Props) {
   return (
     <>
       <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-        <WildCard_Front data={cardData} onFlip={handleFlip} />
-        <WildCard_Back data={cardData} onFlip={handleFlip} />
+        <WildCard_Front
+          data={cardData}
+          onFlip={(e: React.MouseEvent) => handleFlip(e)}
+        />
+        <WildCard_Back
+          data={cardData}
+          onFlip={(e: React.MouseEvent) => handleFlip(e)}
+        />
       </ReactCardFlip>
     </>
   );
@@ -74,8 +80,8 @@ function WildCard_Front({
   onFlip,
 }: {
   data: iNatTaxonRecord | null;
-  onFlip?: () => void;
-}): JSX.Element {
+  onFlip?: (e: React.MouseEvent) => void;
+}) {
   if (!data) return null;
   console.log(data);
   return (
@@ -99,8 +105,8 @@ function WildCard_Front({
         </AspectRatio>
       </Card.Section>
 
-      <Group>
-        <FoundItButton />
+      <Group justify="space-between">
+        {data.id && <FoundItButton size="lg" id={data.id} />}
         <Button onClick={onFlip}>Flip</Button>
       </Group>
     </Card>
@@ -112,8 +118,8 @@ function WildCard_Back({
   onFlip,
 }: {
   data: iNatTaxonRecord | null;
-  onFlip?: () => void;
-}): JSX.Element {
+  onFlip?: (e: React.MouseEvent) => void;
+}) {
   if (!data) return null;
   return (
     <Card withBorder mah="400" mih="400">
@@ -143,7 +149,7 @@ function WildCard_Back({
         {/*  <Interweave content={data.wikipedia_summary} />*/}
         {/*</Text>*/}
         <Group>
-          <FoundItButton />
+          {data.id && <FoundItButton id={data.id} />}
           <Button onClick={onFlip}>Flip</Button>
         </Group>
       </Group>
