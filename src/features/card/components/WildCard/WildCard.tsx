@@ -12,6 +12,7 @@ import {
 } from "@mantine/core";
 import { useQuery } from "@tanstack/react-query";
 import { CollectionDropdown } from "~/features/card/components/CardCollection/CollectionDropdown.tsx";
+import FoundItButton from "~/features/card/components/FoundItButton.tsx";
 import ToggleFavoriteButton from "~/features/card/components/ToggleFavoriteButton.tsx";
 import {
   iNatTaxaResponseType,
@@ -61,15 +62,20 @@ export function WildCard({ taxonId, dataObject }: Props) {
   return (
     <>
       <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-        <WildCard_Front data={cardData} />
-        <WildCard_Back data={cardData} />
+        <WildCard_Front data={cardData} onFlip={handleFlip} />
+        <WildCard_Back data={cardData} onFlip={handleFlip} />
       </ReactCardFlip>
-      <Button onClick={(e) => handleFlip(e)}>Flip</Button>
     </>
   );
 }
 
-function WildCard_Front({ data }: { data: iNatTaxonRecord | null }) {
+function WildCard_Front({
+  data,
+  onFlip,
+}: {
+  data: iNatTaxonRecord | null;
+  onFlip?: () => void;
+}): JSX.Element {
   if (!data) return null;
   console.log(data);
   return (
@@ -93,18 +99,21 @@ function WildCard_Front({ data }: { data: iNatTaxonRecord | null }) {
         </AspectRatio>
       </Card.Section>
 
-      <Card.Section mt="md">
-        {data.wikipedia_url && <a href={data.wikipedia_url}>Wikipedia Link</a>}
-      </Card.Section>
-
-      <Card.Section mt="md">
-        {data.id && <CollectionDropdown taxonId={data.id} />}
-      </Card.Section>
+      <Group>
+        <FoundItButton />
+        <Button onClick={onFlip}>Flip</Button>
+      </Group>
     </Card>
   );
 }
 
-function WildCard_Back({ data }: { data: iNatTaxonRecord | null }) {
+function WildCard_Back({
+  data,
+  onFlip,
+}: {
+  data: iNatTaxonRecord | null;
+  onFlip?: () => void;
+}): JSX.Element {
   if (!data) return null;
   return (
     <Card withBorder mah="400" mih="400">
@@ -124,9 +133,19 @@ function WildCard_Back({ data }: { data: iNatTaxonRecord | null }) {
           />
         )}
 
-        <Text size="md">
-          <Interweave content={data.wikipedia_summary} />
-        </Text>
+        <Card.Section mt="md">
+          {data.wikipedia_url && (
+            <a href={data.wikipedia_url}>Wikipedia Link</a>
+          )}
+        </Card.Section>
+
+        {/*<Text size="md">*/}
+        {/*  <Interweave content={data.wikipedia_summary} />*/}
+        {/*</Text>*/}
+        <Group>
+          <FoundItButton />
+          <Button onClick={onFlip}>Flip</Button>
+        </Group>
       </Group>
     </Card>
   );
