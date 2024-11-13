@@ -11,8 +11,13 @@ import {
   TextInput,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
+import { useLogger } from "@mantine/hooks";
 import { useQuery } from "@tanstack/react-query";
 import { WildCard } from "~/features/card/components/WildCard/WildCard.tsx";
+
+const defaultQueryParams = {
+  per_page: 6,
+};
 
 export default function SearchPage() {
   const form = useForm({ mode: "uncontrolled" });
@@ -20,6 +25,8 @@ export default function SearchPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [pageNumber, setPageNumber] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
+
+  useLogger("SearchPage", [{ searchParams }]);
 
   const { data, error, isLoading } = useQuery({
     // Default queryFn is queryINatAPI (
@@ -30,7 +37,7 @@ export default function SearchPage() {
 
   useEffect(() => {
     const currentParams = Object.fromEntries([...searchParams]);
-    // console.log(currentParams);
+    // console.log({currentParams});
   }, [searchParams]);
 
   useEffect(() => {
@@ -42,11 +49,12 @@ export default function SearchPage() {
     }
   }, [data]);
 
-  function handleSubmit(values: FormValues) {
+  function handleSubmit(formValues: FormValues) {
     setPageNumber(1);
     setTotalPages(0);
-    console.log(values);
-    setSearchParams(values);
+    console.log(formValues);
+    const searchParams = { ...formValues, ...defaultQueryParams };
+    setSearchParams(searchParams);
   }
 
   function changePage(pageNumber: number) {
@@ -78,20 +86,6 @@ export default function SearchPage() {
         <div>
           {data && data.total_results && `Total results: ${data.total_results}`}
         </div>
-        <div>
-          {data && data.total_results && `Page: ${pageNumber} of ${totalPages}`}
-        </div>
-        <div>
-          {data && data.per_page && `Results per page: ${data.per_page}`}
-        </div>
-        {totalPages > 1 && (
-          <Pagination
-            total={totalPages}
-            defaultValue={1}
-            onChange={(page) => changePage(page)}
-            key={form.key("page")}
-          />
-        )}
       </form>
 
       {isLoading && "Loading..."}
@@ -122,6 +116,18 @@ export default function SearchPage() {
               );
             })}
         </Grid>
+      )}
+      {/*<div>*/}
+      {/*  {data && data.total_results && `Page: ${pageNumber} of ${totalPages}`}*/}
+      {/*</div>*/}
+      {/*<div>{data && data.per_page && `Results per page: ${data.per_page}`}</div>*/}
+      {totalPages > 1 && (
+        <Pagination
+          total={totalPages}
+          defaultValue={1}
+          onChange={(page) => changePage(page)}
+          key={form.key("page")}
+        />
       )}
     </>
   );

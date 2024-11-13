@@ -8,5 +8,7 @@ export async function queryINatAPI({ queryKey }: { queryKey: string }) {
   if (!response.ok) {
     throw new Error("Network response was not ok");
   }
-  return response.json();
+  const JSONData = await response.json();
+  console.log(JSONData);
+  return JSONData;
 }
