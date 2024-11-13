@@ -1,4 +1,5 @@
 export interface UserType {
+  activityRate?: number;
   nest: { items: [number] };
   collection?: string[];
   description?: string;

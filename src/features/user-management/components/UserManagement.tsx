@@ -36,24 +36,33 @@ export default function UserManagement() {
 }
 
 function UserTable({ userData }) {
+  A; // refactor: Migrate to mantine-datatable
   return (
-    <Table>
-      <Table.Thead>
-        <Table.Tr>
-          <Table.Th>Username</Table.Th>
-          <Table.Th>Nest Total</Table.Th>
-        </Table.Tr>
-      </Table.Thead>
-      <Table.Tbody>
-        {userData &&
-          userData.length > 0 &&
-          userData.map((user: UserType) => (
-            <Table.Tr key={user.id}>
-              <Table.Td>{user.username}</Table.Td>
-              <Table.Td>{user.nest.items && user.nest.items.length}</Table.Td>
-            </Table.Tr>
-          ))}
-      </Table.Tbody>
-    </Table>
+    <Table.ScrollContainer minWidth={500}>
+      <Table>
+        <Table.Thead>
+          <Table.Tr>
+            <Table.Th>Username</Table.Th>
+            <Table.Th>First Name</Table.Th>
+            <Table.Th>Last Name</Table.Th>
+            <Table.Th>Activity Rate</Table.Th>
+            <Table.Th>Nest Total</Table.Th>
+          </Table.Tr>
+        </Table.Thead>
+        <Table.Tbody>
+          {userData &&
+            userData.length > 0 &&
+            userData.map((user: UserType) => (
+              <Table.Tr key={user.id}>
+                {user.username && <Table.Td>{user.username}</Table.Td>}
+                <Table.Td>{user.firstName}</Table.Td>
+                <Table.Td>{user.lastName}</Table.Td>
+                <Table.Td>{user.activityRate}</Table.Td>
+                <Table.Td>{user.nest.items && user.nest.items.length}</Table.Td>
+              </Table.Tr>
+            ))}
+        </Table.Tbody>
+      </Table>
+    </Table.ScrollContainer>
   );
 }

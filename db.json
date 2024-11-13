@@ -7,7 +7,7 @@
       "email": "alex_johnson13@gmail.com",
       "username": "Squirrelnator99",
       "nestTotal": 100,
-      "activityScore": 8,
+      "activityRate": 8,
       "nest": {
         "items": []
       }
@@ -19,7 +19,7 @@
       "email": "ella.williams24@yahoo.com",
       "username": "CrazyCatLady42",
       "nestTotal": 50,
-      "activityScore": 7,
+      "activityRate": 7,
       "nest": {
         "items": []
       }
@@ -31,7 +31,7 @@
       "email": "mark.davis35@hotmail.com",
       "username": "OctopusOverlord90",
       "nestTotal": 200,
-      "activityScore": 9,
+      "activityRate": 9,
       "nest": {
         "items": []
       }
@@ -43,7 +43,7 @@
       "email": "lily.taylor11@gmail.com",
       "username": "UnicornPrincess88",
       "nestTotal": 30,
-      "activityScore": 6,
+      "activityRate": 6,
       "nest": {
         "items": []
       }
@@ -55,7 +55,7 @@
       "email": "michael.wilson2@yahoo.com",
       "username": "DolphinDean99",
       "nestTotal": 150,
-      "activityScore": 8,
+      "activityRate": 8,
       "nest": {
         "items": []
       }
@@ -67,7 +67,7 @@
       "email": "sarah.harris33@hotmail.com",
       "username": "KangarooJumper22",
       "nestTotal": 80,
-      "activityScore": 7,
+      "activityRate": 7,
       "nest": {
         "items": []
       }
@@ -79,7 +79,7 @@
       "email": "emily.miller16@gmail.com",
       "username": "PenguinProfessor77",
       "nestTotal": 40,
-      "activityScore": 6,
+      "activityRate": 6,
       "nest": {
         "items": []
       }
@@ -91,7 +91,7 @@
       "email": "tom.martin4@yahoo.com",
       "username": "ElephantExpert88",
       "nestTotal": 120,
-      "activityScore": 8,
+      "activityRate": 8,
       "nest": {
         "items": []
   }
@@ -103,7 +103,7 @@
       "email": "olivia.brown9@gmail.com",
       "username": "ButterflyBotanist99",
       "nestTotal": 60,
-      "activityScore": 7,
+      "activityRate": 7,
       "nest": {
       "items": []
     }
@@ -115,7 +115,7 @@
       "email": "benjamin.jones33@hotmail.com",
       "username": "LionLord88",
       "nestTotal": 180,
-      "activityScore": 9,
+      "activityRate": 9,
       "nest": {
         "items": []
       }
@@ -127,7 +127,7 @@
       "email": "sophia.thomas22@gmail.com",
       "username": "MonkeyBusinessOwner99",
       "nestTotal": 90,
-      "activityScore": 8,
+      "activityRate": 8,
       "nest": {
         "items": []
       }
@@ -139,7 +139,7 @@
       "email": "ava.white11@yahoo.com",
       "username": "ParrotPilot88",
       "nestTotal": 110,
-      "activityScore": 8,
+      "activityRate": 8,
       "nest": {
         "items": []
       }
