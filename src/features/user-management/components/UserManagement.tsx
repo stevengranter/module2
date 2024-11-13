@@ -36,7 +36,7 @@ export default function UserManagement() {
 }
 
 function UserTable({ userData }) {
-  A; // refactor: Migrate to mantine-datatable
+  // refactor: Migrate to mantine-datatable
   return (
     <Table.ScrollContainer minWidth={500}>
       <Table>
