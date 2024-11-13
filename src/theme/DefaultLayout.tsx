@@ -9,6 +9,7 @@ import {
   useMantineTheme,
   Text,
   Stack,
+  Container,
 } from "@mantine/core";
 import { useDisclosure, useHeadroom } from "@mantine/hooks";
 import { NavbarSimple } from "~/features/_shared/components/navbar/NavbarSimple.tsx";
@@ -39,7 +40,7 @@ export default function DefaultLayout() {
         collapsed: true,
         height: 100,
       }}
-      padding="md"
+      // padding="md"
     >
       <AppShell.Header style={{ backgroundColor: "#B1ED5C" }}>
         {/*<CloudBackground />*/}
@@ -57,30 +58,30 @@ export default function DefaultLayout() {
             />
           </Link>
 
-          <Group gap="xl">
-            <Link to="/dashboard">
-              <Stack align="center" justify="center" gap="0">
-                <Image
-                  alt="illustration: a bird's nest with three bright blue eggs in it"
-                  src={nestImage}
-                  h="85"
-                  m="xs"
-                />
-                <Text>myNest</Text>
-              </Stack>
-            </Link>
-            <Link to="/search">
-              <Stack align="center" justify="center" gap="0">
-                <Image
-                  alt="illustraition: a magnifying glass showing a ladybug on a blade of grass"
-                  src={searchImage}
-                  h="80"
-                  m="xs"
-                />
-                <Text>search</Text>
-              </Stack>
-            </Link>
-          </Group>
+          {/*<Group gap="xl">*/}
+          {/*  <Link to="/dashboard">*/}
+          {/*    <Stack align="center" justify="center" gap="0">*/}
+          {/*      <Image*/}
+          {/*        alt="illustration: a bird's nest with three bright blue eggs in it"*/}
+          {/*        src={nestImage}*/}
+          {/*        h="85"*/}
+          {/*        m="xs"*/}
+          {/*      />*/}
+          {/*      <Text>myNest</Text>*/}
+          {/*    </Stack>*/}
+          {/*  </Link>*/}
+          {/*  <Link to="/search">*/}
+          {/*    <Stack align="center" justify="center" gap="0">*/}
+          {/*      <Image*/}
+          {/*        alt="illustration: a magnifying glass showing a ladybug on a blade of grass"*/}
+          {/*        src={searchImage}*/}
+          {/*        h="80"*/}
+          {/*        m="xs"*/}
+          {/*      />*/}
+          {/*      <Text>search</Text>*/}
+          {/*    </Stack>*/}
+          {/*  </Link>*/}
+          {/*</Group>*/}
         </Group>
       </AppShell.Header>
 
@@ -95,7 +96,11 @@ export default function DefaultLayout() {
         style={{ backgroundColor: "transparent", paddingTop: "200px" }}
       >
         <ScrollRestoration />
-        <Outlet />
+        {/* Container is REQUIRED here to prevent horizontal in Grid component //*/}
+        {/* due to negative margins (see: https://v6.mantine.dev/core/grid/)*/}
+        <Container>
+          <Outlet />
+        </Container>
       </AppShell.Main>
 
       <AppShell.Footer

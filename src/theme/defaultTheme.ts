@@ -36,4 +36,17 @@ export const defaultTheme = createTheme({
       "#09342d",
     ],
   },
+  components: {
+    Container: {
+      defaultProps: {
+        sizes: {
+          xs: 540,
+          sm: 720,
+          md: 960,
+          lg: 1140,
+          xl: 1320,
+        },
+      },
+    },
+  },
 });

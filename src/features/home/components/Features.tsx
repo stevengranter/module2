@@ -9,6 +9,7 @@ import {
   Grid,
   rem,
   Image,
+  Container,
 } from "@mantine/core";
 import { IconBinoculars, IconUsers } from "@tabler/icons-react";
 import { IconLayout } from "~/features/_shared/icons/icons.tsx";
@@ -62,27 +63,25 @@ export default function Features() {
   ));
 
   return (
-    <div>
-      <Grid gutter={80}>
-        <Grid.Col span={{ base: 12, md: 5 }}>
-          <Image src={logo} />
-          <Title order={2}>Welcome</Title>
-          <Text>
-            Welcome to WilderNest, a playground for nature enthusiasts and
-            curious explorers! 🌿✨ Add all the fascinating insects, wildlife,
-            and plants you’ve discovered in the great outdoors. Get ready to
-            embark on a wild journey — because every find is a treasure waiting
-            to be added to your nest! 🐦🌼🐞
-          </Text>
+    <Grid m={0}>
+      <Grid.Col span={{ base: 12, md: 5 }}>
+        <Image src={logo} />
+        <Title order={2}>Welcome</Title>
+        <Text>
+          Welcome to WilderNest, a playground for nature enthusiasts and curious
+          explorers! 🌿✨ Add all the fascinating insects, wildlife, and plants
+          you’ve discovered in the great outdoors. Get ready to embark on a wild
+          journey — because every find is a treasure waiting to be added to your
+          nest! 🐦🌼🐞
+        </Text>
 
-          <ToggleGuestSessionButton />
-        </Grid.Col>
-        <Grid.Col span={{ base: 12, md: 7 }}>
-          <SimpleGrid cols={{ base: 1, md: 2 }} spacing={30}>
-            {items}
-          </SimpleGrid>
-        </Grid.Col>
-      </Grid>
-    </div>
+        <ToggleGuestSessionButton />
+      </Grid.Col>
+      <Grid.Col span={{ base: 12, md: 7 }}>
+        <SimpleGrid cols={{ base: 1, md: 2 }} spacing={30}>
+          {items}
+        </SimpleGrid>
+      </Grid.Col>
+    </Grid>
   );
 }
