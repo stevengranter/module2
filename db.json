@@ -1,130 +1,148 @@
 {
   "users" : [
     {
-      "birthdate" : "9999-000-000",
-      "description" : "",
-      "firstName" : "Anon E.",
-      "id" : "0",
-      "imgSrc" : "",
-      "lastName" : "Mouse",
-      "password" : "",
-      "email": "anon.e.mouse@mousehouse.net",
-      "title" : "Anonymous",
-      "username" : "anonymous",
-      "nest" : {
-        "items" : [
-        ]
+      "id": 1,
+      "firstName": "Alex",
+      "lastName": "Johnson",
+      "email": "alex_johnson13@gmail.com",
+      "username": "Squirrelnator99",
+      "nestTotal": 100,
+      "activityScore": 8,
+      "nest": {
+        "items": []
       }
     },
     {
-      "birthdate" : "9999-000-000",
-      "description" : "",
-      "firstName" : "Local",
-      "id" : "1",
-      "imgSrc" : "",
-      "lastName" : "User",
-      "password" : "",
-      "title" : "Local User",
-      "username" : "localUser",
-      "nest" : {
-        "items": [
-          48586,
-          59442,
-          494559
-        ],
-        "collections": [
-          {
-            "id": "c991fb44-1a27-4b5d-be0a-dda631d1c5c6",
-            "name": "starter",
-            "items": [
-              48586,
-              59442,
-              494559
-            ]
-          },
-          {
-            "id": "c991fb44-1a27-4b5d-be0a-dda631d1c5c6",
-            "name": "other",
-            "items": [
-              81545,
-              99901
-            ]
-          }
-        ]
+      "id": 2,
+      "firstName": "Ella",
+      "lastName": "Williams",
+      "email": "ella.williams24@yahoo.com",
+      "username": "CrazyCatLady42",
+      "nestTotal": 50,
+      "activityScore": 7,
+      "nest": {
+        "items": []
       }
     },
     {
-      "nest" : {
-        "items" : [
-          1,
-          2,
-          3,
-          4,
-          6,
-          7
-        ]
-      },
-      "collections" : [
-        {
-          "id" : "c991fb44-1a27-4b5d-be0a-dda631d1c5c6",
-          "name" : "favorites",
-          "items" : [
-            4,
-            6,
-            7
-          ]
-        },
-        {
-          "id" : "04f64e08-d838-4ab1-9f67-bb50cbb8e9e2",
-          "name" : "default",
-          "items" : [
-            1,
-            2,
-            3
-          ]
-        }
-      ],
-      "description" : "Alice is a product manager with a passion for building user-friendly applications.",
-      "firstName" : "Alice",
-      "id" : "3957116e-8771-4a0b-9711-6e8771ea0bb6",
-      "imgSrc" : "https://xsgames.co/randomusers/avatar.php?g=female",
-      "lastName" : "Smith",
-      "password" : "mypassword",
-      "title" : "Product Manager",
-      "username" : "asmith"
+      "id": 3,
+      "firstName": "Mark",
+      "lastName": "Davis",
+      "email": "mark.davis35@hotmail.com",
+      "username": "OctopusOverlord90",
+      "nestTotal": 200,
+      "activityScore": 9,
+      "nest": {
+        "items": []
+      }
     },
     {
-      "nest" : {
-        "items" : [
-          1,
-          6,
-          8
-        ]
-      },
-      "birthdate" : "1987-11-20",
-      "collections" : [
-        {
-          "id" : "9e59dba6-ec81-4875-99db-a6ec81d875e0",
-          "name" : "favorites",
-          "items" : [
-            6,
-            1,
-            8
-          ]
-        },
-        {
-          "id" : "8574b54e-e181-4012-b4b5-4ee181201291",
-          "name" : "default"
-        }
-      ],
-      "description" : "Bob is a skilled software engineer specializing in full-stack development.",
-      "firstName" : "Bob",
-      "id" : "da99cc79-cdd5-4fb3-99cc-79cdd56fb3ad",
-      "imgSrc" : "https://xsgames.co/randomusers/avatar.php?g=male",
-      "lastName" : "Johnson",
-      "password" : "123456",
-      "title" : "Software Engineer",
-      "username" : "bobbio"
+      "id": 4,
+      "firstName": "Lily",
+      "lastName": "Taylor",
+      "email": "lily.taylor11@gmail.com",
+      "username": "UnicornPrincess88",
+      "nestTotal": 30,
+      "activityScore": 6,
+      "nest": {
+        "items": []
+      }
+    },
+    {
+      "id": 5,
+      "firstName": "Mike",
+      "lastName": "Wilson",
+      "email": "michael.wilson2@yahoo.com",
+      "username": "DolphinDean99",
+      "nestTotal": 150,
+      "activityScore": 8,
+      "nest": {
+        "items": []
+      }
+    },
+    {
+      "id": 6,
+      "firstName": "Sarah",
+      "lastName": "Harris",
+      "email": "sarah.harris33@hotmail.com",
+      "username": "KangarooJumper22",
+      "nestTotal": 80,
+      "activityScore": 7,
+      "nest": {
+        "items": []
+      }
+    },
+    {
+      "id": 7,
+      "firstName": "Emily",
+      "lastName": "Miller",
+      "email": "emily.miller16@gmail.com",
+      "username": "PenguinProfessor77",
+      "nestTotal": 40,
+      "activityScore": 6,
+      "nest": {
+        "items": []
+      }
+    },
+    {
+      "id": 8,
+      "firstName": "Tom",
+      "lastName": "Martin",
+      "email": "tom.martin4@yahoo.com",
+      "username": "ElephantExpert88",
+      "nestTotal": 120,
+      "activityScore": 8,
+      "nest": {
+        "items": []
+  }
+    },
+    {
+      "id": 9,
+      "firstName": "Olivia",
+      "lastName": "Brown",
+      "email": "olivia.brown9@gmail.com",
+      "username": "ButterflyBotanist99",
+      "nestTotal": 60,
+      "activityScore": 7,
+      "nest": {
+      "items": []
+    }
+    },
+    {
+      "id": 10,
+      "firstName": "Ben",
+      "lastName": "Jones",
+      "email": "benjamin.jones33@hotmail.com",
+      "username": "LionLord88",
+      "nestTotal": 180,
+      "activityScore": 9,
+      "nest": {
+        "items": []
+      }
+    },
+    {
+      "id": 11,
+      "firstName": "Sophia",
+      "lastName": "Thomas",
+      "email": "sophia.thomas22@gmail.com",
+      "username": "MonkeyBusinessOwner99",
+      "nestTotal": 90,
+      "activityScore": 8,
+      "nest": {
+        "items": []
+      }
+    },
+    {
+      "id": 12,
+      "firstName": "Ava",
+      "lastName": "White",
+      "email": "ava.white11@yahoo.com",
+      "username": "ParrotPilot88",
+      "nestTotal": 110,
+      "activityScore": 8,
+      "nest": {
+        "items": []
+      }
     }
   ],
   "cards" : [
