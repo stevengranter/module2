@@ -71,7 +71,21 @@ export default function SearchPage() {
 
   return (
     <>
-      <h1>SearchPage</h1>
+      <h1>Search</h1>
+      <p>
+        Type in your findings here: insect, plant, or animal. If you're not sure
+        what you've found, check out our links page to some apps and smartphone
+        features that can identify from a photo.
+      </p>
+      <p>
+        Results are sorted by number of observations recorded in the
+        iNaturalist.org database.
+      </p>
+      <p>
+        Once you've found the plant/animal you're looking for, click the Add+
+        button to add it to your nest. If you see something you're hoping to
+        find later, click the star to add it to your wishlist.
+      </p>
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <Flex align="flex-end">
           <TextInput
