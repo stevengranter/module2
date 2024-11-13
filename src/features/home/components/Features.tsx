@@ -74,8 +74,6 @@ export default function Features() {
           journey — because every find is a treasure waiting to be added to your
           nest! 🐦🌼🐞
         </Text>
-
-        <ToggleGuestSessionButton />
       </Grid.Col>
       <Grid.Col span={{ base: 12, md: 7 }}>
         <SimpleGrid cols={{ base: 1, md: 2 }} spacing={30}>

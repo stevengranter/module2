@@ -15,5 +15,5 @@ export const publicLinks = [
   // { label: "SampleCard", to: "/sample", icon: IconHome },
 ];
 export const userLinks = [
-  { icon: IconLayout, label: "components", to: "/dashboard" },
+  // { icon: IconLayout, label: "components", to: "/dashboard" },
 ];

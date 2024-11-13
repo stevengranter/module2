@@ -36,7 +36,7 @@ export function NavbarSimple({ onClick }: NavBarParams) {
   return (
     <nav className={classes.navbar}>
       <div className={classes.navbarMain}>{links}</div>
-      {/*<NavbarUserFooter />*/}
+      <NavbarUserFooter />
     </nav>
   );
 }
@@ -45,20 +45,14 @@ function NavbarUserFooter() {
   // const { user } = useContext(RoleContext);
   return (
     <div className={classes.footer}>
-      {user
-        ? userLinks.map((userLink) => {
-            return (
-              <Link
-                className={classes.link}
-                to={userLink.to}
-                key={userLink.label}
-              >
-                <userLink.icon className={classes.linkIcon} stroke={1.5} />
-                <span>{userLink.label}</span>
-              </Link>
-            );
-          })
-        : null}
+      {userLinks.map((userLink) => {
+        return (
+          <Link className={classes.link} to={userLink.to} key={userLink.label}>
+            <userLink.icon className={classes.linkIcon} stroke={1.5} />
+            <span>{userLink.label}</span>
+          </Link>
+        );
+      })}
 
       <StartEndGuestSessionButton />
     </div>
