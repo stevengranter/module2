@@ -57,6 +57,10 @@ export default function SearchPage() {
     setPageNumber(pageNumber);
   }
 
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
   return (
     <>
       <h1>SearchPage</h1>

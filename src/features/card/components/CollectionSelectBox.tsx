@@ -9,7 +9,6 @@ export default function CollectionSelectBox({
   value: string;
   handleSelect: (option: string) => void;
 }) {
-  console.log(data);
   return (
     data.length !== 0 && (
       <Select

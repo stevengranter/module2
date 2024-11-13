@@ -1,10 +1,12 @@
-import { createContext, ReactNode, useEffect, useMemo } from "react";
+import { createContext, ReactNode, useEffect, useMemo, useState } from "react";
 
 import { useSessionStorage } from "@mantine/hooks";
 import {
   Collection,
   NestContextState,
 } from "~/features/_shared/contexts/nest/NestProvider.types.ts";
+import { log } from "~/features/_shared/utils/dev.ts";
+import { displayNotification } from "~/features/_shared/utils/displayNotification.ts";
 
 const storageHook = useSessionStorage;
 
@@ -29,23 +31,34 @@ export default function NestProvider({ children }: { children: ReactNode }) {
   const getCollections = () => collectionsData;
 
   function createCollection(name: string) {
-    console.log("createCollection()");
+    log("createCollection()");
     if (name.length === 0) {
-      return console.log("Name must be at least 1 character");
+      displayNotification({
+        color: "red",
+        message: `Name must be at least 1 character`,
+      });
     } else if (hasCollection(name)) {
-      return console.log(
-        `Collection ${name} already exists (id: ${getCollectionIdByName(name)}`,
-      );
+      displayNotification({
+        color: "red",
+        message: `Collection ${name} already exists (id: ${getCollectionIdByName(name)}`,
+      });
     } else {
       const newCollection = { name: name, id: crypto.randomUUID(), items: [] };
+      console.log(newCollection);
       setCollectionsData((current) => [...current, newCollection]);
-      console.log(`Collection ${name} created`);
+      displayNotification({
+        color: "green",
+        message: `Collection ${newCollection.name} created, id: ${newCollection.id}`,
+      });
+      // setMessage(`Collection ${name} created`);
     }
   }
 
   useEffect(() => {
-    console.log(`NestProvider.tsx => collectionsData: `);
-    console.dir(collectionsData);
+    if (collectionsData && collectionsData.length > 0) {
+      log(`NestProvider.tsx => collectionsData: `);
+      log(collectionsData);
+    }
   }, [collectionsData]);
 
   function hasCollection(name: string) {
@@ -62,7 +75,11 @@ export default function NestProvider({ children }: { children: ReactNode }) {
     if (checkId(id)) return console.log(`${id} is not a valid Id`);
     if (isIdInNest(id)) return console.log(`id:${id} is already in nest`);
     setNestData((current) => [...current, id]);
-    console.log(`id: ${id} has been added to nest`);
+    log("info", `${id} has been added to nest`);
+    // displayNotification({
+    //   color: "green",
+    //   message: `id: ${id} has been added to nest`,
+    // });
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -77,22 +94,28 @@ export default function NestProvider({ children }: { children: ReactNode }) {
   function addIdToCollection(id: number, name: string) {
     if (checkId(id)) return console.log(`${id} is not a valid Id`);
     if (isIdInCollection(id, name)) {
-      return console.log(`Collection ${name} already includes id: ${id}!`);
+      displayNotification({
+        color: "red",
+        message: `Collection ${name} already includes id: ${id}!`,
+      });
     }
     if (!hasCollection(name)) {
       createCollection(name);
-      console.log(`Collection ${name} didn't exist - created collection `);
     }
     addIdToNest(id);
+    const collectionName = getCollectionByName(name, collectionsData);
     const collectionId = getCollectionIdByName(name);
+    console.log(collectionName);
     setCollectionsData((collections) =>
       collections.map((collection: Collection) =>
         collection.id === collectionId
-          ? { ...collection, items: [...collection.items, id] }
+          ? { ...collection, items: [...collection.items, 4325] }
           : collection,
       ),
     );
-    console.log(`id: ${id} has been added to collection: ${name}`);
+    displayNotification({
+      message: `id: ${id} has been added to collection: ${name}`,
+    });
   }
 
   function removeIdFromCollection(taxonId: number, collectionName: string) {
@@ -117,16 +140,21 @@ export default function NestProvider({ children }: { children: ReactNode }) {
     );
 
     console.log(
-      `id: ${taxonId} has been added to collection: ${collectionName}`,
+      `id: ${taxonId} has been removed from collection: ${collectionName}`,
     );
   }
 
-  function getCollectionByName(name: string) {
-    const namedCollection = collectionsData.find(
-      (collection) => collection.name === name,
-    );
-    if (!namedCollection) return null;
-    return namedCollection;
+  function getCollectionByName(name: string, collectionsData) {
+    if (collectionsData) {
+      console.log(collectionsData);
+      const namedCollection = collectionsData.find(
+        (collection) => collection.name === name,
+      );
+      console.log(namedCollection);
+      if (!namedCollection) return null;
+
+      return namedCollection;
+    }
   }
 
   function getCollectionIdByName(name: string) {
@@ -143,7 +171,7 @@ export default function NestProvider({ children }: { children: ReactNode }) {
     if (!hasCollection(name)) {
       return console.log(`Collection ${name} doesn't exist!`);
     }
-    const namedCollection = getCollectionByName(name);
+    const namedCollection = getCollectionByName(name, collectionsData);
     if (namedCollection) return namedCollection.items.includes(id);
   }
 

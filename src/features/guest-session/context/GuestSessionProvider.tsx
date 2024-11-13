@@ -1,16 +1,34 @@
 import {
+  Context,
   ContextType,
   createContext,
   ReactNode,
   useCallback,
   useContext,
   useEffect,
+  useMemo,
   useState,
 } from "react";
 
 import useNest from "~/features/_shared/contexts/nest/useNest.ts";
+import { log } from "~/features/_shared/utils/dev.ts";
 
-export const GuestSessionContext = createContext<ContextType<any> | null>(null);
+type GuestSessionContextType = {
+  isGuest: boolean;
+  startGuestSession: () => void;
+  endGuestSession: () => void;
+  guestData: { nest: object; collections: object };
+};
+
+// const initialContext = {
+//   isGuest: false,
+//   startGuestSession: () => {},
+//   endGuestSession: () => {},
+//   guestData: { nest: {}, collections: {} },
+// };
+
+export const GuestSessionContext =
+  createContext<GuestSessionContextType | null>(null);
 
 const starterPack = [48586, 99901, 59442];
 
@@ -19,7 +37,7 @@ export default function GuestSessionProvider({
 }: {
   children: ReactNode;
 }) {
-  const [isGuest, setIsGuest] = useState(false);
+  const [isGuest, setIsGuest] = useState(true);
   const nestCtx = useNest();
   if (!nestCtx) {
     throw new Error("Nest Context is undefined");
@@ -29,16 +47,22 @@ export default function GuestSessionProvider({
   const clearGuestData = useCallback(() => {
     nest.clear();
     collections.clear();
+    log("Guest data cleared");
   }, [nest, collections]);
 
-  const startGuestSession = useCallback(() => {
-    console.log("START: Guest Session");
+  function startGuestSession() {
+    log("START: Guest Session");
     clearGuestData();
     setIsGuest(true);
-  }, []);
+    collections.addId(48586, "Favorites");
+  }
 
   useEffect(() => {
-    startGuestSession();
+    log("START: Guest Session");
+    clearGuestData();
+    setIsGuest(true);
+    collections.create("Favorites");
+    collections.addId(48586, "Favorites");
   }, []);
 
   // function createGuestCollection(items: number[], collectionName: string) {

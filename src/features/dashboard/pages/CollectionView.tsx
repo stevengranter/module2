@@ -8,6 +8,7 @@ import {
 } from "@mantine/core";
 import { NestContextState } from "~/features/_shared/contexts/nest/NestProvider.types.ts";
 import { Collection } from "~/features/_shared/contexts/nest/NestProvider.types.ts";
+import { log } from "~/features/_shared/utils/dev.ts";
 import CardCollection from "~/features/card/components/CardCollection/CardCollection.tsx";
 import CollectionSelectBox from "~/features/card/components/CollectionSelectBox.tsx";
 
@@ -31,16 +32,17 @@ export default function CollectionView({ collections }: NestContextState) {
   const [itemIds, setItemIds] = useState<number[]>([]);
 
   useEffect(() => {
-    console.log({ data });
+    if (data.length > 0) log(data);
   }, [data]);
 
   useEffect(() => {
-    console.log({ selectedCollectionId: selectedCollectionId });
+    if (selectedCollectionId)
+      log(`selectedCollectionId: ${selectedCollectionId}`);
     const collection = collections
       .get()
       .filter((collection) => collection.id === selectedCollectionId);
-    console.dir({ collection });
-    const itemIds = collection.items;
+    if (collection) log(collection);
+    // const itemIds = collection.items;
     setItemIds(itemIds);
   }, [collections, selectedCollectionId]);
 
@@ -56,7 +58,7 @@ export default function CollectionView({ collections }: NestContextState) {
       .get()
       .filter((collection) => collection.id === selectedCollectionId);
     console.dir({ collection });
-    const itemIds = collection.items;
+    const itemIds = collection.get();
     return itemIds;
   }
   return (

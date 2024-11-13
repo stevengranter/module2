@@ -6,6 +6,7 @@ import useGuest from "~/features/guest-session/hooks/useGuest.ts";
 
 export default function ToggleGuestSessionButton() {
   const { isGuest, startGuestSession, endGuestSession, guestData } = useGuest();
+
   const openStartModal = () =>
     modals.openConfirmModal({
       title: "Please confirm",

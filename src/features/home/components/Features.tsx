@@ -37,8 +37,8 @@ const features = [
 
 export default function Features() {
   const items = features.map((feature) => (
-    <div>
-      <Link to={feature.path} key={feature.title}>
+    <div key={feature.title}>
+      <Link to={feature.path}>
         {feature.image && <Image src={feature.image} />}
         <ThemeIcon
           size={44}

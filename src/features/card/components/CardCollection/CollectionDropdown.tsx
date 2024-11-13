@@ -8,7 +8,9 @@ import {
   PillsInput,
   useCombobox,
 } from "@mantine/core";
+import { NestContextState } from "~/features/_shared/contexts/nest/NestProvider.types.ts";
 import useNest from "~/features/_shared/contexts/nest/useNest.ts";
+import { log } from "~/features/_shared/utils/dev.ts";
 
 type CollectionDropdownProps = {
   userCollections?: string[];
@@ -26,15 +28,24 @@ export function CollectionDropdown({
     onDropdownOpen: () => combobox.updateSelectedOptionIndex("active"),
   });
 
-  const nestCtx = useNest();
-  if (!nestCtx) throw new Error("Nest Context is not defined");
-  const { collections } = nestCtx;
+  // const nestCtx = useNest() as NestContextState;
+  // if (!nestCtx) throw new Error("Nest Context is not defined");
+  const { collections } = useNest() as NestContextState;
 
   const [search, setSearch] = useState("");
   const [allCollections, setAllCollections] = useState(userCollections || []);
   const [selection, setSelection] = useState<string[]>(
     collectionsIncludingTaxonId || [],
   );
+
+  // useEffect(() => {
+  //   console.log("displayNotification()");
+  //
+  //   console.log(collections.error);
+  //   displayNotification({ message: collections.error });
+  //   console.log(collections.message);
+  //   displayNotification({ message: collections.message });
+  // }, [collections.error, collections.message]);
 
   useEffect(() => {
     const collectionNames = collections
