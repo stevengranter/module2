@@ -8,11 +8,16 @@ import LoginLogoutButton from "~/features/local-user/components/LoginLogoutButto
 import { publicLinks, userLinks } from "./NavbarLinks.ts";
 import classes from "./NavbarSimple.module.css";
 
-export function NavbarSimple() {
+type NavBarParams = {
+  onClick: () => void;
+};
+
+export function NavbarSimple({ onClick }: NavBarParams) {
   const [active, setActive] = useState("");
 
   function handleClick(label: string) {
     setActive(label);
+    setTimeout(onClick, 500);
   }
 
   const links = publicLinks.map((item) => (
@@ -31,13 +36,13 @@ export function NavbarSimple() {
   return (
     <nav className={classes.navbar}>
       <div className={classes.navbarMain}>{links}</div>
-      <NavbarUserFooter />
+      {/*<NavbarUserFooter />*/}
     </nav>
   );
 }
 
 function NavbarUserFooter() {
-  const { user } = useContext(RoleContext);
+  // const { user } = useContext(RoleContext);
   return (
     <div className={classes.footer}>
       {user
