@@ -9,11 +9,11 @@ import { displayNotification } from "~/features/_shared/utils/displayNotificatio
 import { useImmer } from "use-immer";
 
 type ImmerState = {
-  nest: number[];
+  nest: string[];
   collections: Collection[];
 };
 
-const initialState: ImmerState = { nest: [], collections: [] };
+const initialState: ImmerState = { nest: [""], collections: [] };
 
 export const NestContext = createContext<NestProviderState | undefined>(
   undefined,
@@ -25,20 +25,20 @@ export default function NestProvider({ children }: { children: ReactNode }) {
 
   // ---- Nest functions ----
 
-  function isValidId(id: string | number) {
-    if (!id) {
-      displayNotification({ message: `Id ${id} is not a valid id.` });
+  function isValidId(itemId: string | number) {
+    if (!itemId) {
+      displayNotification({ message: `Id ${itemId} is not a valid id.` });
       return false;
     }
     return true;
   }
 
-  function isItemInNest(itemId: string | number) {
-    return state.nest.includes(itemId);
+  function isItemInNest(itemId: number | string) {
+    return state.nest.includes(itemId.toString());
   }
 
   // Adds a taxon ID to the nest array
-  function addItemToNest(itemId: number) {
+  function addItemToNest(itemId: number | string) {
     if (isItemInNest(itemId)) {
       displayNotification({
         message: `Duplicate, Id: ${itemId} is already in nest`,
@@ -48,8 +48,8 @@ export default function NestProvider({ children }: { children: ReactNode }) {
     }
 
     update((draft) => {
-      draft.nest.push(itemId);
-      if (draft.nest.includes(itemId)) {
+      draft.nest.push(itemId.toString());
+      if (draft.nest.includes(itemId.toString())) {
         displayNotification({ message: `Id: ${itemId} added to nest` });
         return;
       }
@@ -57,8 +57,8 @@ export default function NestProvider({ children }: { children: ReactNode }) {
   }
 
   // Removes a taxon ID from the nest array
-  function removeItemFromNest(itemId: number) {
-    if (!state.nest.includes(itemId)) {
+  function removeItemFromNest(itemId: number | string) {
+    if (!state.nest.includes(itemId.toString())) {
       displayNotification({
         message: `Cannot remove, id: ${itemId} is not in nest`,
         color: "orange",
@@ -66,16 +66,16 @@ export default function NestProvider({ children }: { children: ReactNode }) {
       return;
     }
 
-    const collectionsIncludingId = getCollectionsIncludingId(itemId);
+    const collectionsIncludingId = getCollectionsIncludingId(itemId.toString());
     if (collectionsIncludingId && collectionsIncludingId.length > 0) {
       collectionsIncludingId.forEach((collection) => {
-        removeIdFromCollection(itemId, collection.name);
+        removeIdFromCollection(itemId.toString(), collection.name);
       });
     }
 
     update((draft) => {
-      draft.nest.splice(draft.nest.indexOf(itemId), 1);
-      if (!draft.nest.includes(itemId)) {
+      draft.nest.splice(draft.nest.indexOf(itemId.toString()), 1);
+      if (!draft.nest.includes(itemId.toString())) {
         displayNotification({ message: `Id: ${itemId} removed from nest` });
         return;
       }
@@ -117,12 +117,26 @@ export default function NestProvider({ children }: { children: ReactNode }) {
     console.log(state);
   }
 
-  function addIdToCollection(id: number, name: string) {
+  function addIdToCollection(id: number | string, name: string) {
     if (!hasCollection(name)) {
       displayNotification({
         message: `Cannot add id: ${id}, collection: ${name} does not exist`,
       });
       return;
+    }
+
+    if (!isValidId(id)) {
+      displayNotification({
+        message: `Cannot add id: ${id}, not a valid id`,
+      });
+      return;
+    }
+
+    if (!isItemInNest(id)) {
+      // push the id into the nest
+      update((draft) => {
+        draft.nest.push(id.toString());
+      });
     }
 
     update((draft) => {
@@ -134,7 +148,7 @@ export default function NestProvider({ children }: { children: ReactNode }) {
       // if namedCollection !== nullish value and the namedCollection.items
       // array includes the id from the 'id' parameter, then...
       if (namedCollection) {
-        if (namedCollection.items.includes(id)) {
+        if (namedCollection.items.includes(id.toString())) {
           // ...notify user that collection includes id
           displayNotification({
             message: `Cannot add, Collection ${name} already includes id: ${id}`,
@@ -144,9 +158,9 @@ export default function NestProvider({ children }: { children: ReactNode }) {
         }
 
         // push the id into the namedCollection.items array
-        namedCollection.items.push(id);
+        namedCollection.items.push(id.toString());
         // verify that the id has been added, then...
-        if (namedCollection.items.includes(id)) {
+        if (namedCollection.items.includes(id.toString())) {
           // ...notify user that id has been added
           displayNotification({
             message: `Item: ${id} added to ${namedCollection.name}`,
@@ -157,7 +171,7 @@ export default function NestProvider({ children }: { children: ReactNode }) {
     });
   }
 
-  function removeIdFromCollection(id: number, name: string) {
+  function removeIdFromCollection(id: number | string, name: string) {
     if (!hasCollection(name)) {
       displayNotification({
         message: `Cannot remove id, Collection ${name} does not exist`,
@@ -180,7 +194,7 @@ export default function NestProvider({ children }: { children: ReactNode }) {
       );
       collectionToUpdate &&
         collectionToUpdate.items.splice(
-          collectionToUpdate.items.indexOf(id),
+          collectionToUpdate.items.indexOf(id.toString()),
           1,
         );
       displayNotification({
@@ -210,7 +224,7 @@ export default function NestProvider({ children }: { children: ReactNode }) {
     return state.collections;
   }
 
-  function isItemInCollection(id: number, name: string) {
+  function isItemInCollection(id: number | string, name: string) {
     if (!hasCollection(name)) {
       displayNotification({
         message: `Collection ${name} does not exist`,
@@ -221,12 +235,12 @@ export default function NestProvider({ children }: { children: ReactNode }) {
     const namedCollection = state.collections.find(
       (collection) => collection.name === name,
     );
-    return namedCollection && namedCollection.items.includes(id);
+    return namedCollection && namedCollection.items.includes(id.toString());
   }
 
-  function getCollectionsIncludingId(id: number) {
+  function getCollectionsIncludingId(id: string | number) {
     const matchingCollections = state.collections.filter(
-      (collection: Collection) => collection.items.includes(id),
+      (collection: Collection) => collection.items.includes(id.toString()),
     );
     if (!matchingCollections) {
       displayNotification({
@@ -237,7 +251,7 @@ export default function NestProvider({ children }: { children: ReactNode }) {
     return matchingCollections;
   }
 
-  function getCollectionNamesIncludingId(id: number) {
+  function getCollectionNamesIncludingId(id: string | number) {
     const matchingCollections = getCollectionsIncludingId(id);
     if (!matchingCollections) return null;
     return matchingCollections.map((collection) => collection.name);

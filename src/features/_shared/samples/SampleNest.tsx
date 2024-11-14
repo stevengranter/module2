@@ -47,16 +47,16 @@ export default function SampleNest() {
             value={collection}
             onChange={(event) => setCollection(event.currentTarget.value)}
           ></TextInput>
-          {/*<CollectionDropdown*/}
-          {/*  initialValue={() => {*/}
-          {/*    // console.log(collections.getMatchingNames(id));*/}
-          {/*    return collections.getMatchingNames(id);*/}
-          {/*  }}*/}
-          {/*  userCollections={() =>*/}
-          {/*    collections.get().map((collection) => collection.name)*/}
-          {/*  }*/}
-          {/*  taxonId={id}*/}
-          {/*/>*/}
+          <CollectionDropdown
+            initialValue={() => {
+              // console.log(collections.getMatchingNames(id));
+              return collections.getMatchingNames(id);
+            }}
+            userCollections={() =>
+              collections.get().map((collection) => collection.name)
+            }
+            taxonId={id}
+          />
         </Group>
         <Space></Space>
         <Button onClick={() => nest.addItem(id)}>Add iD to nest</Button>

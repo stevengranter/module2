@@ -4,21 +4,21 @@ export type NestProviderState = {
 };
 
 type NestContextState = {
-  get: () => string | number[];
-  addItem: (id: string | number) => void;
-  removeItem: (id: string | number) => void;
+  get: () => string[];
+  addItem: (itemId: string | number) => void;
+  removeItem: (itemId: string | number) => void;
 };
 
 type CollectionContextState = {
   get: () => Collection[];
   getMatchingNames: (id: string | number) => string[] | null;
   create: (name: string) => void;
-  addItem: (id: string | number, name: string) => void;
-  removeItem: (id: string | number, name: string) => void;
+  addItem: (itemId: string | number, name: string) => void;
+  removeItem: (itemId: string | number, name: string) => void;
 };
 
 export type Collection = {
   name: string;
   id: string;
-  items: string[] | number[];
+  items: string[];
 };
