@@ -48,14 +48,14 @@ export default function SampleNest() {
             onChange={(event) => setCollection(event.currentTarget.value)}
           ></TextInput>
           <CollectionDropdown
-            initialValue={() => {
-              // console.log(collections.getMatchingNames(id));
-              return collections.getMatchingNames(id);
-            }}
-            userCollections={() =>
-              collections.get().map((collection) => collection.name)
-            }
-            taxonId={id}
+            // initialValue={() => {
+            //   // console.log(collections.getMatchingNames(id));
+            //   return collections.getMatchingNames(id);
+            // }}
+            userCollections={collections
+              .get()
+              .map((collection) => collection.name)}
+            taxonId={id.toString()}
           />
         </Group>
         <Space></Space>
