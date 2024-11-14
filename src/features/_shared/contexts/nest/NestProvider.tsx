@@ -1,232 +1,186 @@
-import { createContext, ReactNode, useEffect, useMemo, useState } from "react";
+import { createContext, ReactNode, useContext, useState } from "react";
 
-import { useSessionStorage } from "@mantine/hooks";
+import { useLogger } from "@mantine/hooks";
 import {
   Collection,
+  Nest,
   NestContextState,
 } from "~/features/_shared/contexts/nest/NestProvider.types.ts";
-import { log } from "~/features/_shared/utils/dev.ts";
+import useNest from "~/features/_shared/contexts/nest/useNest.ts";
 import { displayNotification } from "~/features/_shared/utils/displayNotification.ts";
+import { Draft, produce } from "immer";
+import { useImmer } from "use-immer";
 
-const storageHook = useSessionStorage;
+const initialCollections = [{ name: "", id: crypto.randomUUID(), items: [] }];
+const initialState: NestContextState = {
+  nest: [],
+  collections: initialCollections,
+};
 
 export const NestContext = createContext<NestContextState | undefined>(
   undefined,
 );
+
 export default function NestProvider({ children }: { children: ReactNode }) {
-  const [nestData, setNestData] = storageHook<number[]>({
-    key: "nest",
-    defaultValue: [],
-  });
-  const [collectionsData, setCollectionsData] = useSessionStorage<Collection[]>(
-    {
-      key: "collections",
-      defaultValue: [],
-    },
-  );
+  const [state, update] = useImmer(initialState);
+  useLogger("NestContext", [{ state }]);
 
-  const clearNest = () => setNestData([]);
-  const clearCollections = () => setCollectionsData([]);
-  const getNest = () => nestData;
-  const getCollections = () => collectionsData;
+  // ---- Nest functions ----
 
-  function createCollection(name: string) {
-    log("createCollection()");
-    if (name.length === 0) {
-      displayNotification({
-        color: "red",
-        message: `Name must be at least 1 character`,
-      });
-    } else if (hasCollection(name)) {
-      displayNotification({
-        color: "red",
-        message: `Collection ${name} already exists (id: ${getCollectionIdByName(name)}`,
-      });
-    } else {
-      const newCollection = { name: name, id: crypto.randomUUID(), items: [] };
-      console.log(newCollection);
-      setCollectionsData((current) => [...current, newCollection]);
-      displayNotification({
-        color: "green",
-        message: `Collection ${newCollection.name} created, id: ${newCollection.id}`,
-      });
-      // setMessage(`Collection ${name} created`);
-    }
-  }
-
-  useEffect(() => {
-    if (collectionsData && collectionsData.length > 0) {
-      log(`NestProvider.tsx => collectionsData: `);
-      log(collectionsData);
-    }
-  }, [collectionsData]);
-
-  function hasCollection(name: string) {
-    return collectionsData.some((collection) => collection.name === name);
-  }
-
-  function checkId(id: number) {
-    if (!id) {
-      return false;
-    }
-  }
-
+  // Adds a taxon ID to the nest array
   function addIdToNest(id: number) {
-    if (checkId(id)) return console.log(`${id} is not a valid Id`);
-    if (isIdInNest(id)) return console.log(`id:${id} is already in nest`);
-    setNestData((current) => [...current, id]);
-    log("info", `${id} has been added to nest`);
-    // displayNotification({
-    //   color: "green",
-    //   message: `id: ${id} has been added to nest`,
-    // });
-  }
+    if (state.nest.includes(id)) return null;
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  function removeIdFromNest(id: number) {
-    if (checkId(id)) return console.log(`${id} is not a valid Id`);
-    if (!isIdInNest(id)) return console.log(`id:${id} is not in nest`);
-    const currentNest = [...nestData];
-    currentNest.splice(id, 1);
-    setNestData(currentNest);
-  }
-
-  function addIdToCollection(id: number, name: string) {
-    if (checkId(id)) return console.log(`${id} is not a valid Id`);
-    if (isIdInCollection(id, name)) {
-      displayNotification({
-        color: "red",
-        message: `Collection ${name} already includes id: ${id}!`,
-      });
-    }
-    if (!hasCollection(name)) {
-      createCollection(name);
-    }
-    addIdToNest(id);
-    const collectionName = getCollectionByName(name, collectionsData);
-    const collectionId = getCollectionIdByName(name);
-    console.log(collectionName);
-    setCollectionsData((collections) =>
-      collections.map((collection: Collection) =>
-        collection.id === collectionId
-          ? { ...collection, items: [...collection.items, 4325] }
-          : collection,
-      ),
-    );
-    displayNotification({
-      message: `id: ${id} has been added to collection: ${name}`,
+    update((draft) => {
+      draft.nest.push(id);
     });
   }
 
-  function removeIdFromCollection(taxonId: number, collectionName: string) {
-    if (checkId(taxonId)) return console.log(`${taxonId} is not a valid Id`);
-    if (!hasCollection(collectionName)) {
-      return console.log(`Collection ${collectionName} doesn't exist!`);
+  // Removes a taxon ID from the nest array
+  function removeIdFromNest(id: number) {
+    if (!state.nest.includes(id)) {
+      displayNotification({ message: "ID already in collection" });
+      return;
     }
-    if (!isIdInCollection(taxonId, collectionName)) {
-      return console.log(
-        `Collection ${collectionName} doesn't include: ${taxonId}!`,
-      );
-    }
-    setCollectionsData((collections) =>
-      collections.map((collection: Collection) =>
-        collection.name === collectionName
-          ? {
-              ...collection,
-              items: [...collection.items].filter((item) => item !== taxonId),
-            }
-          : collection,
-      ),
-    );
 
-    console.log(
-      `id: ${taxonId} has been removed from collection: ${collectionName}`,
-    );
+    update((draft) => {
+      draft.nest.splice(id, 1);
+      return;
+    });
   }
 
-  function getCollectionByName(name: string, collectionsData) {
-    if (collectionsData) {
-      console.log(collectionsData);
-      const namedCollection = collectionsData.find(
+  // ---- Collection functions ----
+  // Checks if collection with name already exists
+  function hasCollection(name: string) {
+    return state.collections.some((collection) => collection.name === name);
+  }
+
+  function createCollection(collectionName: string) {
+    if (hasCollection(collectionName)) {
+      displayNotification({
+        message: `Collection ${collectionName} already exists`,
+      });
+      return;
+    }
+
+    update((draft) => {
+      draft.collections.push({
+        name: collectionName,
+        id: crypto.randomUUID(),
+        items: [],
+      });
+      displayNotification({ message: `Collection ${collectionName} created` });
+    });
+
+    console.log(state);
+  }
+
+  function addIdToCollection(id: number, name: string) {
+    if (!hasCollection(name)) {
+      displayNotification({
+        message: `Collection ${name} does not exist`,
+      });
+      return;
+    }
+
+    update((draft) => {
+      const namedCollection = draft.collections.find(
         (collection) => collection.name === name,
       );
-      console.log(namedCollection);
-      if (!namedCollection) return null;
+      if (namedCollection) {
+        if (namedCollection.items.includes(id)) {
+          displayNotification({
+            message: `Cannot add, Collection ${name} already includes id: ${id}}`,
+          });
+          return;
+        }
+        namedCollection.items.push(id);
+        displayNotification({
+          message: `Item: ${id} added to ${namedCollection.name}`,
+        });
+        return;
+      }
+    });
+  }
 
-      return namedCollection;
+  function removeIdFromCollection(id: number, name: string) {
+    if (!hasCollection(name)) {
+      displayNotification({
+        message: `Collection ${name} does not exist`,
+      });
+      return;
     }
+
+    if (!isIdInCollection(id, name)) {
+      displayNotification({
+        message: `ID: ${id} is not in collection ${name}`,
+      });
+    }
+
+    update((draft) => {
+      const collectionToUpdate = draft.collections.find(
+        (collection) => collection.name === name,
+      );
+      collectionToUpdate &&
+        collectionToUpdate.items.splice(
+          collectionToUpdate.items.indexOf(id),
+          1,
+        );
+      displayNotification({
+        message: `Removed id:${id} from collection ${name}`,
+      });
+    });
   }
 
   function getCollectionIdByName(name: string) {
-    const namedCollection = getCollectionByName(name);
-    if (!namedCollection) return "";
-    else return namedCollection.id;
+    const namedCollection = state.collections.find(
+      (collection) => collection.name === name,
+    );
+    if (!namedCollection) return null;
+    return namedCollection.id;
   }
 
-  function isIdInNest(id: number) {
-    return nestData.includes(id);
+  function getNest() {
+    return state.nest;
+  }
+
+  function getCollections() {
+    return state.collections;
   }
 
   function isIdInCollection(id: number, name: string) {
     if (!hasCollection(name)) {
-      return console.log(`Collection ${name} doesn't exist!`);
+      displayNotification({
+        message: `Collection ${name} does not exist`,
+      });
+      return;
     }
-    const namedCollection = getCollectionByName(name, collectionsData);
-    if (namedCollection) return namedCollection.items.includes(id);
+
+    const namedCollection = state.collections.find(
+      (collection) => collection.name === name,
+    );
+    return namedCollection && namedCollection.items.includes(id);
   }
 
-  function getMatchingCollections(id: number) {
-    const matchingCollections = collectionsData.filter(
+  function getCollectionsIncludesId(id: number) {
+    const matchingCollections = state.collections.filter(
       (collection: Collection) => collection.items.includes(id),
     );
     if (!matchingCollections) return null;
     return matchingCollections;
   }
 
-  function getCollectionNames() {
-    const collectionNames = collectionsData.map(
-      (collection: Collection) => collection.name,
-    );
-    if (!collectionNames) return [""];
-    return collectionNames;
-  }
-
-  function getMatchingCollectionNames(id: number) {
-    const matchingCollections = getMatchingCollections(id);
-    if (!matchingCollections) {
-      return null;
-    } else {
-      return matchingCollections.map(
-        (collection: Collection) => collection.name,
-      );
-    }
-  }
-
-  const nest = {
-    get: getNest,
-    addId: addIdToNest,
-    removeId: removeIdFromNest,
-    clear: clearNest,
-  };
+  const nest = { get: getNest, addId: addIdToNest, removeId: removeIdFromNest };
   const collections = {
     get: getCollections,
-    getNames: getCollectionNames,
-    getMatching: getMatchingCollections,
-    getMatchingNames: getMatchingCollectionNames,
-    getCollection: getCollectionByName,
+    getMatchingNames: getCollectionsIncludesId,
+    create: createCollection,
     addId: addIdToCollection,
     removeId: removeIdFromCollection,
-    create: createCollection,
-    clear: clearCollections,
   };
 
   return (
-    <NestContext.Provider
-      value={{
-        nest,
-        collections,
-      }}
-    >
+    <NestContext.Provider value={{ nest, collections }}>
       {children}
     </NestContext.Provider>
   );

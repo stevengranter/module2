@@ -10,10 +10,11 @@ import {
   Title,
 } from "@mantine/core";
 import { NestContext } from "~/features/_shared/contexts/nest/NestProvider.tsx";
+import useNest from "~/features/_shared/contexts/nest/useNest.ts";
 import { CollectionDropdown } from "~/features/card/components/CardCollection/CollectionDropdown.tsx";
 
 export default function SampleNest() {
-  const { nest, collections } = useContext(NestContext);
+  const { nest, collections } = useNest();
   const [id, setId] = useState<string | number>(null);
   const [collection, setCollection] = useState<string>("");
   const [newCollection, setNewCollection] = useState<string>("");
@@ -43,16 +44,16 @@ export default function SampleNest() {
             value={collection}
             onChange={(event) => setCollection(event.currentTarget.value)}
           ></TextInput>
-          <CollectionDropdown
-            initialValue={() => {
-              // console.log(collections.getMatchingNames(id));
-              return collections.getMatchingNames(id);
-            }}
-            userCollections={() =>
-              collections.get().map((collection) => collection.name)
-            }
-            taxonId={id}
-          />
+          {/*<CollectionDropdown*/}
+          {/*  initialValue={() => {*/}
+          {/*    // console.log(collections.getMatchingNames(id));*/}
+          {/*    return collections.getMatchingNames(id);*/}
+          {/*  }}*/}
+          {/*  userCollections={() =>*/}
+          {/*    collections.get().map((collection) => collection.name)*/}
+          {/*  }*/}
+          {/*  taxonId={id}*/}
+          {/*/>*/}
         </Group>
         <Space></Space>
         <Button onClick={() => nest.addId(id)}>Add iD to nest</Button>

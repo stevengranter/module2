@@ -54,7 +54,7 @@ function NavbarUserFooter() {
         );
       })}
 
-      <StartEndGuestSessionButton />
+      {/*<StartEndGuestSessionButton />*/}
     </div>
   );
 }

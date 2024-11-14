@@ -29,14 +29,14 @@ if (!rootElement.innerHTML) {
     <StrictMode>
       <QueryClientProvider client={queryClient}>
         <NestProvider>
-          <GuestSessionProvider>
-            <ColorSchemeScript defaultColorScheme="light" />
-            <MantineProvider defaultColorScheme="light" theme={defaultTheme}>
-              <ModalsProvider />
-              <Notifications position="top-center" />
-              <RouterProvider router={router} />
-            </MantineProvider>
-          </GuestSessionProvider>
+          {/*<GuestSessionProvider>*/}
+          <ColorSchemeScript defaultColorScheme="light" />
+          <MantineProvider defaultColorScheme="light" theme={defaultTheme}>
+            <ModalsProvider />
+            <Notifications position="top-center" />
+            <RouterProvider router={router} />
+          </MantineProvider>
+          {/*</GuestSessionProvider>*/}
         </NestProvider>
       </QueryClientProvider>
     </StrictMode>,

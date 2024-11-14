@@ -1,9 +1,11 @@
+import React from "react";
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
 
+import SampleNest from "~/features/_shared/samples/SampleNest.tsx";
 import SampleStandardCardPage from "~/features/_shared/samples/SampleStandardCardPage.tsx";
 import { WildCard } from "~/features/card/components/WildCard/WildCard.tsx";
 import CardsPage from "~/features/card/pages/CardsPage.tsx";
@@ -46,7 +48,7 @@ export const router: ReturnType<typeof createBrowserRouter> =
         <Route path="search">
           <Route element={<SearchPage />} index></Route>
         </Route>
-        <Route path="sample" element={<SampleStandardCardPage />} />
+        <Route path="sample" element={<SampleNest />} />
       </Route>,
     ),
   );
