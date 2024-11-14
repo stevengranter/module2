@@ -8,14 +8,14 @@ import {
 } from "react";
 
 import {
-  NestContextState,
+  NestProviderState,
   Collection,
 } from "~/features/_shared/contexts/nest/NestProvider.types.ts";
 import Nest from "~/features/dashboard/components/Nest.tsx";
 
-const UserDataContext = createContext<Context<NestContextState> | null>(null);
+const UserDataContext = createContext<Context<NestProviderState> | null>(null);
 
-const initialData: NestContextState = {
+const initialData: NestProviderState = {
   nest: { name: "nest", id: crypto.randomUUID(), items: [] },
   collections: [],
 };

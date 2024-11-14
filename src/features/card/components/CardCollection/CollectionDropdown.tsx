@@ -8,9 +8,8 @@ import {
   PillsInput,
   useCombobox,
 } from "@mantine/core";
-import { NestContextState } from "~/features/_shared/contexts/nest/NestProvider.types.ts";
+import { NestProviderState } from "~/features/_shared/contexts/nest/NestProvider.types.ts";
 import useNest from "~/features/_shared/contexts/nest/useNest.ts";
-import { log } from "~/features/_shared/utils/dev.ts";
 
 type CollectionDropdownProps = {
   userCollections?: string[];
@@ -30,7 +29,7 @@ export function CollectionDropdown({
 
   // const nestCtx = useNest() as NestContextState;
   // if (!nestCtx) throw new Error("Nest Context is not defined");
-  const { collections } = useNest() as NestContextState;
+  const { collections } = useNest() as NestProviderState;
 
   const [search, setSearch] = useState("");
   const [allCollections, setAllCollections] = useState(userCollections || []);
@@ -70,21 +69,21 @@ export function CollectionDropdown({
     if (val === "$create") {
       setAllCollections((current) => [...current, search]);
       setSelection((current) => [...current, search]);
-      collections.addId(taxonId, search);
+      collections.addItem(taxonId, search);
     } else {
       setSelection((current) =>
         current.includes(val)
           ? current.filter((v) => v !== val)
           : [...current, val],
       );
-      collections.addId(taxonId, val);
+      collections.addItem(taxonId, val);
     }
   };
 
   const handleValueRemove = (val: string) => {
     console.log(val);
     setSelection((current) => current.filter((v) => v !== val));
-    collections.removeId(taxonId, val);
+    collections.removeItem(taxonId, val);
   };
 
   const values = selection.map((item) => (

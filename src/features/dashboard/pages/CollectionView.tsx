@@ -6,13 +6,13 @@ import {
   ComboboxProps,
   SelectProps,
 } from "@mantine/core";
-import { NestContextState } from "~/features/_shared/contexts/nest/NestProvider.types.ts";
+import { NestProviderState } from "~/features/_shared/contexts/nest/NestProvider.types.ts";
 import { Collection } from "~/features/_shared/contexts/nest/NestProvider.types.ts";
 import { log } from "~/features/_shared/utils/dev.ts";
 import CardCollection from "~/features/card/components/CardCollection/CardCollection.tsx";
 import CollectionSelectBox from "~/features/card/components/CollectionSelectBox.tsx";
 
-export default function CollectionView({ collections }: NestContextState) {
+export default function CollectionView({ collections }: NestProviderState) {
   const [data, setData] = useState(() => {
     let dataArray = [];
     if (collections && collections.get().length > 0) {

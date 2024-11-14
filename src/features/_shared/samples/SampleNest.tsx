@@ -9,16 +9,19 @@ import {
   TextInput,
   Title,
 } from "@mantine/core";
+import { useLogger } from "@mantine/hooks";
 import { NestContext } from "~/features/_shared/contexts/nest/NestProvider.tsx";
 import useNest from "~/features/_shared/contexts/nest/useNest.ts";
 import { CollectionDropdown } from "~/features/card/components/CardCollection/CollectionDropdown.tsx";
 
 export default function SampleNest() {
   const { nest, collections } = useNest();
-  const [id, setId] = useState<string | number>(null);
+  const [id, setId] = useState<string | number>("");
   const [collection, setCollection] = useState<string>("");
   const [newCollection, setNewCollection] = useState<string>("");
   const [collectionsSelected, setCollectionsSelected] = useState([]);
+  // useLogger("Nest", [{ nest }]);
+  // useLogger("Collections", [{ collections }]);
 
   return (
     <>
@@ -56,12 +59,13 @@ export default function SampleNest() {
           {/*/>*/}
         </Group>
         <Space></Space>
-        <Button onClick={() => nest.addId(id)}>Add iD to nest</Button>
-        <Button onClick={() => collections.addId(id, collection)}>
+        <Button onClick={() => nest.addItem(id)}>Add iD to nest</Button>
+        <Button onClick={() => nest.removeItem(id)}>Remove iD from nest</Button>
+        <Button onClick={() => collections.addItem(id, collection)}>
           Add iD to collection
         </Button>
 
-        <Button onClick={() => collections.removeId(id, collection)}>
+        <Button onClick={() => collections.removeItem(id, collection)}>
           Remove id from collection
         </Button>
         <Button
