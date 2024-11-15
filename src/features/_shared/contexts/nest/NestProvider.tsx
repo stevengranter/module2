@@ -33,7 +33,7 @@ const initialState: ImmerState = {
       id: crypto.randomUUID(),
       items: ["48586", "48987", "81545"],
     },
-    { name: "Wish List", id: crypto.randomUUID(), items: [] },
+    // { name: "Wish List", id: crypto.randomUUID(), items: [] },
     { name: "Favorites", id: crypto.randomUUID(), items: [] },
   ],
 };

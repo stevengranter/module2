@@ -35,18 +35,18 @@ export default function CollectionView({ collections }: NestProviderState) {
   useEffect(() => {
     if (data && data.length > 0) log(data);
   }, [data]);
-
-  useEffect(() => {
-    if (selectedCollectionId)
-      log(`selectedCollectionId: ${selectedCollectionId}`);
-    const [collection] = collections
-      .get()
-      .filter((collection) => collection.id === selectedCollectionId);
-    if (collection) console.log(collection);
-    const itemIds = collection.items;
-    console.log(itemIds);
-    setItemIds([...itemIds]);
-  }, [collections, selectedCollectionId]);
+  //
+  // useEffect(() => {
+  //   if (selectedCollectionId)
+  //     log(`selectedCollectionId: ${selectedCollectionId}`);
+  //   const [collection] = collections
+  //     .get()
+  //     .filter((collection) => collection.id === selectedCollectionId);
+  //   if (collection) console.log(collection);
+  //   const itemIds = collection.items;
+  //   console.log(itemIds);
+  //   setItemIds([...itemIds]);
+  // }, [collections, selectedCollectionId]);
 
   // TODO: Fix for choosing current option (errors with null value)
   function handleSelect(selectedValue: ComboboxItem) {
@@ -62,7 +62,6 @@ export default function CollectionView({ collections }: NestProviderState) {
     console.dir("collection", collection[0]);
     const itemIds = collection[0].items;
     console.log(itemIds);
-    // return itemIds;
     setItemIds(itemIds);
   }, [selectedCollectionId]);
 
