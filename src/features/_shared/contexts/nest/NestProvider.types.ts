@@ -10,6 +10,7 @@ type NestContextState = {
 };
 
 type CollectionContextState = {
+  [x: string]: any;
   get: () => Collection[];
   getMatchingNames: (id: string | number) => string[] | null;
   create: (name: string) => void;
