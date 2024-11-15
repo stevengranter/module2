@@ -28,7 +28,9 @@ export default function CollectionView({ collections }: NestProviderState) {
     return dataArray;
   });
 
-  const [selectedCollectionId, setSelectedCollectionId] = useState<string>("");
+  const [selectedCollectionId, setSelectedCollectionId] = useState<string>(() =>
+    collections.getCollectionIdByName("Starter Pack"),
+  );
   // const [selectedCollectionName, setSelectedCollectionName] = useState<string>("");
   const [itemIds, setItemIds] = useState<string[]>([]);
 
@@ -60,20 +62,22 @@ export default function CollectionView({ collections }: NestProviderState) {
       .get()
       .filter((collection) => collection.id === selectedCollectionId);
     console.dir("collection", collection[0]);
+    console.log(collections);
+    console.log(collections.getCollectionIdByName("Starter Pack"));
     const itemIds = collection[0].items;
     console.log(itemIds);
     setItemIds(itemIds);
   }, [selectedCollectionId]);
 
-  function getItemIds() {
-    const collection = collections
-      .get()
-      .filter((collection) => collection.id === selectedCollectionId);
-    console.dir("collection", collection[0]);
-    const itemIds = collection[0].items;
-    console.log(itemIds);
-    return itemIds;
-  }
+  // function getItemIds() {
+  //   const collection = collections
+  //     .get()
+  //     .filter((collection) => collection.id === selectedCollectionId);
+  //   console.dir("collection", collection[0]);
+  //   const itemIds = collection[0].items;
+  //   console.log(itemIds);
+  //   return itemIds;
+  // }
   return (
     <>
       <CollectionSelectBox

@@ -296,6 +296,7 @@ export default function NestProvider({ children }: { children: ReactNode }) {
     getMatchingCollections: getCollectionsIncludingId,
     getMatchingNames: getCollectionNamesIncludingId,
     isItemInCollection: isItemInCollection,
+    getCollectionIdByName: getCollectionIdByName,
     create: createCollection,
     addItem: addIdToCollection,
     removeItem: removeIdFromCollection,
