@@ -4,7 +4,7 @@ import { WildCard } from "~/features/card/components/WildCard/WildCard.tsx";
 export default function CardCollection({
   collection,
 }: {
-  collection: number[];
+  collection: string[];
 }) {
   if (!collection) return "Collection doesn't exist";
   if (collection.length === 0) return "Nothing in collection";

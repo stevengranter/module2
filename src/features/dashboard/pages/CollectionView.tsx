@@ -29,21 +29,23 @@ export default function CollectionView({ collections }: NestProviderState) {
   });
 
   const [selectedCollectionId, setSelectedCollectionId] = useState<string>("");
-  const [itemIds, setItemIds] = useState<number[]>([]);
+  // const [selectedCollectionName, setSelectedCollectionName] = useState<string>("");
+  const [itemIds, setItemIds] = useState<string[]>([]);
 
   useEffect(() => {
-    if (data.length > 0) log(data);
+    if (data && data.length > 0) log(data);
   }, [data]);
 
   useEffect(() => {
     if (selectedCollectionId)
       log(`selectedCollectionId: ${selectedCollectionId}`);
-    const collection = collections
+    const [collection] = collections
       .get()
       .filter((collection) => collection.id === selectedCollectionId);
-    if (collection) log(collection);
-    // const itemIds = collection.items;
-    setItemIds(itemIds);
+    if (collection) console.log(collection);
+    const itemIds = collection.items;
+    console.log(itemIds);
+    setItemIds([...itemIds]);
   }, [collections, selectedCollectionId]);
 
   // TODO: Fix for choosing current option (errors with null value)
@@ -53,12 +55,24 @@ export default function CollectionView({ collections }: NestProviderState) {
     console.log(selectedValue);
   }
 
+  useEffect(() => {
+    const collection = collections
+      .get()
+      .filter((collection) => collection.id === selectedCollectionId);
+    console.dir("collection", collection[0]);
+    const itemIds = collection[0].items;
+    console.log(itemIds);
+    // return itemIds;
+    setItemIds(itemIds);
+  }, [selectedCollectionId]);
+
   function getItemIds() {
     const collection = collections
       .get()
       .filter((collection) => collection.id === selectedCollectionId);
-    console.dir({ collection });
-    const itemIds = collection.get();
+    console.dir("collection", collection[0]);
+    const itemIds = collection[0].items;
+    console.log(itemIds);
     return itemIds;
   }
   return (
@@ -69,7 +83,7 @@ export default function CollectionView({ collections }: NestProviderState) {
         handleSelect={handleSelect}
       />
 
-      <CardCollection collection={() => getItemIds()} />
+      <CardCollection collection={itemIds} />
     </>
   );
 }

@@ -27,8 +27,6 @@ export function CollectionDropdown({
     onDropdownOpen: () => combobox.updateSelectedOptionIndex("active"),
   });
 
-  // const nestCtx = useNest() as NestContextState;
-  // if (!nestCtx) throw new Error("Nest Context is not defined");
   const { collections } = useNest() as NestProviderState;
 
   const [search, setSearch] = useState("");
@@ -36,15 +34,6 @@ export function CollectionDropdown({
   const [selection, setSelection] = useState<string[]>(
     collectionsIncludingTaxonId || [],
   );
-
-  // useEffect(() => {
-  //   console.log("displayNotification()");
-  //
-  //   console.log(collections.error);
-  //   displayNotification({ message: collections.error });
-  //   console.log(collections.message);
-  //   displayNotification({ message: collections.message });
-  // }, [collections.error, collections.message]);
 
   useEffect(() => {
     const collectionNames = collections
@@ -60,6 +49,18 @@ export function CollectionDropdown({
       : null;
   }, [collections, taxonId]);
 
+  useEffect(() => {
+    console.log(collections.get());
+  }, [collections]);
+
+  useEffect(() => {
+    console.log(selection);
+  }, [selection]);
+
+  useEffect(() => {
+    console.log();
+  });
+
   const exactOptionMatch = allCollections.some((item) => item === search);
 
   const handleValueSelect = (val: string) => {
@@ -69,6 +70,7 @@ export function CollectionDropdown({
     if (val === "$create") {
       setAllCollections((current) => [...current, search]);
       setSelection((current) => [...current, search]);
+      console.log(search);
       collections.addItem(taxonId, search);
     } else {
       setSelection((current) =>
@@ -76,6 +78,8 @@ export function CollectionDropdown({
           ? current.filter((v) => v !== val)
           : [...current, val],
       );
+      console.log(`taxonID: ${taxonId}`);
+      console.log(`val:`, val);
       collections.addItem(taxonId, val);
     }
   };

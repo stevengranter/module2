@@ -118,13 +118,6 @@ export default function NestProvider({ children }: { children: ReactNode }) {
   }
 
   function addIdToCollection(id: number | string, name: string) {
-    if (!hasCollection(name)) {
-      displayNotification({
-        message: `Cannot add id: ${id}, collection: ${name} does not exist`,
-      });
-      return;
-    }
-
     if (!isValidId(id)) {
       displayNotification({
         message: `Cannot add id: ${id}, not a valid id`,
@@ -136,6 +129,19 @@ export default function NestProvider({ children }: { children: ReactNode }) {
       // push the id into the nest
       update((draft) => {
         draft.nest.push(id.toString());
+      });
+    }
+
+    if (!hasCollection(name)) {
+      displayNotification({
+        message: `Collection: ${name} does not exist, creating collection...`,
+      });
+      update((draft) => {
+        draft.collections.push({
+          name: name,
+          id: crypto.randomUUID(),
+          items: [],
+        });
       });
     }
 
