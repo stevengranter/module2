@@ -44,7 +44,7 @@ export default function DefaultLayout() {
     >
       <AppShell.Header style={{ backgroundColor: "#B1ED5C" }}>
         {/*<CloudBackground />*/}
-        <Group h="100%" px="md" justify="space-between" align="center">
+        <Group h="100%" px="md" justify="left" align="center">
           <Burger onClick={toggle} opened={opened} size="sm" />
 
           <Link to="/">
