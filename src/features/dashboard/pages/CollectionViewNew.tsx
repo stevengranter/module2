@@ -1,9 +1,10 @@
+import { NestProviderState } from "~/features/_shared/contexts/nest/NestProvider.types.ts";
 import useNest from "~/features/_shared/contexts/nest/useNest.ts";
-import { i } from "vite/dist/node/types.d-aGj9QkWt";
 
-export default function CollectionViewNew() {
-  const { nest, collections } = useNest();
-
+export default function CollectionViewNew({
+  nest,
+  collections,
+}: NestProviderState) {
   return (
     <>
       {collections &&
