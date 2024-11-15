@@ -1,4 +1,7 @@
-import { Grid, GridCol } from "@mantine/core";
+import React from "react";
+import { Link } from "react-router-dom";
+
+import { Grid, GridCol, Text } from "@mantine/core";
 import { WildCard } from "~/features/card/components/WildCard/WildCard.tsx";
 
 export default function CardCollection({
@@ -7,7 +10,13 @@ export default function CardCollection({
   collection: string[];
 }) {
   if (!collection) return "Collection doesn't exist";
-  if (collection.length === 0) return "Nothing in collection";
+  if (collection.length === 0)
+    return (
+      <Text>
+        Nothing here yet, use <Link to="/search">search</Link> to add to this
+        collection
+      </Text>
+    );
 
   return (
     collection.length > 0 && (

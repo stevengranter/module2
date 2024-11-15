@@ -28,7 +28,11 @@ type ImmerState = {
 const initialState: ImmerState = {
   nest: [""],
   collections: [
-    { name: "Starter Pack", id: crypto.randomUUID(), items: [] },
+    {
+      name: "Starter Pack",
+      id: crypto.randomUUID(),
+      items: ["48586", "48987", "81545"],
+    },
     { name: "Wish List", id: crypto.randomUUID(), items: [] },
     { name: "Favorites", id: crypto.randomUUID(), items: [] },
   ],

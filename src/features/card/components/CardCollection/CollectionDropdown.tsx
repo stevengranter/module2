@@ -129,7 +129,7 @@ export function CollectionDropdown({
                 onFocus={() => combobox.openDropdown()}
                 onBlur={() => combobox.closeDropdown()}
                 value={search}
-                placeholder="Add to collection (type to search or add)"
+                placeholder="Add to collection (type llecto search or add)"
                 onChange={(event) => {
                   combobox.updateSelectedOptionIndex();
                   setSearch(event.currentTarget.value);

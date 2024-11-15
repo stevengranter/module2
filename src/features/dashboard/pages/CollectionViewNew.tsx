@@ -1,5 +1,6 @@
 import { NestProviderState } from "~/features/_shared/contexts/nest/NestProvider.types.ts";
 import useNest from "~/features/_shared/contexts/nest/useNest.ts";
+import CardCollection from "~/features/card/components/CardCollection/CardCollection.tsx";
 
 export default function CollectionViewNew({
   nest,
@@ -11,11 +12,12 @@ export default function CollectionViewNew({
         collections.get().map((collection) => (
           <li key={collection.id}>
             {collection.name}
-            <ul>
-              {collection.items.map((item, index) => (
-                <li key={index}>{item}</li>
-              ))}
-            </ul>
+            <CardCollection collection={collection.items} />
+            {/*<ul>*/}
+            {/*  {collection.items.map((item, index) => (*/}
+            {/*    <li key={index}>{item}</li>*/}
+            {/*  ))}*/}
+            {/*</ul>*/}
           </li>
         ))}
     </>

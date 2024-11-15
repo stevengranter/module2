@@ -39,6 +39,7 @@ if (!rootElement.innerHTML) {
           {/*</GuestSessionProvider>*/}
         </NestProvider>
       </QueryClientProvider>
+      ,
     </StrictMode>,
   );
 }
