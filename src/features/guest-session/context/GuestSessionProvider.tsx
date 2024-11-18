@@ -15,8 +15,8 @@ import { log } from "~/features/_shared/utils/dev.ts";
 
 type GuestSessionContextType = {
   isGuest: boolean;
-  startGuestSession: () => void;
-  endGuestSession: () => void;
+  // startGuestSession: () => void;
+  // endGuestSession: () => void;
   guestData: { nest: object; collections: object };
 };
 
@@ -44,22 +44,22 @@ export default function GuestSessionProvider({
   }
   const { nest, collections } = nestCtx;
 
-  const clearGuestData = useCallback(() => {
-    nest.clear();
-    collections.clear();
-    log("Guest data cleared");
-  }, [nest, collections]);
-
-  function startGuestSession() {
-    log("START: Guest Session");
-    clearGuestData();
-    setIsGuest(true);
-    collections.addId(48586, "Favorites");
-  }
+  // const clearGuestData = useCallback(() => {
+  //   nest.clear();
+  //   collections.clear();
+  //   log("Guest data cleared");
+  // }, [nest, collections]);
+  //
+  // function startGuestSession() {
+  //   log("START: Guest Session");
+  //   clearGuestData();
+  //   setIsGuest(true);
+  //   collections.addId(48586, "Favorites");
+  // }
 
   useEffect(() => {
     log("START: Guest Session");
-    clearGuestData();
+    // clearGuestData();
     setIsGuest(true);
     collections.create("Favorites");
     collections.addId(48586, "Favorites");
@@ -73,18 +73,16 @@ export default function GuestSessionProvider({
   //   });
   // }
 
-  function endGuestSession() {
-    console.log("END: Guest session");
-    clearGuestData();
-    setIsGuest(false);
-  }
+  // function endGuestSession() {
+  //   console.log("END: Guest session");
+  //   clearGuestData();
+  //   setIsGuest(false);
+  // }
 
   return (
     <GuestSessionContext.Provider
       value={{
         isGuest,
-        startGuestSession,
-        endGuestSession,
         guestData: { nest, collections },
       }}
     >

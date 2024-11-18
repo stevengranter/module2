@@ -1,39 +1,28 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 
 import { useLocalStorage, useLogger } from "@mantine/hooks";
 import {
   Collection,
   NestProviderState,
 } from "~/features/_shared/contexts/nest/NestProvider.types.ts";
+import useLocalSyncedImmerState from "~/features/_shared/hooks/useLocalSyncedImmerState.ts";
 import { displayNotification } from "~/features/_shared/utils/displayNotification.ts";
-import { produce } from "immer";
 import { useImmer } from "use-immer";
 
 type ImmerState = {
   nest: string[];
   collections: Collection[];
 };
-//
-// const localStorageJSON = localStorage.getItem("guestData");
-// let localStorageObject = { nest: [1, 2, 3] };
-// if (!localStorageJSON) {
-//   localStorageObject = { nest: [], collections: [] };
-// }
-// const initialState = produce((draft) => {
-//   Object.assign(draft, { nest: [1, 2, 4] });
-// });
-
-// console.log(localStorageObject);
 
 const initialState: ImmerState = {
-  nest: [""],
+  nest: ["48586", "48984", "81545"],
   collections: [
     {
       name: "Starter Pack",
       id: crypto.randomUUID(),
       items: ["48586", "48987", "81545"],
     },
-    // { name: "Wish List", id: crypto.randomUUID(), items: [] },
+
     { name: "Favorites", id: crypto.randomUUID(), items: [] },
   ],
 };
@@ -42,7 +31,7 @@ export const NestContext = createContext<NestProviderState | undefined>(
   undefined,
 );
 export default function NestProvider({ children }: { children: ReactNode }) {
-  const [state, update] = useImmer(initialState);
+  const [state, update] = useLocalSyncedImmerState(initialState, "nestData");
 
   useLogger("NestContext", [{ state }]);
 

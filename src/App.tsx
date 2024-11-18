@@ -9,7 +9,6 @@ import "@mantine/notifications/styles.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import NestProvider from "~/features/_shared/contexts/nest/NestProvider.tsx";
 import { queryINatAPI } from "~/features/api/iNaturalist/queryINatAPI.ts";
-import GuestSessionProvider from "~/features/guest-session/context/GuestSessionProvider.tsx";
 import ReactDOM from "react-dom/client";
 import { router } from "routes.tsx";
 import { defaultTheme } from "theme/defaultTheme";
@@ -29,14 +28,12 @@ if (!rootElement.innerHTML) {
     <StrictMode>
       <QueryClientProvider client={queryClient}>
         <NestProvider>
-          {/*<GuestSessionProvider>*/}
           <ColorSchemeScript defaultColorScheme="light" />
           <MantineProvider defaultColorScheme="light" theme={defaultTheme}>
             <ModalsProvider />
             <Notifications position="top-center" />
             <RouterProvider router={router} />
           </MantineProvider>
-          {/*</GuestSessionProvider>*/}
         </NestProvider>
       </QueryClientProvider>
       ,
