@@ -10,12 +10,12 @@ function getLocalStorageObject(localStorageKey: string) {
 }
 
 export default function useLocalSyncedImmerState(
-  defaultState,
+  defaultState = {},
   localStorageKey = "localData",
 ) {
   let initialState;
   initialState = getLocalStorageObject(localStorageKey);
-  if (!initialState) {
+  if (!initialState || initialState.length === 0) {
     initialState = defaultState;
   }
 

@@ -10,15 +10,17 @@ import {
   Skeleton,
   Text,
 } from "@mantine/core";
+import { useLogger } from "@mantine/hooks";
 import { useQuery } from "@tanstack/react-query";
-import { CollectionDropdown } from "~/features/card/components/CardCollection/CollectionDropdown.tsx";
+import getLocalCardData from "~/features/_shared/hooks/getLocalCardData.ts";
+import { JSON_SERVER_URL } from "~/features/api/constants.ts";
 import FoundItButton from "~/features/card/components/FoundItButton.tsx";
 import ToggleFavoriteButton from "~/features/card/components/ToggleFavoriteButton.tsx";
 import {
   iNatTaxaResponseType,
   iNatTaxonRecord,
 } from "~/models/iNatTaxaResponseType.ts";
-import { Interweave } from "interweave";
+import { WilderKindCardType } from "~/models/WilderKindCardType.ts";
 
 type Props = {
   taxonId?: number;
@@ -28,25 +30,49 @@ type Props = {
 export function WildCard({ taxonId, dataObject }: Props) {
   // const [currentTaxonId, setCurrentTaxonId] = useState(taxonId);
   const [cardId, setCardId] = useState<number | undefined>(taxonId);
-  const [cardData, setCardData] = useState(dataObject);
+  const [iNatData, setINatData] = useState(dataObject);
   const [isFlipped, setIsFlipped] = useState(false);
+  const [wilderNestData, setWilderNestData] =
+    useState<WilderKindCardType | null>(null);
+  useLogger("WildCard", [{ cardId }, { wilderNestData }]);
 
   const query = useQuery({
     queryKey: [`/taxa/${cardId}`],
     enabled: !!cardId,
   });
 
+  // on initial render:
+  //
+  useEffect(() => {
+    if (!cardId) console.log("Card id not found");
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `${JSON_SERVER_URL}/cards?taxon_id=${cardId}`,
+        );
+        const json = await response.json();
+        console.log(json);
+        return json;
+      } catch (error) {
+        return console.error("Error fetching card ID:", error);
+      }
+    };
+    fetchData().then((data) => {
+      console.log(data);
+      setWilderNestData(data[0]);
+    });
+  }, [cardId]);
+
   useEffect(() => {
     if (query.data) {
       const { results } = query.data as iNatTaxaResponseType;
-      setCardData(results[0]);
-      // console.log(cardData);
+      setINatData(results[0]);
     }
   }, [query.data]);
 
   function handleFlip(e: React.MouseEvent) {
     e.preventDefault();
-    if (cardData && cardData.id) setCardId(cardData.id);
+    if (iNatData && iNatData.id) setCardId(iNatData.id);
     setIsFlipped((prevState) => !prevState);
   }
 
@@ -57,17 +83,19 @@ export function WildCard({ taxonId, dataObject }: Props) {
       </Card>
     );
 
-  if (!cardData) return null;
+  if (!iNatData) return null;
 
   return (
     <>
       <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
         <WildCard_Front
-          data={cardData}
+          iNatdata={iNatData}
+          wilderNestData={wilderNestData}
           onFlip={(e: React.MouseEvent) => handleFlip(e)}
         />
         <WildCard_Back
-          data={cardData}
+          data={iNatData}
+          wilderNestData={wilderNestData}
           onFlip={(e: React.MouseEvent) => handleFlip(e)}
         />
       </ReactCardFlip>
@@ -76,37 +104,44 @@ export function WildCard({ taxonId, dataObject }: Props) {
 }
 
 function WildCard_Front({
-  data,
+  iNatdata,
   onFlip,
+  wilderNestData,
 }: {
-  data: iNatTaxonRecord | null;
+  iNatdata: iNatTaxonRecord | null;
   onFlip?: (e: React.MouseEvent) => void;
+  wilderNestData?: WilderKindCardType;
 }) {
-  if (!data) return null;
-  console.log(data);
+  if (!iNatdata) return null;
+  console.log(iNatdata);
   return (
-    <Card key={data.id} withBorder>
+    <Card key={iNatdata.id} withBorder>
       <Card.Section>
         <Group justify="space-between">
-          <Text fz="lg">{data.preferred_common_name}</Text>
-          {data.id && <ToggleFavoriteButton id={data.id?.toString()} />}
+          <Text fz="lg">{iNatdata.preferred_common_name}</Text>
+          {iNatdata.id && <ToggleFavoriteButton id={iNatdata.id?.toString()} />}
         </Group>
       </Card.Section>
 
       <Card.Section>
         <AspectRatio ratio={1}>
-          {data.default_photo && (
+          {!wilderNestData && iNatdata.default_photo && (
             <Image
-              src={data.default_photo?.medium_url}
-              alt={data.name}
+              src={iNatdata.default_photo?.medium_url}
+              alt={iNatdata.name}
               loading="lazy"
             />
+          )}
+          {wilderNestData && (
+            <>
+              <Image src={wilderNestData.imgSrc} />
+            </>
           )}
         </AspectRatio>
       </Card.Section>
 
       <Group justify="space-between">
-        {data.id && <FoundItButton size="lg" id={data.id} />}
+        {iNatdata.id && <FoundItButton size="lg" id={iNatdata.id} />}
         <Button onClick={onFlip}>Flip</Button>
       </Group>
     </Card>
