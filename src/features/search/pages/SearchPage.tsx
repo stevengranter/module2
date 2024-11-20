@@ -13,6 +13,7 @@ import {
 import { useForm } from "@mantine/form";
 import { useLogger } from "@mantine/hooks";
 import { useQuery } from "@tanstack/react-query";
+import { API_SERVER } from "~/features/api/constants.ts";
 import { WildCard } from "~/features/card/components/WildCard/WildCard.tsx";
 
 const defaultQueryParams = {
@@ -29,8 +30,7 @@ export default function SearchPage() {
   useLogger("SearchPage", [{ searchParams }]);
 
   const { data, error, isLoading } = useQuery({
-    // Default queryFn is queryINatAPI (
-    queryKey: [`/taxa?${searchParams}`],
+    queryKey: [API_SERVER.INAT, `/taxa?`, `${searchParams}`],
     // Only run query if we have searchParams
     enabled: !!searchParams.get("q"),
   });

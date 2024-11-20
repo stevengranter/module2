@@ -12,8 +12,10 @@ import {
 } from "@mantine/core";
 import { useLogger } from "@mantine/hooks";
 import { useQuery } from "@tanstack/react-query";
-import getLocalCardData from "~/features/_shared/hooks/getLocalCardData.ts";
-import { JSON_SERVER_URL } from "~/features/api/constants.ts";
+import getLocalCardData, {
+  useServerData,
+} from "~/features/_shared/hooks/getLocalCardData.ts";
+import { API_SERVER, JSON_SERVER_URL } from "~/features/api/constants.ts";
 import FoundItButton from "~/features/card/components/FoundItButton.tsx";
 import ToggleFavoriteButton from "~/features/card/components/ToggleFavoriteButton.tsx";
 import {
@@ -27,6 +29,10 @@ type Props = {
   dataObject?: iNatTaxonRecord | undefined;
 };
 
+const endpoint = "/cards";
+const queryString = "?taxon_id=";
+const fetchURL = JSON_SERVER_URL + endpoint + queryString;
+
 export function WildCard({ taxonId, dataObject }: Props) {
   // const [currentTaxonId, setCurrentTaxonId] = useState(taxonId);
   const [cardId, setCardId] = useState<number | undefined>(taxonId);
@@ -36,8 +42,14 @@ export function WildCard({ taxonId, dataObject }: Props) {
     useState<WilderKindCardType | null>(null);
   useLogger("WildCard", [{ cardId }, { wilderNestData }]);
 
-  const query = useQuery({
-    queryKey: [`/taxa/${cardId}`],
+  const shouldFetchServerData = !!cardId;
+  useServerData(
+    shouldFetchServerData,
+    `${JSON_SERVER_URL}/cards?taxon_id=${taxonId}`,
+  );
+
+  const iNatQuery = useQuery({
+    queryKey: [API_SERVER.INAT, `/taxa`, `/${cardId}`],
     enabled: !!cardId,
   });
 
@@ -64,11 +76,11 @@ export function WildCard({ taxonId, dataObject }: Props) {
   }, [cardId]);
 
   useEffect(() => {
-    if (query.data) {
-      const { results } = query.data as iNatTaxaResponseType;
+    if (iNatQuery.data) {
+      const { results } = iNatQuery.data as iNatTaxaResponseType;
       setINatData(results[0]);
     }
-  }, [query.data]);
+  }, [iNatQuery.data]);
 
   function handleFlip(e: React.MouseEvent) {
     e.preventDefault();
@@ -76,7 +88,7 @@ export function WildCard({ taxonId, dataObject }: Props) {
     setIsFlipped((prevState) => !prevState);
   }
 
-  if (query.isLoading)
+  if (iNatQuery.isLoading)
     return (
       <Card mah={400} mih={400}>
         <Skeleton width={400} height={400} />

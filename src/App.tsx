@@ -8,7 +8,7 @@ import { Notifications } from "@mantine/notifications";
 import "@mantine/notifications/styles.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import NestProvider from "~/features/_shared/contexts/nest/NestProvider.tsx";
-import { queryINatAPI } from "~/features/api/iNaturalist/queryINatAPI.ts";
+import { fetchServerData } from "~/features/api/fetchServerData.ts";
 import ReactDOM from "react-dom/client";
 import { router } from "routes.tsx";
 import { defaultTheme } from "theme/defaultTheme";
@@ -16,7 +16,7 @@ import { defaultTheme } from "theme/defaultTheme";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      queryFn: queryINatAPI,
+      queryFn: fetchServerData,
     },
   },
 });
