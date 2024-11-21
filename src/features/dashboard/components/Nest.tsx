@@ -21,7 +21,7 @@ export default function Nest() {
   return (
     <>
       <Title order={3}>my Nest</Title>
-      <CardCollection collection={nest.get()} key="1" />
+      <CardCollection itemIdArray={nest.get()} key="1" />
     </>
   );
 }

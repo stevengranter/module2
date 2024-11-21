@@ -5,6 +5,7 @@ import {
   ComboboxOptionProps,
   ComboboxProps,
   SelectProps,
+  Text,
 } from "@mantine/core";
 import { NestProviderState } from "~/features/_shared/contexts/nest/NestProvider.types.ts";
 import { Collection } from "~/features/_shared/contexts/nest/NestProvider.types.ts";
@@ -12,8 +13,11 @@ import { log } from "~/features/_shared/utils/dev.ts";
 import CardCollection from "~/features/card/components/CardCollection/CardCollection.tsx";
 import CollectionSelectBox from "~/features/card/components/CollectionSelectBox.tsx";
 
-export default function CollectionView({ collections }: NestProviderState) {
-  const [data, setData] = useState(() => {
+export default function CollectionView({
+  collections,
+  nest,
+}: NestProviderState) {
+  const [selectableCollections, setSelectableCollections] = useState(() => {
     let dataArray = [];
     if (collections && collections.get().length > 0) {
       dataArray = collections.get().map((collection: Collection) => {
@@ -28,27 +32,18 @@ export default function CollectionView({ collections }: NestProviderState) {
     return dataArray;
   });
 
-  const [selectedCollectionId, setSelectedCollectionId] = useState<string>(() =>
-    collections.getCollectionIdByName("Starter Pack"),
-  );
-  // const [selectedCollectionName, setSelectedCollectionName] = useState<string>("");
-  const [itemIds, setItemIds] = useState<string[]>([]);
+  const nestArray = nest.get();
+
+  const [selectedCollectionId, setSelectedCollectionId] = useState<
+    string | null
+  >(null);
+
+  const [itemIdsArray, setItemIdsArray] = useState<string[]>([]);
 
   useEffect(() => {
-    if (data && data.length > 0) log(data);
-  }, [data]);
-  //
-  // useEffect(() => {
-  //   if (selectedCollectionId)
-  //     log(`selectedCollectionId: ${selectedCollectionId}`);
-  //   const [collection] = collections
-  //     .get()
-  //     .filter((collection) => collection.id === selectedCollectionId);
-  //   if (collection) console.log(collection);
-  //   const itemIds = collection.items;
-  //   console.log(itemIds);
-  //   setItemIds([...itemIds]);
-  // }, [collections, selectedCollectionId]);
+    if (selectableCollections && selectableCollections.length > 0)
+      log(selectableCollections);
+  }, [selectableCollections]);
 
   // TODO: Fix for choosing current option (errors with null value)
   function handleSelect(selectedValue: ComboboxItem) {
@@ -57,36 +52,35 @@ export default function CollectionView({ collections }: NestProviderState) {
     console.log(selectedValue);
   }
 
-  useEffect(() => {
-    const collection = collections
-      .get()
-      .filter((collection) => collection.id === selectedCollectionId);
-    console.dir("collection", collection[0]);
-    console.log(collections);
-    console.log(collections.getCollectionIdByName("Starter Pack"));
-    const itemIds = collection[0].items;
-    console.log(itemIds);
-    setItemIds(itemIds);
-  }, [selectedCollectionId]);
-
-  // function getItemIds() {
+  // useEffect(() => {
   //   const collection = collections
   //     .get()
   //     .filter((collection) => collection.id === selectedCollectionId);
   //   console.dir("collection", collection[0]);
+  //   console.log(collections);
+  //   if (!collections) throw new Error("Collection not found");
   //   const itemIds = collection[0].items;
   //   console.log(itemIds);
-  //   return itemIds;
-  // }
-  return (
+  //   setItemIdsArray(itemIds);
+  // }, [selectedCollectionId]);
+
+  return collections && collections.length > 0 ? (
     <>
       <CollectionSelectBox
-        data={data}
+        data={selectableCollections}
         value={selectedCollectionId}
         handleSelect={handleSelect}
       />
 
-      <CardCollection collection={itemIds} />
+      <CardCollection
+        itemIdArray={itemIdsArray}
+        collectionId={selectedCollectionId}
+      />
+    </>
+  ) : (
+    <>
+      <Text>No collections found</Text>
+      <CardCollection itemIdArray={nestArray} />
     </>
   );
 }

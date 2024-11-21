@@ -16,7 +16,7 @@ export default function GuestInvitation({ message }: GuestInvitationProps) {
       <>
         {message}
 
-        <CardCollection collection={starterCollection} />
+        <CardCollection itemIdArray={starterCollection} />
       </>
     )
   );

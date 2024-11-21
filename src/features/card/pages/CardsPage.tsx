@@ -19,7 +19,7 @@ export default function CardsPage() {
     return null;
   }
 
-  return <CardCollection collection={data && getCardIds(data)} />;
+  return <CardCollection itemIdArray={data && getCardIds(data)} />;
 }
 
 function getCardIds(data: WilderKindCardType[]) {

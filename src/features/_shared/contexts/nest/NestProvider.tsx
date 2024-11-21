@@ -1,13 +1,12 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import { createContext, ReactNode } from "react";
 
-import { useLocalStorage, useLogger } from "@mantine/hooks";
+import { useLogger } from "@mantine/hooks";
 import {
   Collection,
   NestProviderState,
 } from "~/features/_shared/contexts/nest/NestProvider.types.ts";
 import useLocalSyncedImmerState from "~/features/_shared/hooks/useLocalSyncedImmerState.ts";
 import { displayNotification } from "~/features/_shared/utils/displayNotification.ts";
-import { useImmer } from "use-immer";
 
 type ImmerState = {
   nest: string[];
@@ -127,6 +126,16 @@ export default function NestProvider({ children }: { children: ReactNode }) {
     });
 
     console.log(state);
+  }
+
+  function deleteCollection(collectionId: number | string) {
+    update((draft) => {
+      draft.collections.map(
+        draft.collections.filter(
+          (collection) => collection.id !== collectionId.toString(),
+        ),
+      );
+    });
   }
 
   function addIdToCollection(id: number | string, name: string) {
@@ -289,6 +298,7 @@ export default function NestProvider({ children }: { children: ReactNode }) {
     create: createCollection,
     addItem: addIdToCollection,
     removeItem: removeIdFromCollection,
+    delete: deleteCollection,
   };
 
   return (

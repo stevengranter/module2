@@ -33,7 +33,7 @@ export default function Collections() {
                 {/*<p>{collection.description}</p>*/}
                 {collection.items && collection.items.length > 0 ? (
                   <CardCollection
-                    collection={collection.items}
+                    itemIdArray={collection.items}
                     key={collection.id}
                   />
                 ) : (

@@ -27,7 +27,7 @@ export function MostRecentCards({
     // console.log(selectedCardsArray);
     // const selectedCardsIds selectedCards.map(card => card.id)
 
-    return !loading && <CardCollection collection={selectedCardsArray} />;
+    return !loading && <CardCollection itemIdArray={selectedCardsArray} />;
     // return (
     //   !isLoading &&
     //   selectedCards.map((card) => (

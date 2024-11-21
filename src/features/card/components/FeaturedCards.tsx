@@ -12,5 +12,5 @@ export default function FeaturedCards() {
       console.log(featuredCards);
     });
   }, []);
-  return <CardCollection collection={featuredCards} />;
+  return <CardCollection itemIdArray={featuredCards} />;
 }

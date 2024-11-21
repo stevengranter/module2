@@ -26,7 +26,7 @@ export default function UserProfile(props: { userId?: string }) {
       {data?.collection ? (
         <>
           View my collection
-          <CardCollection collection={data.collection} />
+          <CardCollection itemIdArray={data.collection} />
         </>
       ) : (
         <>User has not started collecting yet.</>

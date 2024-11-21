@@ -12,7 +12,7 @@ export default function CollectionViewNew({
         collections.get().map((collection) => (
           <li key={collection.id}>
             {collection.name}
-            <CardCollection collection={collection.items} />
+            <CardCollection itemIdArray={collection.items} />
             {/*<ul>*/}
             {/*  {collection.items.map((item, index) => (*/}
             {/*    <li key={index}>{item}</li>*/}
