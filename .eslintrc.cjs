@@ -11,6 +11,7 @@ module.exports = {
   parser: "@typescript-eslint/parser",
   plugins: ["react-refresh", "perfectionist", "@html-eslint"],
   rules: {
+    semi: ["error", "never"],
     "react-refresh/only-export-components": [
       "warn",
       { allowConstantExport: true },
@@ -20,7 +21,12 @@ module.exports = {
       {
         type: "natural",
         order: "asc",
-        internalPattern: ["components/**", "models/**", "icons/**", "routes/**"],
+        internalPattern: [
+          "components/**",
+          "models/**",
+          "icons/**",
+          "routes/**",
+        ],
         groups: [
           "react",
           "type",

@@ -1,13 +1,13 @@
-import { createContext, PropsWithChildren, useContext, useState } from "react";
+import { createContext, PropsWithChildren, useContext, useState } from "react"
 
-import { Role } from "~/features/_shared/contexts/Roles.ts";
+import { Role } from "~/features/_shared/contexts/Roles.ts"
 
 type RoleContext = {
   role: Role.Anon | Role.Guest | Role.User | Role.Admin;
   error?: string | undefined | null;
 };
 
-export const RoleContext = createContext<RoleContext>({ role: Role.Anon });
+export const RoleContext = createContext<RoleContext>({ role: Role.Anon })
 
 // function useUser() {
 //   const [user, setUser] = useState<{
@@ -106,18 +106,18 @@ export const RoleContext = createContext<RoleContext>({ role: Role.Anon });
 // }
 
 export function useRole() {
-  const context = useContext(RoleContext);
+  const context = useContext(RoleContext)
 
   if (!context) {
-    throw new Error("useRole must be used within a RoleContextProvider");
+    throw new Error("useRole must be used within a RoleContextProvider")
   }
-  const { role, error } = context;
-  return { role, error };
+  const { role, error } = context
+  return { role, error }
 }
 
 export default function RoleContextProvider({ children }: PropsWithChildren) {
-  const [role, _setRole] = useState(Role.Anon);
-  const [error, _setError] = useState("");
+  const [role, _setRole] = useState(Role.Anon)
+  const [error, _setError] = useState("")
 
   return (
     <RoleContext.Provider
@@ -128,5 +128,5 @@ export default function RoleContextProvider({ children }: PropsWithChildren) {
     >
       {children}
     </RoleContext.Provider>
-  );
+  )
 }

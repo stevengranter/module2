@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import ReactCardFlip from "react-card-flip";
+import React, { useEffect, useState } from "react"
+import ReactCardFlip from "react-card-flip"
 
 import {
   AspectRatio,
@@ -9,17 +9,17 @@ import {
   Image,
   Skeleton,
   Text,
-} from "@mantine/core";
-import { useLogger } from "@mantine/hooks";
-import { useQuery } from "@tanstack/react-query";
-import { API_SERVER } from "~/features/api/constants.ts";
-import FoundItButton from "~/features/card/components/FoundItButton.tsx";
-import ToggleFavoriteButton from "~/features/card/components/ToggleFavoriteButton.tsx";
+} from "@mantine/core"
+import { useLogger } from "@mantine/hooks"
+import { useQuery } from "@tanstack/react-query"
+import { API_SERVER } from "~/features/api/constants.ts"
+import FoundItButton from "~/features/card/components/FoundItButton.tsx"
+// import ToggleFavoriteButton from "~/features/card/components/ToggleFavoriteButton.tsx"
 import {
   iNatTaxaResponseType,
   iNatTaxonRecord,
-} from "~/models/iNatTaxaResponseType.ts";
-import { WilderKindCardType } from "~/models/WilderKindCardType.ts";
+} from "~/models/iNatTaxaResponseType.ts"
+import { WilderKindCardType } from "~/models/WilderKindCardType.ts"
 
 type Props = {
   taxonId?: number;
@@ -27,62 +27,41 @@ type Props = {
 };
 
 export function WildCard({ taxonId, dataObject }: Props) {
-  const [cardId, setCardId] = useState<number | undefined>(taxonId);
-  const [iNatData, setINatData] = useState(dataObject);
-  const [isFlipped, setIsFlipped] = useState(false);
+  const [cardId, setCardId] = useState<number | undefined>(taxonId)
+  const [iNatData, setINatData] = useState(dataObject)
+  const [isFlipped, setIsFlipped] = useState(false)
   const [wilderNestData, setWilderNestData] =
-    useState<WilderKindCardType | null>(null);
-  useLogger("WildCard", [{ cardId }, { wilderNestData }]);
+    useState<WilderKindCardType | null>(null)
+  useLogger("WildCard", [{ cardId }, { wilderNestData }])
 
   const iNatQuery = useQuery({
     queryKey: [API_SERVER.INAT, `/taxa`, `/${cardId}`],
     enabled: !!cardId,
-  });
+  })
 
   const wilderNestQuery = useQuery({
     queryKey: [API_SERVER.JSON, `/cards`, `?taxon_id=${taxonId}`],
     enabled: !!cardId,
-  });
-
-  // on initial render:
-  // useEffect(() => {
-  //   if (!cardId) console.log("Card id not found");
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await fetch(
-  //         `${JSON_SERVER_URL}/cards?taxon_id=${cardId}`,
-  //       );
-  //       const json = await response.json();
-  //       console.log(json);
-  //       return json;
-  //     } catch (error) {
-  //       return console.error("Error fetching card ID:", error);
-  //     }
-  //   };
-  //   fetchData().then((data) => {
-  //     console.log(data);
-  //     setWilderNestData(data[0]);
-  //   });
-  // }, [cardId]);
+  })
 
   useEffect(() => {
     if (iNatQuery.data) {
-      const { results } = iNatQuery.data as iNatTaxaResponseType;
-      setINatData(results[0]);
+      const { results } = iNatQuery.data as iNatTaxaResponseType
+      setINatData(results[0])
     }
-  }, [iNatQuery.data]);
+  }, [iNatQuery.data])
 
   useEffect(() => {
     if (wilderNestQuery.data) {
-      const wilderNestData = wilderNestQuery.data as WilderKindCardType[];
-      setWilderNestData(wilderNestData[0]);
+      const wilderNestData = wilderNestQuery.data as WilderKindCardType[]
+      setWilderNestData(wilderNestData[0])
     }
-  }, [wilderNestQuery.data]);
+  }, [wilderNestQuery.data])
 
   function handleFlip(e: React.MouseEvent) {
-    e.preventDefault();
-    if (iNatData && iNatData.id) setCardId(iNatData.id);
-    setIsFlipped((prevState) => !prevState);
+    e.preventDefault()
+    if (iNatData && iNatData.id) setCardId(iNatData.id)
+    setIsFlipped((prevState) => !prevState)
   }
 
   if (iNatQuery.isLoading)
@@ -90,9 +69,9 @@ export function WildCard({ taxonId, dataObject }: Props) {
       <Card mah={400} mih={400}>
         <Skeleton width={400} height={400} />
       </Card>
-    );
+    )
 
-  if (!iNatData) return null;
+  if (!iNatData) return null
 
   return (
     <>
@@ -108,7 +87,7 @@ export function WildCard({ taxonId, dataObject }: Props) {
         />
       </ReactCardFlip>
     </>
-  );
+  )
 }
 
 function WildCard_Front({
@@ -120,14 +99,14 @@ function WildCard_Front({
   onFlip?: (e: React.MouseEvent) => void;
   wilderNestData?: WilderKindCardType | null;
 }) {
-  if (!iNatdata) return null;
-  console.log(iNatdata);
+  if (!iNatdata) return null
+  console.log(iNatdata)
   return (
     <Card key={iNatdata.id} withBorder>
       <Card.Section>
         <Group justify="space-between">
           <Text fz="lg">{iNatdata.preferred_common_name}</Text>
-          {iNatdata.id && <ToggleFavoriteButton id={iNatdata.id?.toString()} />}
+          {/*{iNatdata.id && <ToggleFavoriteButton id={iNatdata.id?.toString()} />}*/}
         </Group>
       </Card.Section>
 
@@ -153,7 +132,7 @@ function WildCard_Front({
         <Button onClick={onFlip}>Flip</Button>
       </Group>
     </Card>
-  );
+  )
 }
 
 function WildCard_Back({
@@ -164,13 +143,13 @@ function WildCard_Back({
   onFlip?: (e: React.MouseEvent) => void;
   _wilderNestData?: WilderKindCardType | null;
 }) {
-  if (!iNatdata) return null;
+  if (!iNatdata) return null
   return (
     <Card withBorder mah="400" mih="400">
       <Card.Section>
         <Group justify="space-between">
           <Text fz="lg">{iNatdata.preferred_common_name}</Text>
-          {iNatdata.id && <ToggleFavoriteButton id={iNatdata.id.toString()} />}
+          {/*{iNatdata.id && <ToggleFavoriteButton id={iNatdata.id.toString()} />}*/}
         </Group>
       </Card.Section>
 
@@ -198,5 +177,5 @@ function WildCard_Back({
         </Group>
       </Group>
     </Card>
-  );
+  )
 }

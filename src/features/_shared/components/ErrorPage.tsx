@@ -20,7 +20,7 @@ function ErrorPage() {
         </em>
       </p>
     </div>
-  );
+  )
 }
 
-export default ErrorPage;
+export default ErrorPage

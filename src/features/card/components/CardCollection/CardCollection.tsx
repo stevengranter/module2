@@ -1,25 +1,25 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from "react"
+import { Link } from "react-router-dom"
 
-import { Grid, GridCol, Text } from "@mantine/core";
-import DeleteCollectionButton from "~/features/_shared/contexts/nest/components/DeleteCollectionButton.tsx";
-import { WildCard } from "~/features/card/components/WildCard/WildCard.tsx";
+import { Grid, GridCol, Text } from "@mantine/core"
+import DeleteCollectionButton from "~/features/_shared/contexts/nest/components/DeleteCollectionButton.tsx"
+import { WildCard } from "~/features/card/components/WildCard/WildCard.tsx"
 
 export default function CardCollection({
   itemIdArray,
   collectionId,
 }: {
-  itemIdArray: string[];
-  collectionId: string;
+  itemIdArray: string[] | null;
+  collectionId: string | null;
 }) {
-  if (!itemIdArray) return "Collection doesn't exist";
+  if (!itemIdArray) return "Collection doesn't exist"
   if (itemIdArray.length === 0)
     return (
       <Text>
         Nothing here yet, use <Link to="/search">search</Link> to add to this
-        collection, or <DeleteCollectionButton collectionId={collectionId} />
+        collection, or {(collectionId) && <DeleteCollectionButton collectionId={collectionId} /> }
       </Text>
-    );
+    )
 
   return (
     itemIdArray.length > 0 && (
@@ -38,9 +38,9 @@ export default function CardCollection({
                   // isInUserCollection={!!userCollection?.includes(cardId)}
                 />
               </GridCol>
-            );
+            )
           })}
       </Grid>
     )
-  );
+  )
 }

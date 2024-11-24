@@ -17,8 +17,8 @@ export function log(
   level: logType = logType.INFO,
 ): void {
   if (process.env.NODE_ENV !== "production") {
-    if (!message) console.log("No message for log");
-    if (typeof message !== "string") message = JSON.stringify(message);
-    console.log(`%c${message}`, `color: ${levelColors[level]}`);
+    if (!message) console.log("No message for log")
+    if (typeof message !== "string") message = JSON.stringify(message)
+    console.log(`%c${message}`, `color: ${levelColors[level]}`)
   }
 }

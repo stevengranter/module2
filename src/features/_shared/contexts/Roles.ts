@@ -1,7 +1,7 @@
 export enum Role {
   Admin = "admin",
   User = "user",
-  Guest = "guest",
+      Guest = "guest",
   Anon = "anon",
 }
 
@@ -10,4 +10,4 @@ export const permissionMap = {
   user: ["edit-collection", "read-dashboard"],
   guest: ["edit-collection", "read-dashboard"],
   anon: ["read-collection"],
-};
+}

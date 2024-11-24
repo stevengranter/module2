@@ -1,72 +1,71 @@
-import { useEffect, useState } from "react";
-import { useLoaderData, useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react"
+import { useLoaderData, useSearchParams } from "react-router-dom"
 
 import {
   Button,
   Flex,
   Grid,
   GridCol,
-  NumberInput,
   Pagination,
   TextInput,
-} from "@mantine/core";
-import { useForm } from "@mantine/form";
-import { useLogger } from "@mantine/hooks";
-import { useQuery } from "@tanstack/react-query";
-import { API_SERVER } from "~/features/api/constants.ts";
-import { WildCard } from "~/features/card/components/WildCard/WildCard.tsx";
+} from "@mantine/core"
+import { useForm } from "@mantine/form"
+import { useLogger } from "@mantine/hooks"
+import { useQuery } from "@tanstack/react-query"
+import { API_SERVER } from "~/features/api/constants.ts"
+import { WildCard } from "~/features/card/components/WildCard/WildCard.tsx"
 
 const defaultQueryParams = {
   per_page: 6,
-};
+}
 
 export default function SearchPage() {
-  const form = useForm({ mode: "uncontrolled" });
+  const form = useForm({ mode: "uncontrolled" })
 
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [pageNumber, setPageNumber] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [pageNumber, setPageNumber] = useState(1)
+  const [totalPages, setTotalPages] = useState(0)
 
-  useLogger("SearchPage", [{ searchParams }]);
+  useLogger("SearchPage", [{ searchParams }])
 
   const { data, error, isLoading } = useQuery({
     queryKey: [API_SERVER.INAT, `/taxa?`, `${searchParams}`],
     // Only run query if we have searchParams
     enabled: !!searchParams.get("q"),
-  });
+  })
 
-  useEffect(() => {
-    const currentParams = Object.fromEntries([...searchParams]);
-    // console.log({currentParams});
-  }, [searchParams]);
+  // useEffect(() => {
+  //   const currentParams = Object.fromEntries([...searchParams]);
+  //   // console.log({currentParams});
+  // }, [searchParams]);
 
   useEffect(() => {
     // console.log(`Data updated`);
     // console.log(data);
     if (data) {
-      const totalPageNumber = Math.ceil(data.total_results / data.per_page);
-      setTotalPages(totalPageNumber);
+      const totalPageNumber = Math.ceil(data.total_results / data.per_page)
+      setTotalPages(totalPageNumber)
     }
-  }, [data]);
+  }, [data])
 
   function handleSubmit(formValues: FormValues) {
-    setPageNumber(1);
-    setTotalPages(0);
-    console.log(formValues);
-    const searchParams = { ...formValues, ...defaultQueryParams };
-    setSearchParams(searchParams);
+    setPageNumber(1)
+    setTotalPages(0)
+    console.log(formValues)
+    const searchParams = { ...formValues, ...defaultQueryParams }
+    setSearchParams(searchParams)
   }
 
   function changePage(pageNumber: number) {
-    console.log(`Page #: ${pageNumber} requested`);
-    const currentParams = Object.fromEntries([...searchParams]);
-    setSearchParams({ ...currentParams, page: pageNumber.toString() });
-    console.log(searchParams.get("page"));
-    setPageNumber(pageNumber);
+    console.log(`Page #: ${pageNumber} requested`)
+    const currentParams = Object.fromEntries([...searchParams])
+      setSearchParams({ ...currentParams, page: pageNumber.toString() })
+    console.log(searchParams.get("page"))
+    setPageNumber(pageNumber)
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div>Error: {error.message}</div>
   }
 
   return (
@@ -98,7 +97,7 @@ export default function SearchPage() {
         </Flex>
 
         <div>
-          {data && data.total_results && `Total results: ${data.total_results}`}
+          {data?.total_results && `Total results: ${data.total_results}`}
         </div>
       </form>
 
@@ -127,7 +126,7 @@ export default function SearchPage() {
                 >
                   <WildCard dataObject={result} />
                 </GridCol>
-              );
+              )
             })}
         </Grid>
       )}
@@ -144,5 +143,5 @@ export default function SearchPage() {
         />
       )}
     </>
-  );
+  )
 }

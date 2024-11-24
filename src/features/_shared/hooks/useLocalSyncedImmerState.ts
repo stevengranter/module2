@@ -1,34 +1,34 @@
-import { useEffect } from "react";
+import { useEffect } from "react"
 
-import { useLocalStorage } from "@mantine/hooks";
-import { useImmer } from "use-immer";
+import { useLocalStorage } from "@mantine/hooks"
+import { useImmer } from "use-immer"
 
 function getLocalStorageObject(localStorageKey: string) {
-  const localStorageObject = localStorage.getItem(localStorageKey);
-  if (!localStorageObject) return {};
-  return JSON.parse(localStorageObject);
+  const localStorageObject = localStorage.getItem(localStorageKey)
+  if (!localStorageObject) return null
+  return JSON.parse(localStorageObject)
 }
 
 export default function useLocalSyncedImmerState(
   defaultState = {},
   localStorageKey = "localData",
 ) {
-  let initialState;
-  initialState = getLocalStorageObject(localStorageKey);
+  let initialState
+  initialState = getLocalStorageObject(localStorageKey)
   if (!initialState || initialState.length === 0) {
-    initialState = defaultState;
+    initialState = defaultState
   }
 
   const [localStorageState, setLocalStorageState] = useLocalStorage({
     key: localStorageKey,
     defaultValue: initialState,
-  });
+  })
 
-  const [state, setState] = useImmer(localStorageState);
+  const [state, setState] = useImmer(localStorageState)
 
   useEffect(() => {
-    setLocalStorageState(state);
-  }, [state, setLocalStorageState]);
+    setLocalStorageState(state)
+  }, [state, setLocalStorageState])
 
-  return [state, setState];
+  return [state, setState]
 }

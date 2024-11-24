@@ -1,5 +1,5 @@
-import Features from "../components/Features.tsx";
+import Features from "../components/Features.tsx"
 
 export default function HomePage() {
-  return <Features />;
+  return <Features />
 }

@@ -1,52 +1,52 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {useEffect, useState} from "react"
+import { useNavigate } from "react-router-dom"
 
-import { ActionIcon } from "@mantine/core";
-import useNest from "~/features/_shared/contexts/nest/useNest.ts";
-import { IconHeart, IconHeartFilled } from "~/features/_shared/icons/icons.tsx";
-import { displayNotification } from "~/features/_shared/utils/displayNotification.ts";
+import { ActionIcon } from "@mantine/core"
+import {modals} from "@mantine/modals"
+import useNest from "~/features/_shared/contexts/nest/useNest.ts"
+import useNestActions from "~/features/_shared/hooks/useNestActions.ts"
+import { IconHeart, IconHeartFilled } from "~/features/_shared/icons/icons.tsx"
+import { displayNotification } from "~/features/_shared/utils/displayNotification.ts"
 
 export default function ToggleFavoriteButton({ id }: { id: string | number }) {
-  const { nest, collections } = useNest();
-  const [isFavorite, setIsFavorite] = useState(() =>
-    collections.isItemInCollection(id, "Favorites"),
-  );
-  const navigate = useNavigate();
+  const {
+    addItemToNest,
+    addIdToCollection,
+    isItemInCollection,
+    removeIdFromCollection
+  } = useNestActions()
 
-  function toggleFavorite() {
-    if (!collections.isItemInCollection(id, "Favorites")) {
-      console.log("Item is not in collection, adding item");
-      collections.addItem(id, "Favorites");
-      setIsFavorite(true);
-    } else {
-      console.log("Item is in collection, removing item");
-      collections.removeItem(id, "Favorites");
-      setIsFavorite(false);
+  const [isFavorite, setIsFavorite] = useState<boolean>(false)
+
+  function handleClick(id: string | number) {
+    if (!isItemInCollection) {
+      removeIdFromCollection(id,"Favorites")
+    }
+    else {
+     addIdToCollection(id,"Favorites")
     }
   }
 
-  // function handleClick() {
-  //   if (!user) {
-  //     modals.openConfirmModal({
-  //       title: "Oh no!",
-  //       children: <Text size="sm">You must be logged in to do that.</Text>,
-  //       labels: { confirm: "Login", cancel: "Cancel" },
-  //       onCancel: () => console.log("Cancel"),
-  //       onConfirm: () => navigate("/login"),
-  //     });
-  //   } else {
-  //     toggleFavorite();
-  //   }
-  // }
+
+
+  useEffect(() => {
+
+    if (!collections) {
+      console.log("No collections found")
+    } else {
+    setIsFavorite(collections.isItemInCollection(id, "Favorites"))
+    }
+  },[])
+
 
   return (
     <ActionIcon
       variant="default"
       radius="md"
       size={36}
-      onClick={toggleFavorite}
+      onClick={handleClick}
     >
       {isFavorite ? <IconHeartFilled /> : <IconHeart />}
     </ActionIcon>
-  );
+  )
 }

@@ -1,23 +1,23 @@
-import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react"
+import { Link } from "react-router-dom"
 
-import { RoleContext } from "~/features/_shared/contexts/RoleContextProvider.tsx";
-import StartEndGuestSessionButton from "~/features/guest-session/components/ToggleGuestSessionButton.tsx";
-import LoginLogoutButton from "~/features/local-user/components/LoginLogoutButton.tsx";
+import { RoleContext } from "~/features/_shared/contexts/RoleContextProvider.tsx"
+import StartEndGuestSessionButton from "~/features/guest-session/components/ToggleGuestSessionButton.tsx"
+import LoginLogoutButton from "~/features/local-user/components/LoginLogoutButton.tsx"
 
-import { publicLinks, userLinks } from "./NavbarLinks.ts";
-import classes from "./NavbarSimple.module.css";
+import { publicLinks, userLinks } from "./NavbarLinks.ts"
+import classes from "./NavbarSimple.module.css"
 
 type NavBarParams = {
   onClick: () => void;
 };
 
 export function NavbarSimple({ onClick }: NavBarParams) {
-  const [active, setActive] = useState("");
+  const [active, setActive] = useState("")
 
   function handleClick(label: string) {
-    setActive(label);
-    setTimeout(onClick, 500);
+    setActive(label)
+    setTimeout(onClick, 500)
   }
 
   const links = publicLinks.map((item) => (
@@ -31,14 +31,14 @@ export function NavbarSimple({ onClick }: NavBarParams) {
       <item.icon className={classes.linkIcon} stroke={1.5} />
       <span>{item.label}</span>
     </Link>
-  ));
+  ))
 
   return (
     <nav className={classes.navbar}>
       <div className={classes.navbarMain}>{links}</div>
       <NavbarUserFooter />
     </nav>
-  );
+  )
 }
 
 function NavbarUserFooter() {
@@ -51,10 +51,10 @@ function NavbarUserFooter() {
             <userLink.icon className={classes.linkIcon} stroke={1.5} />
             <span>{userLink.label}</span>
           </Link>
-        );
+        )
       })}
 
       {/*<StartEndGuestSessionButton />*/}
     </div>
-  );
+  )
 }
