@@ -22,9 +22,9 @@ import {
 import { WilderKindCardType } from "~/models/WilderKindCardType.ts"
 
 type Props = {
-  taxonId?: number;
-  dataObject?: iNatTaxonRecord | undefined;
-};
+  taxonId?: number
+  dataObject?: iNatTaxonRecord | undefined
+}
 
 export function WildCard({ taxonId, dataObject }: Props) {
   const [cardId, setCardId] = useState<number | undefined>(taxonId)
@@ -32,7 +32,7 @@ export function WildCard({ taxonId, dataObject }: Props) {
   const [isFlipped, setIsFlipped] = useState(false)
   const [wilderNestData, setWilderNestData] =
     useState<WilderKindCardType | null>(null)
-  useLogger("WildCard", [{ cardId }, { wilderNestData }])
+  // useLogger("WildCard", [{ cardId }, { wilderNestData }])
 
   const iNatQuery = useQuery({
     queryKey: [API_SERVER.INAT, `/taxa`, `/${cardId}`],
@@ -95,12 +95,12 @@ function WildCard_Front({
   onFlip,
   wilderNestData,
 }: {
-  iNatdata: iNatTaxonRecord | null;
-  onFlip?: (e: React.MouseEvent) => void;
-  wilderNestData?: WilderKindCardType | null;
+  iNatdata: iNatTaxonRecord | null
+  onFlip?: (e: React.MouseEvent) => void
+  wilderNestData?: WilderKindCardType | null
 }) {
   if (!iNatdata) return null
-  console.log(iNatdata)
+  // console.log(iNatdata)
   return (
     <Card key={iNatdata.id} withBorder>
       <Card.Section>
@@ -139,9 +139,9 @@ function WildCard_Back({
   iNatdata,
   onFlip,
 }: {
-  iNatdata: iNatTaxonRecord | null;
-  onFlip?: (e: React.MouseEvent) => void;
-  _wilderNestData?: WilderKindCardType | null;
+  iNatdata: iNatTaxonRecord | null
+  onFlip?: (e: React.MouseEvent) => void
+  _wilderNestData?: WilderKindCardType | null
 }) {
   if (!iNatdata) return null
   return (

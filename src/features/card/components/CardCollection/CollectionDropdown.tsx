@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 
 import {
   CheckIcon,
@@ -7,15 +7,18 @@ import {
   Pill,
   PillsInput,
   useCombobox,
-} from "@mantine/core";
-import { NestProviderState } from "~/features/_shared/contexts/nest/NestProvider.types.ts";
-import useNest from "~/features/_shared/contexts/nest/useNest.ts";
+} from "@mantine/core"
+import { useCollections } from "~/features/_shared/contexts/collections/CollectionsProvider.tsx"
+import { NestProviderState } from "~/features/_shared/contexts/nest/NestProvider.types.ts"
+import useNest from "~/features/_shared/contexts/nest/useNest.ts"
+import useCollectionActions from "~/features/_shared/hooks/useCollectionActions.ts"
+import useNestActions from "~/features/_shared/hooks/useNestActions.ts"
 
 type CollectionDropdownProps = {
-  userCollections?: string[];
-  collectionsIncludingTaxonId?: string[];
-  taxonId: string;
-};
+  userCollections?: string[]
+  collectionsIncludingTaxonId?: string[]
+  taxonId: string
+}
 
 export function CollectionDropdown({
   userCollections,
@@ -25,76 +28,66 @@ export function CollectionDropdown({
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
     onDropdownOpen: () => combobox.updateSelectedOptionIndex("active"),
-  });
+  })
 
-  const { collections } = useNest() as NestProviderState;
+  const collections = useCollections()
+  const collectionAction = useCollectionActions()
+  // const nestAction = useNestActions()
 
-  const [search, setSearch] = useState("");
-  const [allCollections, setAllCollections] = useState(userCollections || []);
+  const [search, setSearch] = useState("")
+  const [allCollections, setAllCollections] = useState(userCollections || [])
   const [selection, setSelection] = useState<string[]>(
     collectionsIncludingTaxonId || [],
-  );
+  )
 
   useEffect(() => {
-    const collectionNames = collections
-      .get()
-      .map((collection: { name: string }) => collection.name);
-    setAllCollections(collectionNames);
-  }, [collections]);
+    const collectionNames = collectionAction.getAllCollectionNames()
+    console.log({ collectionNames })
+    setAllCollections(collectionNames)
+  }, [collections])
 
   useEffect(() => {
-    const collectionsIncludingTaxonId = collections.getMatchingNames(taxonId);
+    const collectionsIncludingTaxonId =
+      collectionAction.getCollectionNamesIncludingId(taxonId)
     collectionsIncludingTaxonId
       ? setSelection(collectionsIncludingTaxonId)
-      : null;
-  }, [collections, taxonId]);
+      : null
+  }, [collections, taxonId])
 
-  useEffect(() => {
-    console.log(collections.get());
-  }, [collections]);
-
-  useEffect(() => {
-    console.log(selection);
-  }, [selection]);
-
-  useEffect(() => {
-    console.log();
-  });
-
-  const exactOptionMatch = allCollections.some((item) => item === search);
+  const exactOptionMatch = allCollections.some((item) => item === search)
 
   const handleValueSelect = (val: string) => {
-    console.log(`handleValueSelect(${val})`);
-    setSearch("");
+    console.log(`handleValueSelect(${val})`)
+    setSearch("")
 
     if (val === "$create") {
-      setAllCollections((current) => [...current, search]);
-      setSelection((current) => [...current, search]);
-      console.log(search);
-      collections.addItem(taxonId, search);
+      setAllCollections((current) => [...current, search])
+      setSelection((current) => [...current, search])
+      console.log(search)
+      collectionAction.addIdToCollection(taxonId, search)
     } else {
       setSelection((current) =>
         current.includes(val)
           ? current.filter((v) => v !== val)
           : [...current, val],
-      );
-      console.log(`taxonID: ${taxonId}`);
-      console.log(`val:`, val);
-      collections.addItem(taxonId, val);
+      )
+      console.log(`taxonID: ${taxonId}`)
+      console.log(`val:`, val)
+      collectionAction.addIdToCollection(taxonId, val)
     }
-  };
+  }
 
   const handleValueRemove = (val: string) => {
-    console.log(val);
-    setSelection((current) => current.filter((v) => v !== val));
-    collections.removeItem(taxonId, val);
-  };
+    console.log(val)
+    setSelection((current) => current.filter((v) => v !== val))
+    collectionAction.removeIdFromCollection(taxonId, val)
+  }
 
   const values = selection.map((item) => (
     <Pill key={item} withRemoveButton onRemove={() => handleValueRemove(item)}>
       {item}
     </Pill>
-  ));
+  ))
 
   const options = allCollections
     .filter((item) =>
@@ -111,7 +104,7 @@ export function CollectionDropdown({
           <span>{item}</span>
         </Group>
       </Combobox.Option>
-    ));
+    ))
 
   return (
     <Combobox
@@ -131,13 +124,13 @@ export function CollectionDropdown({
                 value={search}
                 placeholder="Add to collection (type llecto search or add)"
                 onChange={(event) => {
-                  combobox.updateSelectedOptionIndex();
-                  setSearch(event.currentTarget.value);
+                  combobox.updateSelectedOptionIndex()
+                  setSearch(event.currentTarget.value)
                 }}
                 onKeyDown={(event) => {
                   if (event.key === "Backspace" && search.length === 0) {
-                    event.preventDefault();
-                    handleValueRemove(selection[selection.length - 1]);
+                    event.preventDefault()
+                    handleValueRemove(selection[selection.length - 1])
                   }
                 }}
               />
@@ -162,5 +155,5 @@ export function CollectionDropdown({
         </Combobox.Options>
       </Combobox.Dropdown>
     </Combobox>
-  );
+  )
 }

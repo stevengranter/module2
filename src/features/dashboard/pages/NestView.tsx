@@ -12,8 +12,8 @@ import CollectionSelectBox from "~/features/card/components/CollectionSelectBox.
 export default function NestView() {
   // Initialize nestState and collectionState for NestContext and
   // CollectionContext access
-  const nestState = useNest()
-  const collectionsState = useCollections()
+  const [nestState] = useNest()
+  const [collectionsState] = useCollections()
 
   // Initialize nestAction for accessing nest/collection management functions
   const nestAction = useNestActions()

@@ -24,11 +24,11 @@ export default function useLocalSyncedImmerState(
     defaultValue: initialState,
   })
 
-  const [state, setState] = useImmer(localStorageState)
+  const [state, updater] = useImmer(localStorageState)
 
   useEffect(() => {
     setLocalStorageState(state)
   }, [state, setLocalStorageState])
 
-  return [state, setState]
+  return [state, updater]
 }

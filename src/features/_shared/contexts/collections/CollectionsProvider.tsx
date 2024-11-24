@@ -1,42 +1,55 @@
 // CollectionsContext.tsx
 import React, { createContext, ReactNode, useContext } from "react"
 
+import { useLogger } from "@mantine/hooks"
 import { Collection } from "~/features/_shared/contexts/nest/NestProvider.types.ts"
 import useStorageSyncedImmerState from "~/features/_shared/hooks/useLocalSyncedImmerState.ts"
+import { Draft } from "immer"
 
-type CollectionsState = Collection[];
-
-const initialCollections: CollectionsState = [
-    {
-        name: "Starter Pack",
-        id: crypto.randomUUID(),
-        items: ["48586", "48987", "81545"],
-    },
-    { name: "Favorites", id: crypto.randomUUID(), items: [] },
+const initialCollections: Collection[] = [
+  {
+    name: "Starter Pack",
+    id: crypto.randomUUID(),
+    items: ["48586", "48987", "81545"],
+  },
+  { name: "Favorites", id: crypto.randomUUID(), items: [] },
 ]
 
-type CollectionsContextData = CollectionsState;
+type CollectionsContextState = [
+  Collection[],
+  (draft: (draft: Draft<Collection[]>) => void) => void,
+]
 
-const CollectionsContext = createContext<CollectionsContextData | undefined>(undefined)
+const CollectionsContext = createContext<CollectionsContextState | undefined>(
+  undefined,
+)
 
-export function useCollections(): CollectionsContextData {
-    const context = useContext(CollectionsContext)
-    if (!context) {
-        throw new Error("useCollections must be used within a CollectionsProvider")
-    }
-    return context
+export function useCollections(): CollectionsContextState {
+  const context = useContext(CollectionsContext)
+  if (!context) {
+    throw new Error("useCollections must be used within a CollectionsProvider")
+  }
+  return context
 }
 
 // Provider component
-export default function CollectionsProvider({ children }: { children: ReactNode }) {
-    const [collections, setCollections] = useStorageSyncedImmerState(
-        initialCollections,
-        "collectionsData"
-    )
+export default function CollectionsProvider({
+  children,
+}: {
+  children: ReactNode
+}) {
+  const [state, updater] = useStorageSyncedImmerState(
+    initialCollections,
+    "collectionsData",
+  )
 
-    return (
-        <CollectionsContext.Provider value={collections}>
-            {children}
-        </CollectionsContext.Provider>
+  useLogger("CollectionsProvider", [state])
+
+  return (
+    state && (
+      <CollectionsContext.Provider value={[state, updater]}>
+        {children}
+      </CollectionsContext.Provider>
     )
+  )
 }
