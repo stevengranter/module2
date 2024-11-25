@@ -4,6 +4,7 @@ import { useCollections } from "~/features/_shared/contexts/collections/Collecti
 import { Collection } from "~/features/_shared/contexts/nest/NestProvider.types.ts"
 import useNestActions from "~/features/_shared/hooks/useNestActions.ts"
 import { displayNotification } from "~/features/_shared/utils/displayNotification.ts"
+import { _ } from "lodash"
 
 export default function useCollectionActions() {
   const [state, update] = useCollections()
@@ -50,15 +51,12 @@ export default function useCollectionActions() {
   )
 
   const deleteCollection = useCallback(
+    // TODO: confirmation modal if collection still contains items
     (collectionId: number | string): void => {
       update((draft) => {
-        const beforeLength = state.length
-        draft = draft.filter(
-          (collection) => collection.id !== collectionId.toString(),
-        )
-        if (draft.length < beforeLength) {
-          displayNotification({ message: `Collection deleted successfully` })
-        }
+        _.remove(draft, function (collection: Collection) {
+          return collection.id === collectionId
+        })
       })
     },
     [update],
@@ -227,6 +225,7 @@ export default function useCollectionActions() {
     getCollectionsIncludingId,
     getCollectionNamesIncludingId,
     getIdsByCollectionId,
+    deleteCollection,
     getAllCollectionNames,
     addIdToCollection,
     removeIdFromCollection,
