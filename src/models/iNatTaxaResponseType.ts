@@ -4,10 +4,10 @@ export interface iNatTaxaResponseType {
   total_results: number;
   page: number;
   per_page: number;
-  results: Result[];
+  results: iNatTaxonRecord[];
 }
 
-export interface Result {
+export interface iNatTaxonRecord {
   id?: number;
   rank: string;
   rank_level: number;

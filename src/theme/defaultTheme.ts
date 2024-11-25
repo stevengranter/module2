@@ -1,6 +1,14 @@
-import { createTheme } from "@mantine/core";
+import { createTheme } from "@mantine/core"
 
 export const defaultTheme = createTheme({
+  breakpoints: {
+    xs: "30em",
+    sm: "48em",
+    md: "64em",
+    lg: "74em",
+    xl: "100em",
+    xxl: "135em",
+  },
   primaryColor: "teal",
   colors: {
     teal: [
@@ -28,4 +36,17 @@ export const defaultTheme = createTheme({
       "#09342d",
     ],
   },
-});
+  components: {
+    Container: {
+      defaultProps: {
+        sizes: {
+          xs: 540,
+          sm: 720,
+          md: 960,
+          lg: 1140,
+          xl: 1320,
+        },
+      },
+    },
+  },
+})

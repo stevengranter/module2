@@ -8,6 +8,7 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "baseUrl": "src",
+    "sourceMap": true,
     "paths": {
       "~/*": ["*"]
     },
@@ -23,7 +24,7 @@
 
     /* Linting */
     "strict": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },

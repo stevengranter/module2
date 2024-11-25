@@ -11,6 +11,7 @@ module.exports = {
   parser: "@typescript-eslint/parser",
   plugins: ["react-refresh", "perfectionist", "@html-eslint"],
   rules: {
+    semi: ["error", "never"],
     "react-refresh/only-export-components": [
       "warn",
       { allowConstantExport: true },
@@ -23,7 +24,7 @@ module.exports = {
         internalPattern: [
           "components/**",
           "models/**",
-          "lib/**",
+          "icons/**",
           "routes/**",
         ],
         groups: [
@@ -47,6 +48,19 @@ module.exports = {
         },
       },
     ],
+    "no-unused-vars": "warn",
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        args: "all",
+        argsIgnorePattern: "^_",
+        caughtErrors: "all",
+        caughtErrorsIgnorePattern: "^_",
+        destructuredArrayIgnorePattern: "^_",
+        varsIgnorePattern: "^_",
+        ignoreRestSiblings: true,
+      },
+    ],
   },
   overrides: [
     {
@@ -55,4 +69,4 @@ module.exports = {
       extends: ["plugin:@html-eslint/recommended"],
     },
   ],
-};
+}
