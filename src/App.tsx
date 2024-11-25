@@ -17,7 +17,7 @@ import { defaultTheme } from "theme/defaultTheme"
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      queryFn: fetchServerData,
+      queryFn: ({ queryKey }) => fetchServerData(queryKey),
     },
   },
 })
@@ -30,15 +30,15 @@ if (!rootElement.innerHTML) {
       <QueryClientProvider client={queryClient}>
         <NestProvider>
           <CollectionsProvider>
-          <ColorSchemeScript defaultColorScheme="light" />
-          <MantineProvider defaultColorScheme="light" theme={defaultTheme}>
-            <ModalsProvider />
-            <Notifications position="top-center" />
-            <RouterProvider router={router} />
-          </MantineProvider>
+            <ColorSchemeScript defaultColorScheme="light" />
+            <MantineProvider defaultColorScheme="light" theme={defaultTheme}>
+              <ModalsProvider />
+              <Notifications position="top-center" />
+              <RouterProvider router={router} />
+            </MantineProvider>
           </CollectionsProvider>
         </NestProvider>
       </QueryClientProvider>
-    </StrictMode>
+    </StrictMode>,
   )
 }

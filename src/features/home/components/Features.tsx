@@ -1,23 +1,20 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
 
 import {
   Title,
   SimpleGrid,
   Text,
-  Button,
   ThemeIcon,
   Grid,
-  rem,
   Image,
-  Container,
-} from "@mantine/core";
-import { IconBinoculars, IconUsers } from "@tabler/icons-react";
-import { IconLayout } from "~/features/_shared/icons/icons.tsx";
-import ToggleGuestSessionButton from "~/features/guest-session/components/ToggleGuestSessionButton.tsx";
+  rem,
+} from "@mantine/core"
+import { IconBinoculars } from "@tabler/icons-react"
+import { IconLayout } from "~/features/_shared/icons/icons.tsx"
 
-import nestImage from "/assets/images/ui/nest-main-01.png";
-import searchImage from "/assets/images/ui/search-main-01.png";
-import logo from "/images/logo2.png";
+import nestImage from "/assets/images/ui/nest-main-01.png"
+import searchImage from "/assets/images/ui/search-main-01.png"
+import logo from "/images/logo2.png"
 
 const features = [
   {
@@ -34,7 +31,7 @@ const features = [
     description: "Search description",
     path: "/search",
   },
-];
+]
 
 export default function Features() {
   const items = features.map((feature) => (
@@ -60,7 +57,7 @@ export default function Features() {
         {feature.description}
       </Text>
     </div>
-  ));
+  ))
 
   return (
     <Grid m={0}>
@@ -81,5 +78,5 @@ export default function Features() {
         </SimpleGrid>
       </Grid.Col>
     </Grid>
-  );
+  )
 }

@@ -10,9 +10,9 @@ export default function CardCollection({
   collectionId,
   description,
 }: {
-  itemIdArray: string[] | null
-  collectionId: string | null
-  description: string | null
+  itemIdArray: string[]
+  collectionId?: string | null
+  description?: string | null
 }) {
   if (!itemIdArray) return "Collection doesn't exist"
   if (itemIdArray.length === 0)

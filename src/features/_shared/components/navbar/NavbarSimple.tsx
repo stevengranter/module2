@@ -1,16 +1,12 @@
-import { useContext, useState } from "react"
+import { useState } from "react"
 import { Link } from "react-router-dom"
 
-import { RoleContext } from "~/features/_shared/contexts/RoleContextProvider.tsx"
-import StartEndGuestSessionButton from "~/features/guest-session/components/ToggleGuestSessionButton.tsx"
-import LoginLogoutButton from "~/features/local-user/components/LoginLogoutButton.tsx"
-
-import { publicLinks, userLinks } from "./NavbarLinks.ts"
+import { publicLinks } from "./NavbarLinks.ts"
 import classes from "./NavbarSimple.module.css"
 
 type NavBarParams = {
-  onClick: () => void;
-};
+  onClick: () => void
+}
 
 export function NavbarSimple({ onClick }: NavBarParams) {
   const [active, setActive] = useState("")
@@ -36,25 +32,6 @@ export function NavbarSimple({ onClick }: NavBarParams) {
   return (
     <nav className={classes.navbar}>
       <div className={classes.navbarMain}>{links}</div>
-      <NavbarUserFooter />
     </nav>
-  )
-}
-
-function NavbarUserFooter() {
-  // const { user } = useContext(RoleContext);
-  return (
-    <div className={classes.footer}>
-      {userLinks.map((userLink) => {
-        return (
-          <Link className={classes.link} to={userLink.to} key={userLink.label}>
-            <userLink.icon className={classes.linkIcon} stroke={1.5} />
-            <span>{userLink.label}</span>
-          </Link>
-        )
-      })}
-
-      {/*<StartEndGuestSessionButton />*/}
-    </div>
   )
 }

@@ -48,7 +48,7 @@ module.exports = {
         },
       },
     ],
-    "no-unused-vars": "off",
+    "no-unused-vars": "warn",
     "@typescript-eslint/no-unused-vars": [
       "warn",
       {
@@ -69,4 +69,4 @@ module.exports = {
       extends: ["plugin:@html-eslint/recommended"],
     },
   ],
-};
+}

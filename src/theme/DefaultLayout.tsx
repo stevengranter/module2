@@ -1,28 +1,16 @@
-import { Link, Outlet, ScrollRestoration } from "react-router-dom";
+import { Link, Outlet, ScrollRestoration } from "react-router-dom"
 
-import {
-  AppShell,
-  Burger,
-  Group,
-  Image,
-  rgba,
-  useMantineTheme,
-  Text,
-  Stack,
-  Container,
-} from "@mantine/core";
-import { useDisclosure, useHeadroom } from "@mantine/hooks";
-import { NavbarSimple } from "~/features/_shared/components/navbar/NavbarSimple.tsx";
+import { AppShell, Burger, Group, Image, rgba, Container } from "@mantine/core"
+import { useDisclosure, useHeadroom } from "@mantine/hooks"
+import { NavbarSimple } from "~/features/_shared/components/navbar/NavbarSimple.tsx"
 
-import nestImage from "/assets/images/ui/nest-main-01.png";
-import searchImage from "/assets/images/ui/search-main-01.png";
-import logo from "/images/logo2.png";
+import logo from "/images/logo2.png"
 
 export default function DefaultLayout() {
   // const { user } = useContext(RoleContext);
-  const theme = useMantineTheme();
-  const [opened, { toggle }] = useDisclosure();
-  const pinned = useHeadroom({ fixedAt: 150 });
+  // const theme = useMantineTheme()
+  const [opened, { toggle }] = useDisclosure()
+  const pinned = useHeadroom({ fixedAt: 150 })
 
   // useEffect(() => {
   //   console.log(user);
@@ -109,5 +97,5 @@ export default function DefaultLayout() {
         style={{ position: "relative" }}
       ></AppShell.Footer>
     </AppShell>
-  );
+  )
 }

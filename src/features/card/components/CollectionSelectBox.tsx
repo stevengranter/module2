@@ -1,4 +1,4 @@
-import { ComboboxData, ComboboxItem, Select } from "@mantine/core"
+import { ComboboxData, Select } from "@mantine/core"
 
 export default function CollectionSelectBox({
   data,
@@ -7,7 +7,7 @@ export default function CollectionSelectBox({
 }: {
   data: ComboboxData
   value: string | null | undefined
-  handleSelectFn: (option: string) => void
+  handleSelectFn: (selectedValue: string) => void
 }) {
   return (
     data &&
@@ -17,7 +17,7 @@ export default function CollectionSelectBox({
         placeholder="Pick value"
         data={data}
         value={value}
-        onChange={(_value, option) => handleSelectFn(option.value)}
+        onChange={(_, option) => handleSelectFn(option.value)}
       />
     )
   )

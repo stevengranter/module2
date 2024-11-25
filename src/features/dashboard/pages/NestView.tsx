@@ -24,10 +24,10 @@ export default function NestView() {
 
   //
   const [dropdownDataArray, setDropdownDataArray] = useState<
-    { value: string; label: string }[] | []
-  >()
+    { value: string; label: string }[]
+  >([])
   const [itemIdsArray, setItemIdsArray] = useState<string[]>([])
-  const [collectionIdsArray, setCollectionIdsArray] = useState<string[]>([])
+  // const [collectionIdsArray, setCollectionIdsArray] = useState<string[]>([])
   const [collectionDescription, setCollectionDescription] = useState<
     string | null
   >(null)
@@ -37,10 +37,9 @@ export default function NestView() {
 
   function formatDropdownData(collectionsArray: Collection[]) {
     if (!collectionsArray) return
-    const dropDownData = collectionsArray.map((collection) => {
+    return collectionsArray.map((collection) => {
       return { value: collection.id, label: collection.name }
     })
-    return dropDownData
   }
 
   useLogger("NestView", [
@@ -65,7 +64,7 @@ export default function NestView() {
       return // setDropdownDataArray([{ value: "2", label: "group" }])
     } else {
       const formattedData = formatDropdownData(collectionsState)
-      setDropdownDataArray(formattedData)
+      formattedData && setDropdownDataArray(formattedData)
     }
   }, [collectionsState.length])
 

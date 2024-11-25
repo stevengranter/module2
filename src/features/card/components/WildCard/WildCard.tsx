@@ -10,12 +10,10 @@ import {
   Skeleton,
   Text,
 } from "@mantine/core"
-import { useLogger } from "@mantine/hooks"
 import { useQuery } from "@tanstack/react-query"
 import { API_SERVER } from "~/features/api/constants.ts"
 import FoundItButton from "~/features/card/components/FoundItButton.tsx"
 import ToggleFavoriteButton from "~/features/card/components/ToggleFavoriteButton.tsx"
-// import ToggleFavoriteButton from "~/features/card/components/ToggleFavoriteButton.tsx"
 import {
   iNatTaxaResponseType,
   iNatTaxonRecord,
@@ -23,12 +21,12 @@ import {
 import { WilderKindCardType } from "~/models/WilderKindCardType.ts"
 
 type Props = {
-  taxonId?: number
+  taxonId?: number | string
   dataObject?: iNatTaxonRecord | undefined
 }
 
 export function WildCard({ taxonId, dataObject }: Props) {
-  const [cardId, setCardId] = useState<number | undefined>(taxonId)
+  const [cardId, setCardId] = useState(taxonId)
   const [iNatData, setINatData] = useState(dataObject)
   const [isFlipped, setIsFlipped] = useState(false)
   const [wilderNestData, setWilderNestData] =

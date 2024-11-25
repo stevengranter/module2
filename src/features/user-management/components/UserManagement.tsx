@@ -1,29 +1,27 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 
-import { Table, Title } from "@mantine/core";
-import { createColumnHelper, useReactTable } from "@tanstack/react-table";
-import { JSON_SERVER_URL } from "~/features/api/constants.ts";
-import { UserType } from "~/models/UserType.ts";
-import { create } from "axios";
+import { Table, Title } from "@mantine/core"
+import { JSON_SERVER_URL } from "~/features/api/constants.ts"
+import { UserType } from "~/models/UserType.ts"
 
 export default function UserManagement() {
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState(null)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${JSON_SERVER_URL}/users`);
-        return await response.json();
+        const response = await fetch(`${JSON_SERVER_URL}/users`)
+        return await response.json()
       } catch (error) {
-        console.error("Error fetching user data:", error);
+        console.error("Error fetching user data:", error)
       }
-    };
-    fetchData().then((res) => setUserData(res));
-  }, []);
+    }
+    fetchData().then((res) => setUserData(res))
+  }, [])
 
   useEffect(() => {
-    console.log(userData);
-  }, [userData]);
+    console.log(userData)
+  }, [userData])
 
   return (
     userData && (
@@ -32,10 +30,10 @@ export default function UserManagement() {
         <UserTable userData={userData} />
       </>
     )
-  );
+  )
 }
 
-function UserTable({ userData }) {
+function UserTable({ userData }: { userData: UserType[] }) {
   // refactor: Migrate to mantine-datatable
   return (
     <Table.ScrollContainer minWidth={500}>
@@ -64,5 +62,5 @@ function UserTable({ userData }) {
         </Table.Tbody>
       </Table>
     </Table.ScrollContainer>
-  );
+  )
 }

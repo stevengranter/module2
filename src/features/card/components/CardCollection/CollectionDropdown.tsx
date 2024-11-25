@@ -10,15 +10,12 @@ import {
 } from "@mantine/core"
 import { useLogger } from "@mantine/hooks"
 import { useCollections } from "~/features/_shared/contexts/collections/CollectionsProvider.tsx"
-import { NestProviderState } from "~/features/_shared/contexts/nest/NestProvider.types.ts"
-import useNest from "~/features/_shared/contexts/nest/useNest.ts"
 import useCollectionActions from "~/features/_shared/hooks/useCollectionActions.ts"
-import useNestActions from "~/features/_shared/hooks/useNestActions.ts"
 
 type CollectionDropdownProps = {
   userCollections?: string[]
   collectionsIncludingTaxonId?: string[]
-  taxonId: string
+  taxonId: string | number
 }
 
 export function CollectionDropdown({
@@ -40,12 +37,6 @@ export function CollectionDropdown({
   )
 
   useLogger("CollectionDropdown", [selection])
-  //
-  // useEffect(() => {
-  //   const collectionNames = collectionAction.getAllCollectionNames()
-  //   console.log({ collectionNames })
-  //   setAllCollections(collectionNames)
-  // }, [collections])
 
   useEffect(() => {
     const collectionsIncludingTaxonId =
@@ -53,7 +44,7 @@ export function CollectionDropdown({
     collectionsIncludingTaxonId
       ? setSelection(collectionsIncludingTaxonId)
       : null
-  }, [collections, taxonId])
+  }, [collectionAction, collections, taxonId])
 
   const exactOptionMatch = collectionAction
     .getAllCollectionNames()

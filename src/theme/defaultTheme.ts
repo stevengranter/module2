@@ -1,4 +1,4 @@
-import { createTheme } from "@mantine/core";
+import { createTheme } from "@mantine/core"
 
 export const defaultTheme = createTheme({
   breakpoints: {
@@ -49,4 +49,4 @@ export const defaultTheme = createTheme({
       },
     },
   },
-});
+})
