@@ -17,16 +17,6 @@ export default function ToggleFavoriteButton({ id }: { id: string | number }) {
   const [isFavorite, setIsFavorite] = useState<boolean>(false)
 
   function handleClick(id: string | number) {
-    const hasFavoritesCollection = collectionAction
-      .getAllCollectionNames()
-      .includes("Favorites")
-    console.log({ hasFavoritesCollection })
-    // if Favorites doesn't exist, create it
-    if (!collectionAction.getAllCollectionNames().includes("Favorites")) {
-      collectionAction.createCollection("Favorites")
-    }
-    // add/remove id from Favorites depending on if it already in Favorites
-    // group
     if (collectionAction.isItemInCollection(id, "Favorites")) {
       collectionAction.removeIdFromCollection(id, "Favorites")
       setIsFavorite(false)
@@ -42,11 +32,6 @@ export default function ToggleFavoriteButton({ id }: { id: string | number }) {
       console.log("No collections found")
     } else {
       if (collectionAction.getAllCollectionNames().includes("Favorites")) {
-        setIsFavorite(
-          collectionAction.isItemInCollection(id.toString(), "Favorites"),
-        )
-      } else {
-        collectionAction.createCollection("Favorites")
         setIsFavorite(
           collectionAction.isItemInCollection(id.toString(), "Favorites"),
         )

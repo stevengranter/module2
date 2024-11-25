@@ -5,6 +5,7 @@ import { useLogger } from "@mantine/hooks"
 import { useCollections } from "~/features/_shared/contexts/collections/CollectionsProvider.tsx"
 import { Collection } from "~/features/_shared/contexts/nest/NestProvider.types.ts"
 import useNest from "~/features/_shared/contexts/nest/useNest.ts"
+import useCollectionActions from "~/features/_shared/hooks/useCollectionActions.ts"
 import useNestActions from "~/features/_shared/hooks/useNestActions.ts"
 import CardCollection from "~/features/card/components/CardCollection/CardCollection.tsx"
 import CollectionSelectBox from "~/features/card/components/CollectionSelectBox.tsx"
@@ -51,7 +52,7 @@ export default function NestView() {
       const formattedData = formatDropdownData(collectionsState)
       setDropdownDataArray(formattedData)
     }
-  }, [collectionsState])
+  }, [collectionsState.length])
 
   useEffect(() => {
     if (!selectedCollectionId) return
@@ -76,6 +77,7 @@ export default function NestView() {
 
   return collectionsState && collectionsState.length > 0 ? (
     <>
+      <FavoritesInitializer />
       <CollectionSelectBox
         data={dropdownDataArray}
         value={selectedCollectionId}
@@ -96,4 +98,16 @@ export default function NestView() {
       />
     </>
   )
+}
+
+function FavoritesInitializer() {
+  const collectionAction = useCollectionActions()
+
+  useEffect(() => {
+    if (!collectionAction.getAllCollectionNames().includes("Favorites")) {
+      collectionAction.createCollection("Favorites")
+    }
+  }, [collectionAction])
+
+  return null // This component doesn't render anything
 }

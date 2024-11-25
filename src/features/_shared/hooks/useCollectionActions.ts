@@ -21,11 +21,10 @@ export default function useCollectionActions() {
   const createCollection = useCallback(
     (collectionName: string): void => {
       if (getAllCollectionNames().includes(collectionName)) {
-        displayNotification({
+        return displayNotification({
           message: `Collection ${collectionName} already exists`,
           color: "orange",
         })
-        return
       } else {
         if (collectionName.length === 0) {
           displayNotification({
@@ -33,18 +32,18 @@ export default function useCollectionActions() {
             color: "orange",
           })
           return
+        } else {
+          update((draft) => {
+            draft.push({
+              name: collectionName,
+              id: crypto.randomUUID(),
+              items: [],
+            })
+            displayNotification({
+              message: `Collection ${collectionName} created`,
+            })
+          })
         }
-
-        update((draft) => {
-          draft.push({
-            name: collectionName,
-            id: crypto.randomUUID(),
-            items: [],
-          })
-          displayNotification({
-            message: `Collection ${collectionName} created`,
-          })
-        })
       }
     },
     [hasCollection, update],
