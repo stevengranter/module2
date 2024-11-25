@@ -20,32 +20,32 @@ export default function useCollectionActions() {
 
   const createCollection = useCallback(
     (collectionName: string): void => {
-      if (hasCollection(collectionName)) {
+      if (getAllCollectionNames().includes(collectionName)) {
         displayNotification({
           message: `Collection ${collectionName} already exists`,
           color: "orange",
         })
         return
-      }
+      } else {
+        if (collectionName.length === 0) {
+          displayNotification({
+            message: `Collection name must be at least 1 character in length`,
+            color: "orange",
+          })
+          return
+        }
 
-      if (collectionName.length === 0) {
-        displayNotification({
-          message: `Collection name must be at least 1 character in length`,
-          color: "orange",
+        update((draft) => {
+          draft.push({
+            name: collectionName,
+            id: crypto.randomUUID(),
+            items: [],
+          })
+          displayNotification({
+            message: `Collection ${collectionName} created`,
+          })
         })
-        return
       }
-
-      update((draft) => {
-        draft.push({
-          name: collectionName,
-          id: crypto.randomUUID(),
-          items: [],
-        })
-        displayNotification({
-          message: `Collection ${collectionName} created`,
-        })
-      })
     },
     [hasCollection, update],
   )

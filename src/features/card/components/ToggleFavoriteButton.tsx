@@ -52,7 +52,7 @@ export default function ToggleFavoriteButton({ id }: { id: string | number }) {
         )
       }
     }
-  }, [collections, id])
+  }, [collections])
 
   return (
     <ActionIcon
