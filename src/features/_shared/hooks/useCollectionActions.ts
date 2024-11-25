@@ -175,7 +175,10 @@ export default function useCollectionActions() {
       const namedCollection = state.find(
         (collection) => collection.name === name,
       )
-      return namedCollection?.items.includes(id.toString()) ?? false
+
+      const isInCollection = !!namedCollection?.items.includes(id.toString())
+      console.log(`id:${id} is in collection: ${isInCollection}}`)
+      return isInCollection
     },
     [hasCollection, state],
   )
@@ -224,10 +227,12 @@ export default function useCollectionActions() {
     createCollection,
     getCollectionsIncludingId,
     getCollectionNamesIncludingId,
+    getCollectionIdByName,
     getIdsByCollectionId,
     deleteCollection,
     getAllCollectionNames,
     addIdToCollection,
     removeIdFromCollection,
+    isItemInCollection,
   }
 }

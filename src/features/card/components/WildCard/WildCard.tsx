@@ -14,6 +14,7 @@ import { useLogger } from "@mantine/hooks"
 import { useQuery } from "@tanstack/react-query"
 import { API_SERVER } from "~/features/api/constants.ts"
 import FoundItButton from "~/features/card/components/FoundItButton.tsx"
+import ToggleFavoriteButton from "~/features/card/components/ToggleFavoriteButton.tsx"
 // import ToggleFavoriteButton from "~/features/card/components/ToggleFavoriteButton.tsx"
 import {
   iNatTaxaResponseType,
@@ -106,7 +107,7 @@ function WildCard_Front({
       <Card.Section>
         <Group justify="space-between">
           <Text fz="lg">{iNatdata.preferred_common_name}</Text>
-          {/*{iNatdata.id && <ToggleFavoriteButton id={iNatdata.id?.toString()} />}*/}
+          {iNatdata.id && <ToggleFavoriteButton id={iNatdata.id?.toString()} />}
         </Group>
       </Card.Section>
 
@@ -149,7 +150,7 @@ function WildCard_Back({
       <Card.Section>
         <Group justify="space-between">
           <Text fz="lg">{iNatdata.preferred_common_name}</Text>
-          {/*{iNatdata.id && <ToggleFavoriteButton id={iNatdata.id.toString()} />}*/}
+          {iNatdata.id && <ToggleFavoriteButton id={iNatdata.id.toString()} />}
         </Group>
       </Card.Section>
 
