@@ -1,23 +1,23 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect } from "react"
 
-import { Title } from "@mantine/core";
-import { NestContext } from "~/features/_shared/contexts/nest/NestProvider.tsx";
-import CardCollection from "~/features/card/components/CardCollection/CardCollection.tsx";
-import useGuest from "~/features/guest-session/hooks/useGuest.ts";
+import { Title } from "@mantine/core"
+import { NestContext } from "~/features/_shared/contexts/nest/NestProvider.tsx"
+import CardCollection from "~/features/card/components/CardCollection/CardCollection.tsx"
+import useGuest from "~/features/guest-session/hooks/useGuest.ts"
 
 export default function Collections() {
-  const { isGuest } = useGuest();
-  const { collections } = useContext(NestContext);
+  const { isGuest } = useGuest()
+  const { collections } = useContext(NestContext)
 
   useEffect(() => {
-    console.log("components.useEffect()");
-    console.log({ isGuest });
-  }, [isGuest]);
+    console.log("components.useEffect()")
+    console.log({ isGuest })
+  }, [isGuest])
 
   if (isGuest && collections.get().length === 0) {
     return (
       <p>No collections yet, add creatures in search to add to collections.</p>
-    );
+    )
   }
 
   return (
@@ -40,12 +40,12 @@ export default function Collections() {
                   "No items in collection. Add some items"
                 )}
               </>
-            );
+            )
           })
         ) : (
           <p>Add a collection</p>
         )
       ) : null}
     </>
-  );
+  )
 }

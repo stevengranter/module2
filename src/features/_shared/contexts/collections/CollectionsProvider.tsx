@@ -11,6 +11,9 @@ const initialCollections: Collection[] = [
     name: "Starter Pack",
     id: crypto.randomUUID(),
     items: ["48586", "48987", "81545"],
+    description:
+      "This is your starter pack. Add them to your favorites by" +
+      " clicking the heart icon. Add more animals by using Search.",
   },
   { name: "Favorites", id: crypto.randomUUID(), items: [] },
 ]
