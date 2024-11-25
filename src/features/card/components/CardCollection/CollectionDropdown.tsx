@@ -8,6 +8,7 @@ import {
   PillsInput,
   useCombobox,
 } from "@mantine/core"
+import { useLogger } from "@mantine/hooks"
 import { useCollections } from "~/features/_shared/contexts/collections/CollectionsProvider.tsx"
 import { NestProviderState } from "~/features/_shared/contexts/nest/NestProvider.types.ts"
 import useNest from "~/features/_shared/contexts/nest/useNest.ts"
@@ -40,6 +41,8 @@ export function CollectionDropdown({
     collectionsIncludingTaxonId || [],
   )
 
+  useLogger("CollectionDropdown", [selection])
+
   useEffect(() => {
     const collectionNames = collectionAction.getAllCollectionNames()
     console.log({ collectionNames })
@@ -63,7 +66,7 @@ export function CollectionDropdown({
     if (val === "$create") {
       setAllCollections((current) => [...current, search])
       setSelection((current) => [...current, search])
-      console.log(search)
+      // console.log(search)
       collectionAction.addIdToCollection(taxonId, search)
     } else {
       setSelection((current) =>
@@ -71,8 +74,8 @@ export function CollectionDropdown({
           ? current.filter((v) => v !== val)
           : [...current, val],
       )
-      console.log(`taxonID: ${taxonId}`)
-      console.log(`val:`, val)
+      // console.log(`taxonID: ${taxonId}`)
+      // console.log(`val:`, val)
       collectionAction.addIdToCollection(taxonId, val)
     }
   }

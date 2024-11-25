@@ -188,9 +188,9 @@ export default function useCollectionActions() {
         collection.items.includes(id.toString()),
       )
       if (matchingCollections.length === 0) {
-        displayNotification({
-          message: `Id: ${id} cannot be found in any collection`,
-        })
+        // displayNotification({
+        //   message: `Id: ${id} cannot be found in any collection`,
+        // })
         return null
       }
       return matchingCollections

@@ -65,7 +65,7 @@ export default function NestView() {
     if (!selectedCollection) return
     setItemIdsArray(selectedCollection.items)
     console.log("selectedCollectionId has changed")
-  }, [selectedCollectionId])
+  }, [selectedCollectionId, collectionsState])
 
   // TODO: Fix for choosing current option (errors with null value)
   function handleSelect(selectedValue: string) {
