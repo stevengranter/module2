@@ -22,7 +22,6 @@ type CollectionDropdownProps = {
 }
 
 export function CollectionDropdown({
-  userCollections,
   collectionsIncludingTaxonId,
   taxonId,
 }: CollectionDropdownProps) {
@@ -36,18 +35,18 @@ export function CollectionDropdown({
   // const nestAction = useNestActions()
 
   const [search, setSearch] = useState("")
-  const [allCollections, setAllCollections] = useState(userCollections || [])
+  // const [allCollections, setAllCollections] = useState(userCollections || [])
   const [selection, setSelection] = useState<string[]>(
     collectionsIncludingTaxonId || [],
   )
 
   useLogger("CollectionDropdown", [selection])
-
-  useEffect(() => {
-    const collectionNames = collectionAction.getAllCollectionNames()
-    console.log({ collectionNames })
-    setAllCollections(collectionNames)
-  }, [collections])
+  //
+  // useEffect(() => {
+  //   const collectionNames = collectionAction.getAllCollectionNames()
+  //   console.log({ collectionNames })
+  //   setAllCollections(collectionNames)
+  // }, [collections])
 
   useEffect(() => {
     const collectionsIncludingTaxonId =
@@ -57,14 +56,16 @@ export function CollectionDropdown({
       : null
   }, [collections, taxonId])
 
-  const exactOptionMatch = allCollections.some((item) => item === search)
+  const exactOptionMatch = collectionAction
+    .getAllCollectionNames()
+    .some((item) => item === search)
 
   const handleValueSelect = (val: string) => {
     console.log(`handleValueSelect(${val})`)
     setSearch("")
 
     if (val === "$create") {
-      setAllCollections((current) => [...current, search])
+      collectionAction.getAllCollectionNames()
       setSelection((current) => [...current, search])
       // console.log(search)
       collectionAction.addIdToCollection(taxonId, search)
@@ -92,7 +93,8 @@ export function CollectionDropdown({
     </Pill>
   ))
 
-  const options = allCollections
+  const options = collectionAction
+    .getAllCollectionNames()
     .filter((item) =>
       item.toString().toLowerCase().includes(search.trim().toLowerCase()),
     )

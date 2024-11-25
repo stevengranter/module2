@@ -29,8 +29,10 @@ export default function ToggleFavoriteButton({ id }: { id: string | number }) {
     // group
     if (collectionAction.isItemInCollection(id, "Favorites")) {
       collectionAction.removeIdFromCollection(id, "Favorites")
+      setIsFavorite(false)
     } else {
       collectionAction.addIdToCollection(id, "Favorites")
+      setIsFavorite(true)
     }
     setIsFavorite(collectionAction.isItemInCollection(id, "Favorites"))
   }
@@ -50,7 +52,7 @@ export default function ToggleFavoriteButton({ id }: { id: string | number }) {
         )
       }
     }
-  }, [])
+  }, [collections, id])
 
   return (
     <ActionIcon
