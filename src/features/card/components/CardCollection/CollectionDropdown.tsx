@@ -29,7 +29,6 @@ export function CollectionDropdown({
     onDropdownClose: () => combobox.resetSelectedOption(),
     onDropdownOpen: () => combobox.updateSelectedOptionIndex("active"),
   })
-
   const collections = useCollections()
   const collectionAction = useCollectionActions()
   // const nestAction = useNestActions()
@@ -77,7 +76,9 @@ export function CollectionDropdown({
       )
       // console.log(`taxonID: ${taxonId}`)
       // console.log(`val:`, val)
-      collectionAction.addIdToCollection(taxonId, val)
+      !collectionAction.isItemInCollection(taxonId, val)
+        ? collectionAction.addIdToCollection(taxonId, val)
+        : collectionAction.removeIdFromCollection(taxonId, val)
     }
   }
 
