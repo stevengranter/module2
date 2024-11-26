@@ -1,31 +1,37 @@
 import { useEffect } from "react"
 
 import { useLocalStorage } from "@mantine/hooks"
-import { useImmer } from "use-immer"
+import { ImmerHook, useImmer } from "use-immer"
 
-function getLocalStorageObject(localStorageKey: string) {
+function getLocalStorageObject<T>(localStorageKey: string): T | null {
   const localStorageObject = localStorage.getItem(localStorageKey)
   if (!localStorageObject) return null
-  return JSON.parse(localStorageObject)
+  try {
+    return JSON.parse(localStorageObject) as T
+  } catch (error) {
+    console.error(`Error parsing localStorage key "${localStorageKey}":`, error)
+    return null
+  }
 }
 
-export default function useLocalSyncedImmerState(
-  defaultState = {},
-  localStorageKey = "localData",
-) {
-  let initialState
-  initialState = getLocalStorageObject(localStorageKey)
-  if (!initialState || initialState.length === 0) {
-    initialState = defaultState
-  }
+export default function useLocalSyncedImmerState<T>(
+  defaultState: T,
+  localStorageKey: string = "localData",
+): ImmerHook<T> {
+  // Retrieve the initial state from localStorage or use the default state
+  const storedState = getLocalStorageObject<T>(localStorageKey)
+  const initialState: T = storedState !== null ? storedState : defaultState
 
-  const [localStorageState, setLocalStorageState] = useLocalStorage({
+  // Initialize local storage state with the type T
+  const [localStorageState, setLocalStorageState] = useLocalStorage<T>({
     key: localStorageKey,
     defaultValue: initialState,
   })
 
-  const [state, updater] = useImmer(localStorageState)
+  // Initialize Immer state
+  const [state, updater] = useImmer<T>(localStorageState)
 
+  // Sync state changes to localStorage
   useEffect(() => {
     setLocalStorageState(state)
   }, [state, setLocalStorageState])

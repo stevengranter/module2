@@ -1,10 +1,10 @@
 // CollectionsContext.tsx
-import React, { createContext, ReactNode, useContext } from "react"
+import React, { createContext, ReactElement, ReactNode } from "react"
 
 import { useLogger } from "@mantine/hooks"
 import { Collection } from "~/features/_shared/contexts/nest/NestProvider.types.ts"
 import useStorageSyncedImmerState from "~/features/_shared/hooks/useLocalSyncedImmerState.ts"
-import { Draft } from "immer"
+import { Updater } from "use-immer"
 
 const initialCollections: Collection[] = [
   {
@@ -18,29 +18,18 @@ const initialCollections: Collection[] = [
   { name: "Favorites", id: crypto.randomUUID(), items: [] },
 ]
 
-type CollectionsContextState = [
-  Collection[],
-  (draft: (draft: Draft<Collection[]>) => void) => void,
-]
+type CollectionsContextState = [Collection[], Updater<Collection[]>]
 
-const CollectionsContext = createContext<CollectionsContextState | undefined>(
-  undefined,
+export const CollectionsContext = createContext<CollectionsContextState | null>(
+  null,
 )
-
-export function useCollections(): CollectionsContextState {
-  const context = useContext(CollectionsContext)
-  if (!context) {
-    throw new Error("useCollections must be used within a CollectionsProvider")
-  }
-  return context
-}
 
 // Provider component
 export default function CollectionsProvider({
   children,
 }: {
   children: ReactNode
-}) {
+}): ReactElement {
   const [state, updater] = useStorageSyncedImmerState(
     initialCollections,
     "collectionsData",
@@ -48,11 +37,11 @@ export default function CollectionsProvider({
 
   useLogger("CollectionsProvider", [state])
 
-  return (
-    state && (
-      <CollectionsContext.Provider value={[state, updater]}>
-        {children}
-      </CollectionsContext.Provider>
-    )
-  )
+  return (state && (
+    <CollectionsContext.Provider
+      value={[state as Collection[], updater as Updater<Collection[]>]}
+    >
+      {children}
+    </CollectionsContext.Provider>
+  )) as ReactElement
 }

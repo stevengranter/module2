@@ -9,7 +9,6 @@ interface FoundItButtonProps extends ButtonProps {
 
 export default function FoundItButton({ id, ...props }: FoundItButtonProps) {
   const [opened, setOpened] = useState(false)
-  // const { collections } = useNest();
 
   return (
     <>
