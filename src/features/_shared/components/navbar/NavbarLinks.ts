@@ -11,6 +11,3 @@ export const publicLinks = [
   { icon: IconLayout, label: "myNest", to: "/dashboard" },
   { icon: IconBinoculars, label: "Search", to: "/search" },
 ]
-export const userLinks = [
-  // { icon: IconLayout, label: "components", to: "/dashboard" },
-]

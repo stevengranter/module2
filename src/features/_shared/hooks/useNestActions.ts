@@ -2,21 +2,11 @@
 import { useCallback } from "react"
 
 import { useLogger } from "@mantine/hooks"
-import { useCollections } from "~/features/_shared/contexts/collections/CollectionsProvider.tsx"
-import { Collection } from "~/features/_shared/contexts/nest/NestProvider.types.ts"
 import useNest from "~/features/_shared/contexts/nest/useNest.ts"
-import useStorageSyncedImmerState from "~/features/_shared/hooks/useLocalSyncedImmerState.ts"
 import { displayNotification } from "~/features/_shared/utils/displayNotification.ts"
-
-// 🗣️---- Type Definition ----
-type StorageSyncedState = {
-  nest: string[]
-  collections: Collection[]
-}
 
 export default function useNestActions() {
   const [state, update] = useNest()
-  const collections = useCollections()
 
   useLogger("useNestActions", [state])
 

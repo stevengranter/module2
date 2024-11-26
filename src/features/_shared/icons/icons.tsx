@@ -1,4 +1,5 @@
 // SVG from tabler.io/icons
+// noinspection JSUnusedGlobalSymbols
 
 function IconX() {
   return (

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 
 import { Text } from "@mantine/core"
 import { useLogger } from "@mantine/hooks"
-import { useCollections } from "~/features/_shared/contexts/collections/CollectionsProvider.tsx"
+import { useCollections } from "~/features/_shared/contexts/collections/useCollections.ts"
 import { Collection } from "~/features/_shared/contexts/nest/NestProvider.types.ts"
 import useNest from "~/features/_shared/contexts/nest/useNest.ts"
 import useCollectionActions from "~/features/_shared/hooks/useCollectionActions.ts"

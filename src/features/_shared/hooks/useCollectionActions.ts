@@ -1,4 +1,4 @@
-import { useCollections } from "~/features/_shared/contexts/collections/CollectionsProvider.tsx"
+import { useCollections } from "~/features/_shared/contexts/collections/useCollections.ts"
 import { Collection } from "~/features/_shared/contexts/nest/NestProvider.types.ts"
 import useNestActions from "~/features/_shared/hooks/useNestActions.ts"
 import { displayNotification } from "~/features/_shared/utils/displayNotification.ts"
@@ -158,7 +158,7 @@ export default function useCollectionActions() {
     )
     if (matchingCollections.length === 0) {
       // displayNotification({
-      //   message: `Id: ${id} cannot be found in any collection`,
+      //   message: `id: ${id} cannot be found in any collection`,
       // })
       return null
     }
@@ -177,18 +177,17 @@ export default function useCollectionActions() {
     return collectionNames
   }
 
-  function getIdsByCollectionId(name: string): string[] {
-    const collection = state.find((collection) => collection.name === name)
-    if (!collection || !collection.items) return []
-    return collection.items
-  }
+  // noinspection JSUnusedLocalSymbols
+  // function getIdsByCollectionId(name: string): string[] {
+  //   const collection = state.find((collection) => collection.name === name)
+  //   if (!collection || !collection.items) return []
+  //   return collection.items
+  // }
 
   return {
     createCollection,
-    getCollectionsIncludingId,
     getCollectionNamesIncludingId,
     getCollectionIdByName,
-    getIdsByCollectionId,
     deleteCollection,
     getAllCollectionNames,
     addIdToCollection,

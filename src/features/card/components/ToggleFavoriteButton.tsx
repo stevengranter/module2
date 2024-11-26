@@ -1,14 +1,9 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
 
 import { ActionIcon } from "@mantine/core"
-import { modals } from "@mantine/modals"
-import { useCollections } from "~/features/_shared/contexts/collections/CollectionsProvider.tsx"
-import useNest from "~/features/_shared/contexts/nest/useNest.ts"
+import { useCollections } from "~/features/_shared/contexts/collections/useCollections.ts"
 import useCollectionActions from "~/features/_shared/hooks/useCollectionActions.ts"
-import useNestActions from "~/features/_shared/hooks/useNestActions.ts"
 import { IconHeart, IconHeartFilled } from "~/features/_shared/icons/icons.tsx"
-import { displayNotification } from "~/features/_shared/utils/displayNotification.ts"
 
 export default function ToggleFavoriteButton({ id }: { id: string | number }) {
   const collectionAction = useCollectionActions()
