@@ -18,6 +18,7 @@ import { iNatTaxaResponseType } from "~/models/iNatTaxaResponseType.ts"
 
 const defaultQueryParams = {
   per_page: "6",
+  rank: "species, subspecies",
 }
 
 type FormValues = {
@@ -66,6 +67,7 @@ export default function SearchPage() {
     setSearchParams((prev) => {
       prev.set("per_page", params.per_page)
       if (params.q) prev.set("q", params.q)
+      if (params.rank) prev.set("rank", params.rank)
       return prev
     })
   }
