@@ -4,7 +4,7 @@ import { AppShell, Burger, Group, Image, rgba, Container } from "@mantine/core"
 import { useDisclosure, useHeadroom } from "@mantine/hooks"
 import { NavbarSimple } from "~/features/_shared/components/navbar/NavbarSimple.tsx"
 
-import logo from "/images/logo2.png"
+import logo from "/images/logo.png"
 
 export default function DefaultLayout() {
   // const { user } = useContext(RoleContext);

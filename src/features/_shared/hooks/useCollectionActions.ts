@@ -1,3 +1,4 @@
+import { useLogger } from "@mantine/hooks"
 import { useCollections } from "~/features/_shared/contexts/collections/useCollections.ts"
 import { Collection } from "~/features/_shared/contexts/nest/NestProvider.types.ts"
 import useNestActions from "~/features/_shared/hooks/useNestActions.ts"
@@ -7,6 +8,8 @@ import _ from "lodash"
 export default function useCollectionActions() {
   const [state, update] = useCollections()
   const nestAction = useNestActions()
+
+  // useLogger("useCollectionActions", [state])
 
   // ---- Collection Management ----
   function hasCollection(name: string): boolean {
@@ -148,7 +151,7 @@ export default function useCollectionActions() {
     const namedCollection = state.find((collection) => collection.name === name)
 
     const isInCollection = !!namedCollection?.items.includes(id.toString())
-    console.log(`id:${id} is in collection: ${isInCollection}}`)
+    // console.log(`id:${id} is in collection: ${isInCollection}}`)
     return isInCollection
   }
 
@@ -173,16 +176,9 @@ export default function useCollectionActions() {
 
   function getAllCollectionNames() {
     const collectionNames = state.map((collection) => collection.name)
-    console.log({ collectionNames })
+    // console.log({ collectionNames })
     return collectionNames
   }
-
-  // noinspection JSUnusedLocalSymbols
-  // function getIdsByCollectionId(name: string): string[] {
-  //   const collection = state.find((collection) => collection.name === name)
-  //   if (!collection || !collection.items) return []
-  //   return collection.items
-  // }
 
   return {
     createCollection,

@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "react-router-dom"
 
 import { Grid, GridCol, Text } from "@mantine/core"
+import { useLogger } from "@mantine/hooks"
 import DeleteCollectionButton from "~/features/_shared/contexts/nest/components/DeleteCollectionButton.tsx"
 import { WildCard } from "~/features/card/components/WildCard/WildCard.tsx"
 
@@ -14,6 +15,7 @@ export default function CardCollection({
   collectionId?: string | null
   description?: string | null
 }) {
+  useLogger("CardCollection", [{ description }])
   if (!itemIdArray) return "Collection doesn't exist"
   if (itemIdArray.length === 0)
     return (
@@ -27,7 +29,7 @@ export default function CardCollection({
   return (
     itemIdArray.length > 0 && (
       <>
-        {description && <Text>{description}</Text>}
+        {description && description.length > 0 && <Text>{description}</Text>}
         <Grid gutter={{ xs: 16, sm: 20, lg: 24 }}>
           {itemIdArray.length > 0 &&
             itemIdArray?.map((taxon_id) => {

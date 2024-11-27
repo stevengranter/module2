@@ -6,7 +6,6 @@ import { useCollections } from "~/features/_shared/contexts/collections/useColle
 import { Collection } from "~/features/_shared/contexts/nest/NestProvider.types.ts"
 import useNest from "~/features/_shared/contexts/nest/useNest.ts"
 import useCollectionActions from "~/features/_shared/hooks/useCollectionActions.ts"
-// import useNestActions from "~/features/_shared/hooks/useNestActions.ts"
 import CardCollection from "~/features/card/components/CardCollection/CardCollection.tsx"
 import CollectionSelectBox from "~/features/card/components/CollectionSelectBox.tsx"
 
@@ -60,37 +59,39 @@ export default function NestView() {
   }, [])
 
   useEffect(() => {
+    console.log("collectionsState.length has changed")
     if (!collectionsState) {
       return // setDropdownDataArray([{ value: "2", label: "group" }])
     } else {
       const formattedData = formatDropdownData(collectionsState)
       formattedData && setDropdownDataArray(formattedData)
     }
+    if (
+      !dropdownDataArray.find(
+        (collection) => collection.value == selectedCollectionId,
+      )
+    ) {
+      console.log("selectedCollectionId is not in dropdownData")
+    }
   }, [collectionsState.length])
 
   useEffect(() => {
+    //TODO: Have nest ids and set in SelectBox if no collection is selected
     if (!selectedCollectionId) return
-    // const itemIds = nestAction.getIdsByCollectionId(selectedCollectionId)
-    // const itemIds = collectionsState.map(
-    //   (collection) => (collection.id = selectedCollectionId),
-    // )
+
     const selectedCollection = collectionsState.find(
       (collection) => collection.id === selectedCollectionId,
     )
     if (!selectedCollection) return
     setItemIdsArray(selectedCollection.items)
     console.log({ selectedCollection })
-    if (selectedCollection.description) {
-      console.log(selectedCollection.description)
-      const description = selectedCollection.description
-      setCollectionDescription(description)
-    }
-    console.log("selectedCollectionId has changed")
+    setCollectionDescription(selectedCollection.description || "No description")
   }, [selectedCollectionId, collectionsState])
 
   // TODO: Fix for choosing current option (errors with null value)
   function handleSelect(selectedValue: string) {
     console.log(selectedValue)
+    if (!selectedValue) setSelectedCollectionId("Starter Pack")
     if (selectedValue) setSelectedCollectionId(selectedValue)
     console.log(selectedValue)
   }

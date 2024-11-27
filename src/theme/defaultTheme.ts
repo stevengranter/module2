@@ -9,8 +9,20 @@ export const defaultTheme = createTheme({
     xl: "100em",
     xxl: "135em",
   },
-  primaryColor: "teal",
+  primaryColor: "green",
   colors: {
+    green: [
+      "#f6fde9",
+      "#ecf8d7",
+      "#d9f0ad",
+      "#c4e87f",
+      "#b2e05a",
+      "#a7dc42",
+      "#a0da34",
+      "#8bc126",
+      "#7bac1e",
+      "#67940f",
+    ],
     teal: [
       "#effbf7",
       "#e0f3ee",
