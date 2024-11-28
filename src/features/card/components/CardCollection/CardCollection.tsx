@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "react-router-dom"
 
 import { Grid, GridCol, Text } from "@mantine/core"
-import { useLogger } from "@mantine/hooks"
+import { useLogger } from "~/dev.ts"
 import DeleteCollectionButton from "~/features/_shared/contexts/nest/components/DeleteCollectionButton.tsx"
 import { WildCard } from "~/features/card/components/WildCard/WildCard.tsx"
 

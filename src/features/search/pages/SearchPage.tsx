@@ -10,8 +10,8 @@ import {
   TextInput,
 } from "@mantine/core"
 import { useForm } from "@mantine/form"
-import { useLogger } from "@mantine/hooks"
 import { useQuery } from "@tanstack/react-query"
+import { useLogger } from "~/dev.ts"
 import { API_SERVER } from "~/features/api/constants.ts"
 import { WildCard } from "~/features/card/components/WildCard/WildCard.tsx"
 import { iNatTaxaResponseType } from "~/models/iNatTaxaResponseType.ts"

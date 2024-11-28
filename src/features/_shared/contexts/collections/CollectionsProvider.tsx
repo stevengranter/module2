@@ -1,7 +1,7 @@
 // CollectionsContext.tsx
 import React, { createContext, ReactElement, ReactNode } from "react"
 
-import { useLogger } from "@mantine/hooks"
+import { useLogger } from "~/dev.ts"
 import { Collection } from "~/features/_shared/contexts/nest/NestProvider.types.ts"
 import useStorageSyncedImmerState from "~/features/_shared/hooks/useLocalSyncedImmerState.ts"
 import { Updater } from "use-immer"
