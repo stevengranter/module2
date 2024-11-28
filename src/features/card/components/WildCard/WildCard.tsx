@@ -3,12 +3,15 @@ import ReactCardFlip from "react-card-flip"
 
 import {
   AspectRatio,
+  Box,
   Button,
   Card,
   Group,
   Image,
+  Paper,
   Skeleton,
   Text,
+  useMantineTheme,
 } from "@mantine/core"
 import { useQuery } from "@tanstack/react-query"
 import { API_SERVER } from "~/features/api/constants.ts"
@@ -20,12 +23,15 @@ import {
 } from "~/models/iNatTaxaResponseType.ts"
 import { WilderKindCardType } from "~/models/WilderKindCardType.ts"
 
+import styles from "./WildCard.module.css"
+
 type Props = {
   taxonId?: number | string
   dataObject?: iNatTaxonRecord | undefined
 }
 
 export function WildCard({ taxonId, dataObject }: Props) {
+  const theme = useMantineTheme()
   const [cardId, setCardId] = useState(taxonId)
   const [iNatData, setINatData] = useState(dataObject)
   const [isFlipped, setIsFlipped] = useState(false)
@@ -93,6 +99,7 @@ function WildCard_Front({
   iNatdata,
   onFlip,
   wilderNestData,
+  ...restProps
 }: {
   iNatdata: iNatTaxonRecord | null
   onFlip?: (e: React.MouseEvent) => void
@@ -101,34 +108,41 @@ function WildCard_Front({
   if (!iNatdata) return null
   // console.log(iNatdata)
   return (
-    <Card key={iNatdata.id} withBorder>
-      <Card.Section>
-        <Group justify="space-between">
-          <Text fz="lg">{iNatdata.preferred_common_name}</Text>
+    <Card
+      key={iNatdata.id}
+      withBorder
+      radius={"lg"}
+      className={styles.wildcard}
+      {...restProps}
+    >
+      <Card.Section p="md" className={styles.header}>
+        <Group justify="space-between" wrap="nowrap">
+          <Text fz="h3">{iNatdata.preferred_common_name}</Text>
           {iNatdata.id && <ToggleFavoriteButton id={iNatdata.id?.toString()} />}
         </Group>
       </Card.Section>
 
-      <Card.Section>
-        <AspectRatio ratio={1}>
-          {!wilderNestData && iNatdata.default_photo && (
-            <Image
-              src={iNatdata.default_photo?.medium_url}
-              alt={iNatdata.name}
-              loading="lazy"
-            />
-          )}
-          {wilderNestData && (
-            <>
-              <Image src={wilderNestData.imgSrc} />
-            </>
-          )}
-        </AspectRatio>
-      </Card.Section>
+      <AspectRatio ratio={1}>
+        {!wilderNestData && iNatdata.default_photo && (
+          <Image
+            src={iNatdata.default_photo?.medium_url}
+            alt={iNatdata.name}
+            loading="lazy"
+            radius="md"
+          />
+        )}
+        {wilderNestData && (
+          <>
+            <Image src={wilderNestData.imgSrc} />
+          </>
+        )}
+      </AspectRatio>
 
       <Group justify="space-between">
         {iNatdata.id && <FoundItButton size="lg" id={iNatdata.id} />}
-        <Button onClick={onFlip}>Flip</Button>
+        <Button variant="white" color={"black"} onClick={onFlip}>
+          Flip
+        </Button>
       </Group>
     </Card>
   )
@@ -147,7 +161,7 @@ function WildCard_Back({
     <Card withBorder mah="400" mih="400">
       <Card.Section>
         <Group justify="space-between">
-          <Text fz="lg">{iNatdata.preferred_common_name}</Text>
+          <Text fz="h3">{iNatdata.preferred_common_name}</Text>
           {iNatdata.id && <ToggleFavoriteButton id={iNatdata.id.toString()} />}
         </Group>
       </Card.Section>

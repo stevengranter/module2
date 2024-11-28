@@ -1,14 +1,13 @@
 // useNestActions.ts
 import { useCallback } from "react"
 
-import { useLogger } from "@mantine/hooks"
 import useNest from "~/features/_shared/contexts/nest/useNest.ts"
 import { displayNotification } from "~/features/_shared/utils/displayNotification.ts"
 
 export default function useNestActions() {
   const [state, update] = useNest()
 
-  useLogger("useNestActions", [state])
+  // useLogger("useNestActions", [state])
 
   // 🧰---- Utility Functions ----
   const isValidId = useCallback((itemId: string | number): boolean => {

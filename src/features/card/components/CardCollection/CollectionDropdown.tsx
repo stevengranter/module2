@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 
 import {
   CheckIcon,
@@ -8,7 +8,7 @@ import {
   PillsInput,
   useCombobox,
 } from "@mantine/core"
-import { useLogger } from "@mantine/hooks"
+import { useLogger } from "~/dev.ts"
 import { useCollections } from "~/features/_shared/contexts/collections/useCollections.ts"
 import useCollectionActions from "~/features/_shared/hooks/useCollectionActions.ts"
 
@@ -17,6 +17,8 @@ type CollectionDropdownProps = {
   collectionsIncludingTaxonId?: string[]
   taxonId: string | number
 }
+
+// ... other imports
 
 export function CollectionDropdown({
   collectionsIncludingTaxonId,
@@ -28,10 +30,14 @@ export function CollectionDropdown({
   })
   const collections = useCollections()
   const collectionAction = useCollectionActions()
-  // const nestAction = useNestActions()
+
+  const memoizedCollectionAction = useMemo(
+    () => collectionAction,
+    [collectionAction],
+  )
+  const memoizedCollections = useMemo(() => collections, [collections])
 
   const [search, setSearch] = useState("")
-  // const [allCollections, setAllCollections] = useState(userCollections || [])
   const [selection, setSelection] = useState<string[]>(
     collectionsIncludingTaxonId || [],
   )
@@ -39,14 +45,17 @@ export function CollectionDropdown({
   useLogger("CollectionDropdown", [selection])
 
   useEffect(() => {
-    const collectionsIncludingTaxonId =
-      collectionAction.getCollectionNamesIncludingId(taxonId)
-    collectionsIncludingTaxonId
-      ? setSelection(collectionsIncludingTaxonId)
-      : null
-  }, [collectionAction, collections, taxonId])
+    const newCollections =
+      memoizedCollectionAction.getCollectionNamesIncludingId(taxonId)
+    if (
+      newCollections &&
+      JSON.stringify(newCollections) !== JSON.stringify(selection)
+    ) {
+      setSelection(newCollections)
+    }
+  }, [memoizedCollectionAction, memoizedCollections, taxonId, selection])
 
-  const exactOptionMatch = collectionAction
+  const exactOptionMatch = memoizedCollectionAction
     .getAllCollectionNames()
     .some((item) => item === search)
 
