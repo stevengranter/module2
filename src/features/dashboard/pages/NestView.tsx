@@ -56,7 +56,7 @@ export default function NestView() {
     setSelectedCollectionId(
       collectionAction.getCollectionIdByName("Starter Pack"),
     )
-  }, [])
+  }, [collectionAction])
 
   useEffect(() => {
     console.log("collectionsState.length has changed")
@@ -73,7 +73,11 @@ export default function NestView() {
     ) {
       console.log("selectedCollectionId is not in dropdownData")
     }
-  }, [collectionsState.length])
+  }, [
+    collectionsState,
+    // dropdownDataArray,
+    // selectedCollectionId
+  ])
 
   useEffect(() => {
     //TODO: Have nest ids and set in SelectBox if no collection is selected

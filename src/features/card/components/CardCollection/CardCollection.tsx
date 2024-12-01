@@ -38,12 +38,7 @@ export default function CardCollection({
                   span={{ base: 12, xs: 6, sm: 4, lg: 3, xl: 2 }}
                   key={taxon_id}
                 >
-                  {/*{taxon_id}*/}
-                  <WildCard
-                    taxonId={taxon_id}
-
-                    // isInUserCollection={!!userCollection?.includes(cardId)}
-                  />
+                  <WildCard taxonId={taxon_id} />
                 </GridCol>
               )
             })}

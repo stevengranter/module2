@@ -1,10 +1,24 @@
 import { useEffect, useState } from "react"
 
-import { ActionIcon } from "@mantine/core"
-import { IconHeart } from "@tabler/icons-react"
+import {
+  ActionIcon,
+  createTheme,
+  MantineThemeProvider,
+  rem,
+} from "@mantine/core"
+import { IconHeart, IconHeartFilled } from "@tabler/icons-react"
 import { useCollections } from "~/features/_shared/contexts/collections/useCollections.ts"
 import useCollectionActions from "~/features/_shared/hooks/useCollectionActions.ts"
-import { IconHeartFilled } from "~/features/_shared/icons/icons.tsx"
+
+import classes from "./ToggleFavoriteButton.module.css"
+
+const theme = createTheme({
+  components: {
+    ActionIcon: ActionIcon.extend({
+      classNames: classes,
+    }),
+  },
+})
 
 export default function ToggleFavoriteButton({ id }: { id: string | number }) {
   const collectionAction = useCollectionActions()
@@ -33,18 +47,24 @@ export default function ToggleFavoriteButton({ id }: { id: string | number }) {
         )
       }
     }
-  }, [collections])
+  }, [collectionAction, collections, id])
 
   return (
-    <ActionIcon
-      variant="gradient"
-      radius="md"
-      // color="pink"
-      gradient={{ from: "#FAA2C1", to: "red", deg: 0 }}
-      size={36}
-      onClick={() => handleClick(id)}
-    >
-      {isFavorite ? <IconHeartFilled /> : <IconHeart />}
-    </ActionIcon>
+    <MantineThemeProvider theme={theme}>
+      <ActionIcon
+        variant="transparent"
+        radius="md"
+        color="red"
+        size="xxl"
+        onClick={() => handleClick(id)}
+        aria-label="Favorites"
+      >
+        {isFavorite ? (
+          <IconHeartFilled style={{ width: rem(32), height: rem(32) }} />
+        ) : (
+          <IconHeart style={{ width: rem(32), height: rem(32) }} />
+        )}
+      </ActionIcon>
+    </MantineThemeProvider>
   )
 }

@@ -1,4 +1,4 @@
-import { createTheme } from "@mantine/core"
+import { ActionIcon, createTheme } from "@mantine/core"
 
 export const defaultTheme = createTheme({
   breakpoints: {

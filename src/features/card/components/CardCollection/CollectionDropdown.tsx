@@ -18,8 +18,6 @@ type CollectionDropdownProps = {
   taxonId: string | number
 }
 
-// ... other imports
-
 export function CollectionDropdown({
   collectionsIncludingTaxonId,
   taxonId,
@@ -74,8 +72,6 @@ export function CollectionDropdown({
           ? current.filter((v) => v !== val)
           : [...current, val],
       )
-      // console.log(`taxonID: ${taxonId}`)
-      // console.log(`val:`, val)
       !collectionAction.isItemInCollection(taxonId, val)
         ? collectionAction.addIdToCollection(taxonId, val)
         : collectionAction.removeIdFromCollection(taxonId, val)

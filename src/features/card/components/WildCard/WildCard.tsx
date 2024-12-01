@@ -117,7 +117,7 @@ function WildCard_Front({
     >
       <Card.Section p="md" className={styles.header}>
         <Group justify="space-between" wrap="nowrap">
-          <Text fz="h3">{iNatdata.preferred_common_name}</Text>
+          <Text fz="h3">{iNatdata.preferred_common_name}</Text>{" "}
           {iNatdata.id && <ToggleFavoriteButton id={iNatdata.id?.toString()} />}
         </Group>
       </Card.Section>

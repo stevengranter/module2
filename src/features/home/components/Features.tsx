@@ -9,8 +9,7 @@ import {
   Image,
   rem,
 } from "@mantine/core"
-import { IconBinoculars } from "@tabler/icons-react"
-import { IconLayout } from "~/features/_shared/icons/icons.tsx"
+import { IconBinoculars, IconLayout } from "@tabler/icons-react"
 
 import nestImage from "/assets/images/ui/nest-main-01.png"
 import searchImage from "/assets/images/ui/search-main-01.png"

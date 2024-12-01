@@ -30,8 +30,7 @@ export default function DefaultLayout() {
       }}
       // padding="md"
     >
-      <AppShell.Header style={{ backgroundColor: "#B1ED5C" }}>
-        {/*<CloudBackground />*/}
+      <AppShell.Header>
         <Group h="100%" px="md" justify="left" align="center">
           <Burger onClick={toggle} opened={!opened} size="sm" />
 
@@ -74,7 +73,7 @@ export default function DefaultLayout() {
       </AppShell.Header>
 
       {/*  TODO: Define styles in external css*/}
-      <AppShell.Navbar style={{ backgroundColor: rgba("#C7F17A", 1) }}>
+      <AppShell.Navbar>
         <NavbarSimple onClick={toggle} />
 
         {/*{user && user.username}*/}
