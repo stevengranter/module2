@@ -3,20 +3,24 @@ import ReactCardFlip from "react-card-flip"
 
 import {
   AspectRatio,
-  Box,
   Button,
   Card,
   Group,
   Image,
-  Paper,
   Skeleton,
+  Stack,
   Text,
-  useMantineTheme,
 } from "@mantine/core"
+import {
+  IconHeart,
+  IconHeartFilled,
+  IconStar,
+  IconStarFilled,
+} from "@tabler/icons-react"
 import { useQuery } from "@tanstack/react-query"
 import { API_SERVER } from "~/features/api/constants.ts"
 import FoundItButton from "~/features/card/components/FoundItButton.tsx"
-import ToggleFavoriteButton from "~/features/card/components/ToggleFavoriteButton.tsx"
+import ToggleCollectionButton from "~/features/card/components/ToggleCollectionButton.tsx"
 import {
   iNatTaxaResponseType,
   iNatTaxonRecord,
@@ -31,13 +35,11 @@ type Props = {
 }
 
 export function WildCard({ taxonId, dataObject }: Props) {
-  const theme = useMantineTheme()
   const [cardId, setCardId] = useState(taxonId)
   const [iNatData, setINatData] = useState(dataObject)
   const [isFlipped, setIsFlipped] = useState(false)
   const [wilderNestData, setWilderNestData] =
     useState<WilderKindCardType | null>(null)
-  // useLogger("WildCard", [{ cardId }, { wilderNestData }])
 
   const iNatQuery = useQuery({
     queryKey: [API_SERVER.INAT, `/taxa`, `/${cardId}`],
@@ -107,18 +109,36 @@ function WildCard_Front({
 }) {
   if (!iNatdata) return null
   // console.log(iNatdata)
+
   return (
     <Card
       key={iNatdata.id}
       withBorder
-      radius={"lg"}
+      radius={"md"}
       className={styles.wildcard}
       {...restProps}
     >
       <Card.Section p="md" className={styles.header}>
         <Group justify="space-between" wrap="nowrap">
           <Text fz="h3">{iNatdata.preferred_common_name}</Text>{" "}
-          {iNatdata.id && <ToggleFavoriteButton id={iNatdata.id?.toString()} />}
+          {iNatdata.id && (
+            <Stack>
+              <ToggleCollectionButton
+                id={iNatdata.id?.toString()}
+                collection="Wishlist"
+                TrueIconComponent={<IconStarFilled color="gold" />}
+                FalseIconComponent={<IconStar color="gold" />}
+                variant="transparent"
+              />
+              <ToggleCollectionButton
+                id={iNatdata.id?.toString()}
+                collection="Favorites"
+                TrueIconComponent={<IconHeartFilled />}
+                FalseIconComponent={<IconHeart />}
+                variant="transparent"
+              />
+            </Stack>
+          )}
         </Group>
       </Card.Section>
 
@@ -137,7 +157,6 @@ function WildCard_Front({
           </>
         )}
       </AspectRatio>
-
       <Group justify="space-between">
         {iNatdata.id && <FoundItButton size="lg" id={iNatdata.id} />}
         <Button variant="white" color={"black"} onClick={onFlip}>
@@ -151,6 +170,7 @@ function WildCard_Front({
 function WildCard_Back({
   iNatdata,
   onFlip,
+  ...restProps
 }: {
   iNatdata: iNatTaxonRecord | null
   onFlip?: (e: React.MouseEvent) => void
@@ -158,11 +178,36 @@ function WildCard_Back({
 }) {
   if (!iNatdata) return null
   return (
-    <Card withBorder mah="400" mih="400">
+    <Card
+      key={iNatdata.id}
+      withBorder
+      radius={"md"}
+      className={styles.wildcard}
+      {...restProps}
+    >
       <Card.Section>
-        <Group justify="space-between">
+        <Group justify="space-between" wrap="nowrap">
           <Text fz="h3">{iNatdata.preferred_common_name}</Text>
-          {iNatdata.id && <ToggleFavoriteButton id={iNatdata.id.toString()} />}
+
+          {iNatdata.id && (
+            <Stack>
+              <ToggleCollectionButton
+                id={iNatdata.id?.toString()}
+                collection="Wishlist"
+                TrueIconComponent={<IconStarFilled color="gold" />}
+                FalseIconComponent={<IconStar color="gold" />}
+                variant="transparent"
+              />
+
+              <ToggleCollectionButton
+                id={iNatdata.id?.toString()}
+                collection="Favorites"
+                TrueIconComponent={<IconHeartFilled color="red" />}
+                FalseIconComponent={<IconHeart color="red" />}
+                variant="transparent"
+              />
+            </Stack>
+          )}
         </Group>
       </Card.Section>
 
