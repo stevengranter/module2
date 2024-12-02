@@ -12,11 +12,12 @@ import HomePage from "~/features/home/pages/HomePage.tsx"
 import SearchPage from "~/features/search/pages/SearchPage.tsx"
 import UserManagement from "~/features/user-management/components/UserManagement.tsx"
 import DefaultLayout from "~/theme/DefaultLayout.tsx"
+import MobileLayout from "~/theme/MobileLayout.tsx"
 
 export const router: ReturnType<typeof createBrowserRouter> =
   createBrowserRouter(
     createRoutesFromElements(
-      <Route element={<DefaultLayout />} path="/">
+      <Route element={<MobileLayout />} path="/">
         <Route element={<HomePage />} index></Route>
         <Route element={<DashboardPage />} path="dashboard"></Route>
         {/*<Route element={<UserLogin />} path="login"></Route>*/}

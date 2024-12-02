@@ -34,6 +34,8 @@ type Props = {
   dataObject?: iNatTaxonRecord | undefined
 }
 
+const cardImagePath = "./assets/images/cards/"
+
 export function WildCard({ taxonId, dataObject }: Props) {
   const [cardId, setCardId] = useState(taxonId)
   const [iNatData, setINatData] = useState(dataObject)
@@ -153,7 +155,7 @@ function WildCard_Front({
         )}
         {wilderNestData && (
           <>
-            <Image src={wilderNestData.imgSrc} />
+            <Image src={cardImagePath + wilderNestData.imgSrc} />
           </>
         )}
       </AspectRatio>
