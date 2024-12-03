@@ -9,6 +9,7 @@ import { WildCard } from "~/features/card/components/WildCard/WildCard.tsx"
 import CardsPage from "~/features/card/pages/CardsPage.tsx"
 import DashboardPage from "~/features/dashboard/pages/DashboardPage.tsx"
 import HomePage from "~/features/home/pages/HomePage.tsx"
+import WelcomePage from "~/features/home/pages/WelcomePage.tsx"
 import SearchPage from "~/features/search/pages/SearchPage.tsx"
 import UserManagement from "~/features/user-management/components/UserManagement.tsx"
 import DefaultLayout from "~/theme/DefaultLayout.tsx"
@@ -18,7 +19,7 @@ export const router: ReturnType<typeof createBrowserRouter> =
   createBrowserRouter(
     createRoutesFromElements(
       <Route element={<MobileLayout />} path="/">
-        <Route element={<HomePage />} index></Route>
+        <Route element={<WelcomePage />} index></Route>
         <Route element={<DashboardPage />} path="dashboard"></Route>
         {/*<Route element={<UserLogin />} path="login"></Route>*/}
         /* /users */
