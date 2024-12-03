@@ -1,7 +1,19 @@
 import { useEffect } from "react"
 import { Link, Outlet } from "react-router-dom"
 
-import { Box, Center, Group, Image, Paper, px, rem, Text } from "@mantine/core"
+import {
+  AppShell,
+  BackgroundImage,
+  Box,
+  Center,
+  Group,
+  Image,
+  Paper,
+  px,
+  rem,
+  Text,
+} from "@mantine/core"
+import { useHeadroom } from "@mantine/hooks"
 import {
   IconEgg,
   IconHome,
@@ -32,36 +44,27 @@ export default function MobileLayout() {
       document.body.style.backgroundImage = originalBackground
     }
   }, [])
-
+  const pinned = useHeadroom({ fixedAt: 120 })
   return (
-    <>
-      <header>
+    <AppShell
+      header={{ height: rem(150), collapsed: !pinned, offset: true }}
+      padding="lg"
+    >
+      <AppShell.Header withBorder={false}>
         <Center>
-          <Image src={logo} alt="logo" p="lg" w="200px" h="auto" />
+          <Box p="lg">
+            <Image src={logo} alt="Logo" h={150} />
+          </Box>
         </Center>
-      </header>
-      <main>
-        <Box
-          style={{
-            overflow: "scroll",
-          }}
-          bg="rgba(255, 255, 255, 0.8)"
-          p="lg"
-        >
+      </AppShell.Header>
+      <AppShell.Main>
+        <Paper p="lg" radius="lg" m="lg" className={styles.softwhite}>
           <Outlet />
-        </Box>
-      </main>
-
-      <footer>
+        </Paper>
+      </AppShell.Main>
+      <AppShell.Footer withBorder={false}>
         <Center>
-          <Paper
-            className={styles.footer}
-            shadow="xs"
-            p="lg"
-            radius="xl"
-            w="90%"
-            m="xl"
-          >
+          <Paper p="lg" w="100%" bg="green">
             <Group justify="space-between">
               <Link to="/users">
                 <IconUsers size={75}></IconUsers>
@@ -75,7 +78,7 @@ export default function MobileLayout() {
             </Group>
           </Paper>
         </Center>
-      </footer>
-    </>
+      </AppShell.Footer>
+    </AppShell>
   )
 }
