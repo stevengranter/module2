@@ -1,6 +1,18 @@
 import { QueryKey } from "@tanstack/react-query"
 
-const myApiKey = import.meta.env.VITE_NINJA_API_KEY
+type NodeProcess = {
+  env: {
+    NODE_ENV?: "development" | "production"
+    NINJA_API_KEY?: string
+  }
+}
+
+const process = { env: {} } as NodeProcess
+const myApiKey = process.env.NODE_ENV
+  ? process.env.NINJA_API_KEY
+  : import.meta.env.VITE_NINJA_API_KEY
+
+// const myApiKey = import.meta.env.VITE_NINJA_API_KEY
 
 export async function fetchServerData(queryKey: QueryKey): Promise<unknown> {
   // const queryUrl = `${queryKey[0]}${queryKey[1]}${queryKey[2]}`
