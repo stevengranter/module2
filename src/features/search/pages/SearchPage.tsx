@@ -16,6 +16,7 @@ import { useLogger } from "~/dev.ts"
 import { API_SERVER } from "~/features/api/constants.ts"
 import { WildCard } from "~/features/card/components/WildCard/WildCard.tsx"
 import { iNatTaxaResponseType } from "~/models/iNatTaxaResponseType.ts"
+import { WilderKindCardType } from "~/models/WilderKindCardType.ts"
 
 const defaultQueryParams = {
   per_page: "6",
@@ -33,6 +34,8 @@ export default function SearchPage() {
   const [searchParams, setSearchParams] = useSearchParams()
   // const [pageNumber, setPageNumber] = useState(1)
   const [totalPages, setTotalPages] = useState(0)
+
+  const [hasLocalData, setHasLocalData] = useState(false)
 
   useLogger("SearchPage", [{ searchParams }])
 
@@ -128,11 +131,6 @@ export default function SearchPage() {
         <Grid>
           {iNatData.results &&
             iNatData?.results.map((result) => {
-              // Find the enriched card for the current result
-              // const correspondingCard = matchingCards.find(
-              //   (card: WilderKindCardType) => card.taxon_id === result.id,
-              // );
-
               return (
                 <GridCol
                   span={{
@@ -152,12 +150,7 @@ export default function SearchPage() {
             })}
         </Grid>
       )}
-      {/*<div>*/}
-      {/*  {iNatData && iNatData.total_results && `Page: ${pageNumber} of
-       ${totalPages}`}*/}
-      {/*</div>*/}
-      {/*<div>{iNatData && iNatData.per_page && `Results per page:
-       ${iNatData.per_page}`}</div>*/}
+
       {totalPages > 1 && (
         <Pagination
           total={totalPages}

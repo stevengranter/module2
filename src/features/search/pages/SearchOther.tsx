@@ -70,7 +70,9 @@ export default function SearchOther() {
 
       {data &&
         data.length > 0 &&
-        data.map((animal: AnimalApiRecord) => <li>{animal.name}</li>)}
+        data.map((animal: AnimalApiRecord) => (
+          <li key={animal.name}>{animal.name}</li>
+        ))}
 
       {/*{data &&*/}
       {/*  data.length > 0 &&*/}

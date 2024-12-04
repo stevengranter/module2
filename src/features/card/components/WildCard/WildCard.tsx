@@ -7,6 +7,7 @@ import {
   Card,
   Group,
   Image,
+  Indicator,
   Skeleton,
   Stack,
   Text,
@@ -18,6 +19,7 @@ import {
   IconStarFilled,
 } from "@tabler/icons-react"
 import { useQuery } from "@tanstack/react-query"
+import { useLogger } from "~/dev.ts"
 import { API_SERVER } from "~/features/api/constants.ts"
 import FoundItButton from "~/features/card/components/FoundItButton.tsx"
 import ToggleCollectionButton from "~/features/card/components/ToggleCollectionButton.tsx"
@@ -26,6 +28,7 @@ import {
   iNatTaxonRecord,
 } from "~/models/iNatTaxaResponseType.ts"
 import { WilderKindCardType } from "~/models/WilderKindCardType.ts"
+import { Interweave } from "interweave"
 
 import styles from "./WildCard.module.css"
 
@@ -42,6 +45,8 @@ export function WildCard({ taxonId, dataObject }: Props) {
   const [isFlipped, setIsFlipped] = useState(false)
   const [wilderNestData, setWilderNestData] =
     useState<WilderKindCardType | null>(null)
+
+  useLogger("WildCard", [iNatData, wilderNestData])
 
   const iNatQuery = useQuery({
     queryKey: [API_SERVER.INAT, `/taxa`, `/${cardId}`],
@@ -227,6 +232,9 @@ function WildCard_Back({
           />
         )}
 
+        {iNatdata.wikipedia_summary && (
+          <Interweave content={iNatdata.wikipedia_summary} />
+        )}
         <Card.Section mt="md">
           {iNatdata.wikipedia_url && (
             <a href={iNatdata.wikipedia_url}>Wikipedia Link</a>
