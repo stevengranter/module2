@@ -7,10 +7,20 @@ type NodeProcess = {
   }
 }
 
-const process = { env: {} } as NodeProcess
-const myApiKey = process.env.NODE_ENV
-  ? process.env.NINJA_API_KEY
-  : import.meta.env.VITE_NINJA_API_KEY
+let ninjaAPIKey: string
+
+if (import.meta.env) {
+  console.log("development env")
+  ninjaAPIKey = import.meta.env.VITE_NINJA_API_KEY || ""
+} else {
+  console.log("production env")
+  ninjaAPIKey = process.env.NINJA_API_KEY || ""
+}
+
+// const process = { env: {} } as NodeProcess
+// const myApiKey = process.env.NODE_ENV
+//   ? process.env.NINJA_API_KEY
+//   : import.meta.env.VITE_NINJA_API_KEY
 
 // const myApiKey = import.meta.env.VITE_NINJA_API_KEY
 
@@ -27,7 +37,7 @@ export async function fetchServerData(queryKey: QueryKey): Promise<unknown> {
 
 export async function fetchNinjaAPIData(queryKey: QueryKey) {
   const queryUrl = `${queryKey[0]}${queryKey[1]}${queryKey[2]}`
-  if (!myApiKey) {
+  if (!ninjaAPIKey) {
     console.log("No api key provided")
     return
   }
@@ -36,7 +46,7 @@ export async function fetchNinjaAPIData(queryKey: QueryKey) {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      "X-Api-Key": myApiKey,
+      "X-Api-Key": ninjaAPIKey,
     },
   }
   console.log({ queryUrl })
