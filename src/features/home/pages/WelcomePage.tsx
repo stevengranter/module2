@@ -1,3 +1,6 @@
+const logo = "./assets/images/logo.png"
+import { Image } from "@mantine/core"
+
 export default function WelcomePage() {
-  return <h1>Welcome</h1>
+  return <Image src={logo} alt="WilderNest logo" />
 }

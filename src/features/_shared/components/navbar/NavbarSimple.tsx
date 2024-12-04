@@ -5,13 +5,14 @@ import { publicLinks } from "./NavbarLinks.ts"
 import classes from "./NavbarSimple.module.css"
 
 type NavBarParams = {
-  onClick: () => void
+  onClick?: () => void
 }
 
 export function NavbarSimple({ onClick }: NavBarParams) {
   const [active, setActive] = useState("")
 
   function handleClick(label: string) {
+    if (!onClick) return
     setActive(label)
     setTimeout(onClick, 500)
   }

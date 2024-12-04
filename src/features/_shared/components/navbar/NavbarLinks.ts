@@ -1,13 +1,15 @@
 import {
   IconBinoculars,
+  IconEgg,
   IconHome,
   IconLayout,
+  IconSearch,
   IconUsersGroup,
 } from "@tabler/icons-react"
 
 export const publicLinks = [
   { icon: IconHome, label: "Home", to: "/" },
   { icon: IconUsersGroup, label: "Users", to: "/users" },
-  { icon: IconLayout, label: "myNest", to: "/dashboard" },
-  { icon: IconBinoculars, label: "Search", to: "/search" },
+  { icon: IconEgg, label: "myNest", to: "/dashboard" },
+  { icon: IconSearch, label: "Search", to: "/search" },
 ]

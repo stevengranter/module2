@@ -7,6 +7,7 @@ import {
   Grid,
   GridCol,
   Pagination,
+  Paper,
   TextInput,
 } from "@mantine/core"
 import { useForm } from "@mantine/form"
@@ -42,6 +43,8 @@ export default function SearchPage() {
   })
 
   const iNatData = data as iNatTaxaResponseType
+
+  useLogger("SearchPage", [{ iNatData }])
 
   // useEffect(() => {
   //   const currentParams = Object.fromEntries([...searchParams]);
@@ -85,7 +88,7 @@ export default function SearchPage() {
   }
 
   return (
-    <>
+    <Paper p="lg" radius="lg" m="lg">
       <h1>Search</h1>
       <p>
         Type in your findings here: insect, plant, or animal. If you're not sure
@@ -163,6 +166,6 @@ export default function SearchPage() {
           key={form.key("page")}
         />
       )}
-    </>
+    </Paper>
   )
 }

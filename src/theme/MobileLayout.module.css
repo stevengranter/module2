@@ -1,15 +1,21 @@
 
-.footer {
-position: fixed;
-bottom: 0;
-color: black;
-align-content: center;
-justify-content: center;
-text-align: center;
-padding:20px}
+/*.footer {*/
+/*position: fixed;*/
+/*bottom: 0;*/
+/*color: black;*/
+/*align-content: center;*/
+/*justify-content: center;*/
+/*text-align: center;*/
+/*padding:20px}*/
 
-header {background-color:transparent !important}
-footer {background-color:green !important}
+footer, navbar {background-color:transparent !important}
+
+header {background-color:#39ACCE !important}
+
+
+.mobile_toolbar{
+background-color: #763c11 !important;
+}
 
 .softwhite{
 background-color:rgba(255,255,255,0.8) !important;}

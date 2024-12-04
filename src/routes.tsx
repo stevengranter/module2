@@ -10,6 +10,7 @@ import CardsPage from "~/features/card/pages/CardsPage.tsx"
 import DashboardPage from "~/features/dashboard/pages/DashboardPage.tsx"
 import HomePage from "~/features/home/pages/HomePage.tsx"
 import WelcomePage from "~/features/home/pages/WelcomePage.tsx"
+import SearchOther from "~/features/search/pages/SearchOther.tsx"
 import SearchPage from "~/features/search/pages/SearchPage.tsx"
 import UserManagement from "~/features/user-management/components/UserManagement.tsx"
 import DefaultLayout from "~/theme/DefaultLayout.tsx"
@@ -45,7 +46,9 @@ export const router: ReturnType<typeof createBrowserRouter> =
         <Route path="search">
           <Route element={<SearchPage />} index></Route>
         </Route>
-        {/*<Route path="sample" element={<SampleNest />} />*/}
+        <Route path="othersearch">
+          <Route element={<SearchOther />} index></Route>
+        </Route>
       </Route>,
     ),
   )

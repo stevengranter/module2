@@ -13,7 +13,6 @@ import { IconBinoculars, IconLayout } from "@tabler/icons-react"
 
 import nestImage from "/assets/images/ui/nest-main-01.png"
 import searchImage from "/assets/images/ui/search-main-01.png"
-import logo from "/images/logo2.png"
 
 const features = [
   {

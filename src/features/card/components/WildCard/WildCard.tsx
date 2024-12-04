@@ -122,7 +122,12 @@ function WildCard_Front({
     >
       <Card.Section p="md" className={styles.header}>
         <Group justify="space-between" wrap="nowrap">
-          <Text fz="h3">{iNatdata.preferred_common_name}</Text>{" "}
+          <Stack gap="xs">
+            <Text fz="h3">
+              {iNatdata?.preferred_common_name || iNatdata?.english_common_name}
+            </Text>{" "}
+            <Text fz="h4">{iNatdata.name}</Text>
+          </Stack>
           {iNatdata.id && (
             <Stack>
               <ToggleCollectionButton
