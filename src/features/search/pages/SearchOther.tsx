@@ -68,7 +68,9 @@ export default function SearchOther() {
         </Flex>
       </form>
 
-      {data && data.length > 0 && data.map((animal) => <li>{animal.name}</li>)}
+      {data &&
+        data.length > 0 &&
+        data.map((animal: AnimalApiRecord) => <li>{animal.name}</li>)}
 
       {/*{data &&*/}
       {/*  data.length > 0 &&*/}
