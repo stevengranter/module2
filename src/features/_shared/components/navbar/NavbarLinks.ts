@@ -12,4 +12,6 @@ export const publicLinks = [
   { icon: IconUsersGroup, label: "Users", to: "/users" },
   { icon: IconEgg, label: "myNest", to: "/dashboard" },
   { icon: IconSearch, label: "Search", to: "/search" },
+  //TODO: Remove below
+  { icon: IconBinoculars, label: "OtherSearch", to: "/othersearch" },
 ]

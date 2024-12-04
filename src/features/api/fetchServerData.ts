@@ -3,7 +3,7 @@ import { QueryKey } from "@tanstack/react-query"
 type NodeProcess = {
   env: {
     NODE_ENV?: "development" | "production"
-    NINJA_API_KEY?: string
+    VITE_NINJA_API_KEY?: string
   }
 }
 
@@ -14,7 +14,7 @@ if (import.meta.env) {
   ninjaAPIKey = import.meta.env.VITE_NINJA_API_KEY || ""
 } else {
   console.log("production env")
-  ninjaAPIKey = process.env.NINJA_API_KEY || ""
+  ninjaAPIKey = process.env.VITE_NINJA_API_KEY || ""
 }
 
 // const process = { env: {} } as NodeProcess
