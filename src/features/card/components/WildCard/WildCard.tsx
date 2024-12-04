@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { PropsWithChildren, useEffect, useState } from "react"
 import ReactCardFlip from "react-card-flip"
 
 import {
@@ -8,6 +8,7 @@ import {
   Group,
   Image,
   Indicator,
+  Paper,
   Skeleton,
   Stack,
   Text,
@@ -123,6 +124,8 @@ function WildCard_Front({
       withBorder
       radius={"md"}
       className={styles.wildcard}
+      mah={400}
+      mih={400}
       {...restProps}
     >
       <Card.Section p="md" className={styles.header}>
@@ -195,6 +198,8 @@ function WildCard_Back({
       withBorder
       radius={"md"}
       className={styles.wildcard}
+      mah={400}
+      mih={400}
       {...restProps}
     >
       <Card.Section>
@@ -224,16 +229,18 @@ function WildCard_Back({
       </Card.Section>
 
       <Group>
-        {iNatdata.default_photo && (
-          <Image
-            src={iNatdata.default_photo?.square_url}
-            alt={iNatdata.name}
-            loading="lazy"
-          />
-        )}
+        {/*{iNatdata.default_photo && (*/}
+        {/*  <Image*/}
+        {/*    src={iNatdata.default_photo?.square_url}*/}
+        {/*    alt={iNatdata.name}*/}
+        {/*    loading="lazy"*/}
+        {/*  />*/}
+        {/*)}*/}
 
         {iNatdata.wikipedia_summary && (
-          <Interweave content={iNatdata.wikipedia_summary} />
+          <Text lineClamp={4}>
+            <Interweave content={iNatdata.wikipedia_summary} />
+          </Text>
         )}
         <Card.Section mt="md">
           {iNatdata.wikipedia_url && (
