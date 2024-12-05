@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 
 import { Paper, Table, Title } from "@mantine/core"
+import DefaultPaper from "~/features/_shared/components/DefaultPaper.tsx"
 import { JSON_SERVER_URL } from "~/features/api/constants.ts"
 import { UserType } from "~/models/UserType.ts"
 
@@ -25,10 +26,10 @@ export default function UserManagement() {
 
   return (
     userData && (
-      <Paper p="lg" radius="lg" m="lg">
+      <DefaultPaper>
         <Title order={1}>Users</Title>
         <UserTable userData={userData} />
-      </Paper>
+      </DefaultPaper>
     )
   )
 }
@@ -36,35 +37,31 @@ export default function UserManagement() {
 function UserTable({ userData }: { userData: UserType[] }) {
   // refactor: Migrate to mantine-datatable
   return (
-    <Paper p="lg" radius="lg" m="lg">
-      <Table.ScrollContainer minWidth={500}>
-        <Table>
-          <Table.Thead>
-            <Table.Tr>
-              <Table.Th>Username</Table.Th>
-              <Table.Th>First Name</Table.Th>
-              <Table.Th>Last Name</Table.Th>
-              <Table.Th>Activity Rate</Table.Th>
-              <Table.Th>Nest Total</Table.Th>
-            </Table.Tr>
-          </Table.Thead>
-          <Table.Tbody>
-            {userData &&
-              userData.length > 0 &&
-              userData.map((user: UserType) => (
-                <Table.Tr key={user.id}>
-                  {user.username && <Table.Td>{user.username}</Table.Td>}
-                  <Table.Td>{user.firstName}</Table.Td>
-                  <Table.Td>{user.lastName}</Table.Td>
-                  <Table.Td>{user.activityRate}</Table.Td>
-                  <Table.Td>
-                    {user.nest.items && user.nest.items.length}
-                  </Table.Td>
-                </Table.Tr>
-              ))}
-          </Table.Tbody>
-        </Table>
-      </Table.ScrollContainer>
-    </Paper>
+    <Table.ScrollContainer minWidth={500}>
+      <Table>
+        <Table.Thead>
+          <Table.Tr>
+            <Table.Th>Username</Table.Th>
+            <Table.Th>First Name</Table.Th>
+            <Table.Th>Last Name</Table.Th>
+            <Table.Th>Activity Rate</Table.Th>
+            <Table.Th>Nest Total</Table.Th>
+          </Table.Tr>
+        </Table.Thead>
+        <Table.Tbody>
+          {userData &&
+            userData.length > 0 &&
+            userData.map((user: UserType) => (
+              <Table.Tr key={user.id}>
+                {user.username && <Table.Td>{user.username}</Table.Td>}
+                <Table.Td>{user.firstName}</Table.Td>
+                <Table.Td>{user.lastName}</Table.Td>
+                <Table.Td>{user.activityRate}</Table.Td>
+                <Table.Td>{user.nest.items && user.nest.items.length}</Table.Td>
+              </Table.Tr>
+            ))}
+        </Table.Tbody>
+      </Table>
+    </Table.ScrollContainer>
   )
 }

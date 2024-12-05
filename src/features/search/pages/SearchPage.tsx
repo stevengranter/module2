@@ -14,6 +14,7 @@ import {
 import { useForm } from "@mantine/form"
 import { useQuery } from "@tanstack/react-query"
 import { useLogger } from "~/dev.ts"
+import DefaultPaper from "~/features/_shared/components/DefaultPaper.tsx"
 import { API_SERVER } from "~/features/api/constants.ts"
 import { WildCard } from "~/features/card/components/WildCard/WildCard.tsx"
 import { iNatTaxaResponseType } from "~/models/iNatTaxaResponseType.ts"
@@ -92,7 +93,7 @@ export default function SearchPage() {
   }
 
   return (
-    <Paper px="xl" pt="md" pb="lg" radius="lg" m="lg">
+    <DefaultPaper>
       <Title order={1}>Search</Title>
       <p>
         Type in your findings here: insect, plant, or animal. If you're not sure
@@ -160,6 +161,6 @@ export default function SearchPage() {
           key={form.key("page")}
         />
       )}
-    </Paper>
+    </DefaultPaper>
   )
 }

@@ -2,6 +2,7 @@ import Features from "~/features/home/components/Features.tsx"
 
 const logo = "./assets/images/logo.png"
 import { Center, Image, Paper, Text, Title } from "@mantine/core"
+import DefaultPaper from "~/features/_shared/components/DefaultPaper.tsx"
 
 export default function WelcomePage() {
   return (
@@ -16,7 +17,7 @@ export default function WelcomePage() {
           style={{ filter: "drop-shadow(0px 5px 8px rgba(0, 0, 0, 0.4))" }}
         />
       </Center>
-      <Paper p="lg" radius="lg" withBorder={true} shadow="xl">
+      <DefaultPaper>
         <Title order={2} c="soil.9" p="xs">
           Welcome to WilderNest!
         </Title>
@@ -32,7 +33,7 @@ export default function WelcomePage() {
         </Text>
         {/*<Features
          />*/}
-      </Paper>
+      </DefaultPaper>
     </>
   )
 }
