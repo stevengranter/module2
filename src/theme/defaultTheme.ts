@@ -9,6 +9,7 @@ export const defaultTheme = createTheme({
     xl: "100em",
     xxl: "135em",
   },
+  headings: { fontFamily: "Truculenta, sans-serif" },
   primaryColor: "green",
   colors: {
     green: [
