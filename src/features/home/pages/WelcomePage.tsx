@@ -27,8 +27,8 @@ export default function WelcomePage() {
         </Text>
         <Text p="xs">
           Hoping to see some rare, exotic creatures on an upcoming trip? 🔍
-          Search for them and add them to your wishlist so you remember to look
-          for them! ⭐
+          Search, then add them to your wishlist so you remember to look for
+          them! ⭐
         </Text>
         {/*<Features
          />*/}
