@@ -10,7 +10,11 @@ import {
 
 export const publicLinks = [
   { icon: IconHome, label: "Home", to: "/" },
-  { icon: IconUsersGroup, label: "Users", to: "/users" },
+
   { icon: IconCards, label: "Collections", to: "/dashboard" },
   { icon: IconSearch, label: "Search", to: "/search" },
+]
+
+export const adminLinks = [
+  { icon: IconUsersGroup, label: "Users", to: "/users" },
 ]

@@ -1,7 +1,9 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 
-import { publicLinks } from "./NavbarLinks.ts"
+import { Divider, Stack, Title } from "@mantine/core"
+
+import { publicLinks, adminLinks } from "./NavbarLinks.ts"
 import classes from "./NavbarSimple.module.css"
 
 type NavBarParams = {
@@ -30,9 +32,33 @@ export function NavbarSimple({ onClick }: NavBarParams) {
     </Link>
   ))
 
+  const otherLinks = adminLinks.map((item) => (
+    <Link
+      data-active={item.label === active || undefined}
+      onClick={() => handleClick(item.label)}
+      className={classes.link}
+      key={item.label}
+      to={item.to}
+    >
+      <item.icon className={classes.linkIcon} stroke={1.5} />
+      <span>{item.label}</span>
+    </Link>
+  ))
+
   return (
-    <nav className={classes.navbar}>
-      <div className={classes.navbarMain}>{links}</div>
-    </nav>
+    <>
+      <nav className={classes.navbar}>
+        <Stack h="100%" justify="space-between" align="left">
+          <div>{links}</div>
+          <Divider my="md" />
+          <div className={classes.admin_links}>
+            <Title order={5} pl="md">
+              Admin
+            </Title>
+            {otherLinks}
+          </div>
+        </Stack>
+      </nav>
+    </>
   )
 }
