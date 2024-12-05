@@ -25,10 +25,10 @@ export default function UserManagement() {
 
   return (
     userData && (
-      <>
-        <Title order={2}>User Management</Title>
+      <Paper p="lg" radius="lg" m="lg">
+        <Title order={1}>Users</Title>
         <UserTable userData={userData} />
-      </>
+      </Paper>
     )
   )
 }
