@@ -35,7 +35,15 @@ export default function CardCollection({
             itemIdArray?.map((taxon_id) => {
               return (
                 <GridCol
-                  span={{ base: 12, xs: 6, sm: 6, lg: 3, xl: 2 }}
+                  span={{
+                    base: 12,
+                    xs: 12,
+                    sm: 6,
+                    md: 6,
+                    lg: 4,
+                    xl: 3,
+                    xxl: 2,
+                  }}
                   key={taxon_id}
                 >
                   <WildCard taxonId={taxon_id} />

@@ -2,6 +2,7 @@ import React, { PropsWithChildren, useEffect, useState } from "react"
 import ReactCardFlip from "react-card-flip"
 
 import {
+  Anchor,
   AspectRatio,
   BackgroundImage,
   Button,
@@ -137,7 +138,7 @@ function WildCard_Front({
     >
       <Card.Section>
         <AspectRatio ratio={1}>
-          {!wilderNestData && iNatdata.default_photo && (
+          {iNatdata.default_photo && (
             <Image
               src={iNatdata.default_photo?.medium_url}
               alt={iNatdata.name}
@@ -147,11 +148,11 @@ function WildCard_Front({
               width="auto"
             />
           )}
-          {wilderNestData && (
-            <>
-              <Image src={cardImagePath + wilderNestData.imgSrc} />
-            </>
-          )}
+          {/*{wilderNestData && (*/}
+          {/*  <>*/}
+          {/*    <Image src={cardImagePath + wilderNestData.imgSrc} />*/}
+          {/*  </>*/}
+          {/*)}*/}
         </AspectRatio>
       </Card.Section>
       <Card.Section className={styles.header} inheritPadding>
@@ -233,19 +234,30 @@ function WildCard_Back({
           <AspectRatio ratio={1}>
             <BackgroundImage src={iNatdata.default_photo?.medium_url}>
               <AspectRatio ratio={1}>
-                <Overlay p="md" color="#fff" backgroundOpacity={0.8} blur={8}>
+                <Overlay p="md" color="#000" backgroundOpacity={0.4} blur={12}>
                   {iNatdata.wikipedia_summary && (
-                    <Text size="sm" lineClamp={10} color="black">
+                    <Text
+                      size="sm"
+                      lineClamp={10}
+                      color="white"
+                      style={{ textShadow: "0px 0px 3px #000" }}
+                    >
                       <Interweave content={iNatdata.wikipedia_summary} />
                     </Text>
                   )}
 
                   {iNatdata.wikipedia_url && (
-                    <Text size="xs" fs="italic" lineClamp={12} mt="xs">
+                    <Text
+                      size="xs"
+                      fs="italic"
+                      lineClamp={12}
+                      mt="xs"
+                      color="white"
+                    >
                       Source:{" "}
-                      <a href={iNatdata.wikipedia_url}>
+                      <Anchor href={iNatdata.wikipedia_url}>
                         {iNatdata.name} / Wikipedia{" "}
-                      </a>
+                      </Anchor>
                     </Text>
                   )}
                 </Overlay>
