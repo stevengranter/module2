@@ -98,6 +98,7 @@ export default function MobileLayout() {
                 <ActionIcon variant="transparent" color="white" size={80}>
                   <IconHome
                     style={{ width: "auto", height: "100%" }}
+                    className={styles.footer_icon}
                   ></IconHome>
                 </ActionIcon>
               </Link>
@@ -111,14 +112,12 @@ export default function MobileLayout() {
               {/*</Link>*/}
               <Link to="/dashboard">
                 <ActionIcon variant="transparent" color="white" size={80}>
-                  <IconEgg style={{ width: "auto", height: "80%" }}></IconEgg>
+                  <IconEgg className={styles.footer_icon}></IconEgg>
                 </ActionIcon>
               </Link>
               <Link to="/search">
                 <ActionIcon variant="transparent" color="white" size={80}>
-                  <IconSearch
-                    style={{ width: "auto", height: "80%" }}
-                  ></IconSearch>
+                  <IconSearch className={styles.footer_icon}></IconSearch>
                 </ActionIcon>
               </Link>
             </Group>

@@ -7,9 +7,16 @@ export default function WelcomePage() {
   return (
     <>
       <Center>
-        <Image src={logo} alt="WilderNest logo" w="50%" mah="300px" pb="2rem" />
+        <Image
+          src={logo}
+          alt="WilderNest logo"
+          w="50%"
+          mah="300px"
+          pb="2rem"
+          style={{ filter: "drop-shadow(0px 5px 8px rgba(0, 0, 0, 0.4))" }}
+        />
       </Center>
-      <Paper p="lg" radius="lg" withBorder={true}>
+      <Paper p="lg" radius="lg" withBorder={true} shadow="xl">
         <Title order={2} c="soil.9" p="xs">
           Welcome to WilderNest!
         </Title>
