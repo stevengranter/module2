@@ -1,4 +1,22 @@
-import { ActionIcon, createTheme } from "@mantine/core"
+import {
+  createTheme,
+  DefaultMantineColor,
+  MantineColorsTuple,
+  MantineThemeColorsOverride,
+} from "@mantine/core"
+
+type ExtendedCustomColors =
+  | "soil"
+  | "green"
+  | "teal"
+  | "darkteal"
+  | DefaultMantineColor
+
+declare module "@mantine/core" {
+  export interface MantineThemeColorsOverride {
+    colors: Record<ExtendedCustomColors, MantineColorsTuple>
+  }
+}
 
 export const defaultTheme = createTheme({
   breakpoints: {
@@ -9,8 +27,6 @@ export const defaultTheme = createTheme({
     xl: "100em",
     xxl: "135em",
   },
-  headings: { fontFamily: "Truculenta, sans-serif" },
-  primaryColor: "green",
   colors: {
     green: [
       "#f6fde9",
@@ -48,7 +64,21 @@ export const defaultTheme = createTheme({
       "#0c3e36",
       "#09342d",
     ],
+    soil: [
+      "#faf4ef",
+      "#efe6e0",
+      "#e1caba",
+      "#d4ad91",
+      "#c9946f",
+      "#c28458",
+      "#c07c4c",
+      "#a9693d",
+      "#975d34",
+      "#844f29",
+    ],
   },
+  headings: { fontFamily: "Truculenta, sans-serif" },
+  primaryColor: "green",
   components: {
     Container: {
       defaultProps: {

@@ -1,20 +1,18 @@
 
-/*.footer {*/
-/*position: fixed;*/
-/*bottom: 0;*/
-/*color: black;*/
-/*align-content: center;*/
-/*justify-content: center;*/
-/*text-align: center;*/
-/*padding:20px}*/
+
+:root {
+    /* TODO: how to prevent JetBrains from flagging the var when colour is defined in Mantine theme*/
+    --mantine-color-soil-9: #844f29;}
 
 footer, navbar {background-color:transparent !important}
 
 header {background-color:#39ACCE !important}
 
 
+
 .mobile_toolbar{
-background-color: #763c11 !important;
+
+background-color: var(--mantine-color-soil-9) !important;
 }
 
 .softwhite{
