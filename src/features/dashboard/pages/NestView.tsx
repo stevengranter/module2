@@ -42,22 +42,23 @@ export default function NestView() {
   }
 
   useLogger("NestView", [
-    nestState,
-    collectionsState,
-    { collectionNames: dropdownDataArray },
+    // nestState,
+    // collectionsState,
+    // { collectionNames: dropdownDataArray },
     { selectedCollectionId },
     { itemIdsArray },
   ])
 
-  useEffect(() => {
-    if (!collectionAction.getAllCollectionNames().includes("Starter Pack")) {
-      collectionAction.createCollection("Starter Pack")
-    }
-    setSelectedCollectionId(
-      collectionAction.getCollectionIdByName("Starter Pack"),
-    )
-  }, [collectionAction])
+  // useEffect(() => {
+  //   if (!collectionAction.getAllCollectionNames().includes("Starter Pack")) {
+  //     collectionAction.createCollection("Starter Pack")
+  //   }
+  //   setSelectedCollectionId(
+  //     collectionAction.getCollectionIdByName("Starter Pack"),
+  //   )
+  // }, [collectionAction])
 
+  // if collectionsState has changed, update the dropDownDataArray
   useEffect(() => {
     console.log("collectionsState.length has changed")
     if (!collectionsState) {
@@ -73,16 +74,13 @@ export default function NestView() {
     ) {
       console.log("selectedCollectionId is not in dropdownData")
     }
-  }, [
-    collectionsState,
-    // dropdownDataArray,
-    // selectedCollectionId
-  ])
+  }, [collectionsState])
 
+  // if selectedCollectionId has changed, update the itemIdsArray that's
+  // passed to CardCollection component
   useEffect(() => {
     //TODO: Have nest ids and set in SelectBox if no collection is selected
     if (!selectedCollectionId) return
-
     const selectedCollection = collectionsState.find(
       (collection) => collection.id === selectedCollectionId,
     )
@@ -90,7 +88,7 @@ export default function NestView() {
     setItemIdsArray(selectedCollection.items)
     console.log({ selectedCollection })
     setCollectionDescription(selectedCollection.description || "No description")
-  }, [selectedCollectionId, collectionsState])
+  }, [selectedCollectionId])
 
   // TODO: Fix for choosing current option (errors with null value)
   function handleSelect(selectedValue: string) {
