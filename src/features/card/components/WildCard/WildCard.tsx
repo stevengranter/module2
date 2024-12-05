@@ -12,6 +12,7 @@ import {
   Skeleton,
   Stack,
   Text,
+  Title,
 } from "@mantine/core"
 import {
   IconHeart,
@@ -124,37 +125,40 @@ function WildCard_Front({
       withBorder
       radius={"md"}
       className={styles.wildcard}
-      mah={400}
-      mih={400}
       {...restProps}
     >
-      <Card.Section p="md" className={styles.header}>
+      <Card.Section className={styles.header} inheritPadding>
         <Group justify="space-between" wrap="nowrap">
           <Stack gap="xs">
-            <Text fz="h3">
+            <Title order={4} lineClamp={1}>
               {iNatdata?.preferred_common_name || iNatdata?.english_common_name}
-            </Text>{" "}
-            <Text fz="h4">{iNatdata.name}</Text>
+            </Title>{" "}
+            <Title order={5} lineClamp={1}>
+              {iNatdata.name}
+            </Title>
           </Stack>
-          {iNatdata.id && (
-            <Stack>
-              <ToggleCollectionButton
-                id={iNatdata.id?.toString()}
-                collection="Wishlist"
-                TrueIconComponent={<IconStarFilled color="gold" />}
-                FalseIconComponent={<IconStar color="gold" />}
-                variant="transparent"
-              />
-              <ToggleCollectionButton
-                id={iNatdata.id?.toString()}
-                collection="Favorites"
-                TrueIconComponent={<IconHeartFilled />}
-                FalseIconComponent={<IconHeart />}
-                variant="transparent"
-              />
-            </Stack>
-          )}
         </Group>
+      </Card.Section>
+
+      <Card.Section>
+        {iNatdata.id && (
+          <Group>
+            <ToggleCollectionButton
+              id={iNatdata.id?.toString()}
+              collection="Wishlist"
+              TrueIconComponent={<IconStarFilled color="gold" />}
+              FalseIconComponent={<IconStar color="gold" />}
+              variant="transparent"
+            />
+            <ToggleCollectionButton
+              id={iNatdata.id?.toString()}
+              collection="Favorites"
+              TrueIconComponent={<IconHeartFilled />}
+              FalseIconComponent={<IconHeart />}
+              variant="transparent"
+            />
+          </Group>
+        )}
       </Card.Section>
 
       <AspectRatio ratio={1}>
@@ -164,6 +168,8 @@ function WildCard_Front({
             alt={iNatdata.name}
             loading="lazy"
             radius="md"
+            height="100%"
+            width="auto"
           />
         )}
         {wilderNestData && (
@@ -198,13 +204,11 @@ function WildCard_Back({
       withBorder
       radius={"md"}
       className={styles.wildcard}
-      mah={400}
-      mih={400}
       {...restProps}
     >
       <Card.Section>
         <Group justify="space-between" wrap="nowrap">
-          <Text fz="h3">{iNatdata.preferred_common_name}</Text>
+          <Text fz="h4">{iNatdata.preferred_common_name}</Text>
 
           {iNatdata.id && (
             <Stack>

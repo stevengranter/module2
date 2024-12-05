@@ -7,6 +7,7 @@ import {
   BackgroundImage,
   Box,
   Center,
+  Flex,
   Group,
   Image,
   Paper,
@@ -92,25 +93,37 @@ export default function MobileLayout() {
       <AppShell.Footer withBorder={false}>
         <Center>
           <Paper p="lg" w="100%" className={styles.mobile_toolbar} radius="0">
-            <Group justify="space-between">
+            <Group justify="space-between" px="lg" grow>
               <Link to="/">
-                <ActionIcon variant="transparent" color="white" size="xxl">
-                  <IconHome size={70}></IconHome>
+                <ActionIcon variant="transparent" color="white" size={80}>
+                  <IconHome
+                    style={{ width: "auto", height: "100%" }}
+                    stroke={1.5}
+                  ></IconHome>
                 </ActionIcon>
               </Link>
-              <Link to="/users">
-                <ActionIcon variant="transparent" color="white" size="xxl">
-                  <IconUsersGroup size={70}></IconUsersGroup>
-                </ActionIcon>
-              </Link>
+              {/*<Link to="/users">*/}
+              {/*  <ActionIcon variant="transparent" color="white" size={80}>*/}
+              {/*    <IconUsersGroup*/}
+              {/*      style={{ width: "auto", height: "80%" }}*/}
+              {/*      stroke={1.5}*/}
+              {/*    ></IconUsersGroup>*/}
+              {/*  </ActionIcon>*/}
+              {/*</Link>*/}
               <Link to="/dashboard">
-                <ActionIcon variant="transparent" color="white" size="xxl">
-                  <IconEgg size={70}></IconEgg>
+                <ActionIcon variant="transparent" color="white" size={80}>
+                  <IconEgg
+                    style={{ width: "auto", height: "80%" }}
+                    stroke={1.5}
+                  ></IconEgg>
                 </ActionIcon>
               </Link>
               <Link to="/search">
-                <ActionIcon variant="transparent" color="white" size="xxl">
-                  <IconSearch size={70}></IconSearch>
+                <ActionIcon variant="transparent" color="white" size={80}>
+                  <IconSearch
+                    style={{ width: "auto", height: "80%" }}
+                    stroke={1.5}
+                  ></IconSearch>
                 </ActionIcon>
               </Link>
             </Group>
