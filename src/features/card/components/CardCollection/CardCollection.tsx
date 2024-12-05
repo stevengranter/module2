@@ -8,7 +8,7 @@ import { WildCard } from "~/features/card/components/WildCard/WildCard.tsx"
 
 export default function CardCollection({
   itemIdArray,
-  collectionId,
+  // collectionId,
   description,
 }: {
   itemIdArray: string[]
@@ -17,14 +17,14 @@ export default function CardCollection({
 }) {
   useLogger("CardCollection", [{ description }])
   if (!itemIdArray) return "Collection doesn't exist"
-  if (itemIdArray.length === 0)
-    return (
-      <Text>
-        Nothing here yet, use <Link to="/search">search</Link> to add to this
-        collection, or{" "}
-        {collectionId && <DeleteCollectionButton collectionId={collectionId} />}
-      </Text>
-    )
+  if (itemIdArray.length === 0) return
+  // (
+  //   <Text>
+  //     Nothing here yet, use <Link to="/search">search</Link> to add to this
+  //     collection, or{" "}
+  //     {collectionId && <DeleteCollectionButton collectionId={collectionId} />}
+  //   </Text>
+  // )
 
   return (
     itemIdArray.length > 0 && (

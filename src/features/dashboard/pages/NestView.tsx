@@ -49,15 +49,6 @@ export default function NestView() {
     { itemIdsArray },
   ])
 
-  // useEffect(() => {
-  //   if (!collectionAction.getAllCollectionNames().includes("Starter Pack")) {
-  //     collectionAction.createCollection("Starter Pack")
-  //   }
-  //   setSelectedCollectionId(
-  //     collectionAction.getCollectionIdByName("Starter Pack"),
-  //   )
-  // }, [collectionAction])
-
   // if collectionsState has changed, update the dropDownDataArray
   useEffect(() => {
     console.log("collectionsState.length has changed")
@@ -93,7 +84,8 @@ export default function NestView() {
   // TODO: Fix for choosing current option (errors with null value)
   function handleSelect(selectedValue: string) {
     console.log(selectedValue)
-    if (!selectedValue) setSelectedCollectionId("Starter Pack")
+    const starterPackId = collectionAction.getCollectionIdByName("Starter Pack")
+    if (!selectedValue) setSelectedCollectionId(starterPackId)
     if (selectedValue) setSelectedCollectionId(selectedValue)
     console.log(selectedValue)
   }
