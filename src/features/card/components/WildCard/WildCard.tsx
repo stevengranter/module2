@@ -6,6 +6,7 @@ import {
   BackgroundImage,
   Button,
   Card,
+  Flex,
   Group,
   Image,
   Indicator,
@@ -15,8 +16,10 @@ import {
   Stack,
   Text,
   Title,
+  useMantineTheme,
 } from "@mantine/core"
 import {
+  IconBrandWikipedia,
   IconHeart,
   IconHeartFilled,
   IconStar,
@@ -118,6 +121,7 @@ function WildCard_Front({
   onFlip?: (e: React.MouseEvent) => void
   wilderNestData?: WilderKindCardType | null
 }) {
+  const theme = useMantineTheme()
   if (!iNatdata) return null
   // console.log(iNatdata)
 
@@ -128,6 +132,7 @@ function WildCard_Front({
       radius={"lg"}
       shadow="md"
       className={styles.wildcard}
+      pb="md"
       {...restProps}
     >
       <Card.Section>
@@ -150,33 +155,47 @@ function WildCard_Front({
         </AspectRatio>
       </Card.Section>
       <Card.Section className={styles.header} inheritPadding>
-        <Title order={3} lineClamp={1} pb={0} mb={0}>
-          {iNatdata?.preferred_common_name || iNatdata?.english_common_name}
-        </Title>
-        <Text lineClamp={1} mt={0} pt={0}>
-          {iNatdata.name}
-        </Text>
-      </Card.Section>
-
-      <Card.Section>
-        {iNatdata.id && (
-          <Group>
-            <ToggleCollectionButton
-              id={iNatdata.id?.toString()}
-              collection="Wishlist"
-              TrueIconComponent={<IconStarFilled color="gold" />}
-              FalseIconComponent={<IconStar color="gold" />}
-              variant="transparent"
-            />
-            <ToggleCollectionButton
-              id={iNatdata.id?.toString()}
-              collection="Favorites"
-              TrueIconComponent={<IconHeartFilled />}
-              FalseIconComponent={<IconHeart />}
-              variant="transparent"
-            />
-          </Group>
-        )}
+        <Flex justify="space-between" my="md" wrap="nowrap">
+          <div>
+            <Title order={3} size="h4" lineClamp={1} pb={0} mb={0}>
+              {iNatdata?.preferred_common_name || iNatdata?.english_common_name}
+            </Title>
+            <Text size="xs" lineClamp={1} mt={0} pt={0}>
+              {iNatdata.name}
+            </Text>
+          </div>
+          {iNatdata.id && (
+            <Flex justify="center" align="flex-start" gap="xs" wrap="nowrap">
+              <ToggleCollectionButton
+                id={iNatdata.id?.toString()}
+                collection="Wishlist"
+                TrueIconComponent={
+                  <IconStarFilled
+                    color="yellow"
+                    style={{ stroke: "orange", strokeWidth: "2" }}
+                  />
+                }
+                FalseIconComponent={<IconStar />}
+                variant="transparent"
+              />
+              <ToggleCollectionButton
+                id={iNatdata.id?.toString()}
+                collection="Favorites"
+                TrueIconComponent={
+                  <IconHeartFilled
+                    color="red"
+                    style={{
+                      stroke: theme.colors.red[9],
+                      strokeWidth: "2",
+                    }}
+                  />
+                }
+                FalseIconComponent={<IconHeart />}
+                variant="transparent"
+              />
+            </Flex>
+          )}
+        </Flex>
       </Card.Section>
 
       <Group justify="space-between">
@@ -198,7 +217,9 @@ function WildCard_Back({
   onFlip?: (e: React.MouseEvent) => void
   _wilderNestData?: WilderKindCardType | null
 }) {
+  const theme = useMantineTheme()
   if (!iNatdata) return null
+
   return (
     <Card
       key={iNatdata.id}
@@ -208,65 +229,73 @@ function WildCard_Back({
       {...restProps}
     >
       <Card.Section>
-        <AspectRatio ratio={1 / 1}>
-          {iNatdata.default_photo && (
+        {iNatdata.default_photo && (
+          <AspectRatio ratio={1}>
             <BackgroundImage src={iNatdata.default_photo?.medium_url}>
               <AspectRatio ratio={1}>
-                <Overlay p="md" color="#fff" backgroundOpacity={0.7} blur={5}>
-                  {/*{iNatdata.default_photo && (*/}
-                  {/*  <Image*/}
-                  {/*    src={iNatdata.default_photo?.square_url}*/}
-                  {/*    alt={iNatdata.name}*/}
-                  {/*    loading="lazy"*/}
-                  {/*  />*/}
-                  {/*)}*/}
-
+                <Overlay p="md" color="#fff" backgroundOpacity={0.8} blur={8}>
                   {iNatdata.wikipedia_summary && (
-                    <Text size="sm">
+                    <Text size="sm" lineClamp={10} color="black">
                       <Interweave content={iNatdata.wikipedia_summary} />
                     </Text>
                   )}
 
                   {iNatdata.wikipedia_url && (
-                    <a href={iNatdata.wikipedia_url}>Wikipedia Link</a>
+                    <Text size="xs" fs="italic" lineClamp={12} mt="xs">
+                      Source:{" "}
+                      <a href={iNatdata.wikipedia_url}>
+                        {iNatdata.name} / Wikipedia{" "}
+                      </a>
+                    </Text>
                   )}
-
-                  {/*<Text size="md">*/}
-                  {/*  <Interweave content={data.wikipedia_summary} />*/}
-                  {/*</Text>*/}
                 </Overlay>
               </AspectRatio>
             </BackgroundImage>
-          )}
-        </AspectRatio>
+          </AspectRatio>
+        )}
       </Card.Section>
       <Card.Section className={styles.header} inheritPadding>
-        <Title order={3} lineClamp={1} pb={0} mb={0}>
-          {iNatdata?.preferred_common_name || iNatdata?.english_common_name}
-        </Title>
-        <Text lineClamp={1} mt={0} pt={0}>
-          {iNatdata.name}
-        </Text>
-      </Card.Section>
-
-      <Card.Section>
         {iNatdata.id && (
-          <Group>
-            <ToggleCollectionButton
-              id={iNatdata.id?.toString()}
-              collection="Wishlist"
-              TrueIconComponent={<IconStarFilled color="gold" />}
-              FalseIconComponent={<IconStar color="gold" />}
-              variant="transparent"
-            />
-            <ToggleCollectionButton
-              id={iNatdata.id?.toString()}
-              collection="Favorites"
-              TrueIconComponent={<IconHeartFilled />}
-              FalseIconComponent={<IconHeart />}
-              variant="transparent"
-            />
-          </Group>
+          <Flex justify="space-between" my="md" wrap="nowrap">
+            <div>
+              <Title order={3} size="h4" lineClamp={1} pb={0} mb={0}>
+                {iNatdata?.preferred_common_name ||
+                  iNatdata?.english_common_name}
+              </Title>
+              <Text size="xs" lineClamp={1} mt={0} pt={0}>
+                {iNatdata.name}
+              </Text>
+            </div>
+            <Flex justify="center" align="flex-start" gap="xs" wrap="nowrap">
+              <ToggleCollectionButton
+                id={iNatdata.id?.toString()}
+                collection="Wishlist"
+                TrueIconComponent={
+                  <IconStarFilled
+                    color="yellow"
+                    style={{ stroke: "orange", strokeWidth: "2" }}
+                  />
+                }
+                FalseIconComponent={<IconStar />}
+                variant="transparent"
+              />
+              <ToggleCollectionButton
+                id={iNatdata.id?.toString()}
+                collection="Favorites"
+                TrueIconComponent={
+                  <IconHeartFilled
+                    color="red"
+                    style={{
+                      stroke: theme.colors.red[9],
+                      strokeWidth: "2",
+                    }}
+                  />
+                }
+                FalseIconComponent={<IconHeart />}
+                variant="transparent"
+              />
+            </Flex>
+          </Flex>
         )}
       </Card.Section>
 

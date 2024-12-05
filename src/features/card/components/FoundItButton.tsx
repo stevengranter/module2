@@ -12,9 +12,7 @@ export default function FoundItButton({ id, ...props }: FoundItButtonProps) {
 
   return (
     <>
-      <Button color="rgba(123,172,30,1)" onClick={() => setOpened(!opened)}>
-        Add +
-      </Button>{" "}
+      <Button onClick={() => setOpened(!opened)}>Add +</Button>{" "}
       {opened && <CollectionDropdown taxonId={id} {...props} />}
     </>
   )

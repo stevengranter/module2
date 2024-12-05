@@ -59,9 +59,6 @@ export default function ToggleCollectionButton({
     <MantineThemeProvider theme={theme}>
       <ActionIcon
         variant={variant}
-        radius="md"
-        color="red"
-        size="xxl"
         onClick={() => handleClick(id)}
         aria-label={collection}
       >

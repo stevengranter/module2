@@ -28,7 +28,7 @@ export const defaultTheme = createTheme({
     xxl: "135em",
   },
   colors: {
-    green: [
+    leaf: [
       "#f6fde9",
       "#ecf8d7",
       "#d9f0ad",
@@ -40,19 +40,7 @@ export const defaultTheme = createTheme({
       "#7bac1e",
       "#67940f",
     ],
-    teal: [
-      "#effbf7",
-      "#e0f3ee",
-      "#bae8db",
-      "#92dcc7",
-      "#73d3b7",
-      "#5fccac",
-      "#53c9a6",
-      "#43b191",
-      "#379e80",
-      "#25896e",
-    ],
-    darkteal: [
+    atlantic: [
       "#239582",
       "#208978",
       "#1d7e6e",
@@ -78,7 +66,7 @@ export const defaultTheme = createTheme({
     ],
   },
   headings: { fontFamily: "Truculenta, sans-serif" },
-  primaryColor: "green",
+  primaryColor: "teal",
   components: {
     Container: {
       defaultProps: {
