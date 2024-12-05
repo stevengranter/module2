@@ -3,11 +3,13 @@ import ReactCardFlip from "react-card-flip"
 
 import {
   AspectRatio,
+  BackgroundImage,
   Button,
   Card,
   Group,
   Image,
   Indicator,
+  Overlay,
   Paper,
   Skeleton,
   Stack,
@@ -123,21 +125,37 @@ function WildCard_Front({
     <Card
       key={iNatdata.id}
       withBorder
-      radius={"md"}
+      radius={"lg"}
+      shadow="md"
       className={styles.wildcard}
       {...restProps}
     >
+      <Card.Section>
+        <AspectRatio ratio={1}>
+          {!wilderNestData && iNatdata.default_photo && (
+            <Image
+              src={iNatdata.default_photo?.medium_url}
+              alt={iNatdata.name}
+              // loading="lazy"
+              // radius="md"
+              height="100%"
+              width="auto"
+            />
+          )}
+          {wilderNestData && (
+            <>
+              <Image src={cardImagePath + wilderNestData.imgSrc} />
+            </>
+          )}
+        </AspectRatio>
+      </Card.Section>
       <Card.Section className={styles.header} inheritPadding>
-        <Group justify="space-between" wrap="nowrap">
-          <Stack gap="xs">
-            <Title order={4} lineClamp={1}>
-              {iNatdata?.preferred_common_name || iNatdata?.english_common_name}
-            </Title>{" "}
-            <Title order={5} lineClamp={1}>
-              {iNatdata.name}
-            </Title>
-          </Stack>
-        </Group>
+        <Title order={3} lineClamp={1} pb={0} mb={0}>
+          {iNatdata?.preferred_common_name || iNatdata?.english_common_name}
+        </Title>
+        <Text lineClamp={1} mt={0} pt={0}>
+          {iNatdata.name}
+        </Text>
       </Card.Section>
 
       <Card.Section>
@@ -161,23 +179,6 @@ function WildCard_Front({
         )}
       </Card.Section>
 
-      <AspectRatio ratio={1}>
-        {!wilderNestData && iNatdata.default_photo && (
-          <Image
-            src={iNatdata.default_photo?.medium_url}
-            alt={iNatdata.name}
-            loading="lazy"
-            radius="md"
-            height="100%"
-            width="auto"
-          />
-        )}
-        {wilderNestData && (
-          <>
-            <Image src={cardImagePath + wilderNestData.imgSrc} />
-          </>
-        )}
-      </AspectRatio>
       <Group justify="space-between">
         {iNatdata.id && <FoundItButton size="lg" id={iNatdata.id} />}
         <Button variant="white" color={"black"} onClick={onFlip}>
@@ -207,58 +208,73 @@ function WildCard_Back({
       {...restProps}
     >
       <Card.Section>
-        <Group justify="space-between" wrap="nowrap">
-          <Text fz="h4">{iNatdata.preferred_common_name}</Text>
+        <AspectRatio ratio={1 / 1}>
+          {iNatdata.default_photo && (
+            <BackgroundImage src={iNatdata.default_photo?.medium_url}>
+              <AspectRatio ratio={1}>
+                <Overlay p="md" color="#fff" backgroundOpacity={0.7} blur={5}>
+                  {/*{iNatdata.default_photo && (*/}
+                  {/*  <Image*/}
+                  {/*    src={iNatdata.default_photo?.square_url}*/}
+                  {/*    alt={iNatdata.name}*/}
+                  {/*    loading="lazy"*/}
+                  {/*  />*/}
+                  {/*)}*/}
 
-          {iNatdata.id && (
-            <Stack>
-              <ToggleCollectionButton
-                id={iNatdata.id?.toString()}
-                collection="Wishlist"
-                TrueIconComponent={<IconStarFilled color="gold" />}
-                FalseIconComponent={<IconStar color="gold" />}
-                variant="transparent"
-              />
+                  {iNatdata.wikipedia_summary && (
+                    <Text size="sm">
+                      <Interweave content={iNatdata.wikipedia_summary} />
+                    </Text>
+                  )}
 
-              <ToggleCollectionButton
-                id={iNatdata.id?.toString()}
-                collection="Favorites"
-                TrueIconComponent={<IconHeartFilled color="red" />}
-                FalseIconComponent={<IconHeart color="red" />}
-                variant="transparent"
-              />
-            </Stack>
+                  {iNatdata.wikipedia_url && (
+                    <a href={iNatdata.wikipedia_url}>Wikipedia Link</a>
+                  )}
+
+                  {/*<Text size="md">*/}
+                  {/*  <Interweave content={data.wikipedia_summary} />*/}
+                  {/*</Text>*/}
+                </Overlay>
+              </AspectRatio>
+            </BackgroundImage>
           )}
-        </Group>
+        </AspectRatio>
+      </Card.Section>
+      <Card.Section className={styles.header} inheritPadding>
+        <Title order={3} lineClamp={1} pb={0} mb={0}>
+          {iNatdata?.preferred_common_name || iNatdata?.english_common_name}
+        </Title>
+        <Text lineClamp={1} mt={0} pt={0}>
+          {iNatdata.name}
+        </Text>
       </Card.Section>
 
-      <Group>
-        {/*{iNatdata.default_photo && (*/}
-        {/*  <Image*/}
-        {/*    src={iNatdata.default_photo?.square_url}*/}
-        {/*    alt={iNatdata.name}*/}
-        {/*    loading="lazy"*/}
-        {/*  />*/}
-        {/*)}*/}
-
-        {iNatdata.wikipedia_summary && (
-          <Text lineClamp={4}>
-            <Interweave content={iNatdata.wikipedia_summary} />
-          </Text>
+      <Card.Section>
+        {iNatdata.id && (
+          <Group>
+            <ToggleCollectionButton
+              id={iNatdata.id?.toString()}
+              collection="Wishlist"
+              TrueIconComponent={<IconStarFilled color="gold" />}
+              FalseIconComponent={<IconStar color="gold" />}
+              variant="transparent"
+            />
+            <ToggleCollectionButton
+              id={iNatdata.id?.toString()}
+              collection="Favorites"
+              TrueIconComponent={<IconHeartFilled />}
+              FalseIconComponent={<IconHeart />}
+              variant="transparent"
+            />
+          </Group>
         )}
-        <Card.Section mt="md">
-          {iNatdata.wikipedia_url && (
-            <a href={iNatdata.wikipedia_url}>Wikipedia Link</a>
-          )}
-        </Card.Section>
+      </Card.Section>
 
-        {/*<Text size="md">*/}
-        {/*  <Interweave content={data.wikipedia_summary} />*/}
-        {/*</Text>*/}
-        <Group>
-          {iNatdata.id && <FoundItButton id={iNatdata.id} />}
-          <Button onClick={onFlip}>Flip</Button>
-        </Group>
+      <Group justify="space-between">
+        {iNatdata.id && <FoundItButton size="lg" id={iNatdata.id} />}
+        <Button variant="white" color={"black"} onClick={onFlip}>
+          Flip
+        </Button>
       </Group>
     </Card>
   )

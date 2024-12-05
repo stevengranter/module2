@@ -9,6 +9,7 @@ import {
   Pagination,
   Paper,
   TextInput,
+  Title,
 } from "@mantine/core"
 import { useForm } from "@mantine/form"
 import { useQuery } from "@tanstack/react-query"
@@ -91,8 +92,8 @@ export default function SearchPage() {
   }
 
   return (
-    <Paper p="lg" radius="lg" m="lg">
-      <h1>Search</h1>
+    <Paper px="xl" pt="md" pb="lg" radius="lg" m="lg">
+      <Title order={1}>Search</Title>
       <p>
         Type in your findings here: insect, plant, or animal. If you're not sure
         what you've found, check out our links page to some apps and smartphone
@@ -128,7 +129,7 @@ export default function SearchPage() {
 
       {isLoading && "Loading..."}
       {iNatData && (
-        <Grid>
+        <Grid gutter="lg">
           {iNatData.results &&
             iNatData?.results.map((result) => {
               return (
