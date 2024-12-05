@@ -18,15 +18,13 @@ export default function WelcomePage() {
         />
       </Center>
       <DefaultPaper>
-        <Title order={2} c="soil.9" p="xs">
-          Welcome to WilderNest!
-        </Title>
-        <Text p="xs">
+        <Title order={1}>Welcome to WilderNest!</Title>
+        <Text py="xs">
           Interested in the natural world? 🌱 Need a way to keep track of all
           your awesome discoveries? Add plants, an️imals, insects and more to
           your nest 🥚, fav them ❤️, or group them by collection.
         </Text>
-        <Text p="xs">
+        <Text py="xs">
           Hoping to see some rare, exotic creatures on an upcoming trip? 🔍
           Search, then add them to your wishlist so you remember to look for
           them! ⭐

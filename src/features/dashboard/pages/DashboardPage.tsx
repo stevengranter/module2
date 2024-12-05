@@ -5,7 +5,7 @@ import NestView from "~/features/dashboard/pages/NestView.tsx"
 export default function DashboardPage() {
   return (
     <DefaultPaper>
-      <Title order={1}>myNest</Title>
+      <Title order={1}>Collections</Title>
       <NestView />
     </DefaultPaper>
   )

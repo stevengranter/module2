@@ -18,6 +18,7 @@ import {
 import { useHeadroom, useMediaQuery } from "@mantine/hooks"
 import {
   IconBinoculars,
+  IconCards,
   IconEgg,
   IconHome,
   IconSailboat,
@@ -112,7 +113,7 @@ export default function MobileLayout() {
               {/*</Link>*/}
               <Link to="/dashboard">
                 <ActionIcon variant="transparent" color="white" size={80}>
-                  <IconEgg className={styles.footer_icon}></IconEgg>
+                  <IconCards className={styles.footer_icon}></IconCards>
                 </ActionIcon>
               </Link>
               <Link to="/search">
