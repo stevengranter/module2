@@ -10,7 +10,7 @@ const initialCollections: Collection[] = [
   {
     name: "Starter Pack",
     id: crypto.randomUUID(),
-    items: ["48586", "48987", "81545"],
+    items: ["12727", "48586", "48987"],
     description:
       "This is your starter pack. Add them to your favorites by" +
       " clicking the heart icon. Add more animals by using Search.",
