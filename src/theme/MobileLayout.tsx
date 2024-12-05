@@ -93,12 +93,11 @@ export default function MobileLayout() {
       <AppShell.Footer withBorder={false}>
         <Center>
           <Paper p="lg" w="100%" className={styles.mobile_toolbar} radius="0">
-            <Group justify="space-between" px="lg" grow>
+            <Group justify="space-between" px="lg">
               <Link to="/">
                 <ActionIcon variant="transparent" color="white" size={80}>
                   <IconHome
                     style={{ width: "auto", height: "100%" }}
-                    stroke={1.5}
                   ></IconHome>
                 </ActionIcon>
               </Link>
@@ -112,17 +111,13 @@ export default function MobileLayout() {
               {/*</Link>*/}
               <Link to="/dashboard">
                 <ActionIcon variant="transparent" color="white" size={80}>
-                  <IconEgg
-                    style={{ width: "auto", height: "80%" }}
-                    stroke={1.5}
-                  ></IconEgg>
+                  <IconEgg style={{ width: "auto", height: "80%" }}></IconEgg>
                 </ActionIcon>
               </Link>
               <Link to="/search">
                 <ActionIcon variant="transparent" color="white" size={80}>
                   <IconSearch
                     style={{ width: "auto", height: "80%" }}
-                    stroke={1.5}
                   ></IconSearch>
                 </ActionIcon>
               </Link>
