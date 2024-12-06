@@ -114,12 +114,13 @@ export default function SearchPage() {
       >
         <Flex align="flex-end">
           <TextInput
-            placeholder="Enter search terms"
+            placeholder="Grey Jay"
             key={form.key("q")}
-            label="SearchPage"
             {...form.getInputProps("q")}
+            label="Common name (for plant, animal, or fungi)"
+            aria-label="Enter name for an animal, insect or plant"
           />
-          <Button type="submit">Submit</Button>
+          <Button type="submit">Search</Button>
         </Flex>
 
         <div>

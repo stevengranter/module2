@@ -58,12 +58,14 @@ export default function NestView() {
       const formattedData = formatDropdownData(collectionsState)
       formattedData && setDropdownDataArray(formattedData)
     }
-    if (
-      !dropdownDataArray.find(
-        (collection) => collection.value == selectedCollectionId,
-      )
-    ) {
-      console.log("selectedCollectionId is not in dropdownData")
+    if (selectedCollectionId) {
+      if (
+        !dropdownDataArray.find(
+          (collection) => collection.value == selectedCollectionId,
+        )
+      ) {
+        console.log("selectedCollectionId is not in dropdownData")
+      }
     }
   }, [collectionsState])
 
@@ -83,7 +85,7 @@ export default function NestView() {
 
   // TODO: Fix for choosing current option (errors with null value)
   function handleSelect(selectedValue: string) {
-    console.log(selectedValue)
+    console.log({ selectedValue })
     const starterPackId = collectionAction.getCollectionIdByName("Starter Pack")
     if (!selectedValue) setSelectedCollectionId(starterPackId)
     if (selectedValue) setSelectedCollectionId(selectedValue)
