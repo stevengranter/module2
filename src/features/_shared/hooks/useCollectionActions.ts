@@ -1,9 +1,22 @@
+import { notifications } from "@mantine/notifications"
 // import { useLogger } from "@mantine/hooks"
 import { useCollections } from "~/features/_shared/contexts/collections/useCollections.ts"
 import { Collection } from "~/features/_shared/contexts/nest/NestProvider.types.ts"
 import useNestActions from "~/features/_shared/hooks/useNestActions.ts"
 import { displayNotification } from "~/features/_shared/utils/displayNotification.ts"
+// import { displayNotification } from "~/features/_shared/utils/displayNotification.ts"
+// import { displayNotification } from "~/features/_shared/utils/displayNotification.ts"
 import _ from "lodash"
+
+const notificationsQueueId = "message-queue"
+
+function initNotifications() {
+  notifications.show({
+    id: notificationsQueueId,
+    message: "",
+    position: "top-right",
+  })
+}
 
 export default function useCollectionActions() {
   const [state, update] = useCollections()
@@ -17,14 +30,18 @@ export default function useCollectionActions() {
   }
 
   function createCollection(collectionName: string): void {
+    console.log("createCollection()")
+    initNotifications()
     if (getAllCollectionNames().includes(collectionName)) {
-      return displayNotification({
+      notifications.update({
+        id: notificationsQueueId,
         message: `Collection ${collectionName} already exists`,
         color: "orange",
       })
     } else {
       if (collectionName.length === 0) {
-        displayNotification({
+        notifications.update({
+          id: notificationsQueueId,
           message: `Collection name must be at least 1 character in length`,
           color: "orange",
         })
@@ -36,7 +53,8 @@ export default function useCollectionActions() {
             id: crypto.randomUUID(),
             items: [],
           })
-          displayNotification({
+          notifications.update({
+            id: notificationsQueueId,
             message: `Collection ${collectionName} created`,
           })
         })
@@ -53,8 +71,10 @@ export default function useCollectionActions() {
   }
 
   function addIdToCollection(id: number | string, name: string): void {
+    initNotifications()
     if (!nestAction.isValidId(id)) {
-      displayNotification({
+      notifications.update({
+        id: notificationsQueueId,
         message: `Cannot add id: ${id}, not a valid id`,
       })
       return
@@ -66,7 +86,8 @@ export default function useCollectionActions() {
     }
 
     if (!hasCollection(name)) {
-      displayNotification({
+      notifications.update({
+        id: notificationsQueueId,
         message: `Collection: ${name} does not exist, creating collection...`,
         color: "orange",
       })
@@ -80,7 +101,8 @@ export default function useCollectionActions() {
 
       if (namedCollection) {
         if (namedCollection.items.includes(id.toString())) {
-          displayNotification({
+          notifications.update({
+            id: notificationsQueueId,
             message: `Cannot add, Collection ${name} already includes id: ${id}`,
             color: "orange",
           })
@@ -88,7 +110,8 @@ export default function useCollectionActions() {
         }
 
         namedCollection.items.push(id.toString())
-        displayNotification({
+        notifications.update({
+          id: notificationsQueueId,
           message: `Item: ${id} added to ${namedCollection.name}`,
         })
       }
@@ -96,8 +119,10 @@ export default function useCollectionActions() {
   }
 
   function removeIdFromCollection(id: number | string, name: string): void {
+    initNotifications()
     if (!hasCollection(name)) {
-      displayNotification({
+      notifications.update({
+        id: notificationsQueueId,
         message: `Cannot remove id, Collection ${name} does not exist`,
         color: "orange",
       })
@@ -106,7 +131,8 @@ export default function useCollectionActions() {
 
     const namedCollection = state.find((collection) => collection.name === name)
     if (!namedCollection || !namedCollection.items.includes(id.toString())) {
-      displayNotification({
+      notifications.update({
+        id: notificationsQueueId,
         message: `Cannot remove, ID: ${id} is not in collection ${name}`,
         color: "orange",
       })
@@ -121,7 +147,8 @@ export default function useCollectionActions() {
         const index = collectionToUpdate.items.indexOf(id.toString())
         if (index > -1) {
           collectionToUpdate.items.splice(index, 1)
-          displayNotification({
+          notifications.update({
+            id: notificationsQueueId,
             message: `Removed id:${id} from collection ${name}`,
           })
         }
@@ -130,23 +157,27 @@ export default function useCollectionActions() {
   }
 
   function getCollectionIdByName(name: string): string | null {
+    // initNotifications()
     const namedCollection = state.find((collection) => collection.name === name)
     if (!namedCollection) {
-      displayNotification({
-        message: `Collection ${name} does not exist, no corresponding id`,
-      })
+      // notifications.update({
+      //   id: notificationsQueueId,
+      //   message: `Collection ${name} does not exist, no corresponding id`,
+      // })
       return null
     }
     return namedCollection.id
   }
 
   function isItemInCollection(id: number | string, name: string): boolean {
-    if (!hasCollection(name)) {
-      displayNotification({
-        message: `Collection ${name} does not exist`,
-      })
-      return false
-    }
+    // initNotifications()
+    // if (!hasCollection(name)) {
+    //   notifications.update({
+    //     id: notificationsQueueId,
+    //     message: `Collection ${name} does not exist`,
+    //   })
+    //   return false
+    // }
 
     const namedCollection = state.find((collection) => collection.name === name)
 
@@ -154,11 +185,12 @@ export default function useCollectionActions() {
   }
 
   function getCollectionsIncludingId(id: string | number): Collection[] | null {
+    // initNotifications()
     const matchingCollections = state.filter((collection) =>
       collection.items.includes(id.toString()),
     )
     if (matchingCollections.length === 0) {
-      // displayNotification({
+      // notifications.update({
       //   message: `id: ${id} cannot be found in any collection`,
       // })
       return null

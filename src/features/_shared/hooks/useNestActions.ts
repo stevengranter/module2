@@ -1,6 +1,7 @@
 // useNestActions.ts
 import { useCallback } from "react"
 
+import { notifications } from "@mantine/notifications"
 import useNest from "~/features/_shared/contexts/nest/useNest.ts"
 import { displayNotification } from "~/features/_shared/utils/displayNotification.ts"
 
@@ -12,7 +13,7 @@ export default function useNestActions() {
   // 🧰---- Utility Functions ----
   const isValidId = useCallback((itemId: string | number): boolean => {
     if (!itemId) {
-      displayNotification({ message: `Id ${itemId} is not a valid id.` })
+      notifications.update({ message: `Id ${itemId} is not a valid id.` })
       return false
     }
     return true
@@ -32,7 +33,7 @@ export default function useNestActions() {
   const addItemToNest = useCallback(
     (itemId: number | string): void => {
       if (isItemInNest(itemId)) {
-        displayNotification({
+        notifications.update({
           message: `Duplicate, Id: ${itemId} is already in nest`,
           color: "orange",
         })
@@ -41,7 +42,7 @@ export default function useNestActions() {
 
       update((draft) => {
         draft.push(itemId.toString())
-        displayNotification({ message: `Id: ${itemId} added to nest` })
+        notifications.update({ message: `Id: ${itemId} added to nest` })
       })
     },
     [isItemInNest, update],
@@ -50,7 +51,7 @@ export default function useNestActions() {
   const removeItemFromNest = useCallback(
     (itemId: number | string): void => {
       if (!state.includes(itemId.toString())) {
-        displayNotification({
+        notifications.update({
           message: `Cannot remove, id: ${itemId} is not in nest`,
           color: "orange",
         })
@@ -59,7 +60,7 @@ export default function useNestActions() {
 
       update((draft) => {
         draft.splice(draft.indexOf(itemId.toString()), 1)
-        displayNotification({ message: `Id: ${itemId} removed from nest` })
+        notifications.update({ message: `Id: ${itemId} removed from nest` })
       })
     },
     [state, update],
