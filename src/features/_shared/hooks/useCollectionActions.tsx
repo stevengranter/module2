@@ -1,12 +1,18 @@
+import React, { ReactNode } from "react"
+
 import { notifications } from "@mantine/notifications"
+import { IconPlus, IconMinus } from "@tabler/icons-react"
+
 // import { useLogger } from "@mantine/hooks"
 import { useCollections } from "~/features/_shared/contexts/collections/useCollections.ts"
 import { Collection } from "~/features/_shared/contexts/nest/NestProvider.types.ts"
 import useNestActions from "~/features/_shared/hooks/useNestActions.ts"
 import { displayNotification } from "~/features/_shared/utils/displayNotification.ts"
+import { WilderKindCardType } from "~/models/WilderKindCardType.ts"
+
 // import { displayNotification } from "~/features/_shared/utils/displayNotification.ts"
 // import { displayNotification } from "~/features/_shared/utils/displayNotification.ts"
-import _ from "lodash"
+import _, { size } from "lodash"
 
 const notificationsQueueId = "message-queue"
 
@@ -21,8 +27,6 @@ function initNotifications() {
 export default function useCollectionActions() {
   const [state, update] = useCollections()
   const nestAction = useNestActions()
-
-  // useLogger("useCollectionActions", [state])
 
   // ---- Collection Management ----
   function hasCollection(name: string): boolean {
@@ -70,19 +74,24 @@ export default function useCollectionActions() {
     })
   }
 
-  function addIdToCollection(id: number | string, name: string): void {
+  function addIdToCollection(
+    taxonId: number | string,
+    name: string,
+    taxonName?: string,
+    taxonCommonName?: string,
+  ): void {
     initNotifications()
-    if (!nestAction.isValidId(id)) {
+    if (!nestAction.isValidId(taxonId)) {
       notifications.update({
         id: notificationsQueueId,
-        message: `Cannot add id: ${id}, not a valid id`,
+        message: `Cannot add id: ${taxonId}, not a valid id`,
       })
       return
     }
 
-    if (!nestAction.isItemInNest(id)) {
+    if (!nestAction.isItemInNest(taxonId)) {
       // Add item to the Nest
-      nestAction.addItemToNest(id.toString())
+      nestAction.addItemToNest(taxonId.toString())
     }
 
     if (!hasCollection(name)) {
@@ -100,25 +109,35 @@ export default function useCollectionActions() {
       )
 
       if (namedCollection) {
-        if (namedCollection.items.includes(id.toString())) {
+        if (namedCollection.items.includes(taxonId.toString())) {
           notifications.update({
             id: notificationsQueueId,
-            message: `Cannot add, Collection ${name} already includes id: ${id}`,
+            message: `Cannot add, Collection ${name} already includes id: ${taxonId}`,
             color: "orange",
           })
           return
         }
 
-        namedCollection.items.push(id.toString())
+        namedCollection.items.push(taxonId.toString())
+        console.log({ taxonId })
+        console.log({ taxonName })
+
         notifications.update({
           id: notificationsQueueId,
-          message: `Item: ${id} added to ${namedCollection.name}`,
+          message: `(${taxonName}, id: ${taxonId}) added to ${namedCollection.name}`,
+          title: `${taxonCommonName} added to ${namedCollection.name} collection`,
+          icon: <IconPlus />,
         })
       }
     })
   }
 
-  function removeIdFromCollection(id: number | string, name: string): void {
+  function removeIdFromCollection(
+    taxonId: number | string,
+    name: string,
+    taxonName?: string,
+    taxonCommonName?: string,
+  ): void {
     initNotifications()
     if (!hasCollection(name)) {
       notifications.update({
@@ -130,10 +149,13 @@ export default function useCollectionActions() {
     }
 
     const namedCollection = state.find((collection) => collection.name === name)
-    if (!namedCollection || !namedCollection.items.includes(id.toString())) {
+    if (
+      !namedCollection ||
+      !namedCollection.items.includes(taxonId.toString())
+    ) {
       notifications.update({
-        id: notificationsQueueId,
-        message: `Cannot remove, ID: ${id} is not in collection ${name}`,
+        taxonId: notificationsQueueId,
+        message: `Cannot remove, ID: ${taxonId} is not in collection ${name}`,
         color: "orange",
       })
       return
@@ -144,12 +166,14 @@ export default function useCollectionActions() {
         (collection) => collection.name === name,
       )
       if (collectionToUpdate) {
-        const index = collectionToUpdate.items.indexOf(id.toString())
+        const index = collectionToUpdate.items.indexOf(taxonId.toString())
         if (index > -1) {
           collectionToUpdate.items.splice(index, 1)
           notifications.update({
             id: notificationsQueueId,
-            message: `Removed id:${id} from collection ${name}`,
+            title: `${taxonCommonName} removed from ${namedCollection.name} collection`,
+            message: `(${taxonName}, id: ${taxonId}) removed from ${namedCollection.name}`,
+            icon: <IconMinus />,
           })
         }
       }

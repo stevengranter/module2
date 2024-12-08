@@ -10,17 +10,21 @@ import {
 } from "@mantine/core"
 import { useLogger } from "~/dev.ts"
 import { useCollections } from "~/features/_shared/contexts/collections/useCollections.ts"
-import useCollectionActions from "~/features/_shared/hooks/useCollectionActions.ts"
+import useCollectionActions from "~/features/_shared/hooks/useCollectionActions.tsx"
 
 type CollectionDropdownProps = {
   userCollections?: string[]
   collectionsIncludingTaxonId?: string[]
   taxonId: string | number
+  taxonName: string
+  taxonCommonName?: string
 }
 
 export function CollectionDropdown({
   collectionsIncludingTaxonId,
   taxonId,
+  taxonName,
+  taxonCommonName,
 }: CollectionDropdownProps) {
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
@@ -34,6 +38,8 @@ export function CollectionDropdown({
     [collectionAction],
   )
   const memoizedCollections = useMemo(() => collections, [collections])
+
+  console.log({ taxonName })
 
   const [search, setSearch] = useState("")
   const [selection, setSelection] = useState<string[]>(
@@ -65,7 +71,12 @@ export function CollectionDropdown({
       collectionAction.getAllCollectionNames()
       setSelection((current) => [...current, search])
       // console.log(search)
-      collectionAction.addIdToCollection(taxonId, search)
+      collectionAction.addIdToCollection(
+        taxonId,
+        search,
+        taxonName,
+        taxonCommonName,
+      )
     } else {
       setSelection((current) =>
         current.includes(val)
@@ -73,15 +84,30 @@ export function CollectionDropdown({
           : [...current, val],
       )
       !collectionAction.isItemInCollection(taxonId, val)
-        ? collectionAction.addIdToCollection(taxonId, val)
-        : collectionAction.removeIdFromCollection(taxonId, val)
+        ? collectionAction.addIdToCollection(
+            taxonId,
+            val,
+            taxonName,
+            taxonCommonName,
+          )
+        : collectionAction.removeIdFromCollection(
+            taxonId,
+            val,
+            taxonName,
+            taxonCommonName,
+          )
     }
   }
 
   const handleValueRemove = (val: string) => {
     console.log(val)
     setSelection((current) => current.filter((v) => v !== val))
-    collectionAction.removeIdFromCollection(taxonId, val)
+    collectionAction.removeIdFromCollection(
+      taxonId,
+      val,
+      taxonName,
+      taxonCommonName,
+    )
   }
 
   const values = selection.map((item) => (

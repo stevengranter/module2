@@ -4,16 +4,33 @@ import { Button, ButtonProps } from "@mantine/core"
 import { CollectionDropdown } from "~/features/card/components/CardCollection/CollectionDropdown.tsx"
 
 interface FoundItButtonProps extends ButtonProps {
-  id: number | string
+  data: {
+    taxonId: number | string
+    taxonName: string
+    taxonCommonName?: string
+  }
 }
 
-export default function FoundItButton({ id, ...props }: FoundItButtonProps) {
+export default function FoundItButton({
+  size,
+  data,
+  ...props
+}: FoundItButtonProps) {
   const [opened, setOpened] = useState(false)
+  const { taxonId, taxonName, taxonCommonName } = data
+  console.log({ taxonCommonName })
 
   return (
     <>
       <Button onClick={() => setOpened(!opened)}>Add +</Button>{" "}
-      {opened && <CollectionDropdown taxonId={id} {...props} />}
+      {opened && (
+        <CollectionDropdown
+          taxonId={taxonId}
+          taxonName={taxonName}
+          taxonCommonName={taxonCommonName}
+          {...props}
+        />
+      )}
     </>
   )
 }

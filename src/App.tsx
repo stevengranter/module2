@@ -33,7 +33,7 @@ if (!rootElement.innerHTML) {
             <ColorSchemeScript defaultColorScheme="light" />
             <MantineProvider defaultColorScheme="light" theme={defaultTheme}>
               <ModalsProvider />
-              <Notifications position="top-center" />
+              <Notifications />
               <RouterProvider router={router} />
             </MantineProvider>
           </CollectionsProvider>

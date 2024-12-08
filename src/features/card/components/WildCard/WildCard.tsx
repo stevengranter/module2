@@ -167,40 +167,23 @@ function WildCard_Front({
           </div>
           {iNatdata.id && (
             <Flex justify="center" align="flex-start" gap="xs" wrap="nowrap">
-              <ToggleCollectionButton
-                id={iNatdata.id?.toString()}
-                collection="Wishlist"
-                TrueIconComponent={
-                  <IconStarFilled
-                    color="yellow"
-                    style={{ stroke: "orange", strokeWidth: "2" }}
-                  />
-                }
-                FalseIconComponent={<IconStar />}
-                variant="transparent"
-              />
-              <ToggleCollectionButton
-                id={iNatdata.id?.toString()}
-                collection="Favorites"
-                TrueIconComponent={
-                  <IconHeartFilled
-                    color="red"
-                    style={{
-                      stroke: theme.colors.red[9],
-                      strokeWidth: "2",
-                    }}
-                  />
-                }
-                FalseIconComponent={<IconHeart />}
-                variant="transparent"
-              />
+              <CollectionToggleButtons iNatdata={iNatdata} />
             </Flex>
           )}
         </Flex>
       </Card.Section>
 
       <Group justify="space-between">
-        {iNatdata.id && <FoundItButton size="lg" id={iNatdata.id} />}
+        {iNatdata.id && iNatdata.name && (
+          <FoundItButton
+            size="lg"
+            data={{
+              taxonId: iNatdata.id,
+              taxonName: iNatdata.name,
+              taxonCommonName: iNatdata.preferred_common_name,
+            }}
+          />
+        )}
         <Button variant="white" color={"black"} onClick={onFlip}>
           Flip
         </Button>
@@ -279,44 +262,66 @@ function WildCard_Back({
               </Text>
             </div>
             <Flex justify="center" align="flex-start" gap="xs" wrap="nowrap">
-              <ToggleCollectionButton
-                id={iNatdata.id?.toString()}
-                collection="Wishlist"
-                TrueIconComponent={
-                  <IconStarFilled
-                    color="yellow"
-                    style={{ stroke: "orange", strokeWidth: "2" }}
-                  />
-                }
-                FalseIconComponent={<IconStar />}
-                variant="transparent"
-              />
-              <ToggleCollectionButton
-                id={iNatdata.id?.toString()}
-                collection="Favorites"
-                TrueIconComponent={
-                  <IconHeartFilled
-                    color="red"
-                    style={{
-                      stroke: theme.colors.red[9],
-                      strokeWidth: "2",
-                    }}
-                  />
-                }
-                FalseIconComponent={<IconHeart />}
-                variant="transparent"
-              />
+              <CollectionToggleButtons iNatdata={iNatdata} />
             </Flex>
           </Flex>
         )}
       </Card.Section>
 
       <Group justify="space-between">
-        {iNatdata.id && <FoundItButton size="lg" id={iNatdata.id} />}
+        {iNatdata.id && iNatdata.name && (
+          <FoundItButton
+            size="lg"
+            data={{
+              taxonId: iNatdata.id,
+              taxonName: iNatdata.name,
+              taxonCommonName: iNatdata.preferred_common_name,
+            }}
+          />
+        )}
         <Button variant="white" color={"black"} onClick={onFlip}>
           Flip
         </Button>
       </Group>
     </Card>
+  )
+}
+
+function CollectionToggleButtons({ iNatdata }: { iNatdata: iNatTaxonRecord }) {
+  const theme = useMantineTheme()
+  return (
+    <>
+      <ToggleCollectionButton
+        id={iNatdata.id || ""}
+        taxonName={iNatdata.name}
+        taxonCommonName={iNatdata.preferred_common_name}
+        collection="Wishlist"
+        TrueIconComponent={
+          <IconStarFilled
+            color="yellow"
+            style={{ stroke: "orange", strokeWidth: "2" }}
+          />
+        }
+        FalseIconComponent={<IconStar />}
+        variant="transparent"
+      />
+      <ToggleCollectionButton
+        id={iNatdata.id || ""}
+        taxonName={iNatdata.name}
+        taxonCommonName={iNatdata.preferred_common_name}
+        collection="Favorites"
+        TrueIconComponent={
+          <IconHeartFilled
+            color="red"
+            style={{
+              stroke: theme.colors.red[9],
+              strokeWidth: "2",
+            }}
+          />
+        }
+        FalseIconComponent={<IconHeart />}
+        variant="transparent"
+      />
+    </>
   )
 }

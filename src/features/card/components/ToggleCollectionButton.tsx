@@ -2,7 +2,7 @@ import { ReactNode, useEffect, useState } from "react"
 
 import { ActionIcon, createTheme, MantineThemeProvider } from "@mantine/core"
 import { useCollections } from "~/features/_shared/contexts/collections/useCollections.ts"
-import useCollectionActions from "~/features/_shared/hooks/useCollectionActions.ts"
+import useCollectionActions from "~/features/_shared/hooks/useCollectionActions.tsx"
 
 import classes from "./ToggleCollectionButton.module.css"
 
@@ -16,12 +16,16 @@ const theme = createTheme({
 
 export default function ToggleCollectionButton({
   id,
+  taxonName,
+  taxonCommonName,
   collection,
   TrueIconComponent,
   FalseIconComponent,
   variant = "default",
 }: {
   id: string | number
+  taxonName?: string
+  taxonCommonName?: string
   collection: string
   TrueIconComponent: ReactNode
   FalseIconComponent: ReactNode
@@ -34,10 +38,20 @@ export default function ToggleCollectionButton({
 
   function handleClick(id: string | number) {
     if (collectionAction.isItemInCollection(id, collection)) {
-      collectionAction.removeIdFromCollection(id, collection)
+      collectionAction.removeIdFromCollection(
+        id,
+        collection,
+        taxonName,
+        taxonCommonName,
+      )
       setIsInCollection(false)
     } else {
-      collectionAction.addIdToCollection(id, collection)
+      collectionAction.addIdToCollection(
+        id,
+        collection,
+        taxonName,
+        taxonCommonName,
+      )
       setIsInCollection(true)
     }
     setIsInCollection(collectionAction.isItemInCollection(id, collection))
