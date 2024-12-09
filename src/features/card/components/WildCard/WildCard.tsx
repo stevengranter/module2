@@ -161,7 +161,14 @@ function WildCard_Front({
       <Card.Section className={styles.header} inheritPadding>
         <Flex justify="space-between" my="md" wrap="nowrap">
           <div>
-            <Title order={3} size="h4" lineClamp={1} pb={0} mb={0}>
+            <Title
+              order={3}
+              size="h4"
+              lineClamp={1}
+              pb={0}
+              mb={0}
+              style={{ textTransform: "capitalize" }}
+            >
               {iNatdata?.preferred_common_name || iNatdata?.english_common_name}
             </Title>
             <Text size="xs" lineClamp={1} mt={0} pt={0}>
@@ -234,7 +241,7 @@ function WildCard_Back({
                   {iNatdata.wikipedia_summary && (
                     <Text
                       size="sm"
-                      lineClamp={10}
+                      lineClamp={8}
                       color="white"
                       style={{ textShadow: "0px 0px 3px #000" }}
                     >
@@ -266,7 +273,14 @@ function WildCard_Back({
         {iNatdata.id && (
           <Flex justify="space-between" my="md" wrap="nowrap">
             <div>
-              <Title order={3} size="h4" lineClamp={1} pb={0} mb={0}>
+              <Title
+                order={3}
+                size="h4"
+                lineClamp={1}
+                pb={0}
+                mb={0}
+                style={{ textTransform: "capitalize" }}
+              >
                 {iNatdata?.preferred_common_name ||
                   iNatdata?.english_common_name}
               </Title>
