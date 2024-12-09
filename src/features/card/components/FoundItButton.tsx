@@ -23,7 +23,7 @@ export default function FoundItButton({
   return (
     <>
       <Button onClick={() => setOpened(!opened)}>
-        {opened ? "Close " : "Add +"}
+        {opened ? "Hide " : "Add +"}
       </Button>{" "}
       {opened && (
         <CollectionDropdown
