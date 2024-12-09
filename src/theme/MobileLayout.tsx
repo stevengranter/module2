@@ -111,7 +111,7 @@ export default function MobileLayout() {
               {/*    ></IconUsersGroup>*/}
               {/*  </ActionIcon>*/}
               {/*</Link>*/}
-              <Link to="/dashboard">
+              <Link to="/collections">
                 <ActionIcon variant="transparent" color="white" size={80}>
                   <IconCards className={styles.footer_icon}></IconCards>
                 </ActionIcon>
