@@ -168,15 +168,15 @@ function WildCard_Front({
               {iNatdata.name}
             </Text>
           </div>
-          {iNatdata.id && (
-            <Flex justify="center" align="flex-start" gap="xs" wrap="nowrap">
-              <CollectionToggleButtons iNatdata={iNatdata} />
-            </Flex>
-          )}
         </Flex>
       </Card.Section>
 
       <Group justify="space-between">
+        {iNatdata.id && (
+          <Flex justify="center" align="flex-start" gap="xs" wrap="nowrap">
+            <CollectionToggleButtons iNatdata={iNatdata} />
+          </Flex>
+        )}
         {iNatdata.id && iNatdata.name && (
           <FoundItButton
             size="lg"
