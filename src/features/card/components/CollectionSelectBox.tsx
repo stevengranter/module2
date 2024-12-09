@@ -4,10 +4,12 @@ export default function CollectionSelectBox({
   data,
   value,
   handleSelectFn,
+  defaultValue,
 }: {
   data: ComboboxData
   value: string | null | undefined
   handleSelectFn: (selectedValue: string) => void
+  defaultValue: string | null | undefined
 }) {
   return (
     data &&
@@ -17,6 +19,7 @@ export default function CollectionSelectBox({
         placeholder="Pick value"
         data={data}
         value={value}
+        defaultValue={defaultValue}
         onChange={(_, option) => handleSelectFn(option.value)}
       />
     )

@@ -49,6 +49,12 @@ export default function NestView() {
     { itemIdsArray },
   ])
 
+  // // on initial mount, set selectedCollectionId to the Starter Pack Id
+  useEffect(() => {
+    const starterPackId = collectionAction.getCollectionIdByName("Starter Pack")
+    setSelectedCollectionId(starterPackId)
+  }, [])
+
   // if collectionsState has changed, update the dropDownDataArray
   useEffect(() => {
     console.log("collectionsState.length has changed")
@@ -87,7 +93,10 @@ export default function NestView() {
   function handleSelect(selectedValue: string) {
     console.log({ selectedValue })
     const starterPackId = collectionAction.getCollectionIdByName("Starter Pack")
-    if (!selectedValue) setSelectedCollectionId(starterPackId)
+    if (!selectedValue) {
+      console.log("selectedValue is undefined")
+      setSelectedCollectionId(starterPackId)
+    }
     if (selectedValue) setSelectedCollectionId(selectedValue)
     console.log(selectedValue)
   }
@@ -98,6 +107,7 @@ export default function NestView() {
       <CollectionSelectBox
         data={dropdownDataArray}
         value={selectedCollectionId}
+        defaultValue={selectedCollectionId}
         handleSelectFn={handleSelect}
       />
 
