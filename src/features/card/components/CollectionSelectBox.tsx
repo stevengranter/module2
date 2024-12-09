@@ -21,6 +21,7 @@ export default function CollectionSelectBox({
         value={value}
         defaultValue={defaultValue}
         onChange={(_, option) => handleSelectFn(option.value)}
+        my={"md"}
       />
     )
   )

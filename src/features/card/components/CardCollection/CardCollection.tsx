@@ -18,19 +18,12 @@ export default function CardCollection({
   useLogger("CardCollection", [{ description }])
   if (!itemIdArray) return "Collection doesn't exist"
   if (itemIdArray.length === 0) return
-  // (
-  //   <Text>
-  //     Nothing here yet, use <Link to="/search">search</Link> to add to this
-  //     collection, or{" "}
-  //     {collectionId && <DeleteCollectionButton collectionId={collectionId} />}
-  //   </Text>
-  // )
 
   return (
     itemIdArray.length > 0 && (
       <>
         {description && description.length > 0 && <Text>{description}</Text>}
-        <Grid gutter={{ xs: 16, sm: 20, lg: 24 }}>
+        <Grid gutter={{ xs: 16, sm: 20, lg: 24 }} my={"md"}>
           {itemIdArray.length > 0 &&
             itemIdArray?.map((taxon_id) => {
               return (
