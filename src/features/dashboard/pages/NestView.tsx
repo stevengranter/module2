@@ -86,7 +86,7 @@ export default function NestView() {
     if (!selectedCollection) return
     setItemIdsArray(selectedCollection.items)
     console.log({ selectedCollection })
-    setCollectionDescription(selectedCollection.description || "No description")
+    setCollectionDescription(selectedCollection.description || "")
   }, [selectedCollectionId])
 
   // TODO: Fix for choosing current option (errors with null value)
