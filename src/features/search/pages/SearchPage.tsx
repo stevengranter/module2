@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom"
 
 import {
   Button,
+  Center,
   Flex,
   Grid,
   GridCol,
@@ -155,12 +156,15 @@ export default function SearchPage() {
       )}
 
       {totalPages > 1 && (
-        <Pagination
-          total={totalPages}
-          defaultValue={1}
-          onChange={(page) => changePage(page)}
-          key={form.key("page")}
-        />
+        <Center>
+          <Pagination
+            total={totalPages}
+            defaultValue={1}
+            onChange={(page) => changePage(page)}
+            key={form.key("page")}
+            mt={"xl"}
+          />
+        </Center>
       )}
     </DefaultPaper>
   )
