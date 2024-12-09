@@ -2,6 +2,7 @@ import React, { PropsWithChildren, useEffect, useState } from "react"
 import ReactCardFlip from "react-card-flip"
 
 import {
+  ActionIcon,
   Anchor,
   AspectRatio,
   BackgroundImage,
@@ -20,6 +21,7 @@ import {
   useMantineTheme,
 } from "@mantine/core"
 import {
+  IconArrowForwardUp,
   IconBrandWikipedia,
   IconHeart,
   IconHeartFilled,
@@ -137,24 +139,25 @@ function WildCard_Front({
       {...restProps}
     >
       <Card.Section>
-        <AspectRatio ratio={1}>
-          {iNatdata.default_photo && (
-            <Image
-              src={iNatdata.default_photo?.medium_url}
-              alt={iNatdata.name}
-              // loading="lazy"
-              // radius="md"
-              height="100%"
-              width="auto"
-            />
-          )}
-          {/*{wilderNestData && (*/}
-          {/*  <>*/}
-          {/*    <Image src={cardImagePath + wilderNestData.imgSrc} />*/}
-          {/*  </>*/}
-          {/*)}*/}
-        </AspectRatio>
+        {iNatdata.default_photo && (
+          <AspectRatio ratio={1}>
+            <BackgroundImage src={iNatdata.default_photo?.medium_url}>
+              <Group justify="flex-end">
+                <ActionIcon
+                  radius="xl"
+                  size="lg"
+                  onClick={onFlip}
+                  m="xs"
+                  aria-label="Flip card"
+                >
+                  <IconArrowForwardUp />
+                </ActionIcon>
+              </Group>
+            </BackgroundImage>
+          </AspectRatio>
+        )}
       </Card.Section>
+
       <Card.Section className={styles.header} inheritPadding>
         <Flex justify="space-between" my="md" wrap="nowrap">
           <div>
@@ -184,9 +187,6 @@ function WildCard_Front({
             }}
           />
         )}
-        <Button variant="white" color={"black"} onClick={onFlip}>
-          Flip
-        </Button>
       </Group>
     </Card>
   )
@@ -218,6 +218,19 @@ function WildCard_Back({
             <BackgroundImage src={iNatdata.default_photo?.medium_url}>
               <AspectRatio ratio={1}>
                 <Overlay p="md" color="#000" backgroundOpacity={0.4} blur={12}>
+                  <Card.Section>
+                    <Group justify="flex-end">
+                      <ActionIcon
+                        radius="xl"
+                        size="lg"
+                        onClick={onFlip}
+                        m="xs"
+                        aria-label="Flip card"
+                      >
+                        <IconArrowForwardUp />
+                      </ActionIcon>
+                    </Group>
+                  </Card.Section>
                   {iNatdata.wikipedia_summary && (
                     <Text
                       size="sm"
@@ -279,9 +292,6 @@ function WildCard_Back({
             }}
           />
         )}
-        <Button variant="white" color={"black"} onClick={onFlip}>
-          Flip
-        </Button>
       </Group>
     </Card>
   )

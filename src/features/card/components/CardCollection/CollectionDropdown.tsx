@@ -139,6 +139,7 @@ export function CollectionDropdown({
       store={combobox}
       onOptionSubmit={handleValueSelect}
       withinPortal={false}
+      position="top"
     >
       <Combobox.DropdownTarget>
         <PillsInput onClick={() => combobox.openDropdown()}>
