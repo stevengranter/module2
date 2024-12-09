@@ -157,44 +157,7 @@ function WildCard_Front({
           </AspectRatio>
         )}
       </Card.Section>
-
-      <Card.Section className={styles.header} inheritPadding>
-        <Flex justify="space-between" my="md" wrap="nowrap">
-          <div>
-            <Title
-              order={3}
-              size="h4"
-              lineClamp={1}
-              pb={0}
-              mb={0}
-              style={{ textTransform: "capitalize" }}
-            >
-              {iNatdata?.preferred_common_name || iNatdata?.english_common_name}
-            </Title>
-            <Text size="xs" lineClamp={1} mt={0} pt={0}>
-              {iNatdata.name}
-            </Text>
-          </div>
-        </Flex>
-      </Card.Section>
-
-      <Group justify="space-between">
-        {iNatdata.id && (
-          <Flex justify="center" align="flex-start" gap="xs" wrap="nowrap">
-            <CollectionToggleButtons iNatdata={iNatdata} />
-          </Flex>
-        )}
-        {iNatdata.id && iNatdata.name && (
-          <FoundItButton
-            size="lg"
-            data={{
-              taxonId: iNatdata.id,
-              taxonName: iNatdata.name,
-              taxonCommonName: iNatdata.preferred_common_name,
-            }}
-          />
-        )}
-      </Group>
+      <WildCardFooter iNatdata={iNatdata} />
     </Card>
   )
 }
@@ -215,7 +178,7 @@ function WildCard_Back({
     <Card
       key={iNatdata.id}
       withBorder
-      radius={"md"}
+      radius={"lg"}
       className={styles.wildcard}
       {...restProps}
     >
@@ -269,33 +232,40 @@ function WildCard_Back({
           </AspectRatio>
         )}
       </Card.Section>
+      <WildCardFooter iNatdata={iNatdata} />
+    </Card>
+  )
+}
+
+function WildCardFooter({ iNatdata }: { iNatdata: iNatTaxonRecord }) {
+  return (
+    <>
       <Card.Section className={styles.header} inheritPadding>
-        {iNatdata.id && (
-          <Flex justify="space-between" my="md" wrap="nowrap">
-            <div>
-              <Title
-                order={3}
-                size="h4"
-                lineClamp={1}
-                pb={0}
-                mb={0}
-                style={{ textTransform: "capitalize" }}
-              >
-                {iNatdata?.preferred_common_name ||
-                  iNatdata?.english_common_name}
-              </Title>
-              <Text size="xs" lineClamp={1} mt={0} pt={0}>
-                {iNatdata.name}
-              </Text>
-            </div>
-            <Flex justify="center" align="flex-start" gap="xs" wrap="nowrap">
-              <CollectionToggleButtons iNatdata={iNatdata} />
-            </Flex>
-          </Flex>
-        )}
+        <Flex justify="space-between" my="md" wrap="nowrap">
+          <div>
+            <Title
+              order={3}
+              size="h4"
+              lineClamp={1}
+              pb={0}
+              mb={0}
+              style={{ textTransform: "capitalize" }}
+            >
+              {iNatdata?.preferred_common_name || iNatdata?.english_common_name}
+            </Title>
+            <Text size="xs" lineClamp={1} mt={0} pt={0}>
+              {iNatdata.name}
+            </Text>
+          </div>
+        </Flex>
       </Card.Section>
 
       <Group justify="space-between">
+        {iNatdata.id && (
+          <Flex justify="center" align="flex-start" gap="xs" wrap="nowrap">
+            <CollectionToggleButtons iNatdata={iNatdata} />
+          </Flex>
+        )}
         {iNatdata.id && iNatdata.name && (
           <FoundItButton
             size="lg"
@@ -307,7 +277,7 @@ function WildCard_Back({
           />
         )}
       </Group>
-    </Card>
+    </>
   )
 }
 
