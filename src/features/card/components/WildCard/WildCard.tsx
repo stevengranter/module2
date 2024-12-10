@@ -6,12 +6,15 @@ import {
   Anchor,
   AspectRatio,
   BackgroundImage,
+  Box,
   Button,
   Card,
+  Center,
   Flex,
   Group,
   Image,
   Indicator,
+  Loader,
   Overlay,
   Paper,
   Skeleton,
@@ -57,17 +60,12 @@ export function WildCard({ taxonId, dataObject }: Props) {
   // const [wilderNestData, setWilderNestData] =
   //   useState<WilderKindCardType | null>(null)
 
-  useLogger("WildCard", [iNatData])
+  useLogger("WildCard", [taxonId, dataObject])
 
   const iNatQuery = useQuery({
     queryKey: [API_SERVER.INAT, `/taxa`, `/${cardId}`],
     enabled: !!cardId,
   })
-
-  // const wilderNestQuery = useQuery({
-  //   queryKey: [API_SERVER.JSON, `/cards`, `?taxon_id=${taxonId}`],
-  //   enabled: !!cardId,
-  // })
 
   useEffect(() => {
     if (iNatQuery.data) {
@@ -75,13 +73,6 @@ export function WildCard({ taxonId, dataObject }: Props) {
       setINatData(results[0])
     }
   }, [iNatQuery.data])
-
-  // useEffect(() => {
-  //   if (wilderNestQuery.data) {
-  //     const wilderNestData = wilderNestQuery.data as WilderKindCardType[]
-  //     setWilderNestData(wilderNestData[0])
-  //   }
-  // }, [wilderNestQuery.data])
 
   function handleFlip(e: React.MouseEvent) {
     e.preventDefault()
@@ -96,11 +87,13 @@ export function WildCard({ taxonId, dataObject }: Props) {
       <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
         <WildCard_Front
           iNatdata={iNatData}
+          isLoading={iNatQuery.isLoading}
           // wilderNestData={wilderNestData}
           onFlip={(e: React.MouseEvent) => handleFlip(e)}
         />
         <WildCard_Back
           iNatdata={iNatData}
+          isLoading={iNatQuery.isLoading}
           onFlip={(e: React.MouseEvent) => handleFlip(e)}
         />
       </ReactCardFlip>
@@ -110,11 +103,13 @@ export function WildCard({ taxonId, dataObject }: Props) {
 
 function WildCard_Front({
   iNatdata,
+  isLoading,
   onFlip,
   // wilderNestData,
   ...restProps
 }: {
   iNatdata: iNatTaxonRecord | null
+  isLoading: boolean
   onFlip?: (e: React.MouseEvent) => void
   wilderNestData?: WilderKindCardType | null
 }) {
@@ -167,10 +162,12 @@ function WildCard_Front({
 
 function WildCard_Back({
   iNatdata,
+  isLoading,
   onFlip,
   ...restProps
 }: {
   iNatdata: iNatTaxonRecord | null
+  isLoading: boolean
   onFlip?: (e: React.MouseEvent) => void
   _wilderNestData?: WilderKindCardType | null
 }) {
@@ -209,33 +206,48 @@ function WildCard_Back({
                     </ActionIcon>
                   </Group>
                 </Card.Section>
-                {iNatdata.wikipedia_summary ? (
-                  <Text
-                    size="sm"
-                    lineClamp={8}
-                    color="white"
-                    style={{ textShadow: "0px 0px 3px #000" }}
-                  >
-                    <Interweave content={iNatdata.wikipedia_summary} />
-                  </Text>
-                ) : (
-                  "Loading..."
-                )}
+                <Stack justify="space-between">
+                  {isLoading ? (
+                    <Center>
+                      <Loader color="white" type="bars" />
+                    </Center>
+                  ) : iNatdata.wikipedia_summary ? (
+                    <Text
+                      size="sm"
+                      lineClamp={8}
+                      color="white"
+                      style={{ textShadow: "0px 0px 3px #000" }}
+                    >
+                      <Interweave content={iNatdata.wikipedia_summary} />
+                    </Text>
+                  ) : (
+                    <Text
+                      size="sm"
+                      lineClamp={8}
+                      color="white"
+                      style={{ textShadow: "0px 0px 3px #000" }}
+                    >
+                      Sorry, no description available
+                    </Text>
+                  )}
 
-                {iNatdata.wikipedia_url && (
-                  <Text
-                    size="xs"
-                    fs="italic"
-                    lineClamp={12}
-                    mt="xs"
-                    color="white"
-                  >
-                    Source:{" "}
-                    <Anchor href={iNatdata.wikipedia_url}>
-                      {iNatdata.name} / Wikipedia{" "}
-                    </Anchor>
-                  </Text>
-                )}
+                  {iNatdata.wikipedia_url && (
+                    <Box>
+                      <Text
+                        size="xs"
+                        fs="italic"
+                        lineClamp={12}
+                        mt="xs"
+                        color="white"
+                      >
+                        Source:{" "}
+                        <Anchor href={iNatdata.wikipedia_url}>
+                          {iNatdata.name} / Wikipedia{" "}
+                        </Anchor>
+                      </Text>
+                    </Box>
+                  )}
+                </Stack>
               </Overlay>
             </AspectRatio>
           </BackgroundImage>
