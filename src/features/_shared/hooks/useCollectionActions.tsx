@@ -3,6 +3,7 @@ import { IconPlus, IconMinus } from "@tabler/icons-react"
 import { useCollections } from "~/features/_shared/contexts/collections/useCollections.ts"
 import { Collection } from "~/features/_shared/contexts/nest/NestProvider.types.ts"
 import useNestActions from "~/features/_shared/hooks/useNestActions.ts"
+import toTitleCase from "~/features/_shared/utils/toTitleCase.ts"
 import _ from "lodash"
 
 const notificationsQueueId = "message-queue"
@@ -116,7 +117,7 @@ export default function useCollectionActions() {
         notifications.update({
           id: notificationsQueueId,
           message: `(${taxonName}, id: ${taxonId}) added to ${namedCollection.name}`,
-          title: `${taxonCommonName} added to ${namedCollection.name} collection`,
+          title: `${taxonCommonName && toTitleCase(taxonCommonName)} added to ${namedCollection.name} collection`,
           icon: <IconPlus />,
         })
       }
@@ -162,7 +163,7 @@ export default function useCollectionActions() {
           collectionToUpdate.items.splice(index, 1)
           notifications.update({
             id: notificationsQueueId,
-            title: `${taxonCommonName} removed from ${namedCollection.name} collection`,
+            title: `${taxonCommonName && toTitleCase(taxonCommonName)} removed from ${namedCollection.name} collection`,
             message: `(${taxonName}, id: ${taxonId}) removed from ${namedCollection.name}`,
             icon: <IconMinus />,
           })

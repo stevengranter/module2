@@ -1,8 +1,8 @@
 import { useState } from "react"
 
 import { Button, ButtonProps } from "@mantine/core"
+import toTitleCase from "~/features/_shared/utils/toTitleCase.ts"
 import { CollectionDropdown } from "~/features/card/components/CardCollection/CollectionDropdown.tsx"
-
 interface FoundItButtonProps extends ButtonProps {
   data: {
     taxonId: number | string
@@ -29,7 +29,7 @@ export default function FoundItButton({
         <CollectionDropdown
           taxonId={taxonId}
           taxonName={taxonName}
-          taxonCommonName={taxonCommonName}
+          taxonCommonName={taxonCommonName && toTitleCase(taxonCommonName)}
           {...props}
         />
       )}

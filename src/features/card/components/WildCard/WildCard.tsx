@@ -18,6 +18,7 @@ import {
   Stack,
   Text,
   Title,
+  Tooltip,
   useMantineTheme,
 } from "@mantine/core"
 import {
@@ -143,15 +144,18 @@ function WildCard_Front({
           <AspectRatio ratio={1}>
             <BackgroundImage src={iNatdata.default_photo?.medium_url}>
               <Group justify="flex-end">
-                <ActionIcon
-                  radius="xl"
-                  size="lg"
-                  onClick={onFlip}
-                  m="xs"
-                  aria-label="Flip card"
-                >
-                  <IconArrowForwardUp />
-                </ActionIcon>
+                <Tooltip label="Flip card">
+                  <ActionIcon
+                    radius="xl"
+                    size="lg"
+                    onClick={onFlip}
+                    m="xs"
+                    aria-label="Flip card"
+                    // opacity="75%"
+                  >
+                    <IconArrowForwardUp />
+                  </ActionIcon>
+                </Tooltip>
               </Group>
             </BackgroundImage>
           </AspectRatio>
