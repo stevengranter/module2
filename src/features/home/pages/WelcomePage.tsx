@@ -1,7 +1,5 @@
-import Features from "~/features/home/components/Features.tsx"
-
 const logo = "./assets/images/logo.png"
-import { Center, Image, Paper, Text, Title } from "@mantine/core"
+import { Center, Image, Text, Title } from "@mantine/core"
 import DefaultPaper from "~/features/_shared/components/DefaultPaper.tsx"
 
 export default function WelcomePage() {
@@ -21,8 +19,8 @@ export default function WelcomePage() {
         <Title order={1}>Welcome to WilderNest!</Title>
         <Text py="xs">
           Interested in the natural world? 🌱 Need a way to keep track of all
-          your awesome discoveries? Add plants, an️imals, insects and more to
-          your nest 🥚, fav them ❤️, or group them by collection.
+          your awesome discoveries? Add plants, an️imals, insects and your
+          favorites ❤️, or group them into your own collections.
         </Text>
         <Text py="xs">
           Hoping to see some rare, exotic creatures on an upcoming trip? 🔍

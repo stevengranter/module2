@@ -138,8 +138,10 @@ export function CollectionDropdown({
     <Combobox
       store={combobox}
       onOptionSubmit={handleValueSelect}
-      withinPortal={false}
+      withinPortal={true}
       position="top"
+      transitionProps={{ duration: 200, transition: "pop" }}
+      offset={0}
     >
       <Combobox.DropdownTarget>
         <PillsInput onClick={() => combobox.openDropdown()}>
@@ -151,7 +153,7 @@ export function CollectionDropdown({
                 onFocus={() => combobox.openDropdown()}
                 onBlur={() => combobox.closeDropdown()}
                 value={search}
-                placeholder="Add to collection (type llecto search or add)"
+                placeholder="Add to collection (type to search or create new)"
                 onChange={(event) => {
                   combobox.updateSelectedOptionIndex()
                   setSearch(event.currentTarget.value)

@@ -260,7 +260,7 @@ function WildCardFooter({ iNatdata }: { iNatdata: iNatTaxonRecord }) {
         </Flex>
       </Card.Section>
 
-      <Group justify="space-between">
+      <Group justify="space-between" align="flex-end">
         {iNatdata.id && (
           <Flex justify="center" align="flex-start" gap="xs" wrap="nowrap">
             <CollectionToggleButtons iNatdata={iNatdata} />
@@ -269,6 +269,7 @@ function WildCardFooter({ iNatdata }: { iNatdata: iNatTaxonRecord }) {
         {iNatdata.id && iNatdata.name && (
           <FoundItButton
             size="lg"
+            mb={0}
             data={{
               taxonId: iNatdata.id,
               taxonName: iNatdata.name,
