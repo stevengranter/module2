@@ -48,26 +48,26 @@ type Props = {
   dataObject?: iNatTaxonRecord | undefined
 }
 
-const cardImagePath = "./assets/images/cards/"
+// const cardImagePath = "./assets/images/cards/"
 
 export function WildCard({ taxonId, dataObject }: Props) {
   const [cardId, setCardId] = useState(taxonId)
   const [iNatData, setINatData] = useState(dataObject)
   const [isFlipped, setIsFlipped] = useState(false)
-  const [wilderNestData, setWilderNestData] =
-    useState<WilderKindCardType | null>(null)
+  // const [wilderNestData, setWilderNestData] =
+  //   useState<WilderKindCardType | null>(null)
 
-  useLogger("WildCard", [iNatData, wilderNestData])
+  useLogger("WildCard", [iNatData])
 
   const iNatQuery = useQuery({
     queryKey: [API_SERVER.INAT, `/taxa`, `/${cardId}`],
     enabled: !!cardId,
   })
 
-  const wilderNestQuery = useQuery({
-    queryKey: [API_SERVER.JSON, `/cards`, `?taxon_id=${taxonId}`],
-    enabled: !!cardId,
-  })
+  // const wilderNestQuery = useQuery({
+  //   queryKey: [API_SERVER.JSON, `/cards`, `?taxon_id=${taxonId}`],
+  //   enabled: !!cardId,
+  // })
 
   useEffect(() => {
     if (iNatQuery.data) {
@@ -76,25 +76,18 @@ export function WildCard({ taxonId, dataObject }: Props) {
     }
   }, [iNatQuery.data])
 
-  useEffect(() => {
-    if (wilderNestQuery.data) {
-      const wilderNestData = wilderNestQuery.data as WilderKindCardType[]
-      setWilderNestData(wilderNestData[0])
-    }
-  }, [wilderNestQuery.data])
+  // useEffect(() => {
+  //   if (wilderNestQuery.data) {
+  //     const wilderNestData = wilderNestQuery.data as WilderKindCardType[]
+  //     setWilderNestData(wilderNestData[0])
+  //   }
+  // }, [wilderNestQuery.data])
 
   function handleFlip(e: React.MouseEvent) {
     e.preventDefault()
     if (iNatData && iNatData.id) setCardId(iNatData.id)
     setIsFlipped((prevState) => !prevState)
   }
-
-  if (iNatQuery.isLoading)
-    return (
-      <Card mah={400} mih={400}>
-        <Skeleton width={400} height={400} />
-      </Card>
-    )
 
   if (!iNatData) return null
 
@@ -103,7 +96,7 @@ export function WildCard({ taxonId, dataObject }: Props) {
       <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
         <WildCard_Front
           iNatdata={iNatData}
-          wilderNestData={wilderNestData}
+          // wilderNestData={wilderNestData}
           onFlip={(e: React.MouseEvent) => handleFlip(e)}
         />
         <WildCard_Back
@@ -118,7 +111,7 @@ export function WildCard({ taxonId, dataObject }: Props) {
 function WildCard_Front({
   iNatdata,
   onFlip,
-  wilderNestData,
+  // wilderNestData,
   ...restProps
 }: {
   iNatdata: iNatTaxonRecord | null
@@ -140,26 +133,32 @@ function WildCard_Front({
       {...restProps}
     >
       <Card.Section>
-        {iNatdata.default_photo && (
-          <AspectRatio ratio={1}>
-            <BackgroundImage src={iNatdata.default_photo?.medium_url}>
-              <Group justify="flex-end">
-                <Tooltip label="Flip card">
-                  <ActionIcon
-                    radius="xl"
-                    size="lg"
-                    onClick={onFlip}
-                    m="xs"
-                    aria-label="Flip card"
-                    // opacity="75%"
-                  >
-                    <IconArrowForwardUp />
-                  </ActionIcon>
-                </Tooltip>
-              </Group>
-            </BackgroundImage>
-          </AspectRatio>
-        )}
+        {/*{iNatdata.default_photo && (*/}
+        <AspectRatio ratio={1}>
+          <BackgroundImage
+            src={
+              iNatdata.default_photo
+                ? iNatdata.default_photo?.medium_url
+                : "assets/images/ui/no-photo-beaver-01.jpg"
+            }
+          >
+            <Group justify="flex-end">
+              <Tooltip label="Flip card">
+                <ActionIcon
+                  radius="xl"
+                  size="lg"
+                  onClick={onFlip}
+                  m="xs"
+                  aria-label="Flip card"
+                  // opacity="75%"
+                >
+                  <IconArrowForwardUp />
+                </ActionIcon>
+              </Tooltip>
+            </Group>
+          </BackgroundImage>
+        </AspectRatio>
+        {/*)}*/}
       </Card.Section>
       <WildCardFooter iNatdata={iNatdata} />
     </Card>
@@ -175,7 +174,7 @@ function WildCard_Back({
   onFlip?: (e: React.MouseEvent) => void
   _wilderNestData?: WilderKindCardType | null
 }) {
-  const theme = useMantineTheme()
+  // const theme = useMantineTheme()
   if (!iNatdata) return null
 
   return (
@@ -187,54 +186,60 @@ function WildCard_Back({
       {...restProps}
     >
       <Card.Section>
-        {iNatdata.default_photo && (
-          <AspectRatio ratio={1}>
-            <BackgroundImage src={iNatdata.default_photo?.medium_url}>
-              <AspectRatio ratio={1}>
-                <Overlay p="md" color="#000" backgroundOpacity={0.4} blur={12}>
-                  <Card.Section>
-                    <Group justify="flex-end">
-                      <ActionIcon
-                        radius="xl"
-                        size="lg"
-                        onClick={onFlip}
-                        m="xs"
-                        aria-label="Flip card"
-                      >
-                        <IconArrowForwardUp />
-                      </ActionIcon>
-                    </Group>
-                  </Card.Section>
-                  {iNatdata.wikipedia_summary && (
-                    <Text
-                      size="sm"
-                      lineClamp={8}
-                      color="white"
-                      style={{ textShadow: "0px 0px 3px #000" }}
+        <AspectRatio ratio={1}>
+          <BackgroundImage
+            src={
+              iNatdata.default_photo
+                ? iNatdata.default_photo?.medium_url
+                : "assets/images/ui/no-photo-beaver-01.jpg"
+            }
+          >
+            <AspectRatio ratio={1}>
+              <Overlay p="md" color="#000" backgroundOpacity={0.4} blur={12}>
+                <Card.Section>
+                  <Group justify="flex-end">
+                    <ActionIcon
+                      radius="xl"
+                      size="lg"
+                      onClick={onFlip}
+                      m="xs"
+                      aria-label="Flip card"
                     >
-                      <Interweave content={iNatdata.wikipedia_summary} />
-                    </Text>
-                  )}
+                      <IconArrowForwardUp />
+                    </ActionIcon>
+                  </Group>
+                </Card.Section>
+                {iNatdata.wikipedia_summary ? (
+                  <Text
+                    size="sm"
+                    lineClamp={8}
+                    color="white"
+                    style={{ textShadow: "0px 0px 3px #000" }}
+                  >
+                    <Interweave content={iNatdata.wikipedia_summary} />
+                  </Text>
+                ) : (
+                  "Loading..."
+                )}
 
-                  {iNatdata.wikipedia_url && (
-                    <Text
-                      size="xs"
-                      fs="italic"
-                      lineClamp={12}
-                      mt="xs"
-                      color="white"
-                    >
-                      Source:{" "}
-                      <Anchor href={iNatdata.wikipedia_url}>
-                        {iNatdata.name} / Wikipedia{" "}
-                      </Anchor>
-                    </Text>
-                  )}
-                </Overlay>
-              </AspectRatio>
-            </BackgroundImage>
-          </AspectRatio>
-        )}
+                {iNatdata.wikipedia_url && (
+                  <Text
+                    size="xs"
+                    fs="italic"
+                    lineClamp={12}
+                    mt="xs"
+                    color="white"
+                  >
+                    Source:{" "}
+                    <Anchor href={iNatdata.wikipedia_url}>
+                      {iNatdata.name} / Wikipedia{" "}
+                    </Anchor>
+                  </Text>
+                )}
+              </Overlay>
+            </AspectRatio>
+          </BackgroundImage>
+        </AspectRatio>
       </Card.Section>
       <WildCardFooter iNatdata={iNatdata} />
     </Card>

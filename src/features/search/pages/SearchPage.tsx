@@ -38,7 +38,7 @@ export default function SearchPage() {
   // const [pageNumber, setPageNumber] = useState(1)
   const [totalPages, setTotalPages] = useState(0)
 
-  const [hasLocalData, setHasLocalData] = useState(false)
+  // const [hasLocalData, setHasLocalData] = useState(false)
 
   useLogger("SearchPage", [{ searchParams }])
 
