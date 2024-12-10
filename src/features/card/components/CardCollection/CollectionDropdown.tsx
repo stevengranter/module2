@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react"
+import { PropsWithChildren, useEffect, useMemo, useState } from "react"
 
 import {
   CheckIcon,
@@ -18,6 +18,7 @@ type CollectionDropdownProps = {
   taxonId: string | number
   taxonName: string
   taxonCommonName?: string
+  props?: PropsWithChildren
 }
 
 export function CollectionDropdown({
@@ -25,6 +26,7 @@ export function CollectionDropdown({
   taxonId,
   taxonName,
   taxonCommonName,
+  ...props
 }: CollectionDropdownProps) {
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
@@ -139,21 +141,27 @@ export function CollectionDropdown({
       store={combobox}
       onOptionSubmit={handleValueSelect}
       withinPortal={true}
-      position="top"
+      position="bottom"
       transitionProps={{ duration: 200, transition: "pop" }}
       offset={0}
+      {...props}
     >
       <Combobox.DropdownTarget>
-        <PillsInput onClick={() => combobox.openDropdown()}>
+        <PillsInput
+          aria-label="Choose collection"
+          onClick={() => combobox.openDropdown()}
+          w="100%"
+        >
           <Pill.Group>
             {values}
 
             <Combobox.EventsTarget>
               <PillsInput.Field
+                width={100}
                 onFocus={() => combobox.openDropdown()}
                 onBlur={() => combobox.closeDropdown()}
                 value={search}
-                placeholder="Add to collection (type to search or create new)"
+                placeholder="Type to search or create new"
                 onChange={(event) => {
                   combobox.updateSelectedOptionIndex()
                   setSearch(event.currentTarget.value)
