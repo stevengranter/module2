@@ -87,7 +87,7 @@ export default function NestView() {
     setItemIdsArray(selectedCollection.items)
     console.log({ selectedCollection })
     setCollectionDescription(selectedCollection.description || "")
-  }, [selectedCollectionId])
+  }, [selectedCollectionId, collectionsState])
 
   // TODO: Fix for choosing current option (errors with null value)
   function handleSelect(selectedValue: string) {
