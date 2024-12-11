@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import ReactCardFlip from "react-card-flip"
 
 import {
@@ -7,19 +7,14 @@ import {
   AspectRatio,
   BackgroundImage,
   Box,
-  Button,
   Card,
   CardProps,
   Center,
   Flex,
-  GridCol,
   Group,
   Image,
-  Indicator,
   Loader,
   Overlay,
-  Paper,
-  Skeleton,
   Stack,
   Text,
   Title,
@@ -28,7 +23,6 @@ import {
 } from "@mantine/core"
 import {
   IconArrowForwardUp,
-  IconBrandWikipedia,
   IconHeart,
   IconHeartFilled,
   IconStar,
@@ -236,14 +230,22 @@ function WildCard_Back({
                       <Interweave content={iNatdata.wikipedia_summary} />
                     </Text>
                   ) : (
-                    <Text
-                      size="sm"
-                      lineClamp={8}
-                      color="white"
-                      style={{ textShadow: "0px 0px 3px #000" }}
-                    >
-                      Sorry, no description available
-                    </Text>
+                    <Stack align="center">
+                      <Image
+                        src="assets/images/ui/sorry-owl.png"
+                        alt="Sorry!"
+                        h="auto"
+                        w={"70%"}
+                      />
+                      <Text
+                        size="md"
+                        color="white"
+                        style={{ textShadow: "0px 0px 3px #000" }}
+                        fw={700}
+                      >
+                        Sorry, no description available
+                      </Text>
+                    </Stack>
                   )}
 
                   {iNatdata.wikipedia_url && (

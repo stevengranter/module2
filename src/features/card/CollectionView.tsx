@@ -94,6 +94,7 @@ export default function CollectionView() {
             spacing={{ base: "lg" }}
             verticalSpacing={{ base: "lg" }}
             mt={"md"}
+            className="transition-grid"
           >
             <TransitionGroup component={null} key={groupKey}>
               {itemIdsArray.length > 0 &&
