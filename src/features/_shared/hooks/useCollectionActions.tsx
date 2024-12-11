@@ -1,10 +1,18 @@
+import { ActionIcon, rem, useMantineTheme } from "@mantine/core"
 import { notifications } from "@mantine/notifications"
-import { IconPlus, IconMinus } from "@tabler/icons-react"
+import {
+  IconPlus,
+  IconMinus,
+  IconHeartFilled,
+  IconStarFilled,
+  IconHeart,
+  IconStar,
+} from "@tabler/icons-react"
 import { useCollections } from "~/features/_shared/contexts/collections/useCollections.ts"
 import { Collection } from "~/features/_shared/contexts/nest/NestProvider.types.ts"
 import useNestActions from "~/features/_shared/hooks/useNestActions.ts"
 import toTitleCase from "~/features/_shared/utils/toTitleCase.ts"
-import _ from "lodash"
+import _, { get } from "lodash"
 
 const notificationsQueueId = "message-queue"
 
@@ -13,12 +21,15 @@ function initNotifications() {
     id: notificationsQueueId,
     message: "",
     position: "top-right",
+    radius: "xl",
+    withBorder: true,
   })
 }
 
 export default function useCollectionActions() {
   const [state, update] = useCollections()
   const nestAction = useNestActions()
+  const theme = useMantineTheme()
 
   // ---- Collection Management ----
   function hasCollection(name: string): boolean {
@@ -114,11 +125,27 @@ export default function useCollectionActions() {
         console.log({ taxonId })
         console.log({ taxonName })
 
+        const iconConfig = {
+          icon: <IconPlus />,
+          color: theme.primaryColor,
+        }
+        if (namedCollection.name === "Favorites") {
+          iconConfig.icon = <IconHeartFilled color="red" />
+          iconConfig.color = "white"
+        } else if (namedCollection.name === "Wishlist") {
+          iconConfig.icon = <IconStarFilled color="gold" />
+          iconConfig.color = "white"
+        } else {
+          // iconPlus = <IconPlus />
+        }
+
         notifications.update({
           id: notificationsQueueId,
-          message: `(${taxonName}, id: ${taxonId}) added to ${namedCollection.name}`,
+          message: ``, //(${taxonName}, id: ${taxonId}) added
+          // tto ${namedCollection.name}`,
           title: `${taxonCommonName && toTitleCase(taxonCommonName)} added to ${namedCollection.name} collection`,
-          icon: <IconPlus />,
+
+          ...iconConfig,
         })
       }
     })
@@ -127,7 +154,7 @@ export default function useCollectionActions() {
   function removeIdFromCollection(
     taxonId: number | string,
     name: string,
-    taxonName?: string,
+    // taxonName?: string,
     taxonCommonName?: string,
   ): void {
     initNotifications()
@@ -153,6 +180,17 @@ export default function useCollectionActions() {
       return
     }
 
+    const iconConfig = { icon: <IconMinus />, color: theme.primaryColor }
+    if (namedCollection.name === "Favorites") {
+      iconConfig.icon = <IconHeart color="teal" />
+      iconConfig.color = "white"
+    } else if (namedCollection.name === "Wishlist") {
+      iconConfig.icon = <IconStar color="teal" />
+      iconConfig.color = "white"
+    } else {
+      // iconPlus = <IconPlus />
+    }
+
     update((draft) => {
       const collectionToUpdate = draft.find(
         (collection) => collection.name === name,
@@ -163,9 +201,10 @@ export default function useCollectionActions() {
           collectionToUpdate.items.splice(index, 1)
           notifications.update({
             id: notificationsQueueId,
-            title: `${taxonCommonName && toTitleCase(taxonCommonName)} removed`,
-            message: `(${taxonName}, id: ${taxonId}) removed from ${namedCollection.name}`,
-            icon: <IconMinus />,
+            title: `${taxonCommonName && toTitleCase(taxonCommonName)} removed from ${namedCollection.name}`,
+            message: ``, //(${taxonName}, id: ${taxonId}) removed from
+            // ${namedCollection.name}`,
+            ...iconConfig,
           })
         }
       }
