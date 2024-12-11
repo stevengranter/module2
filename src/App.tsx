@@ -26,20 +26,19 @@ const rootElement = document.getElementById("root")!
 if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement)
   root.render(
-    // <StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <NestProvider>
-        <CollectionsProvider>
-          <ColorSchemeScript defaultColorScheme="light" />
-          <MantineProvider defaultColorScheme="light" theme={defaultTheme}>
-            <ModalsProvider />
-            <Notifications />
-            <RouterProvider router={router} />
-          </MantineProvider>
-        </CollectionsProvider>
-      </NestProvider>
-    </QueryClientProvider>,
-
-    // </StrictMode>,
+    <StrictMode>
+      <QueryClientProvider client={queryClient}>
+        <NestProvider>
+          <CollectionsProvider>
+            <ColorSchemeScript defaultColorScheme="light" />
+            <MantineProvider defaultColorScheme="light" theme={defaultTheme}>
+              <ModalsProvider />
+              <Notifications />
+              <RouterProvider router={router} />
+            </MantineProvider>
+          </CollectionsProvider>
+        </NestProvider>
+      </QueryClientProvider>
+    </StrictMode>,
   )
 }

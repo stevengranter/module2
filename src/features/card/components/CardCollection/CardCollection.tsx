@@ -8,7 +8,7 @@ import { useLogger } from "~/dev.ts"
 import DeleteCollectionButton from "~/features/_shared/contexts/nest/components/DeleteCollectionButton.tsx"
 import { WildCard } from "~/features/card/components/WildCard/WildCard.tsx"
 
-import "./CardCollection.css"
+// import "./CardCollection.css"
 
 export default function CardCollection({
   itemIdArray,

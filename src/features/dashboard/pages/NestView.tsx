@@ -6,6 +6,7 @@ import { useCollections } from "~/features/_shared/contexts/collections/useColle
 import { Collection } from "~/features/_shared/contexts/nest/NestProvider.types.ts"
 import useNest from "~/features/_shared/contexts/nest/useNest.ts"
 import useCollectionActions from "~/features/_shared/hooks/useCollectionActions.tsx"
+import CollectionView from "~/features/card/CollectionView.tsx"
 import CardCollection from "~/features/card/components/CardCollection/CardCollection.tsx"
 import CollectionSelectBox from "~/features/card/components/CollectionSelectBox.tsx"
 
@@ -101,32 +102,40 @@ export default function NestView() {
     console.log(selectedValue)
   }
 
-  return collectionsState && collectionsState.length > 0 ? (
+  return (
     <>
       <CollectionsInitializer />
-      <CollectionSelectBox
-        data={dropdownDataArray}
-        value={selectedCollectionId}
-        defaultValue={selectedCollectionId}
-        handleSelectFn={handleSelect}
-      />
-
-      <CardCollection
-        itemIdArray={itemIdsArray}
-        collectionId={selectedCollectionId}
-        description={collectionDescription}
-      />
-    </>
-  ) : (
-    <>
-      <Text>No collections found</Text>
-      <CardCollection
-        itemIdArray={itemIdsArray}
-        collectionId={selectedCollectionId}
-        description={collectionDescription}
-      />
+      <CollectionView />
     </>
   )
+
+  // return collectionsState && collectionsState.length > 0 ? (
+  //   <>
+  //     <CollectionsInitializer />
+  //     <CollectionView />
+  //     {/*<CollectionSelectBox*/}
+  //     {/*  data={dropdownDataArray}*/}
+  //     {/*  value={selectedCollectionId}*/}
+  //     {/*  defaultValue={selectedCollectionId}*/}
+  //     {/*  handleSelectFn={handleSelect}*/}
+  //     {/*/>*/}
+  //
+  //     {/*<CardCollection*/}
+  //     {/*  itemIdArray={itemIdsArray}*/}
+  //     {/*  collectionId={selectedCollectionId}*/}
+  //     {/*  description={collectionDescription}*/}
+  //     {/*/>*/}
+  //   </>
+  // ) : (
+  //   <>
+  //     <Text>No collections found</Text>
+  //     <CardCollection
+  //       itemIdArray={itemIdsArray}
+  //       collectionId={selectedCollectionId}
+  //       description={collectionDescription}
+  //     />
+  //   </>
+  // )
 }
 
 // Initialize the Favorites collection if it doesn't exist
