@@ -11,6 +11,7 @@ import {
   Card,
   Center,
   Flex,
+  GridCol,
   Group,
   Image,
   Indicator,
@@ -53,7 +54,7 @@ type Props = {
 
 // const cardImagePath = "./assets/images/cards/"
 
-export function WildCard({ taxonId, dataObject }: Props) {
+export function WildCard({ taxonId, dataObject, restProps }: Props) {
   const [cardId, setCardId] = useState(taxonId)
   const [iNatData, setINatData] = useState(dataObject)
   const [isFlipped, setIsFlipped] = useState(false)
@@ -83,21 +84,33 @@ export function WildCard({ taxonId, dataObject }: Props) {
   if (!iNatData) return null
 
   return (
-    <>
-      <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-        <WildCard_Front
-          iNatdata={iNatData}
-          isLoading={iNatQuery.isLoading}
-          // wilderNestData={wilderNestData}
-          onFlip={(e: React.MouseEvent) => handleFlip(e)}
-        />
-        <WildCard_Back
-          iNatdata={iNatData}
-          isLoading={iNatQuery.isLoading}
-          onFlip={(e: React.MouseEvent) => handleFlip(e)}
-        />
-      </ReactCardFlip>
-    </>
+    // <GridCol
+    //   span={{
+    //     base: 12,
+    //     xs: 12,
+    //     sm: 6,
+    //     md: 6,
+    //     lg: 4,
+    //     xl: 3,
+    //     xxl: 2,
+    //   }}
+    // >
+    <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
+      <WildCard_Front
+        iNatdata={iNatData}
+        isLoading={iNatQuery.isLoading}
+        // wilderNestData={wilderNestData}
+        onFlip={(e: React.MouseEvent) => handleFlip(e)}
+        {...restProps}
+      />
+      <WildCard_Back
+        iNatdata={iNatData}
+        isLoading={iNatQuery.isLoading}
+        onFlip={(e: React.MouseEvent) => handleFlip(e)}
+        {...restProps}
+      />
+    </ReactCardFlip>
+    // </GridCol>
   )
 }
 
