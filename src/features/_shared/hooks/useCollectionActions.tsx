@@ -163,7 +163,7 @@ export default function useCollectionActions() {
           collectionToUpdate.items.splice(index, 1)
           notifications.update({
             id: notificationsQueueId,
-            title: `${taxonCommonName && toTitleCase(taxonCommonName)} removed from ${namedCollection.name} collection`,
+            title: `${taxonCommonName && toTitleCase(taxonCommonName)} removed`,
             message: `(${taxonName}, id: ${taxonId}) removed from ${namedCollection.name}`,
             icon: <IconMinus />,
           })

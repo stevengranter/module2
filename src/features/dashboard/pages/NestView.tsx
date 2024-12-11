@@ -143,12 +143,12 @@ function CollectionsInitializer() {
   const collectionAction = useCollectionActions()
 
   useEffect(() => {
-    if (!collectionAction.getAllCollectionNames().includes("Favorites")) {
-      collectionAction.createCollection("Favorites")
-    }
-    if (!collectionAction.getAllCollectionNames().includes("Starter Pack")) {
-      collectionAction.createCollection("Starter Pack")
-    }
+    // if (!collectionAction.getAllCollectionNames().includes("Favorites")) {
+    //   collectionAction.createCollection("Favorites")
+    // }
+    // if (!collectionAction.getAllCollectionNames().includes("Starter Pack")) {
+    //   collectionAction.createCollection("Starter Pack")
+    // }
   }, [collectionAction])
 
   return null // This component doesn't render anything
