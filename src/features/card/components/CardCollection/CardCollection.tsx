@@ -1,11 +1,7 @@
-import React, { createRef, useRef, useState } from "react"
-import { Link } from "react-router-dom"
 import { TransitionGroup, CSSTransition } from "react-transition-group"
 
-import { Grid, GridCol, SimpleGrid, Text } from "@mantine/core"
-import { randomId } from "@mantine/hooks"
+import { SimpleGrid, Text } from "@mantine/core"
 import { useLogger } from "~/dev.ts"
-import DeleteCollectionButton from "~/features/_shared/contexts/nest/components/DeleteCollectionButton.tsx"
 import { WildCard } from "~/features/card/components/WildCard/WildCard.tsx"
 
 // import "./CardCollection.css"
@@ -23,7 +19,6 @@ export default function CardCollection({
   if (!itemIdArray) return "Collection doesn't exist"
   if (itemIdArray.length === 0) return
 
-  const itemIdArrayWithRefs = itemIdArray.map((item) => {})
   const groupKey = itemIdArray.join()
   console.log({ groupKey })
 

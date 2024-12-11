@@ -146,7 +146,7 @@ export default function useCollectionActions() {
       !namedCollection.items.includes(taxonId.toString())
     ) {
       notifications.update({
-        taxonId: notificationsQueueId,
+        id: notificationsQueueId,
         message: `Cannot remove, ID: ${taxonId} is not in collection ${name}`,
         color: "orange",
       })

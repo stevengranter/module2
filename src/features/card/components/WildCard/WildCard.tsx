@@ -9,6 +9,7 @@ import {
   Box,
   Button,
   Card,
+  CardProps,
   Center,
   Flex,
   GridCol,
@@ -47,14 +48,15 @@ import { Interweave } from "interweave"
 
 import styles from "./WildCard.module.css"
 
-type Props = {
+type WildCardProps = {
   taxonId?: number | string
   dataObject?: iNatTaxonRecord | undefined
+  restProps?: CardProps | undefined
 }
 
 // const cardImagePath = "./assets/images/cards/"
 
-export function WildCard({ taxonId, dataObject, restProps }: Props) {
+export function WildCard({ taxonId, dataObject, restProps }: WildCardProps) {
   const [cardId, setCardId] = useState(taxonId)
   const [iNatData, setINatData] = useState(dataObject)
   const [isFlipped, setIsFlipped] = useState(false)
