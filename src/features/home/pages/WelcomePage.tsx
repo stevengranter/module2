@@ -1,23 +1,8 @@
 import { Link } from "react-router-dom"
 
 const logo = "./assets/images/logo.png"
-import {
-  Alert,
-  Center,
-  Flex,
-  Group,
-  Image,
-  Paper,
-  rem,
-  Stack,
-  Text,
-  Title,
-} from "@mantine/core"
-import {
-  IconAlertTriangle,
-  IconAlertTriangleFilled,
-  IconInfoCircle,
-} from "@tabler/icons-react"
+import { Alert, Flex, Image, Text, Title } from "@mantine/core"
+import { IconAlertTriangle } from "@tabler/icons-react"
 import DefaultPaper from "~/features/_shared/components/DefaultPaper.tsx"
 
 export default function WelcomePage() {
@@ -25,9 +10,9 @@ export default function WelcomePage() {
     <Flex
       // mih={50}
       gap="sm"
-      align={{ base: "center", sm: "flex-start" }}
+      align={{ base: "center" }}
       justify="center"
-      direction={{ base: "column", sm: "row" }}
+      direction={{ base: "column" }}
       // wrap="wrap"
     >
       <Image
