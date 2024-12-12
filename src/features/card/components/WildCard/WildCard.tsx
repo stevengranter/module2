@@ -223,7 +223,7 @@ function WildCard_Back({
                   ) : iNatdata.wikipedia_summary ? (
                     <Text
                       size="xs"
-                      lineClamp={6}
+                      lineClamp={8}
                       color="white"
                       style={{ textShadow: "0px 0px 3px #000" }}
                     >

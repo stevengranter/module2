@@ -90,7 +90,7 @@ export default function CollectionView() {
             </Text>
           )}
           <SimpleGrid
-            cols={{ base: 1, xs: 1, sm: 2, md: 3, lg: 3, xl: 4, xxl: 4 }}
+            cols={{ base: 1, xs: 1, sm: 2, md: 2, lg: 3, xl: 4, xxl: 4 }}
             spacing={{ base: "lg" }}
             verticalSpacing={{ base: "lg" }}
             mt={"md"}

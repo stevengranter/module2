@@ -143,7 +143,7 @@ export default function useCollectionActions() {
           id: notificationsQueueId,
           message: ``, //(${taxonName}, id: ${taxonId}) added
           // tto ${namedCollection.name}`,
-          title: `${taxonCommonName && toTitleCase(taxonCommonName)} added to ${namedCollection.name} collection`,
+          title: `${taxonCommonName && toTitleCase(taxonCommonName)} added to ${namedCollection.name}`,
 
           ...iconConfig,
         })
