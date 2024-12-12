@@ -2,9 +2,8 @@ import { Link, Outlet, ScrollRestoration } from "react-router-dom"
 
 import { AppShell, Burger, Group, Image, rgba, Container } from "@mantine/core"
 import { useDisclosure, useHeadroom } from "@mantine/hooks"
+import logo from "~/../public/assets/images/logo.png"
 import { NavbarSimple } from "~/features/_shared/components/navbar/NavbarSimple.tsx"
-
-import logo from "/images/logo.png"
 
 export default function DefaultLayout() {
   // const { user } = useContext(RoleContext);

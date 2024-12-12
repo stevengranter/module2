@@ -1,7 +1,18 @@
 import { Link } from "react-router-dom"
 
 const logo = "./assets/images/logo.png"
-import { Alert, Center, Image, Text, Title } from "@mantine/core"
+import {
+  Alert,
+  Center,
+  Flex,
+  Group,
+  Image,
+  Paper,
+  rem,
+  Stack,
+  Text,
+  Title,
+} from "@mantine/core"
 import {
   IconAlertTriangle,
   IconAlertTriangleFilled,
@@ -11,17 +22,25 @@ import DefaultPaper from "~/features/_shared/components/DefaultPaper.tsx"
 
 export default function WelcomePage() {
   return (
-    <>
-      <Center>
-        <Image
-          src={logo}
-          alt="WilderNest logo"
-          w="50%"
-          mah="300px"
-          pb="2rem"
-          style={{ filter: "drop-shadow(0px 5px 8px rgba(0, 0, 0, 0.4))" }}
-        />
-      </Center>
+    <Flex
+      // mih={50}
+      gap="sm"
+      align={{ base: "center", sm: "flex-start" }}
+      justify="center"
+      direction={{ base: "column", sm: "row" }}
+      // wrap="wrap"
+    >
+      <Image
+        src={logo}
+        alt="WilderNest logo"
+        maw={{ base: "80%", sm: "30%" }}
+        // mah="50%"
+        // h="auto"
+        // mah={rem(300)}
+        pb="2rem"
+        style={{ filter: "drop-shadow(0px 5px 8px rgba(0, 0, 0, 0.4))" }}
+      />
+
       <DefaultPaper>
         <Title order={1}>Welcome to WilderNest!</Title>
         <Text py="xs">
@@ -45,9 +64,7 @@ export default function WelcomePage() {
           All data entered is stored in localStorage in your web browser on your
           own device. No user data is stored or backed up online.
         </Alert>
-        {/*<Features
-         />*/}
       </DefaultPaper>
-    </>
+    </Flex>
   )
 }
