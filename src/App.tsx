@@ -34,7 +34,12 @@ if (!rootElement.innerHTML) {
             <MantineProvider defaultColorScheme="light" theme={defaultTheme}>
               <ModalsProvider />
               <Notifications />
-              <RouterProvider router={router} />
+              <RouterProvider
+                router={router}
+                future={{
+                  v7_startTransition: true,
+                }}
+              />
             </MantineProvider>
           </CollectionsProvider>
         </NestProvider>
