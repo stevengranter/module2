@@ -95,7 +95,7 @@ export function CollectionDropdown({
         : collectionAction.removeIdFromCollection(
             taxonId,
             val,
-            taxonName,
+            // taxonName,
             taxonCommonName,
           )
     }
@@ -107,7 +107,7 @@ export function CollectionDropdown({
     collectionAction.removeIdFromCollection(
       taxonId,
       val,
-      taxonName,
+      // taxonName,
       taxonCommonName,
     )
   }

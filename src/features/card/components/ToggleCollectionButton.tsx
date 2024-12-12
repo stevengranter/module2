@@ -41,7 +41,7 @@ export default function ToggleCollectionButton({
       collectionAction.removeIdFromCollection(
         id,
         collection,
-        taxonName,
+        // taxonName,
         taxonCommonName,
       )
       setIsInCollection(false)
