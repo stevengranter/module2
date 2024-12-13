@@ -72,6 +72,7 @@ export default function CollectionView() {
         onChange={setSelectedCollectionId}
         mb="xs"
         radius="lg"
+        size="md"
       />
 
       {selectedCollection && (

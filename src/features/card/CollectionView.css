@@ -20,5 +20,19 @@ opacity: 1;}
 opacity: 0;
 transition: opacity 250ms ease-in;}
 
+.mantine-Select-input {
+    font-family: "Truculenta",
+    sans-serif;
+    color: var(--mantine-color-soil-9);
+    font-weight: bold;
+    }
+
+.mantine-Select-option {
+    font-family: "Truculenta",
+    sans-serif;
+    font-weight: 500;}
+
+
+
 
 
