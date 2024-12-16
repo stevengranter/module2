@@ -1,13 +1,10 @@
 // CollectionsContext.tsx
 import React, { createContext, ReactElement, ReactNode } from "react"
 
-import { Combobox } from "@mantine/core"
 import { useLogger } from "~/dev.ts"
 import { Collection } from "~/features/_shared/contexts/nest/NestProvider.types.ts"
 import useStorageSyncedImmerState from "~/features/_shared/hooks/useLocalSyncedImmerState.ts"
 import { Updater } from "use-immer"
-
-import Search = Combobox.Search
 
 const initialCollections: Collection[] = [
   {

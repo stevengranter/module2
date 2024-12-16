@@ -1,34 +1,10 @@
 import { useEffect } from "react"
 import { Link, Outlet } from "react-router-dom"
 
-import {
-  ActionIcon,
-  AppShell,
-  BackgroundImage,
-  Box,
-  Center,
-  Flex,
-  Group,
-  Image,
-  Paper,
-  px,
-  rem,
-  Text,
-} from "@mantine/core"
-import { useHeadroom, useMediaQuery } from "@mantine/hooks"
-import {
-  IconBinoculars,
-  IconCards,
-  IconEgg,
-  IconHome,
-  IconSailboat,
-  IconSearch,
-  IconUsers,
-  IconUsersGroup,
-} from "@tabler/icons-react"
+import { ActionIcon, AppShell, Group, rem } from "@mantine/core"
+import { useMediaQuery } from "@mantine/hooks"
+import { IconCards, IconHome, IconSearch } from "@tabler/icons-react"
 import { NavbarSimple } from "~/features/_shared/components/navbar/NavbarSimple.tsx"
-import { defaultTheme } from "~/theme/defaultTheme.ts"
-import { min } from "lodash"
 
 import styles from "./MobileLayout.module.css"
 
@@ -88,23 +64,20 @@ export default function MobileLayout() {
         >
           <Link to="/">
             <ActionIcon variant="transparent" color="white" size={60}>
-              <IconHome className={styles.footer_icon}></IconHome>
+              <IconHome className={styles.footer_icon} stroke="2"></IconHome>
             </ActionIcon>
           </Link>
 
           <Link to="/collections">
             <ActionIcon variant="transparent" color="white" size={60}>
-              <IconCards
-                // style={{ width: "auto", height: rem(60) }}
-                className={styles.footer_icon}
-              ></IconCards>
+              <IconCards className={styles.footer_icon} stroke="2"></IconCards>
             </ActionIcon>
           </Link>
           <Link to="/search">
             <ActionIcon variant="transparent" color="white" size={60}>
               <IconSearch
-                // style={{ width: "auto", height: rem(60) }}
                 className={styles.footer_icon}
+                stroke="2"
               ></IconSearch>
             </ActionIcon>
           </Link>
