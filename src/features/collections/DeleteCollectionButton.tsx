@@ -1,5 +1,4 @@
 import { Button } from "@mantine/core"
-import { modals } from "@mantine/modals"
 import useCollectionActions from "~/features/_shared/hooks/useCollectionActions.ts"
 
 type Props = {

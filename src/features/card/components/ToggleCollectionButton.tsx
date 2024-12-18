@@ -1,8 +1,8 @@
 import { ReactNode, useEffect, useState } from "react"
 
 import { ActionIcon, createTheme, MantineThemeProvider } from "@mantine/core"
-import { useCollections } from "~/features/_shared/contexts/collections/useCollections.ts"
 import useCollectionActions from "~/features/_shared/hooks/useCollectionActions.tsx"
+import { useCollections } from "~/features/_shared/hooks/useCollections.ts"
 
 import classes from "./ToggleCollectionButton.module.css"
 

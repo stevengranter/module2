@@ -7,13 +7,11 @@ import {
 
 import { WildCard } from "~/features/card/components/WildCard/WildCard.tsx"
 import CardsPage from "~/features/card/pages/CardsPage.tsx"
-import DashboardPage from "~/features/dashboard/pages/DashboardPage.tsx"
-import HomePage from "~/features/home/pages/HomePage.tsx"
+import CollectionsPage from "~/features/collections/pages/CollectionsPage.tsx"
 import WelcomePage from "~/features/home/pages/WelcomePage.tsx"
 import SearchOther from "~/features/search/pages/SearchOther.tsx"
 import SearchPage from "~/features/search/pages/SearchPage.tsx"
 import UserManagement from "~/features/user-management/components/UserManagement.tsx"
-import DefaultLayout from "~/theme/DefaultLayout.tsx"
 import MobileLayout from "~/theme/MobileLayout.tsx"
 
 export const router: ReturnType<typeof createBrowserRouter> =
@@ -21,20 +19,11 @@ export const router: ReturnType<typeof createBrowserRouter> =
     createRoutesFromElements(
       <Route element={<MobileLayout />} path="/">
         <Route element={<WelcomePage />} index></Route>
-        <Route element={<DashboardPage />} path="collections"></Route>
-        {/*<Route element={<UserLogin />} path="login"></Route>*/}
+        <Route element={<CollectionsPage />} path="collections"></Route>
         /* /users */
         <Route path="users">
           <Route element={<UserManagement />} index></Route>
-          {/*<Route element={<UserProfile />} path=":userId">*/}
-          {/*<Route path="collection">*/}
-          {/*  <Route element={<CardCollection />} index></Route>*/}
-          {/*</Route>*/}
-          {/*</Route>*/}
         </Route>
-        {/*<Route path="local-users">*/}
-        {/*  <Route element={<Route__LocalUsers />} index></Route>*/}
-        {/*</Route>*/}
         /* /cards */
         <Route path="cards">
           <Route element={<CardsPage />} index></Route>

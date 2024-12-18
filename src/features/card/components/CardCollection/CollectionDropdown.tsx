@@ -9,8 +9,8 @@ import {
   useCombobox,
 } from "@mantine/core"
 import { useLogger } from "~/dev.ts"
-import { useCollections } from "~/features/_shared/contexts/collections/useCollections.ts"
 import useCollectionActions from "~/features/_shared/hooks/useCollectionActions.tsx"
+import { useCollections } from "~/features/_shared/hooks/useCollections.ts"
 
 type CollectionDropdownProps = {
   userCollections?: string[]

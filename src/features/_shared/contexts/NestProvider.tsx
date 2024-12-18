@@ -1,13 +1,9 @@
-import React, { createContext, ReactNode } from "react"
+import React, { ReactNode } from "react"
 
 import useLocalSyncedImmerState from "~/features/_shared/hooks/useLocalSyncedImmerState.ts"
-import { Updater } from "use-immer"
+import { NestContext } from "~/features/_shared/hooks/useNest.ts"
 
 const initialNest: string[] = ["48586", "48984", "81545"]
-
-type NestContextData = [string[], Updater<string[]>]
-
-export const NestContext = createContext<NestContextData | undefined>(undefined)
 
 export default function NestProvider({ children }: { children: ReactNode }) {
   const [state, updater] = useLocalSyncedImmerState(initialNest, "nestData")

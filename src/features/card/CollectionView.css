@@ -1,17 +1,3 @@
-/*.card-appear {*/
-/*    opacity: 0;}*/
-
-/*.card-appear-active {*/
-/*    opacity: 1;*/
-/*    transition: opacity 500ms ease-in;}*/
-
-/*.card-enter {*/
-/*opacity: 0;}*/
-
-/*.card-enter-active {*/
-/*opacity: 1;*/
-/*transition: opacity 250ms ease-in;}*/
-
 
 .card-exit {
 opacity: 1;}

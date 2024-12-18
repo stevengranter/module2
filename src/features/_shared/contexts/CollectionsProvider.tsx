@@ -1,8 +1,11 @@
 // CollectionsContext.tsx
-import React, { createContext, ReactElement, ReactNode } from "react"
+import React, { ReactElement, ReactNode } from "react"
 
 import { useLogger } from "~/dev.ts"
-import { Collection } from "~/features/_shared/contexts/nest/NestProvider.types.ts"
+import {
+  Collection,
+  CollectionsContext,
+} from "~/features/_shared/hooks/useCollections.ts"
 import useStorageSyncedImmerState from "~/features/_shared/hooks/useLocalSyncedImmerState.ts"
 import { Updater } from "use-immer"
 
@@ -15,12 +18,6 @@ const initialCollections: Collection[] = [
   },
   { name: "Favorites", id: crypto.randomUUID(), items: [] },
 ]
-
-type CollectionsContextState = [Collection[], Updater<Collection[]>]
-
-export const CollectionsContext = createContext<CollectionsContextState | null>(
-  null,
-)
 
 // Provider component
 export default function CollectionsProvider({

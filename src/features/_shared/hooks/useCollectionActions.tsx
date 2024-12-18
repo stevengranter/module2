@@ -8,8 +8,10 @@ import {
   IconHeart,
   IconStar,
 } from "@tabler/icons-react"
-import { useCollections } from "~/features/_shared/contexts/collections/useCollections.ts"
-import { Collection } from "~/features/_shared/contexts/nest/NestProvider.types.ts"
+import {
+  Collection,
+  useCollections,
+} from "~/features/_shared/hooks/useCollections.ts"
 import useNestActions from "~/features/_shared/hooks/useNestActions.ts"
 import toTitleCase from "~/features/_shared/utils/toTitleCase.ts"
 import _, { get } from "lodash"

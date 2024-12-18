@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react"
 
-import { Text } from "@mantine/core"
 import { useLogger } from "~/dev.ts"
-import { useCollections } from "~/features/_shared/contexts/collections/useCollections.ts"
-import { Collection } from "~/features/_shared/contexts/nest/NestProvider.types.ts"
-import useNest from "~/features/_shared/contexts/nest/useNest.ts"
 import useCollectionActions from "~/features/_shared/hooks/useCollectionActions.tsx"
+import {
+  Collection,
+  useCollections,
+} from "~/features/_shared/hooks/useCollections.ts"
+import useNest from "~/features/_shared/hooks/useNest.ts"
 import CollectionView from "~/features/card/CollectionView.tsx"
-import CardCollection from "~/features/card/components/CardCollection/CardCollection.tsx"
-import CollectionSelectBox from "~/features/card/components/CollectionSelectBox.tsx"
 
 export default function NestView() {
   // Initialize nestState and collectionState for NestContext and

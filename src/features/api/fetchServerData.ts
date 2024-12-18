@@ -17,15 +17,7 @@ if (import.meta.env) {
   ninjaAPIKey = process.env.VITE_NINJA_API_KEY || ""
 }
 
-// const process = { env: {} } as NodeProcess
-// const myApiKey = process.env.NODE_ENV
-//   ? process.env.NINJA_API_KEY
-//   : import.meta.env.VITE_NINJA_API_KEY
-
-// const myApiKey = import.meta.env.VITE_NINJA_API_KEY
-
 export async function fetchServerData(queryKey: QueryKey): Promise<unknown> {
-  // const queryUrl = `${queryKey[0]}${queryKey[1]}${queryKey[2]}`
   const queryUrl = queryKey.join("")
   console.log({ queryUrl })
   const response = await fetch(queryUrl)

@@ -1,10 +1,19 @@
-import { useContext } from "react"
+import { createContext, useContext } from "react"
 
-import { CollectionsContext } from "~/features/_shared/contexts/collections/CollectionsProvider.tsx"
-import { Collection } from "~/features/_shared/contexts/nest/NestProvider.types.ts"
 import { Updater } from "use-immer"
 
+export type Collection = {
+  name: string
+  id: string
+  items: string[]
+  description?: string
+}
+
 type CollectionsContextState = [Collection[], Updater<Collection[]>]
+
+export const CollectionsContext = createContext<CollectionsContextState | null>(
+  null,
+)
 
 export function useCollections(): CollectionsContextState {
   const context = useContext(CollectionsContext)

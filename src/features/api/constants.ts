@@ -1,5 +1,3 @@
-// const CORS_PROXY_URL = "https://corsproxy.io"
-
 const INAT_API_URL = `https://api.inaturalist.org/v1`
 
 const JSON_SERVER_URL =

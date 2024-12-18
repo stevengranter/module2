@@ -4,8 +4,6 @@ import { SimpleGrid, Text } from "@mantine/core"
 import { useLogger } from "~/dev.ts"
 import { WildCard } from "~/features/card/components/WildCard/WildCard.tsx"
 
-// import "./CardCollection.css"
-
 export default function CardCollection({
   itemIdArray,
   collectionId,
