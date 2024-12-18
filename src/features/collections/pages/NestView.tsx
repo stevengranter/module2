@@ -49,7 +49,7 @@ export default function NestView() {
     { itemIdsArray },
   ])
 
-  // // on initial mount, set selectedCollectionId to the Starter Pack Id
+  // // on initial mount, set selectedCollectionId to the Starter Pack id
   useEffect(() => {
     const starterPackId = collectionAction.getCollectionIdByName("Starter Pack")
     setSelectedCollectionId(starterPackId)

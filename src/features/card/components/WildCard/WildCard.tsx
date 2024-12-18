@@ -30,7 +30,7 @@ import {
 } from "@tabler/icons-react"
 import { useQuery } from "@tanstack/react-query"
 import { useLogger } from "~/dev.ts"
-import { API_SERVER } from "~/features/api/constants.ts"
+import { API_SERVER } from "~/features/_shared/api/constants.ts"
 import FoundItButton from "~/features/card/components/FoundItButton.tsx"
 import ToggleCollectionButton from "~/features/card/components/ToggleCollectionButton.tsx"
 import {

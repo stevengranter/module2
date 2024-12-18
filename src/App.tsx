@@ -1,19 +1,28 @@
+//React and ReactDOM
+import ReactDOM from "react-dom/client"
 import { StrictMode } from "react"
-import { RouterProvider } from "react-router-dom"
 
+// Third-party libraries
+import { RouterProvider } from "react-router-dom"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { ColorSchemeScript, MantineProvider } from "@mantine/core"
-import "@mantine/core/styles.css"
 import { ModalsProvider } from "@mantine/modals"
 import { Notifications } from "@mantine/notifications"
+
+// Stylesheets
+import "@mantine/core/styles.css"
 import "@mantine/notifications/styles.css"
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
-import CollectionsProvider from "~/features/_shared/contexts/CollectionsProvider.tsx"
-import NestProvider from "~/features/_shared/contexts/NestProvider.tsx"
-import { fetchServerData } from "~/features/api/fetchServerData.ts"
-import ReactDOM from "react-dom/client"
+
+// Internal modules
+import { fetchServerData } from "~/features/_shared/api/fetchServerData.ts"
+import {
+  CollectionsProvider,
+  NestProvider,
+} from "~/features/_shared/contexts/index.ts"
 import { router } from "routes.tsx"
 import { defaultTheme } from "theme/defaultTheme"
 
+// Initialize React Query Client
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -22,6 +31,7 @@ const queryClient = new QueryClient({
   },
 })
 
+// Render React Application
 const rootElement = document.getElementById("root")!
 if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement)

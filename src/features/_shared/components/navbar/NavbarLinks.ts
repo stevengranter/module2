@@ -1,9 +1,6 @@
 import {
-  IconBinoculars,
   IconCards,
-  IconEgg,
   IconHome,
-  IconLayout,
   IconSearch,
   IconUsersGroup,
 } from "@tabler/icons-react"

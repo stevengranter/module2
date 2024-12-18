@@ -16,38 +16,38 @@ module.exports = {
       "warn",
       { allowConstantExport: true },
     ],
-    "perfectionist/sort-imports": [
-      "error",
-      {
-        type: "natural",
-        order: "asc",
-        internalPattern: [
-          "components/**",
-          "models/**",
-          "icons/**",
-          "routes/**",
-        ],
-        groups: [
-          "react",
-          "type",
-          ["builtin", "external"],
-          "internal-type",
-          "internal",
-          ["parent-type", "sibling-type", "index-type"],
-          ["parent", "sibling", "index"],
-          "object",
-          "unknown",
-        ],
-        customGroups: {
-          value: {
-            react: ["react", "react-*"],
-          },
-          type: {
-            react: ["react", "react-*"],
-          },
-        },
-      },
-    ],
+    // "perfectionist/sort-imports": [
+    //   "error",
+    //   {
+    //     type: "natural",
+    //     order: "asc",
+    //     internalPattern: [
+    //       "components/**",
+    //       "models/**",
+    //       "icons/**",
+    //       "routes/**",
+    //     ],
+    //     groups: [
+    //       "react",
+    //       "type",
+    //       ["builtin", "external"],
+    //       "internal-type",
+    //       "internal",
+    //       ["parent-type", "sibling-type", "index-type"],
+    //       ["parent", "sibling", "index"],
+    //       "object",
+    //       "unknown",
+    //     ],
+    //     customGroups: {
+    //       value: {
+    //         react: ["react", "react-*"],
+    //       },
+    //       type: {
+    //         react: ["react", "react-*"],
+    //       },
+    //     },
+    //   },
+    // ],
     "no-unused-vars": "warn",
     "@typescript-eslint/no-unused-vars": [
       "warn",

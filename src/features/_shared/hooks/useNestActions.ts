@@ -3,7 +3,6 @@ import { useCallback } from "react"
 
 import { notifications } from "@mantine/notifications"
 import useNest from "~/features/_shared/hooks/useNest.ts"
-import { displayNotification } from "~/features/_shared/utils/displayNotification.ts"
 
 export default function useNestActions() {
   const [state, update] = useNest()

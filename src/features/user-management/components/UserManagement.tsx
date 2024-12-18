@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 
-import { Paper, Table, Title } from "@mantine/core"
+import { Table, Title } from "@mantine/core"
+import { JSON_SERVER_URL } from "~/features/_shared/api/constants.ts"
 import DefaultPaper from "~/features/_shared/components/DefaultPaper.tsx"
-import { JSON_SERVER_URL } from "~/features/api/constants.ts"
 import { UserType } from "~/models/UserType.ts"
 
 export default function UserManagement() {

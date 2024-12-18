@@ -1,4 +1,4 @@
-import { Paper, Title } from "@mantine/core"
+import { Title } from "@mantine/core"
 import DefaultPaper from "~/features/_shared/components/DefaultPaper.tsx"
 import NestView from "~/features/collections/pages/NestView.tsx"
 

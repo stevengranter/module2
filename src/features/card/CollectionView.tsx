@@ -10,7 +10,6 @@ import { useCollections } from "~/features/_shared/hooks/useCollections.ts"
 import useLocalSyncedImmerState from "~/features/_shared/hooks/useLocalSyncedImmerState.ts"
 import { WildCard } from "~/features/card/components/WildCard/WildCard.tsx"
 import { Interweave } from "interweave"
-import { transform } from "lodash"
 
 import "./CollectionView.css"
 

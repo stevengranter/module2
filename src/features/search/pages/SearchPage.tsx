@@ -8,18 +8,16 @@ import {
   Grid,
   GridCol,
   Pagination,
-  Paper,
   TextInput,
   Title,
 } from "@mantine/core"
 import { useForm } from "@mantine/form"
 import { useQuery } from "@tanstack/react-query"
 import { useLogger } from "~/dev.ts"
+import { API_SERVER } from "~/features/_shared/api/constants.ts"
 import DefaultPaper from "~/features/_shared/components/DefaultPaper.tsx"
-import { API_SERVER } from "~/features/api/constants.ts"
 import { WildCard } from "~/features/card/components/WildCard/WildCard.tsx"
 import { iNatTaxaResponseType } from "~/models/iNatTaxaResponseType.ts"
-import { WilderKindCardType } from "~/models/WilderKindCardType.ts"
 
 const defaultQueryParams = {
   per_page: "6",

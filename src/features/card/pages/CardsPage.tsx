@@ -1,5 +1,5 @@
 import { useFetch } from "@mantine/hooks"
-import { JSON_SERVER_URL } from "~/features/api/constants.ts"
+import { JSON_SERVER_URL } from "~/features/_shared/api/constants.ts"
 import CardCollection from "~/features/card/components/CardCollection/CardCollection.tsx"
 import { WilderKindCardType } from "~/models/WilderKindCardType.ts"
 

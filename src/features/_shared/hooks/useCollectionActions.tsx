@@ -1,4 +1,4 @@
-import { ActionIcon, rem, useMantineTheme } from "@mantine/core"
+import { useMantineTheme } from "@mantine/core"
 import { notifications } from "@mantine/notifications"
 import {
   IconPlus,
@@ -14,7 +14,7 @@ import {
 } from "~/features/_shared/hooks/useCollections.ts"
 import useNestActions from "~/features/_shared/hooks/useNestActions.ts"
 import toTitleCase from "~/features/_shared/utils/toTitleCase.ts"
-import _, { get } from "lodash"
+import _ from "lodash"
 
 const notificationsQueueId = "message-queue"
 

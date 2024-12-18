@@ -2,7 +2,6 @@ import {
   createTheme,
   DefaultMantineColor,
   MantineColorsTuple,
-  MantineThemeColorsOverride,
 } from "@mantine/core"
 
 type ExtendedCustomColors =
