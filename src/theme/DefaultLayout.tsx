@@ -1,63 +1,88 @@
-import { Link, Outlet, ScrollRestoration } from "react-router-dom"
+import { useEffect } from "react"
+import { Link, Outlet } from "react-router-dom"
 
-import { AppShell, Burger, Group, Image, Container } from "@mantine/core"
-import { useDisclosure, useHeadroom } from "@mantine/hooks"
-import logo from "~/../public/assets/images/logo.png"
+import { ActionIcon, AppShell, Group, rem } from "@mantine/core"
+import { useMediaQuery } from "@mantine/hooks"
+import { IconCards, IconHome, IconSearch } from "@tabler/icons-react"
 import { NavbarSimple } from "~/features/_shared/components/navbar/NavbarSimple.tsx"
 
+import styles from "./DefaultLayout.module.css"
+
+const backgroundImage = "./assets/images/ui/forest-bg-01.png"
 export default function DefaultLayout() {
-  const [opened, { toggle }] = useDisclosure()
-  const pinned = useHeadroom({ fixedAt: 150 })
+  useEffect(() => {
+    const originalBackground = document.body.style.backgroundImage
+
+    document.body.style.backgroundImage = `url(${backgroundImage})`
+    document.body.style.backgroundSize = "cover"
+    document.body.style.backgroundRepeat = "no-repeat"
+    document.body.style.backgroundPosition = "top"
+    document.body.style.backgroundAttachment = "fixed"
+    document.body.style.background
+    document.body.style.backgroundColor = "#56CADA"
+    console.log({ styles })
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.backgroundImage = originalBackground
+    }
+  }, [])
+  // const pinned = useHeadroom({ fixedAt: 10 })
+
+  const mediaQuery = `(min-width: 64em)`
+
+  const isDesktop = useMediaQuery(mediaQuery)
 
   return (
     <AppShell
+      layout="alt"
+      // header={{ height: rem(270), collapsed: !pinned, offset: true }}
+      // header={{ height: rem(120), collapsed: !pinned, offset: true }}
+      footer={{ height: rem(80), collapsed: isDesktop }}
       navbar={{
-        collapsed: { desktop: opened, mobile: !opened },
-        breakpoint: "xs",
-        width: "200",
+        width: rem(200),
+        breakpoint: "md",
+        collapsed: { desktop: false, mobile: true },
       }}
-      header={{ collapsed: !pinned, offset: true, height: 175 }}
-      footer={{
-        collapsed: true,
-        height: 100,
-      }}
+      p="lg"
     >
-      <AppShell.Header>
-        <Group h="100%" px="md" justify="left" align="center">
-          <Burger onClick={toggle} opened={!opened} size="sm" />
-
+      <AppShell.Navbar withBorder={false}>
+        <NavbarSimple />
+      </AppShell.Navbar>
+      <AppShell.Main>
+        <Outlet />
+      </AppShell.Main>
+      <AppShell.Footer withBorder={false}>
+        <Group
+          justify="space-around"
+          align="center"
+          // bg="orange"
+          className={styles.mobile_toolbar}
+          bottom="0"
+          py="sm"
+        >
           <Link to="/">
-            <Image
-              alt="WilderNest Logo"
-              fit="contain"
-              src={logo}
-              h="150"
-              pt="10"
-              w="auto"
-            />
+            <ActionIcon variant="transparent" color="white" size={60}>
+              <IconHome className={styles.footer_icon} stroke="2"></IconHome>
+            </ActionIcon>
+          </Link>
+
+          <Link to="/collections">
+            <ActionIcon variant="transparent" color="white" size={60}>
+              <IconCards className={styles.footer_icon} stroke="2"></IconCards>
+            </ActionIcon>
+          </Link>
+          <Link to="/search">
+            <ActionIcon variant="transparent" color="white" size={60}>
+              <IconSearch
+                className={styles.footer_icon}
+                stroke="2"
+              ></IconSearch>
+            </ActionIcon>
           </Link>
         </Group>
-      </AppShell.Header>
-
-      <AppShell.Navbar>
-        <NavbarSimple onClick={toggle} />
-      </AppShell.Navbar>
-
-      <AppShell.Main
-        style={{ backgroundColor: "transparent", paddingTop: "200px" }}
-      >
-        <ScrollRestoration />
-        {/* Container is REQUIRED here to prevent horizontal in Grid component //*/}
-        {/* due to negative margins (see: https://v6.mantine.dev/core/grid/)*/}
-        <Container>
-          <Outlet />
-        </Container>
-      </AppShell.Main>
-
-      <AppShell.Footer
-        id="footer"
-        style={{ position: "relative" }}
-      ></AppShell.Footer>
+        {/*</Paper>*/}
+      </AppShell.Footer>
     </AppShell>
   )
 }
