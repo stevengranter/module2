@@ -95,18 +95,13 @@ export default function SearchPage() {
     <DefaultPaper>
       <Title order={1}>Search</Title>
       <p>
-        Type in your findings here: insect, plant, or animal. If you're not sure
-        what you've found, check out our links page to some apps and smartphone
-        features that can identify from a photo.
+        Type in your findings here: animal, plant, or fungi. Results are sorted
+        by number of observations recorded in the iNaturalist.org iNatDatabase.
       </p>
       <p>
-        Results are sorted by number of observations recorded in the
-        iNaturalist.org iNatDatabase.
-      </p>
-      <p>
-        Once you've found the plant/animal you're looking for, click the Add+
-        button to add it to your nest. If you see something you're hoping to
-        find later, click the star to add it to your wishlist.
+        Once you've found the plant/animal you're looking for, click heart to
+        add it to your favorites, the start to add to your wishlist or the Add+
+        button to add it to another collection.
       </p>
       <form
         onSubmit={form.onSubmit((values) => handleSubmit(values as FormValues))}

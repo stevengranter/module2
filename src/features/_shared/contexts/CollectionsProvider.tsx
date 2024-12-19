@@ -13,7 +13,7 @@ const initialCollections: Collection[] = [
   {
     name: "Starter Pack",
     id: crypto.randomUUID(),
-    items: ["12727", "48586", "48987"],
+    items: ["46260", "117443", "8335"],
     description: `This is your starter pack. Add them to your favorites by clicking the heart ❤️ icon, or your wishlist by clicking the star ⭐️. Add more animals by using <a href='/search'>Search</Link>.`,
   },
   { name: "Favorites", id: crypto.randomUUID(), items: [] },
