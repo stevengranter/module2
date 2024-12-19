@@ -99,9 +99,9 @@ export default function SearchPage() {
         by number of observations recorded in the iNaturalist.org iNatDatabase.
       </p>
       <p>
-        Once you've found the plant/animal you're looking for, click ❤️to add it
-        to your favorites, ⭐️ to add to your wishlist or the Add+ button to add
-        it to another collection.
+        Once you've found the plant/animal you're looking for, click ❤️ to add
+        it to your favorites, ⭐️ to add to your wishlist or the Add+ button to
+        add it to another collection.
       </p>
       <form
         onSubmit={form.onSubmit((values) => handleSubmit(values as FormValues))}
