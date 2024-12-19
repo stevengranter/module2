@@ -9,7 +9,6 @@ import { WildCard } from "~/features/card/components/WildCard/WildCard.tsx"
 import CardsPage from "~/features/card/pages/CardsPage.tsx"
 import CollectionsPage from "~/features/collections/pages/CollectionsPage.tsx"
 import WelcomePage from "~/features/home/pages/WelcomePage.tsx"
-import SearchOther from "~/features/search/pages/SearchOther.tsx"
 import SearchPage from "~/features/search/pages/SearchPage.tsx"
 import UserManagement from "~/features/user-management/components/UserManagement.tsx"
 import DefaultLayout from "~/theme/DefaultLayout.tsx"
@@ -34,9 +33,6 @@ export const router: ReturnType<typeof createBrowserRouter> =
         </Route>
         <Route path="search">
           <Route element={<SearchPage />} index></Route>
-        </Route>
-        <Route path="othersearch">
-          <Route element={<SearchOther />} index></Route>
         </Route>
       </Route>,
     ),
